@@ -3,11 +3,11 @@
  * Plugin Name: Wolf Discography
  * Plugin URI: http://wpwolf.com/plugin/wolf-discography
  * Description: A plugin to display your releases.
- * Version: 1.0.7
+ * Version: 1.0.8
  * Author: WpWolf
  * Author URI: http://wpwolf.com
  * Requires at least: 3.5
- * Tested up to: 3.8.1
+ * Tested up to: 3.9.1
  *
  * Text Domain: wolf
  * Domain Path: /lang/
@@ -560,6 +560,12 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 						array(
 							'label'	=> __( 'Buy (any link where the release can be purchased)', 'wolf' ),
 							'id'	=> '_wolf_release_buy',
+							'type'	=> 'text',
+						),
+
+						array(
+							'label'	=> __( 'Free Download link', 'wolf' ),
+							'id'	=> '_wolf_release_free',
 							'type'	=> 'text',
 						),
 

@@ -11,7 +11,8 @@
 
 .wolf-release-amazon:before,
 .wolf-release-itunes:before,
-.wolf-release-buy:before{
+.wolf-release-buy:before,
+.wolf-release-free:before{
 	font-family: 'discography';
 	speak: none;
 	font-style: normal;
@@ -37,6 +38,12 @@
 }
 .wolf-release-buy:before {
 	content: "\e002";
+	position: relative;
+	top:1px;
+}
+
+.wolf-release-free:before {
+	content: "\f0ed";
 	position: relative;
 	top:1px;
 }
@@ -99,7 +106,8 @@ article.wolf-release{
 		text-align: center;
 		a.wolf-release-amazon,
 		a.wolf-release-itunes,
-		a.wolf-release-buy{
+		a.wolf-release-buy,
+		a.wolf-release-free{
 			text-decoration: none!important;
 			&:before{
 				padding-right: 5px;
@@ -165,6 +173,7 @@ article.wolf-release{
 		width: 25%;
 
 		.entry-thumbnail{
+			display: block;
 			float: none;
 			width: 95%!important;
 			text-align: center;

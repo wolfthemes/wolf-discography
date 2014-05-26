@@ -7,7 +7,8 @@
 }
 .wolf-release-amazon:before,
 .wolf-release-itunes:before,
-.wolf-release-buy:before {
+.wolf-release-buy:before,
+.wolf-release-free:before {
   font-family: 'discography';
   speak: none;
   font-style: normal;
@@ -34,6 +35,12 @@
 
 .wolf-release-buy:before {
   content: "\e002";
+  position: relative;
+  top: 1px;
+}
+
+.wolf-release-free:before {
+  content: "\f0ed";
   position: relative;
   top: 1px;
 }
@@ -94,17 +101,21 @@ article.wolf-release footer.entry-meta {
 #wolf-release-buttons .wolf-release-button a.wolf-release-amazon,
 #wolf-release-buttons .wolf-release-button a.wolf-release-itunes,
 #wolf-release-buttons .wolf-release-button a.wolf-release-buy,
+#wolf-release-buttons .wolf-release-button a.wolf-release-free,
 .wolf-release-buttons .wolf-release-button a.wolf-release-amazon,
 .wolf-release-buttons .wolf-release-button a.wolf-release-itunes,
-.wolf-release-buttons .wolf-release-button a.wolf-release-buy {
+.wolf-release-buttons .wolf-release-button a.wolf-release-buy,
+.wolf-release-buttons .wolf-release-button a.wolf-release-free {
   text-decoration: none !important;
 }
 #wolf-release-buttons .wolf-release-button a.wolf-release-amazon:before,
 #wolf-release-buttons .wolf-release-button a.wolf-release-itunes:before,
 #wolf-release-buttons .wolf-release-button a.wolf-release-buy:before,
+#wolf-release-buttons .wolf-release-button a.wolf-release-free:before,
 .wolf-release-buttons .wolf-release-button a.wolf-release-amazon:before,
 .wolf-release-buttons .wolf-release-button a.wolf-release-itunes:before,
-.wolf-release-buttons .wolf-release-button a.wolf-release-buy:before {
+.wolf-release-buttons .wolf-release-button a.wolf-release-buy:before,
+.wolf-release-buttons .wolf-release-button a.wolf-release-free:before {
   padding-right: 5px;
 }
 
@@ -171,6 +182,7 @@ article.wolf-release footer.entry-meta {
   width: 25%;
 }
 .shortcode-release-grid li .entry-thumbnail {
+  display: block;
   float: none;
   width: 95% !important;
   text-align: center;

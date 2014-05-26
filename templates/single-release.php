@@ -39,6 +39,7 @@ get_header();
 	$release_itunes = get_post_meta( $post_id, '_wolf_release_itunes', true );
 	$release_amazon = get_post_meta( $post_id, '_wolf_release_amazon', true );
 	$release_buy = get_post_meta( $post_id, '_wolf_release_buy', true );
+	$release_free = get_post_meta( $post_id, '_wolf_release_free', true );
 	?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'wolf-release' ) ); ?>>
 		
@@ -60,6 +61,11 @@ get_header();
 				<?php if ( $release_buy ) : ?>
 				<div class="wolf-release-button">
 					<a class="wolf-release-buy" href="<?php echo $release_buy; ?>"><?php _e( 'Buy', 'wolf' ); ?></a>
+				</div>
+				<?php endif; ?>
+				<?php if ( $release_free ) : ?>
+				<div class="wolf-release-button">
+					<a class="wolf-release-free" href="<?php echo $release_free; ?>"><?php _e( 'Free Download', 'wolf' ); ?></a>
 				</div>
 				<?php endif; ?>
 			</div>

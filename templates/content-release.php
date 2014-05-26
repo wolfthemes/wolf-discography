@@ -90,7 +90,6 @@ $thumbnail_size = get_post_meta( $post_id, '_wolf_release_type', true ) == 'DVD'
 		</div>
 		<?php the_content( __( 'View Details', 'wolf' ) ); ?>
 
-		
 	</div><!-- .entry-content -->
 	
 </article><!-- article.wolf-release -->

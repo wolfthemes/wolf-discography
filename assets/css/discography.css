@@ -153,9 +153,17 @@ article.wolf-release footer.entry-meta {
 
 /* Shortcode */
 .shortcode-release-grid {
+  zoom: 1;
   width: 100%;
   margin: 0;
   padding: 0;
+}
+.shortcode-release-grid:before, .shortcode-release-grid:after {
+  content: "";
+  display: table;
+}
+.shortcode-release-grid:after {
+  clear: both;
 }
 .shortcode-release-grid li {
   list-style-type: none !important;

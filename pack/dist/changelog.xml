@@ -1,0 +1,130 @@
+<!-- ?xml version="1.0" encoding="UTF-8"? -->
+<root>
+<slug>wolf-discography</slug>
+<name>Wolf Discography</name>
+<link>https://wolfthemes.com/plugin/wolf-discography/</link>
+<short_link>http://wlfthm.es/6I5guh</short_link>
+<created>2013-11-19</created>
+<requires>4.4.1</requires>
+<tested>4.7.2</tested>
+<description>A discography plugin to display your releases</description>
+<date>2017-04-27</date>
+<latest>1.4.0</latest>
+<warning><![CDATA[]]></warning>
+<info><![CDATA[]]></info>
+<new><![CDATA[]]></new>
+<changelog>
+<![CDATA[
+<h4 id="27th-april-2017-version-1-4-0">27th April 2017 - Version 1.4.0</h4>
+<ul>
+<li>Fix: Typo in CSS script name</li>
+</ul>
+<h4 id="16th-january-2017-version-1-3-9">16th January 2017 - Version 1.3.9</h4>
+<ul>
+<li>Tweak: Remove password protected posts from shortcode loop</li>
+</ul>
+<h4 id="5th-january-2017-version-1-3-8">5th January 2017 - Version 1.3.8</h4>
+<ul>
+<li>Fix: Last release title sanitization issue</li>
+</ul>
+<h4 id="13th-december-2016-version-1-3-7">13th December 2016 - Version 1.3.7</h4>
+<ul>
+<li>Fix: Link to settings in admin page creator message</li>
+<li>Fix: Error message in widget in customizer</li>
+</ul>
+<h4 id="31th-october-2016-version-1-3-6">31th October 2016 - Version 1.3.6</h4>
+<ul>
+<li>Fix: Tracklist admin bug</li>
+</ul>
+<h4 id="27th-october-2016-version-1-3-5">27th October 2016 - Version 1.3.5</h4>
+<ul>
+<li>Tweak: Added WPML compatibily for index page</li>
+<li>Tweak: Added single release shortcode</li>
+</ul>
+<h4 id="22th-october-2016-version-1-3-3">22th October 2016 - Version 1.3.3</h4>
+<ul>
+<li>Fix: Microdata description causing bug in the markup</li>
+</ul>
+<h4 id="21th-october-2016-version-1-3-2">21th October 2016 - Version 1.3.2</h4>
+<ul>
+<li>Tweak: Added tracklist metabox field (some themes may not show it if they use their own templates)</li>
+<li>Tweak: Added microdata for google rich snippets</li>
+<li>Tweak: Added before and after thumbnail hooks</li>
+<li>Tweak: Added thumbnail size filter</li>
+<li>Tweak: Added posts per page filter</li>
+<li>Tweak: Improved plugin structure</li>
+<li>Fix: Empty track appearing when tracklist is empty</li>
+</ul>
+<h4 id="17th-october-2016-version-1-2-5">17th October 2016 - Version 1.2.5</h4>
+<ul>
+<li>Tweak: Flush rewrite rules on plugin activation to avoid 404 error on custom post type</li>
+</ul>
+<h4 id="4th-august-2016-version-1-2-4">4th August 2016 - Version 1.2.4</h4>
+<ul>
+<li>Tweak: Added Wolf Page Buillder animation compatibility</li>
+</ul>
+<h4 id="25th-august-2015-version-1-2-3">25th August 2015 - Version 1.2.3</h4>
+<ul>
+<li>Tweak: Minor Improvements </li>
+</ul>
+<h4 id="19th-august-2015-version-1-2-2">19th August 2015 - Version 1.2.2</h4>
+<ul>
+<li>Fix: Update for WP 4.3 </li>
+</ul>
+<h4 id="29th-may-2015-version-1-2-1">29th May 2015 - Version 1.2.1</h4>
+<ul>
+<li>Fix: Fixed release count in widget</li>
+<li>Fix: Escape data in widget fields</li>
+</ul>
+<h4 id="9th-may-2015-version-1-2-0">9th May 2015 - Version 1.2.0</h4>
+<ul>
+<li>Tweak: Apply settings to single page</li>
+</ul>
+<h4 id="3rd-march-2015-version-1-0-9">3rd March 2015 - Version 1.0.9</h4>
+<ul>
+<li>Tweak: Fix: Minor fixes for new themes compatibility</li>
+</ul>
+<h4 id="26th-march-2014-version-1-0-8">26th March 2014 - Version 1.0.8</h4>
+<ul>
+<li>Tweak: Added free download button/link</li>
+</ul>
+<h4 id="30th-april-2014-version-1-0-7">30th April 2014 - Version 1.0.7</h4>
+<ul>
+<li>Tweak: Added [wolf_last_releases] shortcode</li>
+</ul>
+<h4 id="21th-april-2014-version-1-0-6">21th April 2014 - Version 1.0.6</h4>
+<ul>
+<li>Tweak: Included template in plugin</li>
+<li>Tweak: Renamed font to avoid CSS conflict</li>
+<li>Tweak: Minified CSS</li>
+</ul>
+<h4 id="14th-february-2014-version-1-0-5">14th February 2014 - Version 1.0.5</h4>
+<ul>
+<li>Fix: Fix save option bug</li>
+</ul>
+<h4 id="24th-december-2013-version-1-0-4">24th December 2013 - Version 1.0.4</h4>
+<ul>
+<li>Fix: Minor CSS fix</li>
+</ul>
+<h4 id="20th-december-2013-version-1-0-3">20th December 2013 - Version 1.0.3</h4>
+<ul>
+<li>Tweak: Enqueue the plugin stylsheet before theme style.css (to overwrite styles easily if needed)</li>
+<li>Fix: Minor fix : displays &quot;Digital Download&quot; as format instead as &quot;digital&quot;</li>
+</ul>
+<h4 id="16th-december-2013-version-1-0-2">16th December 2013 - Version 1.0.2</h4>
+<ul>
+<li>Tweak: Plugin structure improvement</li>
+<li>Fix: Minor admin style adjusment for WP 3.8</li>
+</ul>
+<h4 id="09th-december-2013-version-1-0-1">09th December 2013 - Version 1.0.1</h4>
+<ul>
+<li>Fix: Fixed Date format bug </li>
+</ul>
+<h4 id="19th-november-2013-version-1-0">19th November 2013 - Version 1.0</h4>
+<ul>
+<li>Initial Release </li>
+</ul>
+
+]]>
+</changelog>
+</root>

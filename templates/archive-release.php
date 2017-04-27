@@ -4,14 +4,17 @@
  *
  * Override this template by copying it to yourtheme/wolf-discography/archive-release.php
  *
- * @author WpWolf
- * @package WolfDiscography/Templates
+ * @author %AUTHOR%
+ * @package %PACKAGENAME%/Templates
+ * @version %VERSION%
  * @since 1.0.2
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
-get_header(); ?>
+get_header( 'discography' ); ?>
 
 	<?php
 		/**
@@ -55,6 +58,6 @@ get_header(); ?>
 	?>
 
 <?php
-get_sidebar();
-get_footer(); 
+get_sidebar( 'discography' );
+get_footer( 'discography' ); 
 ?>

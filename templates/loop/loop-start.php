@@ -1,9 +1,9 @@
 <?php
 /**
- * Release Loop End
+ * Release Loop Start
  *
- * @author WpWolf
- * @package WolfDiscography/Templates
+ * @author %AUTHOR%
+ * @package %PACKAGENAME%/Templates
  * @since 1.0.2
  */
 ?>

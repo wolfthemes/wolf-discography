@@ -1,5 +1,6 @@
 # build and dist
-pack
+html
+build/dist
 
 # Ignore sass cache
 **/.sass-cache
@@ -13,7 +14,6 @@ pack
 
 # Ignore private stuff
 *.ftppass
-app.config.json
 
 # Sublime Text 2
 *.sublime-project

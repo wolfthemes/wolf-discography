@@ -2,8 +2,8 @@
 /**
  * Release Loop End
  *
- * @author WpWolf
- * @package WolfDiscography/Templates
+ * @author %AUTHOR%
+ * @package %PACKAGENAME%/Templates
  * @since 1.0.2
  */
 ?>

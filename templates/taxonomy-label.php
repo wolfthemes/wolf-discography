@@ -4,11 +4,14 @@
  *
  * Override this template by copying it to yourtheme/wolf-discography/taxonomy-band.php
  *
- * @author WpWolf
- * @package WolfDiscography/Templates
+ * @author %AUTHOR%
+ * @package %PACKAGENAME%/Templates
+ * @version %VERSION%
  * @since 1.0.2
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 wolf_discography_get_template( 'archive-release.php' );

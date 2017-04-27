@@ -1,0 +1,493 @@
+# Copyright (C) 2016 WolfThemes
+# This file is distributed under the same license as the Wolf Discography package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Wolf Discography 1.2.5\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wolf-discography\n"
+"POT-Creation-Date: 2016-10-20 13:28+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-10-20 13:34+0200\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.10\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"Last-Translator: WolfThemes <help@wolfthemes.com>\n"
+"Language: de\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: dev\n"
+"X-Poedit-SearchPathExcluded-1: html\n"
+"X-Poedit-SearchPathExcluded-2: pack\n"
+"X-Poedit-SearchPathExcluded-3: scss\n"
+
+#: classes/class-metabox.php:193
+msgid "Select one"
+msgstr "Wähle eins..."
+
+#: classes/class-metabox.php:261 classes/class-metabox.php:287
+msgid "Clear"
+msgstr "Klar"
+
+#: classes/class-metabox.php:262 classes/class-metabox.php:288
+msgid "Choose an image"
+msgstr "Wählen Sie ein Bild"
+
+#: classes/class-metabox.php:278
+msgid "Background color"
+msgstr "Hintergrund Farbe"
+
+#: classes/class-metabox.php:282
+msgid "Background image"
+msgstr ""
+
+#: classes/class-metabox.php:297
+msgid "Background repeat"
+msgstr ""
+
+#: classes/class-metabox.php:320
+msgid "Background position"
+msgstr ""
+
+#: classes/class-metabox.php:334
+msgid "Background attachment"
+msgstr ""
+
+#: classes/class-metabox.php:348
+msgid "Background size"
+msgstr ""
+
+#: classes/widgets/class-wd-widget-discography.php:24
+msgid "Display your discography"
+msgstr ""
+
+#: classes/widgets/class-wd-widget-discography.php:27
+msgid "Discography"
+msgstr ""
+
+#: classes/widgets/class-wd-widget-discography.php:87 wolf-discography.php:508
+#: wolf-discography.php:520
+msgid "Releases"
+msgstr ""
+
+#: classes/widgets/class-wd-widget-discography.php:94
+#: classes/widgets/class-wd-widget-last-release.php:94
+#: templates/content-release.php:70 wolf-discography.php:638
+msgid "Title"
+msgstr "Titel"
+
+#: classes/widgets/class-wd-widget-discography.php:98
+#: classes/widgets/class-wd-widget-last-release.php:98
+msgid "Optional Text"
+msgstr "Optionaler Text"
+
+#: classes/widgets/class-wd-widget-discography.php:102
+msgid "Count"
+msgstr ""
+
+#: classes/widgets/class-wd-widget-last-release.php:24
+msgid "Display your last release"
+msgstr ""
+
+#: classes/widgets/class-wd-widget-last-release.php:27
+#: classes/widgets/class-wd-widget-last-release.php:88
+msgid "Last Release"
+msgstr ""
+
+#: templates/content-release-shortcode.php:17
+#: templates/content-release-shortcode.php:22 templates/content-release.php:54
+#: templates/content-release.php:63
+msgid "Permalink to %s"
+msgstr ""
+
+#: templates/content-release-shortcode.php:39
+msgid "Buy"
+msgstr ""
+
+#: templates/content-release-shortcode.php:44
+msgid "Free Download"
+msgstr ""
+
+#: templates/content-release.php:14 templates/content-release.php:19
+msgid "Band "
+msgstr ""
+
+#: templates/content-release.php:27 templates/content-release.php:32
+msgid "Label "
+msgstr ""
+
+#: templates/content-release.php:58
+msgid "Edit"
+msgstr ""
+
+#: templates/content-release.php:75
+msgid "Release Date"
+msgstr ""
+
+#: templates/content-release.php:83
+msgid "Catalog ref."
+msgstr ""
+
+#: templates/content-release.php:88
+msgid "Format"
+msgstr ""
+
+#: templates/content-release.php:91 wolf-discography.php:1098
+msgid "View Details"
+msgstr ""
+
+#: templates/loop/no-releases-found.php:1
+msgid "No release yet"
+msgstr ""
+
+#: wolf-discography.php:238
+msgid ""
+"says : <em>Almost done! you need to <a href=\"%1$s\">create a page</a> for "
+"your releases or <a href=\"%2$s\">select an existing page</a> in the plugin "
+"settings</em>."
+msgstr ""
+
+#: wolf-discography.php:256
+msgid ""
+"<br><br>\r\n"
+"\t\t\t\t\t\t<a href=\"%1$s\" class=\"button button-primary\">Create a page</"
+"a>\r\n"
+"\t\t\t\t\t\t&nbsp;\r\n"
+"\t\t\t\t\t\t<a href=\"%2$s\" class=\"button button-primary\">Select an "
+"existing page</a>\r\n"
+"\t\t\t\t\t\t&nbsp;\r\n"
+"\t\t\t\t\t\t<a href=\"%3$s\" class=\"button\">Skip setup</a>"
+msgstr ""
+
+#: wolf-discography.php:317
+msgid "Your discography page has been created succesfully"
+msgstr ""
+
+#: wolf-discography.php:339
+msgid "You are currently editing the page that shows the discography."
+msgstr ""
+
+#: wolf-discography.php:509
+msgid "Release"
+msgstr ""
+
+#: wolf-discography.php:510
+msgid "Add New"
+msgstr ""
+
+#: wolf-discography.php:511
+msgid "Add New Release"
+msgstr ""
+
+#: wolf-discography.php:512
+msgid "All Releases"
+msgstr ""
+
+#: wolf-discography.php:513
+msgid "Edit Release"
+msgstr ""
+
+#: wolf-discography.php:514
+msgid "New Release"
+msgstr ""
+
+#: wolf-discography.php:515
+msgid "View Release"
+msgstr ""
+
+#: wolf-discography.php:516
+msgid "Search Releases"
+msgstr ""
+
+#: wolf-discography.php:517
+msgid "No releases found"
+msgstr ""
+
+#: wolf-discography.php:518
+msgid "No releases found in Trash"
+msgstr ""
+
+#: wolf-discography.php:552 wolf-discography.php:566
+msgid "Bands"
+msgstr ""
+
+#: wolf-discography.php:553
+msgid "Band"
+msgstr ""
+
+#: wolf-discography.php:554
+msgid "Search Bands"
+msgstr ""
+
+#: wolf-discography.php:555
+msgid "Popular Bands"
+msgstr ""
+
+#: wolf-discography.php:556
+msgid "All Bands"
+msgstr ""
+
+#: wolf-discography.php:557
+msgid "Parent Band"
+msgstr ""
+
+#: wolf-discography.php:558
+msgid "Parent Band:"
+msgstr ""
+
+#: wolf-discography.php:559
+msgid "Edit Band"
+msgstr ""
+
+#: wolf-discography.php:560
+msgid "Update Band"
+msgstr ""
+
+#: wolf-discography.php:561
+msgid "Add New Band"
+msgstr ""
+
+#: wolf-discography.php:562
+msgid "New Band"
+msgstr ""
+
+#: wolf-discography.php:563
+msgid "Separate bands with commas"
+msgstr ""
+
+#: wolf-discography.php:564
+msgid "Add or remove bands"
+msgstr ""
+
+#: wolf-discography.php:565
+msgid "Choose from the most used bands"
+msgstr ""
+
+#: wolf-discography.php:583 wolf-discography.php:597
+msgid "Labels"
+msgstr ""
+
+#: wolf-discography.php:584
+msgid "Label"
+msgstr ""
+
+#: wolf-discography.php:585
+msgid "Search Labels"
+msgstr ""
+
+#: wolf-discography.php:586
+msgid "Popular Labels"
+msgstr ""
+
+#: wolf-discography.php:587
+msgid "All Labels"
+msgstr ""
+
+#: wolf-discography.php:588
+msgid "Parent Label"
+msgstr ""
+
+#: wolf-discography.php:589
+msgid "Parent Label:"
+msgstr ""
+
+#: wolf-discography.php:590
+msgid "Edit Label"
+msgstr ""
+
+#: wolf-discography.php:591
+msgid "Update Label"
+msgstr ""
+
+#: wolf-discography.php:592
+msgid "Add New Label"
+msgstr ""
+
+#: wolf-discography.php:593
+msgid "New Label"
+msgstr ""
+
+#: wolf-discography.php:594
+msgid "Separate labels with commas"
+msgstr ""
+
+#: wolf-discography.php:595
+msgid "Add or remove labels"
+msgstr ""
+
+#: wolf-discography.php:596
+msgid "Choose from the most used labels"
+msgstr ""
+
+#: wolf-discography.php:619
+msgid "Settings"
+msgstr ""
+
+#: wolf-discography.php:620
+msgid "Shortcode"
+msgstr ""
+
+#: wolf-discography.php:632
+msgid "Release Details"
+msgstr ""
+
+#: wolf-discography.php:644
+msgid "Release date"
+msgstr ""
+
+#: wolf-discography.php:650
+msgid "Catalog Number"
+msgstr ""
+
+#: wolf-discography.php:656
+msgid "Type"
+msgstr ""
+
+#: wolf-discography.php:658
+msgid ""
+"You can choose to not display the format in the <a href=\"%s\">plugin "
+"options</a>"
+msgstr ""
+
+#: wolf-discography.php:661
+msgid "CD"
+msgstr ""
+
+#: wolf-discography.php:662
+msgid "Digital Download"
+msgstr ""
+
+#: wolf-discography.php:663
+msgid "DVD"
+msgstr ""
+
+#: wolf-discography.php:664
+msgid "Vinyl"
+msgstr ""
+
+#: wolf-discography.php:665
+msgid "Tape"
+msgstr ""
+
+#: wolf-discography.php:670
+msgid "iTunes"
+msgstr ""
+
+#: wolf-discography.php:676
+msgid "Amazon"
+msgstr ""
+
+#: wolf-discography.php:682
+msgid "Buy (any link where the release can be purchased)"
+msgstr ""
+
+#: wolf-discography.php:688
+msgid "Free Download link"
+msgstr ""
+
+#: wolf-discography.php:750
+msgid "Discography Page"
+msgstr ""
+
+#: wolf-discography.php:751
+msgid "Link Band Name to category page"
+msgstr ""
+
+#: wolf-discography.php:752
+msgid "Link Label Name to category page"
+msgstr ""
+
+#: wolf-discography.php:753
+msgid "Display format (like CD, digital download etc...)"
+msgstr ""
+
+#: wolf-discography.php:754
+msgid "Info"
+msgstr ""
+
+#: wolf-discography.php:797
+msgid "Select a page..."
+msgstr ""
+
+#: wolf-discography.php:852
+msgid ""
+"If a discography page returns a 404 error, refresh your <a href=\"%s"
+"\">permalink structure</a>"
+msgstr ""
+
+#: wolf-discography.php:865
+msgid "Discography Shortcode"
+msgstr ""
+
+#: wolf-discography.php:866
+msgid ""
+"To display your last releases in your post or page you can use the following "
+"shortcode."
+msgstr ""
+
+#: wolf-discography.php:868
+msgid "Additionally, you can add a count and/or categories attributes."
+msgstr ""
+
+#: wolf-discography.php:871
+msgid "You can also add a column count attribute."
+msgstr ""
+
+#: wolf-discography.php:886
+msgid "Discography Options"
+msgstr ""
+
+#: wolf-discography.php:889
+msgid "Settings saved."
+msgstr ""
+
+#: wolf-discography.php:895
+msgid "Save Changes"
+msgstr ""
+
+#: wolf-discography.php:1029
+msgid "<span class=\"meta-nav\">&larr;</span> Older releases"
+msgstr ""
+
+#: wolf-discography.php:1033
+msgid "Newer releases <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: wolf-discography.php:1070 wolf-discography.php:1103
+msgid "No release to display yet."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Wolf Discography"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wolfthemes.com/plugin/wolf-discography"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A plugin to display your releases."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WolfThemes"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://wolfthemes.com"
+msgstr ""
+
+#: wolf-discography.php:999
+msgctxt "Previous post link"
+msgid "<span class=\"meta-nav\">&larr;</span> %title"
+msgstr ""
+
+#: wolf-discography.php:1000
+msgctxt "Next post link"
+msgid "%title <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""

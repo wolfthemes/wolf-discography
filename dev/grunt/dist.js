@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask( 'dist', function() {
 		grunt.task.run( [
-			'ftpush:dist',
+			'rsync:dist',
 			'notify:dist'
 		] );
 	} );

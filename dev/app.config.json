@@ -1,6 +1,6 @@
 {
-	"version" : "1.4.0",
-	"updated" : "2017-04-27",
+	"version" : "1.4.7",
+	"updated" : "2018-04-19",
 	"slug" : "wolf-discography",
 	"textdomain" : "wolf-discography",
 	"name" : "Wolf Discography",
@@ -13,7 +13,7 @@
 	"author" : "WolfThemes",
 	"authorURI" : "https://wolfthemes.com",
 	"requires" : "4.4.1",
-	"tested" : "4.7.2",
+	"tested" : "4.9.5",
 	"root" : "..",
 	"cssPath" : "../assets/css",
 	"jsPath" : "../assets/js",

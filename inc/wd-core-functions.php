@@ -50,7 +50,7 @@ function wolf_discography_get_page_id() {
 	}
 
 	if ( -1 != $page_id ) {
-		$page_id = apply_filters( 'wpml_object_id', absint( $page_id ), 'page', false ); // filter for WPML
+		$page_id = apply_filters( 'wpml_object_id', absint( $page_id ), 'page', true ); // filter for WPML
 	}
 
 	return $page_id;
@@ -171,13 +171,82 @@ function wolf_discography_locate_template( $template_name, $template_path = '', 
 function wolf_get_release_option( $value, $default = null ) {
 
 	$wolf_releases_settings = get_option( 'wolf_release_settings' );
-	
+
 	if ( isset( $wolf_releases_settings[ $value ] ) && '' != $wolf_releases_settings[ $value ] ) {
-		
+
 		return $wolf_releases_settings[ $value ];
-	
+
 	} elseif( $default ) {
 
 		return $default;
 	}
+}
+
+/**
+ * Discography Widget function
+ *
+ * Displays the discography widget
+ *
+ * @param int $count
+ * @return string
+ */
+function wolf_widget_discography( $count = 3 ) {
+	global $wpdb;
+	$query = new WP_Query( array(
+			'post_type' => 'release',
+			'posts_per_page' => $count
+		)
+	);
+
+
+	if ( $query->have_posts() ) {
+		$i = 0;
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			$i ++;
+			$post_id = get_the_ID();
+			$class = $i == 1 ? ' class="release-widget-first-child"' : '';
+			$thumb = $i == 1 ? 'CD' : 'thumbnail';
+			?><a<?php echo $class; ?> href="<?php echo the_permalink() ?>"><?php the_post_thumbnail( 'CD' ); ?></a><?php
+		}
+		echo '<div style="clear:both"></div>';
+	} else {
+		echo "<p>";
+		_e( 'No release to display yet.', '%TEXTDOMAIN%' );
+		echo "</p>";
+	}
+	wp_reset_postdata();
+}
+
+/**
+ * Last Release Widget function
+ *
+ * Displays the last release widget
+ *
+ * @return string
+ */
+function wolf_widget_last_release() {
+	global $wpdb;
+	$query = new WP_Query( array(
+			'post_type' => 'release',
+			'posts_per_page' => 1
+		)
+	);
+
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			$post_id = get_the_ID();
+			$thumbnail_size = get_post_meta( $post_id, '_wolf_release_type', true ) == 'DVD' || get_post_meta( $post_id, '_wolf_release_type', true ) == 'K7' ? 'DVD' : 'CD';
+			?>
+			<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( $thumbnail_size ); ?></a>
+			<h4 class="entry-title"><a title="<?php esc_html_e( 'View Details', '%TEXTDOMAIN%' ); ?>" class="entry-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+			<?php
+		}
+	} else {
+		echo "<p>";
+		esc_html_e( 'No release to display yet.', '%TEXTDOMAIN%' );
+		echo "</p>";
+	}
+	wp_reset_postdata();
 }

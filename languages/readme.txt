@@ -1,5 +1,5 @@
 How to translate your theme or plugin:
-https://docs.wolfthemes.com/tutorial/translate-wordpress-theme/
+http://wlfthm.es/translate
 
 --------
 

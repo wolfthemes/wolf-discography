@@ -7,7 +7,7 @@
  * @author WolfThemes
  * @category Widgets
  * @package WolfDiscography/Widgets
- * @version 1.4.0
+ * @version 1.4.7
  * @extends WP_Widget
  */
 
@@ -41,16 +41,16 @@ class WD_Widget_Discography extends WP_Widget {
 	function widget( $args, $instance ) {
 
 		extract( $args );
-		$title = ( isset( $instance['title'] ) ) ? sanitize_title( $instance['title'] ) : '';
+		$title = ( isset( $instance['title'] ) ) ? sanitize_text_field( $instance['title'] ) : '';
 		$title = apply_filters( 'widget_title', $title );
 
-		$desc = ( isset( $instance['desc'] ) ) ? sanitize_title( $instance['desc'] ) : '';
+		$desc = ( isset( $instance['desc'] ) ) ? sanitize_text_field( $instance['desc'] ) : '';
 		$count = isset( $instance['count'] ) ? absint( $instance['count'] ) : 3;
-		
+
 		echo $before_widget;
-		
-		if (! empty( $title ) ) echo $before_title . $title . $after_title;
-		if (! empty( $desc ) ) {
+
+		if ( ! empty( $title ) ) echo $before_title . $title . $after_title;
+		if ( ! empty( $desc ) ) {
 			echo '<p>';
 			echo $desc;
 			echo '</p>';

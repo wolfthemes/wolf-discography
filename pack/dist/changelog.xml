@@ -6,15 +6,37 @@
 <short_link>http://wlfthm.es/6I5guh</short_link>
 <created>2013-11-19</created>
 <requires>4.4.1</requires>
-<tested>4.7.2</tested>
+<tested>4.9.5</tested>
 <description>A discography plugin to display your releases</description>
-<date>2017-04-27</date>
-<latest>1.4.0</latest>
+<date>2018-04-19</date>
+<latest>1.4.7</latest>
 <warning><![CDATA[]]></warning>
 <info><![CDATA[]]></info>
 <new><![CDATA[]]></new>
 <changelog>
 <![CDATA[
+<h4 id="19th-april-2018-version-1-4-7">19th April 2018 - Version 1.4.7</h4>
+<ul>
+<li>Tweak: Add post state in admin</li>
+<li>Fix: Last releases widget title</li>
+</ul>
+<h4 id="30st-october-2017-version-1-4-5">30st October 2017 - Version 1.4.5</h4>
+<ul>
+<li>Fix: Missing label in release meta</li>
+</ul>
+<h4 id="22st-september-2017-version-1-4-4">22st September 2017 - Version 1.4.4</h4>
+<ul>
+<li>Fix: WPML compatibility issue</li>
+<li>Fix: Increase template redirect priority on portfoio pages to fix Wolf VC Content Block plugin compatibility issue</li>
+</ul>
+<h4 id="11th-august-2017-version-1-4-2">11th August 2017 - Version 1.4.2</h4>
+<ul>
+<li>Tweak: Added wolf_discography_release_buttons filter</li>
+</ul>
+<h4 id="13th-july-2017-version-1-4-1">13th July 2017 - Version 1.4.1</h4>
+<ul>
+<li>Fix: Error message when saving a page with plugin widgets (WP 4.8)</li>
+</ul>
 <h4 id="27th-april-2017-version-1-4-0">27th April 2017 - Version 1.4.0</h4>
 <ul>
 <li>Fix: Typo in CSS script name</li>

@@ -4,7 +4,7 @@
  *
  * @author WolfThemes
  * @package WolfDiscography/Templates
- * @version 1.4.0
+ * @version 1.4.7
  * @since 1.2.6
  */
  get_header();
@@ -55,7 +55,6 @@
 					 * Tracklists
 					 */
 					wd_release_tracklist();
-
 				?>
 			</div>
 

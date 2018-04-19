@@ -79,17 +79,20 @@ function wd_get_post_thumbnail_url( $format = 'medium', $post_id = null ) {
 }
 
 /**
- * Output release thumbnail
+ * Output release meta
  *
- * @since 1.2.6
+ * @since 1.4.2
  */
 function wd_release_buttons() {
 
 	$meta = wd_get_meta();
 	$release_itunes = $meta['itunes'];
+	$release_google_play = $meta['google_play'];
 	$release_amazon = $meta['amazon'];
 	$release_buy = $meta['buy'];
 	$release_free = $meta['free'];
+
+	ob_start();
 	?>
 	<span class="wolf-release-buttons">
 
@@ -101,22 +104,29 @@ function wd_release_buttons() {
 
 			<?php if ( $release_itunes ) : ?>
 			<span class="wolf-release-button">
-				<a class="wolf-release-itunes" href="<?php echo $release_itunes; ?>"><?php esc_html_e( 'iTunes', '%TEXTDOMAIN%' ); ?></a>
+				<a title="<?php printf( esc_html__( 'Buy on %s', '%TEXTDOMAIN%' ), 'iTunes' ); ?>" class="wolf-release-itunes" href="<?php echo $release_itunes; ?>"><?php esc_html_e( 'iTunes', '%TEXTDOMAIN%' ); ?></a>
+			</span>
+			<?php endif; ?>
+			<?php if ( $release_google_play ) : ?>
+			<span class="wolf-release-button">
+				<a title="<?php printf( esc_html__( 'Buy on %s', '%TEXTDOMAIN%' ), 'Google Play' ); ?>" class="wolf-release-google_play" href="<?php echo $release_google_play; ?>"><?php esc_html_e( 'Google Play', '%TEXTDOMAIN%' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_amazon ) : ?>
 			<span class="wolf-release-button">
-				<a class="wolf-release-amazon" href="<?php echo $release_amazon; ?>"><?php esc_html_e( 'Amazon', '%TEXTDOMAIN%' ); ?></a>
+				<a title="<?php printf( esc_html__( 'Buy on %s', '%TEXTDOMAIN%' ), 'amazon' ); ?>" class="wolf-release-amazon" href="<?php echo $release_amazon; ?>"><?php esc_html_e( 'Amazon', '%TEXTDOMAIN%' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_buy ) : ?>
 			<span class="wolf-release-button">
-				<a class="wolf-release-buy" href="<?php echo $release_buy; ?>"><?php esc_html_e( 'Buy', '%TEXTDOMAIN%' ); ?></a>
+				<a title="<?php esc_html_e( 'Buy Now', '%TEXTDOMAIN%' ); ?>" class="wolf-release-buy" href="<?php echo $release_buy; ?>"><?php esc_html_e( 'Buy', '%TEXTDOMAIN%' ); ?></a>
 			</span>
 			<?php endif; ?>
 		<?php endif; ?>
 	</span><!-- .wolf-release-buttons -->
 	<?php
+	$output = ob_get_clean();
+	echo apply_filters( 'wolf_discography_release_buttons', $output );
 }
 
 /**
@@ -130,7 +140,9 @@ function wd_release_thumbnail( $thumbnail_size = '' ) {
 	$thumbnail_size = get_post_meta( $post_id, '_wolf_release_type', true ) == 'DVD' || get_post_meta( $post_id, '_wolf_release_type', true ) == 'K7' ? 'DVD' : 'CD';
 	$thumbnail_size = apply_filters( 'wd_thumbnail_size', $thumbnail_size );
 	if ( has_post_thumbnail() ) : ?>
-		<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( esc_html__( 'Permalink to %s', '%TEXTDOMAIN%' ), the_title_attribute( 'echo=0' ) ) ); ?>">
+		<?php if ( ! is_single() ) : ?>
+			<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( esc_html__( 'Permalink to %s', '%TEXTDOMAIN%' ), the_title_attribute( 'echo=0' ) ) ); ?>">
+		<?php endif ?>
 			<?php
 				/**
 				 * wd_before_thumbnail_hook
@@ -147,7 +159,9 @@ function wd_release_thumbnail( $thumbnail_size = '' ) {
 				 */
 				do_action( 'wd_after_thumbnail' );
 			?>
-		</a>
+		<?php if ( ! is_single() ) : ?>
+			</a>
+		<?php endif ?>
 	<?php endif;
 }
 
@@ -220,7 +234,9 @@ function wd_release_meta() {
 	$release_catalog = $meta['catalog'];
 	$release_format = $meta['format'];
 
-	echo wd_get_artist(); ?>
+	ob_start();
+	echo wd_get_artist();
+	?>
 	<?php // Title
 	if ( $release_title ) : ?>
 	<strong><?php esc_html_e( 'Title', '%TEXTDOMAIN%' ); ?></strong> : <?php echo sanitize_text_field( $release_title ); ?><br>
@@ -244,6 +260,8 @@ function wd_release_meta() {
 	<?php endif; ?>
 	<?php edit_post_link( esc_html__( 'Edit', '%TEXTDOMAIN%' ), '<span class="edit-link">', '</span>' ); ?>
 	<?php
+	$output = ob_get_clean();
+	echo apply_filters( 'wolf_discography_release_meta', $output );
 }
 
 /**
@@ -262,6 +280,7 @@ function wd_get_meta() {
 	$catalog = get_post_meta( $post_id, '_wolf_release_catalog_number', true );
 	$format = get_post_meta( $post_id, '_wolf_release_type', true );
 	$itunes = get_post_meta( $post_id, '_wolf_release_itunes', true );
+	$google_play = get_post_meta( $post_id, '_wolf_release_google_play', true );
 	$amazon = get_post_meta( $post_id, '_wolf_release_amazon', true );
 	$buy = get_post_meta( $post_id, '_wolf_release_buy', true );
 	$free = get_post_meta( $post_id, '_wolf_release_free', true );
@@ -292,6 +311,10 @@ function wd_get_meta() {
 
 	if ( $itunes ) {
 		$meta['itunes'] = $itunes;
+	}
+
+	if ( $google_play ) {
+		$meta['google_play'] = $google_play;
 	}
 
 	if ( $amazon ) {
@@ -327,6 +350,7 @@ function wd_get_default_meta() {
 		'catalog' => '',
 		'format' => '',
 		'itunes' => '',
+		'google_play' => '',
 		'amazon' => '',
 		'buy' => '',
 		'free' => '',
@@ -349,12 +373,12 @@ function wd_get_artist() {
 
 	if ( strip_tags( get_the_term_list( $post_id, 'band', '', ', ', '' ) ) != '' ) {
 
-		$band =  '<strong>' . esc_html( 'Band', '%TEXTDOMAIN%' ) . ' </strong> : ' . strip_tags( get_the_term_list( $post_id, 'band', '', ', ', '' ) ) . '<br>';
+		$band =  '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', '%TEXTDOMAIN%' ) ) . ' </strong> : ' . strip_tags( get_the_term_list( $post_id, 'band', '', ', ', '' ) ) . '<br>';
 
 	}
 
 	if ( wolf_get_release_option( 'use_band_tax' ) ) {
-		$band = get_the_term_list( $post_id, 'band', '<strong>' . esc_html( 'Band', '%TEXTDOMAIN%') . ' </strong> : ', ', ', '<br>' );
+		$band = get_the_term_list( $post_id, 'band', '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', '%TEXTDOMAIN%' ) ) . ' </strong> : ', ', ', '<br>' );
 	}
 
 	return $band;
@@ -379,6 +403,8 @@ function wd_get_label() {
 	if ( wolf_get_release_option( 'use_label_tax' ) ) {
 		$label = get_the_term_list( $post_id, 'label', '<strong>' . esc_html( 'Label', '%TEXTDOMAIN%') . ' </strong> : ', ', ', '<br>' );
 	}
+
+	return $label;
 }
 
 /**
@@ -460,73 +486,4 @@ function wolf_release_page_nav( $loop = null ) {
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
 	<?php
-}
-
-/**
- * Discography Widget function
- *
- * Displays the discography widget
- *
- * @param int $count
- * @return string
- */
-function wolf_widget_discography( $count = 3 ) {
-	global $wpdb;
-	$query = new WP_Query( array(
-			'post_type' => 'release',
-			'posts_per_page' => $count
-		)
-	);
-
-
-	if ( $query->have_posts() ) {
-		$i = 0;
-		while ( $query->have_posts() ) {
-			$query->the_post();
-			$i ++;
-			$post_id = get_the_ID();
-			$class = $i == 1 ? ' class="release-widget-first-child"' : '';
-			$thumb = $i == 1 ? 'CD' : 'thumbnail';
-			?><a<?php echo $class; ?> href="<?php echo the_permalink() ?>"><?php the_post_thumbnail( 'CD' ); ?></a><?php
-		}
-		echo '<div style="clear:both"></div>';
-	} else {
-		echo "<p>";
-		_e( 'No release to display yet.', '%TEXTDOMAIN%' );
-		echo "</p>";
-	}
-	wp_reset_postdata();
-}
-
-/**
- * Last Release Widget function
- *
- * Displays the last release widget
- *
- * @return string
- */
-function wolf_widget_last_release() {
-	global $wpdb;
-	$query = new WP_Query( array(
-			'post_type' => 'release',
-			'posts_per_page' => 1
-		)
-	);
-
-	if ( $query->have_posts() ) {
-		while ( $query->have_posts() ) {
-			$query->the_post();
-			$post_id = get_the_ID();
-			$thumbnail_size = get_post_meta( $post_id, '_wolf_release_type', true ) == 'DVD' || get_post_meta( $post_id, '_wolf_release_type', true ) == 'K7' ? 'DVD' : 'CD';
-			?>
-			<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( $thumbnail_size ); ?></a>
-			<h4 class="entry-title"><a title="<?php esc_html_e( 'View Details', '%TEXTDOMAIN%' ); ?>" class="entry-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-			<?php
-		}
-	} else {
-		echo "<p>";
-		esc_html_e( 'No release to display yet.', '%TEXTDOMAIN%' );
-		echo "</p>";
-	}
-	wp_reset_postdata();
 }

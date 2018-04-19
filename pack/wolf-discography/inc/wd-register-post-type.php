@@ -5,7 +5,7 @@
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Admin
- * @version 1.4.0
+ * @version 1.4.7
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,15 +13,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $admin_skin = get_user_option('admin_color');
-			
+
 if ( $admin_skin == 'light' ) {
-	
+
 	$icon_url = WD_URI . '/assets/img/admin/vynil-dark.png';
 } else {
 
 	$icon_url = WD_URI . '/assets/img/admin/vynil.png';
 }
-	
+
 $labels = array(
 	'name' => esc_html__( 'Releases', 'wolf-discography' ),
 	'singular_name' => esc_html__( 'Release', 'wolf-discography' ),

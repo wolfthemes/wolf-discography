@@ -1,14 +1,14 @@
-# Copyright (C) 2017 WolfThemes
+# Copyright (C) 2018 WolfThemes
 # This file is distributed under the same license as the Wolf Discography package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Wolf Discography 1.4.0\n"
+"Project-Id-Version: Wolf Discography 1.4.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wolf-discography\n"
-"POT-Creation-Date: 2017-04-27 10:52:24+00:00\n"
+"POT-Creation-Date: 2018-04-19 09:38:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
@@ -195,49 +195,53 @@ msgstr ""
 msgid "Shortcode"
 msgstr ""
 
-#: inc/admin/class-wd-options.php:72
+#: inc/admin/class-wd-options.php:72 inc/admin/wd-admin-functions.php:28
 msgid "Discography Page"
 msgstr ""
 
 #: inc/admin/class-wd-options.php:73
-msgid "Link Band Name to category page"
+msgid "Link Artist Name"
 msgstr ""
 
 #: inc/admin/class-wd-options.php:74
-msgid "Link Label Name to category page"
+msgid "Link Label Name"
 msgstr ""
 
 #: inc/admin/class-wd-options.php:75
 msgid "Display format (like CD, digital download etc...)"
 msgstr ""
 
-#: inc/admin/class-wd-options.php:118
+#: inc/admin/class-wd-options.php:115
+msgid "- Disabled -"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:128
 msgid "Select a page..."
 msgstr ""
 
-#: inc/admin/class-wd-options.php:171
+#: inc/admin/class-wd-options.php:181
 msgid "Discography Shortcode"
 msgstr ""
 
-#: inc/admin/class-wd-options.php:172
+#: inc/admin/class-wd-options.php:182
 msgid ""
 "To display your last releases in your post or page you can use the "
 "following shortcode."
 msgstr ""
 
-#: inc/admin/class-wd-options.php:174
+#: inc/admin/class-wd-options.php:184
 msgid "Additionally, you can add a count, column, and categories attributes."
 msgstr ""
 
-#: inc/admin/class-wd-options.php:189
+#: inc/admin/class-wd-options.php:199
 msgid "Discography Options"
 msgstr ""
 
-#: inc/admin/class-wd-options.php:192
+#: inc/admin/class-wd-options.php:202
 msgid "Settings saved."
 msgstr ""
 
-#: inc/admin/class-wd-options.php:198
+#: inc/admin/class-wd-options.php:208
 msgid "Save Changes"
 msgstr ""
 
@@ -245,9 +249,9 @@ msgstr ""
 msgid "Release Details"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:23 inc/frontend/wd-functions.php:226
+#: inc/admin/wd-metaboxes.php:23 inc/frontend/wd-functions.php:242
 #: inc/widgets/class-wd-widget-discography.php:100
-#: inc/widgets/class-wd-widget-last-release.php:97
+#: inc/widgets/class-wd-widget-last-release.php:99
 msgid "Title"
 msgstr ""
 
@@ -287,68 +291,81 @@ msgstr ""
 msgid "Tape"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:55 inc/frontend/wd-functions.php:104
+#: inc/admin/wd-metaboxes.php:55 inc/frontend/wd-functions.php:107
 msgid "iTunes"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:61 inc/frontend/wd-functions.php:109
+#: inc/admin/wd-metaboxes.php:61 inc/frontend/wd-functions.php:112
+msgid "Google Play"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:67 inc/frontend/wd-functions.php:117
 msgid "Amazon"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:67
+#: inc/admin/wd-metaboxes.php:73
 msgid "Buy (any link where the release can be purchased)"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:73
+#: inc/admin/wd-metaboxes.php:79
 msgid "Free Download link"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:79
+#: inc/admin/wd-metaboxes.php:85
 msgid "Tracklist"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:98
+#: inc/frontend/wd-functions.php:101
 msgid "Free Download"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:114
+#: inc/frontend/wd-functions.php:107 inc/frontend/wd-functions.php:112
+#: inc/frontend/wd-functions.php:117
+msgid "Buy on %s"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:122
+msgid "Buy Now"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:122
 msgid "Buy"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:133 templates/content-release-shortcode.php:21
+#: inc/frontend/wd-functions.php:144 templates/content-release-shortcode.php:21
 #: templates/content-release.php:24
 msgid "Permalink to %s"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:231
+#: inc/frontend/wd-functions.php:247
 msgid "Release Date"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:238
+#: inc/frontend/wd-functions.php:254
 msgid "Catalog ref."
 msgstr ""
 
-#: inc/frontend/wd-functions.php:243
+#: inc/frontend/wd-functions.php:259
 msgid "Format"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:245
+#: inc/frontend/wd-functions.php:261
 msgid "Edit"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:453
+#: inc/frontend/wd-functions.php:479
 msgid "<span class=\"meta-nav\">&larr;</span> Older releases"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:457
+#: inc/frontend/wd-functions.php:483
 msgid "Newer releases <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:495 inc/frontend/wd-functions.php:528
+#: inc/wd-core-functions.php:215 inc/wd-core-functions.php:248
 msgid "No release to display yet."
 msgstr ""
 
-#: inc/frontend/wd-functions.php:523 templates/content-release.php:35
+#: inc/wd-core-functions.php:243 templates/content-release.php:35
 msgid "View Details"
 msgstr ""
 
@@ -397,7 +414,7 @@ msgstr ""
 msgid "No releases found in Trash"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:16 inc/wd-register-taxonomy.php:30
+#: inc/wd-register-taxonomy.php:16 inc/wd-register-taxonomy.php:31
 msgid "Artists"
 msgstr ""
 
@@ -453,59 +470,63 @@ msgstr ""
 msgid "Choose from the most used artists"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:47 inc/wd-register-taxonomy.php:61
+#: inc/wd-register-taxonomy.php:30
+msgid "No artists found"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:48 inc/wd-register-taxonomy.php:62
 msgid "Labels"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:48
+#: inc/wd-register-taxonomy.php:49
 msgid "Label"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:49
+#: inc/wd-register-taxonomy.php:50
 msgid "Search Labels"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:50
+#: inc/wd-register-taxonomy.php:51
 msgid "Popular Labels"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:51
+#: inc/wd-register-taxonomy.php:52
 msgid "All Labels"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:52
+#: inc/wd-register-taxonomy.php:53
 msgid "Parent Label"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:53
+#: inc/wd-register-taxonomy.php:54
 msgid "Parent Label:"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:54
+#: inc/wd-register-taxonomy.php:55
 msgid "Edit Label"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:55
+#: inc/wd-register-taxonomy.php:56
 msgid "Update Label"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:56
+#: inc/wd-register-taxonomy.php:57
 msgid "Add New Label"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:57
+#: inc/wd-register-taxonomy.php:58
 msgid "New Label"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:58
+#: inc/wd-register-taxonomy.php:59
 msgid "Separate labels with commas"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:59
+#: inc/wd-register-taxonomy.php:60
 msgid "Add or remove labels"
 msgstr ""
 
-#: inc/wd-register-taxonomy.php:60
+#: inc/wd-register-taxonomy.php:61
 msgid "Choose from the most used labels"
 msgstr ""
 
@@ -514,7 +535,7 @@ msgid "Display your discography"
 msgstr ""
 
 #: inc/widgets/class-wd-widget-discography.php:104
-#: inc/widgets/class-wd-widget-last-release.php:101
+#: inc/widgets/class-wd-widget-last-release.php:103
 msgid "Optional Text"
 msgstr ""
 
@@ -527,7 +548,7 @@ msgid "Display your last release"
 msgstr ""
 
 #: inc/widgets/class-wd-widget-last-release.php:27
-#: inc/widgets/class-wd-widget-last-release.php:91
+#: inc/widgets/class-wd-widget-last-release.php:92
 msgid "Last Release"
 msgstr ""
 
@@ -535,11 +556,7 @@ msgstr ""
 msgid "No release yet"
 msgstr ""
 
-#: wolf-discography.php:106 wolf-discography.php:113
-msgid "Cheatin&#8217; huh?"
-msgstr ""
-
-#: wolf-discography.php:142
+#: wolf-discography.php:128
 msgid ""
 "%1$s needs at least PHP %2$s installed on your server. You have version "
 "%3$s currently installed. Please contact your hosting service provider if "
@@ -566,12 +583,12 @@ msgstr ""
 msgid "https://wolfthemes.com"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:424
+#: inc/frontend/wd-functions.php:450
 msgctxt "Previous post link"
 msgid "<span class=\"meta-nav\">&larr;</span> %title"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:425
+#: inc/frontend/wd-functions.php:451
 msgctxt "Next post link"
 msgid "%title <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""

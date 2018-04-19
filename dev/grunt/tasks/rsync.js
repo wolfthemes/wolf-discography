@@ -29,7 +29,7 @@ module.exports = {
 	demo: {
 		options: {
 			src: [ '<%= app.root %>/pack/<%= app.slug %>/' ],
-			dest: "/home/csag/http/wolfthemes.com/demo/wp-content/plugins/<%= app.slug %>",
+			dest: "/home/csag/http/wolfthemes.com/demos/wp-content/plugins/<%= app.slug %>",
 			host: "csag@wolfthemes.com",
 			syncDestIgnoreExcl: true
 		}

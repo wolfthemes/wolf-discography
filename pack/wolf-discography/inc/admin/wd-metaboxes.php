@@ -5,7 +5,7 @@
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Admin
- * @version 1.4.0
+ * @version 1.4.7
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -58,6 +58,12 @@ $metabox = array(
 			),
 
 			array(
+				'label'	=> esc_html__( 'Google Play', 'wolf-discography' ),
+				'id'	=> '_wolf_release_google_play',
+				'type'	=> 'url',
+			),
+
+			array(
 				'label'	=> esc_html__( 'Amazon', 'wolf-discography' ),
 				'id'	=> '_wolf_release_amazon',
 				'type'	=> 'url',
@@ -75,7 +81,7 @@ $metabox = array(
 				'type'	=> 'url',
 			),
 
-			array(
+			'tracklist' => array(
 				'label'	=> esc_html__( 'Tracklist', 'wolf-discography' ),
 				'id'	=> '_wolf_release_tracklist',
 				'type'	=> 'repeatable',
@@ -84,4 +90,4 @@ $metabox = array(
 	),
 );
 
-new WD_Admin_Metabox( $metabox );
+new WD_Admin_Metabox( apply_filters( 'wolf_discography_metaboxes', $metabox ) );

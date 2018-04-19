@@ -20,7 +20,7 @@
  * Verified customers however, who have purchased a premium theme
  * at https://themeforest.net/user/Wolf-Themes/portfolio?ref=Wolf-Themes
  * will have access to support for this plugin in the forums
- * https://help.wolfthemes.com/
+ * https://wolfthemes.ticksy.com/
  *
  * Copyright (C) 2013 Constantin Saguin
  * This WordPress Plugin is a free software: you can redistribute it and/or modify
@@ -100,20 +100,6 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		}
 
 		/**
-		 * Cloning is forbidden.
-		 */
-		public function __clone() {
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', '%TEXTDOMAIN%' ), '1.0' );
-		}
-
-		/**
-		 * Unserializing instances of this class is forbidden.
-		 */
-		public function __wakeup() {
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', '%TEXTDOMAIN%' ), '1.0' );
-		}
-
-		/**
 		 * %NAME% Constructor.
 		 */
 		public function __construct() {
@@ -162,7 +148,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		 * Activation function
 		 */
 		public function activate() {
-			
+
 			add_option( '_wolf_discography_needs_page', true );
 
 			if ( ! get_option( '_wolf_discography_flush_rewrite_rules_flag' ) ) {
@@ -184,7 +170,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		 * Define WD Constants
 		 */
 		private function define_constants() {
-			
+
 			$constants = array(
 				'WD_DEV' => false,
 				'WD_DIR' => $this->plugin_path(),

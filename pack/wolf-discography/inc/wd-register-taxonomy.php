@@ -5,7 +5,7 @@
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Admin
- * @version 1.4.0
+ * @version 1.4.7
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,6 +27,7 @@ $labels = array(
 	'separate_items_with_commas' => esc_html__( 'Separate artists with commas', 'wolf-discography' ),
 	'add_or_remove_items' => esc_html__( 'Add or remove artists', 'wolf-discography' ),
 	'choose_from_most_used' => esc_html__( 'Choose from the most used artists', 'wolf-discography' ),
+	'not_found' => esc_html__( 'No artists found', 'wolf-discography' ),
 	'menu_name' => esc_html__( 'Artists', 'wolf-discography' ),
 );
 

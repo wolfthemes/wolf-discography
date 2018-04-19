@@ -1,3 +1,25 @@
+#### 19th April 2018 - Version 1.4.7
+
+* Tweak: Add post state in admin
+* Fix: Last releases widget title
+
+#### 30st October 2017 - Version 1.4.5
+
+* Fix: Missing label in release meta
+
+#### 22st September 2017 - Version 1.4.4
+
+* Fix: WPML compatibility issue
+* Fix: Increase template redirect priority on portfoio pages to fix Wolf VC Content Block plugin compatibility issue
+
+#### 11th August 2017 - Version 1.4.2
+
+* Tweak: Added wolf_discography_release_buttons filter
+
+#### 13th July 2017 - Version 1.4.1
+
+* Fix: Error message when saving a page with plugin widgets (WP 4.8)
+
 #### 27th April 2017 - Version 1.4.0
 
 * Fix: Typo in CSS script name

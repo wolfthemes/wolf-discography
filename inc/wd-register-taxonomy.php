@@ -27,6 +27,7 @@ $labels = array(
 	'separate_items_with_commas' => esc_html__( 'Separate artists with commas', '%TEXTDOMAIN%' ),
 	'add_or_remove_items' => esc_html__( 'Add or remove artists', '%TEXTDOMAIN%' ),
 	'choose_from_most_used' => esc_html__( 'Choose from the most used artists', '%TEXTDOMAIN%' ),
+	'not_found' => esc_html__( 'No artists found', '%TEXTDOMAIN%' ),
 	'menu_name' => esc_html__( 'Artists', '%TEXTDOMAIN%' ),
 );
 

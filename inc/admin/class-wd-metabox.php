@@ -49,7 +49,7 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 			/* Datepicker CSS */
 			wp_enqueue_style( 'jquery-ui-custom', WD_CSS . '/admin/jquery-ui-custom.min.css', array(), WD_VERSION, 'all' );
 
-			/* Slider JS */
+			/* Sortable JS */
 			wp_enqueue_script( 'jquery-ui-sortable' );
 
 			/* Datepicker JS */

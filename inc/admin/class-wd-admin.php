@@ -55,7 +55,7 @@ class WD_Admin {
 		// Create page notice
 		add_action( 'admin_notices', array( $this, 'check_page' ) );
 		add_action( 'admin_notices', array( $this, 'create_page' ) );
-		
+
 		// Hide editors from index page
 		add_action( 'edit_form_after_title', array( $this, 'is_index_page' ) );
 		add_action( 'admin_init', array( $this, 'hide_editor' ) );

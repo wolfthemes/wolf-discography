@@ -21,10 +21,10 @@ class WD_Widget_Last_Release extends WP_Widget {
 	public function __construct() {
 
 		// Widget settings
-		$ops = array( 'classname' => 'widget_last_release', 'description' => esc_html__( 'Display your last release', 'wolf' ) );
+		$ops = array( 'classname' => 'widget_last_release', 'description' => esc_html__( 'Display your last release', '%TEXTDOMAIN%' ) );
 
 		// Create the widget
-		parent::__construct( 'widget_last_release', esc_html__( 'Last Release', 'wolf' ), $ops );
+		parent::__construct( 'widget_last_release', esc_html__( 'Last Release', '%TEXTDOMAIN%' ), $ops );
 
 	}
 
@@ -47,8 +47,8 @@ class WD_Widget_Last_Release extends WP_Widget {
 		$desc = ( isset( $instance['desc'] ) ) ? sanitize_text_field( $instance['desc'] ) : '';
 		
 		echo $before_widget;
-		if (! empty( $title ) ) echo $before_title . $title . $after_title;
-		if (! empty( $desc ) ) {
+		if ( ! empty( $title ) ) echo $before_title . $title . $after_title;
+		if ( ! empty( $desc ) ) {
 			echo '<p>';
 			echo $desc;
 			echo '</p>';
@@ -73,6 +73,7 @@ class WD_Widget_Last_Release extends WP_Widget {
 		$instance['title'] = $new_instance['title'];
 		$instance['desc'] = $new_instance['desc'];
 		$instance['count'] = absint( $new_instance['count'] );
+		//$instance['hide_release_title'] = $new_instance['hide_release_title'];
 		return $instance;
 	}
 
@@ -88,17 +89,18 @@ class WD_Widget_Last_Release extends WP_Widget {
 
 		// Set up some default widget settings
 		$defaults = array(
-			'title' => esc_html__( 'Last Release', 'wolf' ),
+			'title' => esc_html__( 'Last Release', '%TEXTDOMAIN%' ),
 			'desc' => '',
+			//'hide_release_title' => '',
 		);
 		$instance = wp_parse_args( ( array ) $instance, $defaults);
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>"><?php _e(  'Title' , 'wolf' ); ?>:</label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>"><?php _e(  'Title' , '%TEXTDOMAIN%' ); ?>:</label>
 			<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>">
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>"><?php _e( 'Optional Text', 'wolf' ); ?>:</label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>"><?php _e( 'Optional Text', '%TEXTDOMAIN%' ); ?>:</label>
 			<textarea class="widefat"  id="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'desc' ) ); ?>" ><?php echo $instance['desc']; ?></textarea>
 		</p>
 		<?php

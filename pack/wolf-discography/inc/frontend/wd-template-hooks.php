@@ -38,4 +38,4 @@ add_action( 'get_the_generator_xhtml', 'wd_generator_tag', 10, 2 );
 add_action( 'wolf_discography_before_main_content', 'wolf_discography_output_content_wrapper', 10 );
 add_action( 'wolf_discography_after_main_content', 'wolf_discography_output_content_wrapper_end', 10 );
 
-add_action( 'template_redirect', 'wolf_discography_template_redirect' );
+add_action( 'template_redirect', 'wolf_discography_template_redirect', 40 );

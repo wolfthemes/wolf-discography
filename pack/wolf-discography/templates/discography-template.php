@@ -6,7 +6,7 @@
  *
  * @author WolfThemes
  * @package WolfDiscography/Templates
- * @version 1.4.0
+ * @version 1.4.7
  * @since 1.0.3
  */
 

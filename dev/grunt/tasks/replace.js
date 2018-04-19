@@ -6,7 +6,8 @@ module.exports = {
 		src: [ 
 			'../pack/<%= app.slug %>/**/*.php',
 			'../pack/<%= app.slug %>/assets/js/*.js',
-			'../pack/<%= app.slug %>/assets/js/min/*.js'
+			'../pack/<%= app.slug %>/assets/js/min/*.js',
+			'../pack/<%= app.slug %>/languages/*.po',
 		],
     		overwrite: true,
 		replacements: [

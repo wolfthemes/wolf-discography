@@ -55,7 +55,6 @@
 					 * Tracklists
 					 */
 					wd_release_tracklist();
-
 				?>
 			</div>
 

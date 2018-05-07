@@ -8,16 +8,17 @@
 <requires>4.4.1</requires>
 <tested>4.9.5</tested>
 <description>A discography plugin to display your releases</description>
-<date>2018-04-19</date>
-<latest>1.4.7</latest>
+<date>2018-05-07</date>
+<latest>1.4.8</latest>
 <warning><![CDATA[]]></warning>
 <info><![CDATA[]]></info>
 <new><![CDATA[]]></new>
 <changelog>
 <![CDATA[
-<h4 id="19th-april-2018-version-1-4-7">19th April 2018 - Version 1.4.7</h4>
+<h4 id="7th-may-2018-version-1-4-8">7th May 2018 - Version 1.4.8</h4>
 <ul>
 <li>Tweak: Add post state in admin</li>
+<li>Tweak: Add post thumbnail in admin post list</li>
 <li>Fix: Last releases widget title</li>
 </ul>
 <h4 id="30st-october-2017-version-1-4-5">30st October 2017 - Version 1.4.5</h4>

@@ -4,7 +4,7 @@
  *
  * @author WolfThemes
  * @package WolfDiscography/Templates
- * @version 1.4.7
+ * @version 1.4.8
  * @since 1.2.6
  */
  get_header();

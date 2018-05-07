@@ -7,7 +7,7 @@
  * @author WolfThemes
  * @category Widgets
  * @package WolfDiscography/Widgets
- * @version 1.4.7
+ * @version 1.4.8
  * @extends WP_Widget
  */
 

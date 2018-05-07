@@ -5,7 +5,7 @@
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Admin
- * @version 1.4.7
+ * @version 1.4.8
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

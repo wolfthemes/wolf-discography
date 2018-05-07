@@ -1,6 +1,7 @@
-#### 19th April 2018 - Version 1.4.7
+#### 7th May 2018 - Version 1.4.8
 
 * Tweak: Add post state in admin
+* Tweak: Add post thumbnail in admin post list
 * Fix: Last releases widget title
 
 #### 30st October 2017 - Version 1.4.5

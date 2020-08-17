@@ -1,0 +1,408 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Wolf Discography\n"
+"POT-Creation-Date: 2016-10-20 02:18+0200\n"
+"PO-Revision-Date: 2016-10-20 13:26+0200\n"
+"Last-Translator: WolfThemes <help@wolfthemes.com>\n"
+"Language-Team: wpwolf.com <support@wpwolf.com>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.10\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: dev\n"
+"X-Poedit-SearchPathExcluded-1: html\n"
+"X-Poedit-SearchPathExcluded-2: scss\n"
+"X-Poedit-SearchPathExcluded-3: pack\n"
+
+#: inc/admin/class-wd-admin.php:104
+#, php-format
+msgid ""
+"says : <em>Almost done! you need to <a href=\"%1$s\">create a page</a> for "
+"your releases or <a href=\"%2$s\">select an existing page</a> in the plugin "
+"settings</em>."
+msgstr ""
+"dice: <em>quasi finito! è necessario <a href=\"%1$s\">creare una pagina</a> "
+"per la stampa o <a href=\"%2$s\">selezionare una pagina esistente</a> nelle "
+"impostazioni del plugin</em>."
+
+#: inc/admin/class-wd-admin.php:122
+#, php-format
+msgid ""
+"<br><br>\n"
+"\t\t\t\t\t<a href=\"%1$s\" class=\"button button-primary\">Create a page</"
+"a>\n"
+"\t\t\t\t\t&nbsp;\n"
+"\t\t\t\t\t<a href=\"%2$s\" class=\"button button-primary\">Select an "
+"existing page</a>\n"
+"\t\t\t\t\t&nbsp;\n"
+"\t\t\t\t\t<a href=\"%3$s\" class=\"button\">Skip setup</a>"
+msgstr ""
+"<br><br>\n"
+"\t\t\t\t\t<a href=\"%1$s\" class=\"button button-primary\">Crea una pagina</"
+"a>\n"
+"\t\t\t\t\t \n"
+"\t\t\t\t\t<a href=\"%2$s\" class=\"button button-primary\">Selezionare una "
+"pagina esistente</a>\n"
+"\t\t\t\t\t \n"
+"\t\t\t\t\t<a href=\"%3$s\" class=\"button\">Omettere instalazione</a>"
+
+#: inc/admin/class-wd-options.php:118
+msgid "Select a page..."
+msgstr "Seleziona una pagina..."
+
+#: inc/admin/class-wd-options.php:186
+msgid "Discography Shortcode"
+msgstr "Shortcode Discografia"
+
+#: inc/admin/class-wd-options.php:187
+msgid ""
+"To display your last releases in your post or page you can use the following "
+"shortcode."
+msgstr ""
+"Per visualizzare le tue ultime pubblicazioni nei post o nelle pagine puoi "
+"usare il seguente shortcode."
+
+#: inc/admin/class-wd-options.php:189
+msgid "Additionally, you can add a count and/or categories attributes."
+msgstr "Inoltre, puoi aggiungere un attributo count e/o un attributo category."
+
+#: inc/admin/class-wd-options.php:192
+msgid "You can also add a column count attribute."
+msgstr "Puoi anche aggiungere un attributo per il numero di colonne."
+
+#: inc/admin/class-wd-options.php:207
+msgid "Discography Options"
+msgstr "Impostazioni Discografia"
+
+#: inc/admin/class-wd-options.php:210
+msgid "Settings saved."
+msgstr "Impostazioni salvate."
+
+#: inc/admin/class-wd-options.php:216
+msgid "Save Changes"
+msgstr "Salva Impostazioni"
+
+#: inc/frontend/wd-functions.php:305 inc/frontend/wd-functions.php:310
+msgid "Band "
+msgstr "Band"
+
+#: inc/frontend/wd-functions.php:329 inc/frontend/wd-functions.php:333
+msgid "Label "
+msgstr "Etichetta"
+
+#: inc/frontend/wd-functions.php:377
+msgid "<span class=\"meta-nav\">&larr;</span> %title"
+msgstr "<span class=\"meta-nav\">&larr;</span> %title"
+
+#: inc/frontend/wd-functions.php:378
+msgid "%title <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%title <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/frontend/wd-functions.php:448 inc/frontend/wd-functions.php:481
+msgid "No release to display yet."
+msgstr "Nessuna pubblicazione da visualizzare"
+
+#: inc/frontend/wd-functions.php:476 templates/content-release.php:34
+msgid "View Details"
+msgstr "Vedi Dettagli"
+
+#: inc/widgets/class-wd-widget-discography.php:87
+msgid "Releases"
+msgstr "Pubblicazioni"
+
+#: inc/widgets/class-wd-widget-discography.php:94
+#: inc/widgets/class-wd-widget-last-release.php:94
+msgid "Title"
+msgstr "Titolo"
+
+#: inc/widgets/class-wd-widget-discography.php:98
+#: inc/widgets/class-wd-widget-last-release.php:98
+msgid "Optional Text"
+msgstr "Testo Facoltativo"
+
+#: inc/widgets/class-wd-widget-discography.php:102
+msgid "Count"
+msgstr "Conto"
+
+#: inc/widgets/class-wd-widget-last-release.php:24
+msgid "Display your last release"
+msgstr "Vedi la tua ultima pubblicazione"
+
+#: inc/widgets/class-wd-widget-last-release.php:27
+#: inc/widgets/class-wd-widget-last-release.php:88
+msgid "Last Release"
+msgstr "Ultima Pubblicazione"
+
+#: templates/content-release-shortcode.php:24 templates/content-release.php:23
+#, php-format
+msgid "Permalink to %s"
+msgstr "Permalink a %s"
+
+#: templates/loop/no-releases-found.php:1
+msgid "No release yet"
+msgstr "Nessuna uscita"
+
+#: wolf-discography.php:101 wolf-discography.php:108
+msgid "Cheatin&#8217; huh?"
+msgstr "Stai imbrogliando?"
+
+#~ msgid "Select one"
+#~ msgstr "Seleziona"
+
+#~ msgid "Clear"
+#~ msgstr "Pulisci"
+
+#~ msgid "Choose an image"
+#~ msgstr "Scegli immagine"
+
+#~ msgid "Background color"
+#~ msgstr "Background color"
+
+#~ msgid "Background image"
+#~ msgstr "Background image"
+
+#~ msgid "Background repeat"
+#~ msgstr "Background repeat"
+
+#~ msgid "Background position"
+#~ msgstr "Background position"
+
+#~ msgid "Background attachment"
+#~ msgstr "Background attachment"
+
+#~ msgid "Background size"
+#~ msgstr "Background size"
+
+#~ msgid "Display your discography"
+#~ msgstr "Visualizza la discografia"
+
+#~ msgid "Discography"
+#~ msgstr "Discografia"
+
+#~ msgid "Buy"
+#~ msgstr "Acquista"
+
+#~ msgid "Free Download"
+#~ msgstr "Download Gratuito"
+
+#~ msgid "Edit"
+#~ msgstr "Modifica"
+
+#~ msgid "Release Date"
+#~ msgstr "Data Pubblicazione"
+
+#~ msgid "Catalog ref."
+#~ msgstr "Rif. Catalogo"
+
+#~ msgid "Format"
+#~ msgstr "Formato"
+
+#~ msgid ""
+#~ "says : <em>Almost done! you need to <a href=\"%1$s\">create a page</a> "
+#~ "for your discography or <a href=\"%2$s\">select an existing page</a> in "
+#~ "the plugin settings</em>"
+#~ msgstr ""
+#~ "dice: <em>Ci siamo quasi! Devi <a href=\"%1$s\">creare una pagina</a> per "
+#~ "la tua discografia o <a href=\"%2$s\">selezionarne una esistente</a> "
+#~ "nelle impostazioni del plugin</em>"
+
+#~ msgid "Your discography page has been created succesfully"
+#~ msgstr "La pagina della discografia è stata creata correttamente"
+
+#~ msgid "Release"
+#~ msgstr "Pubblicazione"
+
+#~ msgid "Add New"
+#~ msgstr "Aggiungi Nuova"
+
+#~ msgid "Add New Release"
+#~ msgstr "Aggiungi Nuova Pubblicazione"
+
+#~ msgid "All Releases"
+#~ msgstr "Tutte le Pubblicazioni"
+
+#~ msgid "Edit Release"
+#~ msgstr "Modifica Pubblicazione"
+
+#~ msgid "New Release"
+#~ msgstr "Nuova Pubblicazione"
+
+#~ msgid "View Release"
+#~ msgstr "Vedi Pubblicazione"
+
+#~ msgid "Search Releases"
+#~ msgstr "Cerca Pubblicazione"
+
+#~ msgid "No releases found"
+#~ msgstr "Nessuna pubblicazione trovata"
+
+#~ msgid "No releases found in Trash"
+#~ msgstr "Nessuca pubblicazione trovata nel Cestino"
+
+#~ msgid "Bands"
+#~ msgstr "Bands"
+
+#~ msgid "Band"
+#~ msgstr "Band"
+
+#~ msgid "Search Bands"
+#~ msgstr "Cerca Band"
+
+#~ msgid "Popular Bands"
+#~ msgstr "Band più utilizzate"
+
+#~ msgid "All Bands"
+#~ msgstr "Tutte le Band"
+
+#~ msgid "Parent Band"
+#~ msgstr "Band Genitore"
+
+#~ msgid "Parent Band:"
+#~ msgstr "Band Genitore:"
+
+#~ msgid "Edit Band"
+#~ msgstr "Modifica Band"
+
+#~ msgid "Update Band"
+#~ msgstr "Aggiorna Band"
+
+#~ msgid "Add New Band"
+#~ msgstr "Aggiungi Band"
+
+#~ msgid "New Band"
+#~ msgstr "Nuova Band"
+
+#~ msgid "Separate bands with commas"
+#~ msgstr "Separa le band con la virgola"
+
+#~ msgid "Add or remove bands"
+#~ msgstr "Aggiungi o rimuovi band"
+
+#~ msgid "Choose from the most used bands"
+#~ msgstr "Scegli tra le band più utilizzate"
+
+#~ msgid "Labels"
+#~ msgstr "Etichette"
+
+#~ msgid "Label"
+#~ msgstr "Etichetta"
+
+#~ msgid "Search Labels"
+#~ msgstr "Cerca Etichetta"
+
+#~ msgid "Popular Labels"
+#~ msgstr "Etichette più utilizzate"
+
+#~ msgid "All Labels"
+#~ msgstr "Tutte le Etichette"
+
+#~ msgid "Parent Label"
+#~ msgstr "Etichetta Genitore"
+
+#~ msgid "Parent Label:"
+#~ msgstr "Etichetta Genitore:"
+
+#~ msgid "Edit Label"
+#~ msgstr "Modifica Etichetta"
+
+#~ msgid "Update Label"
+#~ msgstr "Aggiorna Etichetta"
+
+#~ msgid "Add New Label"
+#~ msgstr "Aggiungi Etichetta"
+
+#~ msgid "New Label"
+#~ msgstr "Nuova Etichetta"
+
+#~ msgid "Separate labels with commas"
+#~ msgstr "Separa le etichette con la virgola"
+
+#~ msgid "Add or remove labels"
+#~ msgstr "Aggiungi o rimuovi etichette"
+
+#~ msgid "Choose from the most used labels"
+#~ msgstr "Scegli tra le etichette più utilizzate"
+
+#~ msgid "Settings"
+#~ msgstr "Impostazioni"
+
+#~ msgid "Shortcode"
+#~ msgstr "Shortcode"
+
+#~ msgid "Release Details"
+#~ msgstr "Dettagli Pubblicazione"
+
+#~ msgid "Release date"
+#~ msgstr "Data Pubblicazione"
+
+#~ msgid "Catalog Number"
+#~ msgstr "Numero Catalogo"
+
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgid ""
+#~ "You can choose to not display the format in the <a href=\"%s\">plugin "
+#~ "options</a>"
+#~ msgstr ""
+#~ "Puoi scegliere di non visualizzare il formato nelle <a href=\"%s"
+#~ "\">impostazioni del plugin</a>"
+
+#~ msgid "CD"
+#~ msgstr "CD"
+
+#~ msgid "Digital Download"
+#~ msgstr "Download Digitale"
+
+#~ msgid "DVD"
+#~ msgstr "DVD"
+
+#~ msgid "Vinyl"
+#~ msgstr "Vinile"
+
+#~ msgid "Tape"
+#~ msgstr "Musicassetta"
+
+#~ msgid "iTunes"
+#~ msgstr "iTunes"
+
+#~ msgid "Amazon"
+#~ msgstr "Amazon"
+
+#~ msgid "Buy (any link where the release can be purchased)"
+#~ msgstr "Acquista (link a cui si può acquistare la pubblicazione)"
+
+#~ msgid "Free Download link"
+#~ msgstr "Link Download gratuito"
+
+#~ msgid "Discography Page"
+#~ msgstr "Pagina Discografia"
+
+#~ msgid "Link Band Name to category page"
+#~ msgstr "Collega Nome Band alla pagina categoria"
+
+#~ msgid "Link Label Name to category page"
+#~ msgstr "Collega Nome Etichetta alla pagina categoria"
+
+#~ msgid "Display format (like CD, digital download etc...)"
+#~ msgstr "Visualizza formato (come CD, download digitale ecc...)"
+
+#~ msgid "Info"
+#~ msgstr "Info"
+
+#~ msgid ""
+#~ "If a discography page returns a 404 error, refresh your <a href=\"%s"
+#~ "\">permalink structure</a>"
+#~ msgstr ""
+#~ "Se la pagina discografia restituisce un errore 404, aggiorna la <a href="
+#~ "\"%s\">struttura permalink</a>"
+
+#~ msgid "<span class=\"meta-nav\">&larr;</span> Older releases"
+#~ msgstr "<span class=\"meta-nav\">&larr;</span> Vecchie uscite"
+
+#~ msgid "Newer releases <span class=\"meta-nav\">&rarr;</span>"
+#~ msgstr "Nuove uscite <span class=\"meta-nav\">&rarr;</span>"

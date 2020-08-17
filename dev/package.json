@@ -1,0 +1,29 @@
+{
+  "name": "Wolf-Discography",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "glob": "~3.2.9",
+    "load-grunt-tasks": "~0.2.1",
+    "grunt-phpcs": "~0.2.2",
+    "grunt-notify": "~0.2.16",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-compress": "~0.6.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-copy-to": "0.0.10",
+    "grunt-rm": "0.0.4",
+    "grunt-rsync": "~0.5.0",
+    "grunt-contrib-compass": "~0.7.2",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-autoprefixer": "~0.7.2",
+    "grunt-string-replace": "~1.2.0",
+    "grunt-wp-i18n": "~0.5.2",
+    "grunt-markdown": "~0.7.0",
+    "grunt-text-replace": "~0.4.0",
+    "grunt-contrib-uglify": "~0.11.0",
+    "grunt-contrib-jshint": "~0.11.3"
+  },
+  "dependencies": {
+    "grunt-sync": "~0.2.2"
+  }
+}

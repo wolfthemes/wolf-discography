@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name='robots' content='noindex,follow' />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>%NAME% | %DESCRIPTION% | Documentation</title>
+	<link rel="shortcut icon" href="http://assets.cdn.wolfthemes.com/favicon.ico">
+	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,700|Hind:400,700|Montserrat:400,700|Lato:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="http://docs.cdn.wolfthemes.com/documentation/styles/style.css" media="all">
+	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCoreDefault.css"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		p.image{
+			max-width:1400px;
+		}
+	</style>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPlain.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushXml.js"></script>
+	<script type="text/javascript">
+		SyntaxHighlighter.defaults['gutter'] = false;
+		SyntaxHighlighter.all();
+	</script>
+</head>
+<body>
+    	<aside id="navbar">
+    		<div id="logo">
+    			<img src="http://docs.cdn.wolfthemes.com/documentation/images/wolf_logo.png" alt="logo">
+    		</div>
+    		<p id="tagline">%NAME% - Wordpress Plugin Documentation</p>
+
+		<div id="menu">
+			<ul>
+				<li><a href="#welcome" class="scroll">Welcome</a></li>
+				<li><a href="#install" class="scroll">Installation</a></li>
+				<li><a href="#intro" class="scroll">Introduction</a></li>
+				<li><a href="#section" class="scroll">Create a section</a></li>
+				<li><a href="#element" class="scroll">Add an element</a></li>
+				<li><a href="#animations" class="scroll">Element animations</a></li>
+				<li><a href="#fonts" class="scroll">Load google fonts</a></li>
+				<li><a href="#socials" class="scroll">Social profiles</a></li>
+			</ul>
+		</div>
+    	</aside>
+
+    	<section id="page">
+    		<div id="top"></div>
+    		<div id="wrapper">
+    			<div id="welcome" class="section full-height table">
+				<div class="table-cell">
+					<h1>Thank You!</h1>
+					<h5>Thanks a ton for downloading %NAME%!</h5>
+					<p class="big">Please note that this plugin is built for themes made by us.</p>
+					<p>If you're looking for a theme optimized for this amazing page builder, please visit <a href="http://wolfthemes.com/wpb-themes" target="_blank">this page</a>!</p>
+					<p>If you purchase one of these theme, you will have access to our support forum.</p>
+					<p>
+						<strong>Version:</strong> %VERSION%<br>
+					</p>
+				</div>
+			</div>
+    			
+    			<div id="install" class="section">
+
+				<h3>Installation</h3>
+				<p>First of all, install or update to the latest version of <a href="https://wordpress.org/download/" target="_blank">Wordpress</a> on your server.<p>
+
+				<p>There is 2 ways for installing %NAME%.</p>
+
+				<h4>Zip upload installation</h4>
+
+				<ol>
+					<li>In your Wordpress admin panel, go to the plugins panel</li>
+					<li>Hit "Add new" button at the top of the page</li>
+					<li>Choose the "Upload plugin" option and upload the <strong>%SLUG%.zip</strong> file</li>
+				</ol>
+
+				<h4>FTP upload installation</h4>
+
+				<ol>
+					<li><strong>Extract the %SLUG%.zip archive</strong></li>
+					<li>Via your FTP client, put the "%SLUG%" folder in <code>wp-content/plugins/</code></li>
+					<li>Once the upload is complete you can activate %NAME% theme</li>
+				</ol>
+			</div><!-- #install -->
+
+			<div id="intro" class="section">
+				<h3>Introduction</h3>
+				
+				<p class="big">%NAME% is an easy way to create complex layouts for your pages using the drag'n drop system.</p>
+				
+				<p>It won't prevent you from using your regular Wordpress text editor as you can switch from the builder editor to the Wordpress text editor at any moment.</p>
+
+				<p>If your page is switched to the regular Wordpress editor, the content of the Wordpress editor will be displayed on the frontend.</p>
+
+				<p class="image"><img src="assets/img/switch.gif"></p>
+			</div><!-- #intro -->
+			
+			<div id="section" class="section">
+				<h3>Create a section</h3>
+
+				<p>To create your first section, click on the big button at the center of the screen or on the plus button at the top left or bottom left of the page builder.</p>
+
+				<p class="image"><img src="assets/img/add-section.png"></p>
+				
+				<p>If you already have sections in your editor, the top plus button will add a new section at the top of the editor, and the bottom plus button will add it at the end.</p>
+
+				<p>When you add a section, you will be asked which kind of section you want to create.</p>
+
+				<h4>Columns section</h4>
+				
+				<p>The columns section contains 3 levels of containers</p>
+				
+				<h5>1. The main section container</h5>
+				<p>The main section container is where you can set a background, set your main font color tone and more.</p>
+
+				<p class="image"><img src="assets/img/columns-section.gif"></p>
+
+				<h5>2. The rows</h5>
+				<p>The main section container can contain several rows.</p>
+				<p>A row consists of a set of column.</p>
+				<p>For each row you can set a different columns layout, a different width and set a top and bottom margin.</p>
+
+				<p class="image"><img src="assets/img/row.gif"></p>
+
+				<h6>Columns layout</h6>
+				<p>For each row you can set a different columns layout.<p>
+				<p>The column layout can be changed even when your columns contain content.</p>
+				<p>But be careful, if you decide to change your layout for one with less colums, the content of your removed column will be gone.</p>
+
+				<p class="image"><img src="assets/img/columns-layout.gif"></p>
+
+				<h5>3. Column</h5>
+				<p>The column container will contain your elements. You will see that in the next section of this doc: <a class="scroll" href="#element">Add an element</a>.</p>
+
+				<p><em>For advanced geeks: for each column you can set a specific CSS class if needed and evene apply custom CSS styles.</em></p>
+
+				<p class="image"><img src="assets/img/column-settings.png"></p>
+
+				<h4>Blocks section</h4>
+
+				<p>The blocks section contains 2 levels of containers: the main section container and the blocks.</p>
+
+				<h5>Blocks layout</h5>
+				<p>You main blocks section can contain from 2 to 8 blocks. You can set your layout the same way as the column layout by clicking of the layout icon at the top left of your section.</p>
+
+				<p>For each blocks you can set a background and decide if it will contain text or media.</p>
+				<p>The difference is that if you set your block to text content, a padding will be added automatically.</p>
+
+				<p class="image"><img src="assets/img/blocks.gif"></p>
+
+				<p><em><strong>Tip</strong>: To display an image in a block, you can set a background image to it instead of adding an image element. That way your picture will always cover the full size of the block.</em></p>
+
+			</div><!-- #section -->
+
+			<div id="element" class="section">
+				<h3>Add an element</h3>
+
+				<p class="big">Add a new element to a column or a block is very simple. Just  click on the "plus" icon at the top right of the container where you want to insert your new element to open the elements panel.</p>
+
+				<p class="image"><img src="assets/img/add-element.png"></p>
+
+				<p>These element are sorted by categories (1) and you can use the top right seach field to find an element quickly (2).</p>
+
+				<p class="image"><img src="assets/img/element-panel.png"></p>
+
+				<p>When clicking of element, you will open a bunch of element settings. You are free to leave any field empty to use the default setting.</p>
+
+				<h4>Different types of element</h4>
+
+				<p>There is 2 main types of element : simple elements, elements that you can insert as-is in your column or block, and nested elements.</p>
+
+				<h5>Simple element</h5>
+
+				<p class="image">
+					<img src="assets/img/simple-element.png">
+				</p>
+
+				<h5>Nested element</h5>
+				
+				<p>Nested elements are element that contain element children, for example the testimonials slider. You can insert an testimonials slider element in your column and then set different slides in it. These testimonial slides are the element children.</p>
+
+				<p>In this case, you will find settings for the element itself AND for the element children as well.</p>
+
+				<p class="image">
+					<img src="assets/img/nested-element.png">
+				</p>
+			</div><!-- #element -->
+
+			<div id="animations" class="section">
+				<h3>Element animation</h3>
+
+				<p>Most of the elements can be animate on page scroll using the element animation. If the element offers this feature, you will find an "animation" dropdown option in the element settings.</p>
+
+				<p class="image">
+					<img src="assets/img/element-animation.png">
+				</p>
+
+				<p>You can also set an animation delay to animates the element one by one on the same row.</p>
+
+				<p class="image">
+					<img src="assets/img/animation.png">
+				</p>
+
+				<p class="image">
+					<img src="assets/img/animation-example.gif">
+				</p>
+			</div>
+
+			<div id="fonts" class="section">
+				<h3>Load google fonts</h3>
+
+				<p>%NAME% allows you to load any google font and use it in text blocks and in other elements.</p>
+				
+				<p class="image">
+					<img src="assets/img/font.png">
+				</p>
+
+				<p>To load your google fonts, go in the %NAME% -> fonts panel and enter your google fonts in the field using the google font specific format.</p>
+
+				<p class="image">
+					<img src="assets/img/google-fonts.jpg">
+				</p>
+			</div><!-- #fonts -->
+
+			<div id="socials" class="section">
+				<h3>Social profiles</h3>
+
+				<p>If you want to use the "Socials" element to diplay icons linked to your social profiles, you must enter your network profiles in the %NAME% -> Socials.</p>
+
+				<p>Simply fill the field of the social network you want to use.</p>
+
+				<p class="image">
+					<img src="assets/img/socials.png">
+				</p>
+			</div>
+
+			<div class="section">
+				<h5>Thanks again for downloading %NAME%. Have fun!</h5>
+				<hr id="outro-separator">
+				<div id="outro">
+					<p>
+					<strong><em>Being a free product, this plugin is distributed as-is without official support.
+Verified customers however, who have purchased a <a target="_blank" href="http://wolfthemes.com/wpb-themes">premium theme</a>.
+will have access to support for this plugin in the forums
+<a href="http://help.wolfthemes.com/">http://help.wolfthemes.com/</a>.</em></strong>
+					<p>
+				</div>
+			</div>
+    		</div><!-- #wrapper -->
+    	</section><!-- section#page -->
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://docs.cdn.wolfthemes.com/documentation/scripts/script.js"></script>
+</html>

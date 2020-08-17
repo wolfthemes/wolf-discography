@@ -1,0 +1,182 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Wolf Discography\n"
+"POT-Creation-Date: 2017-04-28 14:30+0200\n"
+"PO-Revision-Date: 2017-04-28 14:30+0200\n"
+"Last-Translator: WolfThemes <help@wolfthemes.com>\n"
+"Language-Team: wolfthemes.com <support@wolfthemes.com>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: dev\n"
+"X-Poedit-SearchPathExcluded-1: pack\n"
+"X-Poedit-SearchPathExcluded-2: scss\n"
+"X-Poedit-SearchPathExcluded-3: html\n"
+
+#: inc/admin/class-wd-admin.php:104
+#, php-format
+msgid ""
+"says : <em>Almost done! you need to <a href=\"%1$s\">create a page</a> for "
+"your releases or <a href=\"%2$s\">select an existing page</a> in the plugin "
+"settings</em>."
+msgstr ""
+"dit : <em>presque fini ! vous devez <a href=\"%1$s\">créer une page</a> pour "
+"votre discographie ou <a href=\"%2$s\">Sélectionnez une page existante</a> "
+"dans la configuration du plugin</em>."
+
+#: inc/admin/class-wd-admin.php:122
+#, php-format
+msgid ""
+"<br><br>\n"
+"\t\t\t\t\t<a href=\"%1$s\" class=\"button button-primary\">Create a page</"
+"a>\n"
+"\t\t\t\t\t&nbsp;\n"
+"\t\t\t\t\t<a href=\"%2$s\" class=\"button button-primary\">Select an "
+"existing page</a>\n"
+"\t\t\t\t\t&nbsp;\n"
+"\t\t\t\t\t<a href=\"%3$s\" class=\"button\">Skip setup</a>"
+msgstr ""
+"<br><br>\n"
+"\t\t\t\t\t<a href=\"%1$s\" class=\"button button-primary\">Créer une page</"
+"a>\n"
+"\t\t\t\t\t \n"
+"\t\t\t\t\t<a href=\"%2$s\" class=\"button button-primary\">Sélectionnez une "
+"page existante</a>\n"
+"\t\t\t\t\t \n"
+"\t\t\t\t\t<a href=\"%3$s\" class=\"button\">Passer l'installation</a>"
+
+#: inc/frontend/wd-functions.php:424
+msgid "<span class=\"meta-nav\">&larr;</span> %title"
+msgstr "<span class=\"meta-nav\">&larr;</span> %title"
+
+#: inc/frontend/wd-functions.php:425
+msgid "%title <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%title <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/frontend/wd-functions.php:495
+msgid "No release to display yet."
+msgstr "Pas de resultat."
+
+#: inc/widgets/class-wd-widget-last-release.php:97
+msgid "Title"
+msgstr "Titre"
+
+#: inc/widgets/class-wd-widget-last-release.php:101
+msgid "Optional Text"
+msgstr "Text Optionel"
+
+#: templates/content-release-shortcode.php:21 templates/content-release.php:24
+#, php-format
+msgid "Permalink to %s"
+msgstr "Liens vers %s"
+
+#: templates/content-release.php:35
+msgid "View Details"
+msgstr "Voir le détail"
+
+#: templates/loop/no-releases-found.php:1
+msgid "No release yet"
+msgstr "Aucune publication pour l'instant."
+
+#~ msgid "Band"
+#~ msgstr "Groupe"
+
+#~ msgid "Label "
+#~ msgstr "Label "
+
+#~ msgid "Band "
+#~ msgstr "Groupe"
+
+#~ msgid "Select a page..."
+#~ msgstr "Sélectionnez une page …"
+
+#~ msgid "Discography Shortcode"
+#~ msgstr "Shortcode"
+
+#~ msgid ""
+#~ "To display your last releases in your post or page you can use the "
+#~ "following shortcode."
+#~ msgstr ""
+#~ "Pour afficher vos derniers albums dans votre poste ou la page que vous "
+#~ "pouvez, utilisez le shortcode suivant."
+
+#~ msgid "Additionally, you can add a count and/or categories attributes."
+#~ msgstr ""
+#~ "En plus, vous pouvez ajouter un attributs pour le nombre à afficher et le "
+#~ "nombre de colonnes"
+
+#~ msgid "You can also add a column count attribute."
+#~ msgstr ""
+#~ "Vous pouvez également ajouter un attribut pour le nombre de colonnes."
+
+#~ msgid "Discography Options"
+#~ msgstr "Options"
+
+#~ msgid "Settings saved."
+#~ msgstr "Réglages sauvegardés."
+
+#~ msgid "Save Changes"
+#~ msgstr "Enregistrer les Modifications"
+
+#~ msgid "Releases"
+#~ msgstr "Albums"
+
+#~ msgid "Count"
+#~ msgstr "Nombre"
+
+#~ msgid "Display your last release"
+#~ msgstr "Afficher votre dernières réalisations"
+
+#~ msgid "Last Release"
+#~ msgstr "Dernière publication"
+
+#~ msgid "Cheatin&#8217; huh?"
+#~ msgstr "Alors on triche ?"
+
+#~ msgid "Release Date"
+#~ msgstr "Date de sortie"
+
+#, fuzzy
+#~ msgid "Your discography page has been created succesfully"
+#~ msgstr ""
+#~ "Vous pouvez choisir de ne pas afficher le format dans les <a href=\"%s"
+#~ "\">options du plugin</a>"
+
+#~ msgid "Separate bands with commas"
+#~ msgstr "Séparer les groupes par une virgule"
+
+#~ msgid "Choose from the most used labels"
+#~ msgstr "Choisir parmis les labels les plus utilisés"
+
+#~ msgid "Catalog Number"
+#~ msgstr "Numéro de catalogue"
+
+#~ msgid ""
+#~ "You can choose to not display the format in the <a href=\"%s\">plugin "
+#~ "options</a>"
+#~ msgstr ""
+#~ "Vous pouvez choisir de ne pas afficher le format dans les <a href=\"%s"
+#~ "\">options du plugin</a>"
+
+#~ msgid "Buy (any link where the release can be purchased)"
+#~ msgstr "Acheter"
+
+#, fuzzy
+#~ msgid "Discography Page"
+#~ msgstr "Options"
+
+#~ msgid "Display format (like CD, digital download etc...)"
+#~ msgstr "Afficher le format (CD, DVD etc..)"
+
+#~ msgid ""
+#~ "If a discography page returns a 404 error, refresh your <a href=\"%s"
+#~ "\">permalink structure</a>"
+#~ msgstr ""
+#~ "Si une page retourne une erreur 404, , rafraichissez votre <a href=\"%s"
+#~ "\">structure des permaliens</a>"

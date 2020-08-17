@@ -330,7 +330,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 				$find[] = $file;
 				$find[] = $this->template_url . $file;
 
-			} elseif ( is_tax( 'band' ) || is_tax( 'label' ) ) {
+			} elseif ( is_tax( 'band' ) || is_tax( 'label' ) || is_tax( 'release_genre' ) ) {
 
 				$term = get_queried_object();
 

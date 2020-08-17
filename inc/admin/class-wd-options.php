@@ -72,6 +72,7 @@ class WD_Options {
 		add_settings_field( 'page_id', esc_html__( 'Discography Page', '%TEXTDOMAIN%' ), array( $this, 'setting_page_id' ), 'wolf-release-settings', 'wolf-release-settings' );
 		add_settings_field( 'use_band_tax', esc_html__( 'Link Artist Name', '%TEXTDOMAIN%' ), array( $this, 'setting_use_band_tax' ), 'wolf-release-settings', 'wolf-release-settings' );
 		add_settings_field( 'use_label_tax', esc_html__( 'Link Label Name', '%TEXTDOMAIN%' ), array( $this, 'setting_use_label_tax' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-link-label' ) );
+		add_settings_field( 'use_genre_tax', esc_html__( 'Link Genre', '%TEXTDOMAIN%' ), array( $this, 'setting_use_genre_tax' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-link-genre' ) );
 		add_settings_field( 'display_format', esc_html__( 'Display format (like CD, digital download etc...)', '%TEXTDOMAIN%' ), array( $this, 'setting_display_format' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-display-format' ) );
 	}
 
@@ -155,6 +156,19 @@ class WD_Options {
 		?>
 		<input type="hidden" name="wolf_release_settings[use_label_tax]" value="0">
 		<label><input type="checkbox" name="wolf_release_settings[use_label_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_label_tax' ) == 1) ? ' checked="checked"' : '' ); ?>>
+		</label>
+		<?php
+	}
+
+	/**
+	 * Use Genre Taxonomy option
+	 *
+	 * @return string
+	 */
+	public function setting_use_genre_tax() {
+		?>
+		<input type="hidden" name="wolf_release_settings[use_genre_tax]" value="0">
+		<label><input type="checkbox" name="wolf_release_settings[use_genre_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_genre_tax' ) == 1) ? ' checked="checked"' : '' ); ?>>
 		</label>
 		<?php
 	}

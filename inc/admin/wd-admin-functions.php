@@ -4,9 +4,9 @@
  *
  * Functions available on admin
  *
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Core
- * @package %PACKAGENAME%/Core
+ * @package WolfDiscography/Core
  * @version %VERSION%
  */
 

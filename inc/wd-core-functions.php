@@ -4,9 +4,9 @@
  *
  * General core functions available on admin and frontend
  *
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Core
- * @package %PACKAGENAME%/Core
+ * @package WolfDiscography/Core
  * @version %VERSION%
  */
 
@@ -212,7 +212,7 @@ function wolf_widget_discography( $count = 3 ) {
 		echo '<div style="clear:both"></div>';
 	} else {
 		echo "<p>";
-		_e( 'No release to display yet.', '%TEXTDOMAIN%' );
+		_e( 'No release to display yet.', 'wolf-discography' );
 		echo "</p>";
 	}
 	wp_reset_postdata();
@@ -240,12 +240,12 @@ function wolf_widget_last_release() {
 			$thumbnail_size = get_post_meta( $post_id, '_wolf_release_type', true ) == 'DVD' || get_post_meta( $post_id, '_wolf_release_type', true ) == 'K7' ? 'DVD' : 'CD';
 			?>
 			<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( $thumbnail_size ); ?></a>
-			<h4 class="entry-title"><a title="<?php esc_html_e( 'View Details', '%TEXTDOMAIN%' ); ?>" class="entry-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+			<h4 class="entry-title"><a title="<?php esc_html_e( 'View Details', 'wolf-discography' ); ?>" class="entry-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 			<?php
 		}
 	} else {
 		echo "<p>";
-		esc_html_e( 'No release to display yet.', '%TEXTDOMAIN%' );
+		esc_html_e( 'No release to display yet.', 'wolf-discography' );
 		echo "</p>";
 	}
 	wp_reset_postdata();

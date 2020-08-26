@@ -1,3 +1,4 @@
+# Changelog
 #### 17th August 2018 - Version 1.5.0
 
 * Tweak: Added "genre" taxonomy

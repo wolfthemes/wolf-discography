@@ -1,0 +1,16 @@
+{
+	"name": "wolfthemes/wolf-discography",
+	"description": "A discography plugin to display your releases.",
+	"type": "wordpress-plugin",
+	"homepage": "https://github.com/wolfthemes/wolf-discography",
+	"authors": [
+		{
+			"name": "WolfThemes",
+			"email": "contact@wolfthemes.com",
+			"homepage": "https://wolfthemes.com"
+		}
+	],
+	"require": {
+		"php": ">=5.6"
+	}
+}

@@ -4,16 +4,14 @@
  *
  * Displays %NAME% widget
  *
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Widgets
- * @package %PACKAGENAME%/Widgets
+ * @package WolfDiscography/Widgets
  * @version %VERSION%
  * @extends WP_Widget
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
 class WD_Widget_Discography extends WP_Widget {
 
@@ -23,10 +21,10 @@ class WD_Widget_Discography extends WP_Widget {
 	public function __construct() {
 
 		// Widget settings
-		$ops = array( 'classname' => 'widget_discography', 'description' => esc_html__( 'Display your discography', '%TEXTDOMAIN%' ) );
+		$ops = array( 'classname' => 'widget_discography', 'description' => esc_html__( 'Display your discography', 'wolf-discography' ) );
 
 		// Create the widget
-		parent::__construct( 'widget_discography', esc_html__( 'Discography', '%TEXTDOMAIN%' ), $ops );
+		parent::__construct( 'widget_discography', esc_html__( 'Discography', 'wolf-discography' ), $ops );
 	}
 
 	/**
@@ -90,22 +88,22 @@ class WD_Widget_Discography extends WP_Widget {
 
 		// Set up some default widget settings
 		$defaults = array(
-			'title' => esc_html__( 'Releases', '%TEXTDOMAIN%' ),
+			'title' => esc_html__( 'Releases', 'wolf-discography' ),
 			'desc' => '',
 			'count' => 3,
 		);
 		$instance = wp_parse_args( ( array ) $instance, $defaults);
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>"><?php esc_html_e(  'Title' , '%TEXTDOMAIN%' ); ?>:</label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>"><?php esc_html_e(  'Title' , 'wolf-discography' ); ?>:</label>
 			<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>">
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>"><?php esc_html_e( 'Optional Text', '%TEXTDOMAIN%' ); ?>:</label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>"><?php esc_html_e( 'Optional Text', 'wolf-discography' ); ?>:</label>
 			<textarea class="widefat"  id="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'desc' ) ); ?>" ><?php echo $instance['desc']; ?></textarea>
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>"><?php esc_html_e( 'Count', '%TEXTDOMAIN%' ); ?>:</label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>"><?php esc_html_e( 'Count', 'wolf-discography' ); ?>:</label>
 			<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'count' ) ); ?>" value="<?php echo absint( $instance['count'] ); ?>">
 		</p>
 		<?php

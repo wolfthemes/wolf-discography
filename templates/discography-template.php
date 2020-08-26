@@ -4,8 +4,8 @@
  *
  * Override this template by copying it to yourtheme/wolf-discography/discography-template.php
  *
- * @author %AUTHOR%
- * @package %PACKAGENAME%/Templates
+ * @author WolfThemes
+ * @package WolfDiscography/Templates
  * @version %VERSION%
  * @since 1.0.3
  */

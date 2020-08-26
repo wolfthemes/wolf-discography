@@ -4,9 +4,9 @@
  *
  * Hooked-in functions for %NAME% related events on the front-end.
  *
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Coref
- * @package %PACKAGENAME%/Functions
+ * @package WolfDiscography/Functions
  * @since 1.0.2
  */
 
@@ -99,32 +99,32 @@ function wd_release_buttons() {
 
 		<?php if ( $release_free ) : ?>
 		<span class="wolf-release-button">
-			<a class="wolf-release-free" href="<?php echo $release_free; ?>"><?php esc_html_e( 'Free Download', '%TEXTDOMAIN%' ); ?></a>
+			<a class="wolf-release-free" href="<?php echo $release_free; ?>"><?php esc_html_e( 'Free Download', 'wolf-discography' ); ?></a>
 		</span>
 		<?php else : ?>
 			<?php if ( $release_spotify ) : ?>
 			<span class="wolf-release-button">
-				<a title="<?php printf( esc_html__( 'Listen on %s', '%TEXTDOMAIN%' ), 'Spotify' ); ?>" class="wolf-release-spotify" href="<?php echo $release_spotify; ?>"><?php esc_html_e( 'Spotify', '%TEXTDOMAIN%' ); ?></a>
+				<a title="<?php printf( esc_html__( 'Listen on %s', 'wolf-discography' ), 'Spotify' ); ?>" class="wolf-release-spotify" href="<?php echo $release_spotify; ?>"><?php esc_html_e( 'Spotify', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_itunes ) : ?>
 			<span class="wolf-release-button">
-				<a title="<?php printf( esc_html__( 'Buy on %s', '%TEXTDOMAIN%' ), 'iTunes' ); ?>" class="wolf-release-itunes" href="<?php echo $release_itunes; ?>"><?php esc_html_e( 'iTunes', '%TEXTDOMAIN%' ); ?></a>
+				<a title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'iTunes' ); ?>" class="wolf-release-itunes" href="<?php echo $release_itunes; ?>"><?php esc_html_e( 'iTunes', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_google_play ) : ?>
 			<span class="wolf-release-button">
-				<a title="<?php printf( esc_html__( 'Buy on %s', '%TEXTDOMAIN%' ), 'Google Play' ); ?>" class="wolf-release-google_play" href="<?php echo $release_google_play; ?>"><?php esc_html_e( 'Google Play', '%TEXTDOMAIN%' ); ?></a>
+				<a title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'Google Play' ); ?>" class="wolf-release-google_play" href="<?php echo $release_google_play; ?>"><?php esc_html_e( 'Google Play', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_amazon ) : ?>
 			<span class="wolf-release-button">
-				<a title="<?php printf( esc_html__( 'Buy on %s', '%TEXTDOMAIN%' ), 'amazon' ); ?>" class="wolf-release-amazon" href="<?php echo $release_amazon; ?>"><?php esc_html_e( 'Amazon', '%TEXTDOMAIN%' ); ?></a>
+				<a title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'amazon' ); ?>" class="wolf-release-amazon" href="<?php echo $release_amazon; ?>"><?php esc_html_e( 'Amazon', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_buy ) : ?>
 			<span class="wolf-release-button">
-				<a title="<?php esc_html_e( 'Buy Now', '%TEXTDOMAIN%' ); ?>" class="wolf-release-buy" href="<?php echo $release_buy; ?>"><?php esc_html_e( 'Buy', '%TEXTDOMAIN%' ); ?></a>
+				<a title="<?php esc_html_e( 'Buy Now', 'wolf-discography' ); ?>" class="wolf-release-buy" href="<?php echo $release_buy; ?>"><?php esc_html_e( 'Buy', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -146,7 +146,7 @@ function wd_release_thumbnail( $thumbnail_size = '' ) {
 	$thumbnail_size = apply_filters( 'wd_thumbnail_size', $thumbnail_size );
 	if ( has_post_thumbnail() ) : ?>
 		<?php if ( ! is_single() ) : ?>
-			<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( esc_html__( 'Permalink to %s', '%TEXTDOMAIN%' ), the_title_attribute( 'echo=0' ) ) ); ?>">
+			<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( esc_html__( 'Permalink to %s', 'wolf-discography' ), the_title_attribute( 'echo=0' ) ) ); ?>">
 		<?php endif ?>
 			<?php
 				/**
@@ -244,26 +244,26 @@ function wd_release_meta() {
 	?>
 	<?php // Title
 	if ( $release_title ) : ?>
-	<strong><?php esc_html_e( 'Title', '%TEXTDOMAIN%' ); ?></strong> : <?php echo sanitize_text_field( $release_title ); ?><br>
+	<strong><?php esc_html_e( 'Title', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_title ); ?><br>
 	<?php endif; ?>
 
 	<?php // Date
 	if ( $release_date ) : ?>
-	<strong><?php esc_html_e( 'Release Date', '%TEXTDOMAIN%' ); ?></strong> : <?php echo sanitize_text_field( $release_date ); ?><br>
+	<strong><?php esc_html_e( 'Release Date', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_date ); ?><br>
 	<?php endif; ?>
 
 	<?php echo wd_get_label(); ?>
 
 	<?php // Catalog number
 	if ( $release_catalog ) : ?>
-	<strong><?php esc_html_e( 'Catalog ref.', '%TEXTDOMAIN%' ); ?></strong> : <?php echo sanitize_text_field( $release_catalog ); ?><br>
+	<strong><?php esc_html_e( 'Catalog ref.', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_catalog ); ?><br>
 	<?php endif; ?>
 
 	<?php // Type
 	if ( $release_format && wolf_get_release_option( 'display_format' ) ) : ?>
-	<strong><?php esc_html_e( 'Format', '%TEXTDOMAIN%' ); ?></strong> : <?php echo sanitize_text_field( $release_format ); ?><br>
+	<strong><?php esc_html_e( 'Format', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_format ); ?><br>
 	<?php endif; ?>
-	<?php edit_post_link( esc_html__( 'Edit', '%TEXTDOMAIN%' ), '<span class="edit-link">', '</span>' ); ?>
+	<?php edit_post_link( esc_html__( 'Edit', 'wolf-discography' ), '<span class="edit-link">', '</span>' ); ?>
 	<?php
 	$output = ob_get_clean();
 	echo apply_filters( 'wolf_discography_release_meta', $output );
@@ -384,12 +384,12 @@ function wd_get_artist() {
 
 	if ( strip_tags( get_the_term_list( $post_id, 'band', '', ', ', '' ) ) != '' ) {
 
-		$band =  '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', '%TEXTDOMAIN%' ) ) . ' </strong> : ' . strip_tags( get_the_term_list( $post_id, 'band', '', ', ', '' ) ) . '<br>';
+		$band =  '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', 'wolf-discography' ) ) . ' </strong> : ' . strip_tags( get_the_term_list( $post_id, 'band', '', ', ', '' ) ) . '<br>';
 
 	}
 
 	if ( wolf_get_release_option( 'use_band_tax' ) ) {
-		$band = get_the_term_list( $post_id, 'band', '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', '%TEXTDOMAIN%' ) ) . ' </strong> : ', ', ', '<br>' );
+		$band = get_the_term_list( $post_id, 'band', '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', 'wolf-discography' ) ) . ' </strong> : ', ', ', '<br>' );
 	}
 
 	return $band;
@@ -412,11 +412,11 @@ function wd_get_label() {
 
 	if ( wp_strip_all_tags( get_the_term_list( $post_id, 'label', '', ', ', '' ) ) != '' ) {
 
-		$label =  '<strong>' . esc_html( 'Label', '%TEXTDOMAIN%') . ' </strong> : ' . wp_strip_all_tags( get_the_term_list( $post_id, 'label', '', ', ', '' ) ) . '<br>';
+		$label =  '<strong>' . esc_html( 'Label', 'wolf-discography') . ' </strong> : ' . wp_strip_all_tags( get_the_term_list( $post_id, 'label', '', ', ', '' ) ) . '<br>';
 	}
 
 	if ( wolf_get_release_option( 'use_label_tax' ) ) {
-		$label = get_the_term_list( $post_id, 'label', '<strong>' . esc_html( 'Label', '%TEXTDOMAIN%') . ' </strong> : ', ', ', '<br>' );
+		$label = get_the_term_list( $post_id, 'label', '<strong>' . esc_html( 'Label', 'wolf-discography') . ' </strong> : ', ', ', '<br>' );
 	}
 
 	return $label;
@@ -462,8 +462,8 @@ function wolf_release_nav() {
 		return;
 	?>
 	<nav class="release-navigation" role="navigation">
-		<?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', '%TEXTDOMAIN%' ) ); ?>
-		<?php next_post_link( '%link', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', '%TEXTDOMAIN%' ) ); ?>
+		<?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'wolf-discography' ) ); ?>
+		<?php next_post_link( '%link', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'wolf-discography' ) ); ?>
 	</nav><!-- .navigation -->
 	<?php
 }
@@ -491,11 +491,11 @@ function wolf_release_page_nav( $loop = null ) {
 		<div class="nav-links clearfix">
 
 			<?php if ( get_next_posts_link( '', $max ) ) : ?>
-			<div class="nav-previous"><?php next_posts_link( esc_html__( '<span class="meta-nav">&larr;</span> Older releases', '%TEXTDOMAIN%' ), $max ); ?></div>
+			<div class="nav-previous"><?php next_posts_link( esc_html__( '<span class="meta-nav">&larr;</span> Older releases', 'wolf-discography' ), $max ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link( '', $max ) ) : ?>
-			<div class="nav-next"><?php previous_posts_link( esc_html__( 'Newer releases <span class="meta-nav">&rarr;</span>', '%TEXTDOMAIN%' ), $max ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( esc_html__( 'Newer releases <span class="meta-nav">&rarr;</span>', 'wolf-discography' ), $max ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->

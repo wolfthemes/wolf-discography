@@ -3,15 +3,13 @@
  * %NAME% Admin.
  *
  * @class WD_Admin
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Admin
- * @package %PACKAGENAME%/Admin
+ * @package WolfDiscography/Admin
  * @version %VERSION%
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * WD_Admin class.
@@ -50,7 +48,7 @@ class WD_Admin {
 		add_filter( 'plugin_action_links_' . plugin_basename( WD_PATH ), array( $this, 'settings_action_links' ) );
 
 		// Plugin update notifications
-		add_action( 'admin_init', array( $this, 'plugin_update' ) );
+		//add_action( 'admin_init', array( $this, 'plugin_update' ) );
 
 		// Create page notice
 		add_action( 'admin_notices', array( $this, 'check_page' ) );
@@ -105,7 +103,7 @@ class WD_Admin {
 
 			$message = '<strong>Wolf Discography</strong> ' . sprintf(
 					wp_kses(
-						__( 'says : <em>Almost done! you need to <a href="%1$s">create a page</a> for your releases or <a href="%2$s">select an existing page</a> in the plugin settings</em>.', '%TEXTDOMAIN%' ),
+						__( 'says : <em>Almost done! you need to <a href="%1$s">create a page</a> for your releases or <a href="%2$s">select an existing page</a> in the plugin settings</em>.', 'wolf-discography' ),
 						array(
 							'a' => array(
 								'href' => array(),
@@ -128,7 +126,7 @@ class WD_Admin {
 					&nbsp;
 					<a href="%2$s" class="button button-primary">Select an existing page</a>
 					&nbsp;
-					<a href="%3$s" class="button">Skip setup</a>', '%TEXTDOMAIN%' ),
+					<a href="%3$s" class="button">Skip setup</a>', 'wolf-discography' ),
 
 					array(
 							'a' => array(
@@ -172,7 +170,7 @@ class WD_Admin {
 
 			// Create post object
 			$post = array(
-				'post_title'  => esc_html__( 'Discography', '%TEXTDOMAIN%' ),
+				'post_title'  => esc_html__( 'Discography', 'wolf-discography' ),
 				'post_type'   => 'page',
 				'post_status' => 'publish',
 			);
@@ -185,7 +183,7 @@ class WD_Admin {
 				update_option( '_wolf_discography_page_id', $post_id );
 				update_post_meta( $post_id, '_wpb_status', 'off' ); // disable page builder mode for this page
 
-				$message = esc_html__( 'Your discography page has been created succesfully', '%TEXTDOMAIN%' );
+				$message = esc_html__( 'Your discography page has been created succesfully', 'wolf-discography' );
 
 				$output = '<div class="updated"><p>';
 
@@ -207,7 +205,7 @@ class WD_Admin {
 	public function is_index_page() {
 
 		if ( isset( $_GET['post'] ) && absint( $_GET['post'] ) == wolf_discography_get_page_id() ) {
-			$message = esc_html__( 'You are currently editing the page that shows the discography.', '%TEXTDOMAIN%' );
+			$message = esc_html__( 'You are currently editing the page that shows the discography.', 'wolf-discography' );
 
 			$output = '<div class="notice notice-warning inline"><p>';
 
@@ -253,7 +251,7 @@ class WD_Admin {
 	 */
 	public function admin_columns_head_release_thumb( $columns ) {
 
-		$columns['release_thumbnail']   = esc_html__( 'Thumbnail', '%TEXTDOMAIN%' );
+		$columns['release_thumbnail']   = esc_html__( 'Thumbnail', 'wolf-discography' );
 		return $columns;
 	}
 
@@ -270,7 +268,7 @@ class WD_Admin {
 		if ( 'release_thumbnail' == $column_name ) {
 
 			if ( $thumbnail ) {
-				echo '<a href="' . get_edit_post_link() . '" title="' . esc_attr( sprintf( esc_html__( 'Edit "%s"', '%TEXTDOMAIN%' ), get_the_title() ) ) . '">' . get_the_post_thumbnail( '', array( 60, 60 ), array( 'style' => 'max-width:60px;height:auto;' ) ) . '</a>';
+				echo '<a href="' . get_edit_post_link() . '" title="' . esc_attr( sprintf( esc_html__( 'Edit "%s"', 'wolf-discography' ), get_the_title() ) ) . '">' . get_the_post_thumbnail( '', array( 60, 60 ), array( 'style' => 'max-width:60px;height:auto;' ) ) . '</a>';
 			}
 		}
 	}
@@ -280,7 +278,7 @@ class WD_Admin {
 	 */
 	public function settings_action_links( $links ) {
 		$setting_link = array(
-			'<a href="' . admin_url( 'edit.php?post_type=release&page=wolf-discography-settings' ) . '">' . esc_html__( 'Settings', '%TEXTDOMAIN%' ) . '</a>',
+			'<a href="' . admin_url( 'edit.php?post_type=release&page=wolf-discography-settings' ) . '">' . esc_html__( 'Settings', 'wolf-discography' ) . '</a>',
 		);
 		return array_merge( $links, $setting_link );
 	}
@@ -289,7 +287,7 @@ class WD_Admin {
 	 * Plugin update
 	 */
 	public function plugin_update() {
-		
+
 		$plugin_name = WD_SLUG;
 		$plugin_slug = WD_SLUG;
 		$plugin_path = WD_PATH;

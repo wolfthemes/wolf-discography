@@ -2,8 +2,8 @@
 /**
  * Release Loop Start
  *
- * @author %AUTHOR%
- * @package %PACKAGENAME%/Templates
+ * @author WolfThemes
+ * @package WolfDiscography/Templates
  * @since 1.0.2
  */
 ?>

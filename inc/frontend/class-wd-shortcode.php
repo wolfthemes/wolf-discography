@@ -3,16 +3,14 @@
  * %NAME% Shortcode.
  *
  * @class WD_Shortcode
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Core
- * @package %PACKAGENAME%/Shortcode
+ * @package WolfDiscography/Shortcode
  * @version %VERSION%
  * @since 1.2.6
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * WD_Shortcode class.

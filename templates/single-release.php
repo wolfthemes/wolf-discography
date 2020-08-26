@@ -2,8 +2,8 @@
 /**
  * The Template for displaying all single releases.
  *
- * @author %AUTHOR%
- * @package %PACKAGENAME%/Templates
+ * @author WolfThemes
+ * @package WolfDiscography/Templates
  * @version %VERSION%
  * @since 1.2.6
  */

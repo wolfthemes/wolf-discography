@@ -2,9 +2,9 @@
 /**
  * %NAME% register post type
  *
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Core
- * @package %PACKAGENAME%/Admin
+ * @package WolfDiscography/Admin
  * @version %VERSION%
  */
 
@@ -23,19 +23,19 @@ if ( $admin_skin == 'light' ) {
 }
 
 $labels = array(
-	'name' => esc_html__( 'Releases', '%TEXTDOMAIN%' ),
-	'singular_name' => esc_html__( 'Release', '%TEXTDOMAIN%' ),
-	'add_new' => esc_html__( 'Add New', '%TEXTDOMAIN%' ),
-	'add_new_item' => esc_html__( 'Add New Release', '%TEXTDOMAIN%' ),
-	'all_items'  =>  esc_html__( 'All Releases', '%TEXTDOMAIN%' ),
-	'edit_item' => esc_html__( 'Edit Release', '%TEXTDOMAIN%' ),
-	'new_item' => esc_html__( 'New Release', '%TEXTDOMAIN%' ),
-	'view_item' => esc_html__( 'View Release', '%TEXTDOMAIN%' ),
-	'search_items' => esc_html__( 'Search Releases', '%TEXTDOMAIN%' ),
-	'not_found' => esc_html__( 'No releases found', '%TEXTDOMAIN%' ),
-	'not_found_in_trash' => esc_html__( 'No releases found in Trash', '%TEXTDOMAIN%' ),
+	'name' => esc_html__( 'Releases', 'wolf-discography' ),
+	'singular_name' => esc_html__( 'Release', 'wolf-discography' ),
+	'add_new' => esc_html__( 'Add New', 'wolf-discography' ),
+	'add_new_item' => esc_html__( 'Add New Release', 'wolf-discography' ),
+	'all_items'  =>  esc_html__( 'All Releases', 'wolf-discography' ),
+	'edit_item' => esc_html__( 'Edit Release', 'wolf-discography' ),
+	'new_item' => esc_html__( 'New Release', 'wolf-discography' ),
+	'view_item' => esc_html__( 'View Release', 'wolf-discography' ),
+	'search_items' => esc_html__( 'Search Releases', 'wolf-discography' ),
+	'not_found' => esc_html__( 'No releases found', 'wolf-discography' ),
+	'not_found_in_trash' => esc_html__( 'No releases found in Trash', 'wolf-discography' ),
 	'parent_item_colon' => '',
-	'menu_name' => esc_html__( 'Releases', '%TEXTDOMAIN%' ),
+	'menu_name' => esc_html__( 'Releases', 'wolf-discography' ),
 );
 
 $args = array(

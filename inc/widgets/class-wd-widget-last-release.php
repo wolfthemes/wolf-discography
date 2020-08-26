@@ -4,9 +4,9 @@
  *
  * Displays last release widget
  *
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Widgets
- * @package %PACKAGENAME%/Widgets
+ * @package WolfDiscography/Widgets
  * @version %VERSION%
  * @extends WP_Widget
  */
@@ -21,10 +21,10 @@ class WD_Widget_Last_Release extends WP_Widget {
 	public function __construct() {
 
 		// Widget settings
-		$ops = array( 'classname' => 'widget_last_release', 'description' => esc_html__( 'Display your last release', '%TEXTDOMAIN%' ) );
+		$ops = array( 'classname' => 'widget_last_release', 'description' => esc_html__( 'Display your last release', 'wolf-discography' ) );
 
 		// Create the widget
-		parent::__construct( 'widget_last_release', esc_html__( 'Last Release', '%TEXTDOMAIN%' ), $ops );
+		parent::__construct( 'widget_last_release', esc_html__( 'Last Release', 'wolf-discography' ), $ops );
 
 	}
 
@@ -89,18 +89,18 @@ class WD_Widget_Last_Release extends WP_Widget {
 
 		// Set up some default widget settings
 		$defaults = array(
-			'title' => esc_html__( 'Last Release', '%TEXTDOMAIN%' ),
+			'title' => esc_html__( 'Last Release', 'wolf-discography' ),
 			'desc' => '',
 			//'hide_release_title' => '',
 		);
 		$instance = wp_parse_args( ( array ) $instance, $defaults);
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>"><?php _e(  'Title' , '%TEXTDOMAIN%' ); ?>:</label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>"><?php _e(  'Title' , 'wolf-discography' ); ?>:</label>
 			<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>">
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>"><?php _e( 'Optional Text', '%TEXTDOMAIN%' ); ?>:</label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>"><?php _e( 'Optional Text', 'wolf-discography' ); ?>:</label>
 			<textarea class="widefat"  id="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'desc' ) ); ?>" ><?php echo $instance['desc']; ?></textarea>
 		</p>
 		<?php

@@ -2,8 +2,8 @@
 /**
  * Display the release inside the shortcode loop
  *
- * @author %AUTHOR%
- * @package %PACKAGENAME%/Templates
+ * @author WolfThemes
+ * @package WolfDiscography/Templates
  * @version %VERSION%
  * @since 1.0.2
  */
@@ -18,7 +18,7 @@
 	<div class="entry-thumbnail release-thumbnail">
 		<?php wd_release_thumbnail(); ?>
 		<h2 class="entry-title release-title" itemprop="name">
-			<a itemprop="url" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', '%TEXTDOMAIN%' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+			<a itemprop="url" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'wolf-discography' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
 		</h2>
 		<?php wd_release_buttons(); ?>
 	</div><!-- .entry-thumbnail -->

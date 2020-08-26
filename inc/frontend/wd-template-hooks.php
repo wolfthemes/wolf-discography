@@ -4,9 +4,9 @@
  *
  * Action/filter hooks used for WolfDiscography functions/templates
  *
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Core
- * @package %PACKAGENAME%/Templates
+ * @package WolfDiscography/Templates
  * @since 1.0.2
  */
 

@@ -4,12 +4,10 @@
  *
  * Uninstalling %NAME%
  *
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Core
- * @package %PACKAGENAME%/Uninstaller
+ * @package WolfDiscography/Uninstaller
  * @version %VERSION%
  */
 
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
-}
+defined( 'WP_UNINSTALL_PLUGIN' ) || exit;

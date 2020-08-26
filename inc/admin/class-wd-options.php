@@ -3,15 +3,13 @@
  * %NAME% Options.
  *
  * @class WD_Options
- * @author %AUTHOR%
+ * @author WolfThemes
  * @category Admin
- * @package %PACKAGENAME%/Admin
+ * @package WolfDiscography/Admin
  * @version %VERSION%
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * WD_Options class.
@@ -37,8 +35,8 @@ class WD_Options {
 	 */
 	public function add_settings_menu() {
 
-		add_submenu_page( 'edit.php?post_type=release', esc_html__( 'Settings', '%TEXTDOMAIN%' ), esc_html__( 'Settings', '%TEXTDOMAIN%' ), 'edit_plugins', 'wolf-discography-settings', array( $this, 'options_form' ) );
-		add_submenu_page( 'edit.php?post_type=release', esc_html__( 'Shortcode', '%TEXTDOMAIN%' ), esc_html__( 'Shortcode', '%TEXTDOMAIN%' ), 'edit_plugins', 'wolf-discography-shortcode', array( $this, 'help' ) );
+		add_submenu_page( 'edit.php?post_type=release', esc_html__( 'Settings', 'wolf-discography' ), esc_html__( 'Settings', 'wolf-discography' ), 'edit_plugins', 'wolf-discography-settings', array( $this, 'options_form' ) );
+		add_submenu_page( 'edit.php?post_type=release', esc_html__( 'Shortcode', 'wolf-discography' ), esc_html__( 'Shortcode', 'wolf-discography' ), 'edit_plugins', 'wolf-discography-shortcode', array( $this, 'help' ) );
 	}
 
 	/**
@@ -69,11 +67,11 @@ class WD_Options {
 
 		register_setting( 'wolf-release-settings', 'wolf_release_settings', array( $this, 'settings_validate' ) );
 		add_settings_section( 'wolf-release-settings', '', array( $this, 'section_intro' ), 'wolf-release-settings' );
-		add_settings_field( 'page_id', esc_html__( 'Discography Page', '%TEXTDOMAIN%' ), array( $this, 'setting_page_id' ), 'wolf-release-settings', 'wolf-release-settings' );
-		add_settings_field( 'use_band_tax', esc_html__( 'Link Artist Name', '%TEXTDOMAIN%' ), array( $this, 'setting_use_band_tax' ), 'wolf-release-settings', 'wolf-release-settings' );
-		add_settings_field( 'use_label_tax', esc_html__( 'Link Label Name', '%TEXTDOMAIN%' ), array( $this, 'setting_use_label_tax' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-link-label' ) );
-		add_settings_field( 'use_genre_tax', esc_html__( 'Link Genre', '%TEXTDOMAIN%' ), array( $this, 'setting_use_genre_tax' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-link-genre' ) );
-		add_settings_field( 'display_format', esc_html__( 'Display format (like CD, digital download etc...)', '%TEXTDOMAIN%' ), array( $this, 'setting_display_format' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-display-format' ) );
+		add_settings_field( 'page_id', esc_html__( 'Discography Page', 'wolf-discography' ), array( $this, 'setting_page_id' ), 'wolf-release-settings', 'wolf-release-settings' );
+		add_settings_field( 'use_band_tax', esc_html__( 'Link Artist Name', 'wolf-discography' ), array( $this, 'setting_use_band_tax' ), 'wolf-release-settings', 'wolf-release-settings' );
+		add_settings_field( 'use_label_tax', esc_html__( 'Link Label Name', 'wolf-discography' ), array( $this, 'setting_use_label_tax' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-link-label' ) );
+		add_settings_field( 'use_genre_tax', esc_html__( 'Link Genre', 'wolf-discography' ), array( $this, 'setting_use_genre_tax' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-link-genre' ) );
+		add_settings_field( 'display_format', esc_html__( 'Display format (like CD, digital download etc...)', 'wolf-discography' ), array( $this, 'setting_display_format' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-display-format' ) );
 	}
 
 	/**
@@ -113,7 +111,7 @@ class WD_Options {
 	 * @return string
 	 */
 	public function setting_page_id() {
-		$page_option = array( '' => esc_html__( '- Disabled -', '%TEXTDOMAIN%' ) );
+		$page_option = array( '' => esc_html__( '- Disabled -', 'wolf-discography' ) );
 		$pages = get_pages();
 
 		foreach ( $pages as $page ) {
@@ -126,7 +124,7 @@ class WD_Options {
 		}
 		?>
 		<select name="wolf_release_settings[page_id]">
-			<option value="-1"><?php esc_html_e( 'Select a page...', '%TEXTDOMAIN%' ); ?></option>
+			<option value="-1"><?php esc_html_e( 'Select a page...', 'wolf-discography' ); ?></option>
 			<?php foreach ( $page_option as $k => $v ) : ?>
 				<option value="<?php echo absint( $k ); ?>" <?php selected( absint( $k ), get_option( '_wolf_discography_page_id' ) ); ?>><?php echo sanitize_text_field( $v ); ?></option>
 			<?php endforeach; ?>
@@ -192,10 +190,10 @@ class WD_Options {
 	public function help() {
 		?>
 		<div class="wrap">
-			<h2><?php esc_html_e( 'Discography Shortcode', '%TEXTDOMAIN%' ) ?></h2>
-			<p><?php esc_html_e( 'To display your last releases in your post or page you can use the following shortcode.', '%TEXTDOMAIN%' ); ?></p>
+			<h2><?php esc_html_e( 'Discography Shortcode', 'wolf-discography' ) ?></h2>
+			<p><?php esc_html_e( 'To display your last releases in your post or page you can use the following shortcode.', 'wolf-discography' ); ?></p>
 			<p><code>[wolf_last_releases]</code></p>
-			<p><?php esc_html_e( 'Additionally, you can add a count, column, and categories attributes.', '%TEXTDOMAIN%' ); ?></p>
+			<p><?php esc_html_e( 'Additionally, you can add a count, column, and categories attributes.', 'wolf-discography' ); ?></p>
 			<p><code>[wolf_last_releases count="6" col="2|3|4" label="my-label" band="this-band"]</code></p>
 		</div>
 		<?php
@@ -210,16 +208,16 @@ class WD_Options {
 		?>
 		<div class="wrap">
 			<div id="icon-options-general" class="icon32"></div>
-			<h2><?php esc_html_e( 'Discography Options', '%TEXTDOMAIN%' ); ?></h2>
+			<h2><?php esc_html_e( 'Discography Options', 'wolf-discography' ); ?></h2>
 			<?php if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ) { ?>
 			<div id="setting-error-settings_updated" class="updated settings-error">
-				<p><strong><?php esc_html_e( 'Settings saved.', '%TEXTDOMAIN%' ); ?></strong></p>
+				<p><strong><?php esc_html_e( 'Settings saved.', 'wolf-discography' ); ?></strong></p>
 			</div>
 			<?php } ?>
 			<form action="options.php" method="post">
 				<?php settings_fields( 'wolf-release-settings' ); ?>
 				<?php do_settings_sections( 'wolf-release-settings' ); ?>
-				<p class="submit"><input name="save" type="submit" class="button-primary" value="<?php esc_html_e( 'Save Changes', '%TEXTDOMAIN%' ); ?>" /></p>
+				<p class="submit"><input name="save" type="submit" class="button-primary" value="<?php esc_html_e( 'Save Changes', 'wolf-discography' ); ?>" /></p>
 			</form>
 		</div>
 		<?php

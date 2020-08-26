@@ -4,15 +4,13 @@
  *
  * Override this template by copying it to yourtheme/wolf-discography/archive-release.php
  *
- * @author %AUTHOR%
- * @package %PACKAGENAME%/Templates
+ * @author WolfThemes
+ * @package WolfDiscography/Templates
  * @version %VERSION%
  * @since 1.0.2
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
 get_header( 'discography' ); ?>
 

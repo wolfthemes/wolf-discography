@@ -1,11 +1,11 @@
 <?php
 /**
- * %NAME% register post type
+ * Discography register post type
  *
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Admin
- * @version %VERSION%
+ * @version 1.5.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -1,13 +1,13 @@
 <?php
 /**
- * %NAME% Uninstall
+ * Discography Uninstall
  *
- * Uninstalling %NAME%
+ * Uninstalling Discography
  *
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Uninstaller
- * @version %VERSION%
+ * @version 1.5.1
  */
 
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;

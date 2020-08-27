@@ -8,4 +8,3 @@ Please help us improving the plugin by sending us the files!
 contact@wolfthemes.com
 
 Thank you
-

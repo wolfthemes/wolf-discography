@@ -1,8 +1,8 @@
 <?php
 /**
- * %NAME% Functions
+ * Discography Functions
  *
- * Hooked-in functions for %NAME% related events on the front-end.
+ * Hooked-in functions for Discography related events on the front-end.
  *
  * @author WolfThemes
  * @category Coref

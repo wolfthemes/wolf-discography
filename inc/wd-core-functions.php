@@ -1,13 +1,13 @@
 <?php
 /**
- * %NAME% core functions
+ * Discography core functions
  *
  * General core functions available on admin and frontend
  *
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Core
- * @version %VERSION%
+ * @version 1.5.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

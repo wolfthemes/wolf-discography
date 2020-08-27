@@ -1,13 +1,13 @@
 <?php
 /**
- * %NAME% Widget
+ * Discography Widget
  *
- * Displays %NAME% widget
+ * Displays Discography widget
  *
  * @author WolfThemes
  * @category Widgets
  * @package WolfDiscography/Widgets
- * @version %VERSION%
+ * @version 1.5.1
  * @extends WP_Widget
  */
 

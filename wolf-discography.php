@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Wolf Discography
  * Plugin URI: https://wlfthm.es/wolf-discography
- * Description: %DESCRIPTION%
- * Version: %VERSION%
+ * Description: A discography plugin to display your releases.
+ * Version: 1.5.1
  * Author: WolfThemes
  * Author URI: https://wolfthemes.com
  * Requires at least: 5.0
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 	 * Contains the main functions for Wolf_Discography
 	 *
 	 * @class Wolf_Discography
-	 * @version %VERSION%
+	 * @version 1.5.1
 	 * @since 1.0.0
 	 * @package WolfDiscography
 	 * @author WolfThemes
@@ -46,22 +46,19 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '%VERSION%';
+		public $version = '1.5.1';
 
 		/**
-		 * @var %NAME% The single instance of the class
+		 * @var Discography The single instance of the class
 		 */
 		protected static $_instance = null;
 
-		/**
-		 * @var string
-		 */
-		private $update_url = 'https://plugins.wolfthemes.com/update';
+
 
 		/**
 		 * @var the support forum URL
 		 */
-		private $support_url = 'https://docs.wolfthemes.com/';
+		private $support_url = 'https://wlfthm.es/help';
 
 		/**
 		 * @var string
@@ -69,13 +66,13 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		public $template_url;
 
 		/**
-		 * Main %NAME% Instance
+		 * Main Discography Instance
 		 *
-		 * Ensures only one instance of %NAME% is loaded or can be loaded.
+		 * Ensures only one instance of Discography is loaded or can be loaded.
 		 *
 		 * @static
 		 * @see WD()
-		 * @return %NAME% - Main instance
+		 * @return Discography - Main instance
 		 */
 		public static function instance() {
 			if ( is_null( self::$_instance ) ) {
@@ -85,7 +82,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		}
 
 		/**
-		 * %NAME% Constructor.
+		 * Discography Constructor.
 		 */
 		public function __construct() {
 
@@ -111,7 +108,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 				printf(
 					esc_html__( '%1$s needs at least PHP %2$s installed on your server. You have version %3$s currently installed. Please contact your hosting service provider if you\'re not able to update PHP by yourself.', 'wolf-discography' ),
-					'%NAME%',
+					'Discography',
 					$this->required_php_version,
 					phpversion()
 				);
@@ -165,7 +162,6 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 				'WD_SLUG' => plugin_basename( dirname( __FILE__ ) ),
 				'WD_PATH' => plugin_basename( __FILE__ ),
 				'WD_VERSION' => $this->version,
-				'WD_UPDATE_URL' => $this->update_url,
 				'WD_SUPPORT_URL' => $this->support_url,
 				'WD_DOC_URI' => 'https://docs.wolfthemes.com/documentation/plugins/' . plugin_basename( dirname( __FILE__ ) ),
 				'WD_WOLF_DOMAIN' => 'wolfthemes.com',
@@ -227,7 +223,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		}
 
 		/**
-		 * Function used to Init %NAME% Template Functions - This makes them pluggable by plugins and themes.
+		 * Function used to Init Discography Template Functions - This makes them pluggable by plugins and themes.
 		 */
 		public function include_template_functions() {
 			include_once( 'inc/frontend/wd-template-functions.php' );
@@ -251,7 +247,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		}
 
 		/**
-		 * Init %NAME% when WordPress Initialises.
+		 * Init Discography when WordPress Initialises.
 		 */
 		public function init() {
 			// Before init action

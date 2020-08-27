@@ -1,12 +1,12 @@
 <?php
 /**
- * %NAME% Metaboxes.
+ * Discography Metaboxes.
  *
  * @class WD_Admin_Metabox
  * @author WolfThemes
  * @category Admin
  * @package WolfDiscography/Admin
- * @version %VERSION%
+ * @version 1.5.1
  */
 
 defined( 'ABSPATH' ) || exit;

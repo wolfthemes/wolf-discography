@@ -1,6 +1,6 @@
 <?php
 /**
- * %NAME% Template Functions
+ * Discography Template Functions
  *
  * Functions used in the template files to output content - in most cases hooked in via the template actions. All functions are pluggable.
  *

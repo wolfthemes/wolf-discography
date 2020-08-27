@@ -1,12 +1,12 @@
 <?php
 /**
- * %NAME% Shortcode.
+ * Discography Shortcode.
  *
  * @class WD_Shortcode
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Shortcode
- * @version %VERSION%
+ * @version 1.5.1
  * @since 1.2.6
  */
 

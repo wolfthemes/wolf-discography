@@ -1,0 +1,922 @@
+# Copyright (C) 2020 WolfThemes
+# This file is distributed under the same license as the Wolf Discography package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Wolf Discography 1.5.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wolf-discography\n"
+"POT-Creation-Date: 2020-08-27 12:54:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/basic-theme/exclude/file.php:3
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/plugin-include/plugin-include.php:6
+msgid "Exclude"
+msgstr ""
+
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/plugin-include/include/file.php:2
+msgid "Include"
+msgstr ""
+
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/add-domain.php:2
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-all-domains.php:2
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-all-domains.php:3
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-all-domains.php:4
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-domains.php:2
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-domains.php:3
+msgid "String"
+msgstr ""
+
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-all-domains.php:9
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-all-domains.php:10
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-all-domains.php:11
+msgid "1 Star"
+msgid_plural "%s Stars"
+msgstr[0] ""
+msgstr[1] ""
+
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/translator-comments/translator-comments.php:7
+#. translators: A single line translators comment.
+msgid "A"
+msgstr ""
+
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/translator-comments/translator-comments.php:15
+#. translators: A multiline translators comment.
+msgid "B"
+msgstr ""
+
+#: inc/admin/class-wd-admin.php:106
+#: pack/wolf-discography/inc/admin/class-wd-admin.php:106
+msgid ""
+"says : <em>Almost done! you need to <a href=\"%1$s\">create a page</a> for "
+"your releases or <a href=\"%2$s\">select an existing page</a> in the plugin "
+"settings</em>."
+msgstr ""
+
+#: inc/admin/class-wd-admin.php:124
+msgid ""
+"<br><br>\n"
+"\t\t\t\t\t<a href=\"%1$s\" class=\"button button-primary\">Create a "
+"page</a>\n"
+"\t\t\t\t\t&nbsp;\n"
+"\t\t\t\t\t<a href=\"%2$s\" class=\"button button-primary\">Select an "
+"existing page</a>\n"
+"\t\t\t\t\t&nbsp;\n"
+"\t\t\t\t\t<a href=\"%3$s\" class=\"button\">Skip setup</a>"
+msgstr ""
+
+#: inc/admin/class-wd-admin.php:173
+#: inc/widgets/class-wd-widget-discography.php:27
+#: pack/wolf-discography/inc/admin/class-wd-admin.php:173
+#: pack/wolf-discography/inc/widgets/class-wd-widget-discography.php:27
+msgid "Discography"
+msgstr ""
+
+#: inc/admin/class-wd-admin.php:186
+#: pack/wolf-discography/inc/admin/class-wd-admin.php:186
+msgid "Your discography page has been created succesfully"
+msgstr ""
+
+#: inc/admin/class-wd-admin.php:208
+#: pack/wolf-discography/inc/admin/class-wd-admin.php:208
+msgid "You are currently editing the page that shows the discography."
+msgstr ""
+
+#: inc/admin/class-wd-admin.php:254
+#: pack/wolf-discography/inc/admin/class-wd-admin.php:254
+msgid "Thumbnail"
+msgstr ""
+
+#: inc/admin/class-wd-admin.php:271
+#: pack/wolf-discography/inc/admin/class-wd-admin.php:271
+msgid "Edit \"%s\""
+msgstr ""
+
+#: inc/admin/class-wd-admin.php:281 inc/admin/class-wd-options.php:38
+#: pack/wolf-discography/inc/admin/class-wd-admin.php:281
+#: pack/wolf-discography/inc/admin/class-wd-options.php:38
+msgid "Settings"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:243 inc/admin/class-wd-metabox.php:258
+#: inc/admin/class-wd-metabox.php:303 inc/admin/class-wd-metabox.php:483
+#: inc/admin/class-wd-metabox.php:491 inc/admin/class-wd-metabox.php:499
+#: inc/admin/class-wd-metabox.php:508
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:243
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:258
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:303
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:483
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:491
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:499
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:508
+msgid "Clear"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:244 inc/admin/class-wd-metabox.php:484
+#: inc/admin/class-wd-metabox.php:492 inc/admin/class-wd-metabox.php:500
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:244
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:484
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:492
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:500
+msgid "Choose a file"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:259 inc/admin/class-wd-metabox.php:304
+#: inc/admin/class-wd-metabox.php:509
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:259
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:304
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:509
+msgid "Choose an image"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:291
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:291
+msgid "Background color"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:299
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:299
+msgid "Background image"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:316
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:316
+msgid "Background repeat"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:340
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:340
+msgid "Background position"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:353
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:353
+msgid "cover (resize)"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:354 inc/admin/class-wd-metabox.php:439
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:354
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:439
+msgid "normal"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:355
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:355
+msgid "responsive (hard resize)"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:360
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:360
+msgid "Background size"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:371
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:371
+msgid "Parallax"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:389
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:389
+msgid "Font color"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:399
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:399
+msgid "Font Family"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:401
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:401
+msgid "default"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:412
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:412
+msgid "Font weight"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:414
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:414
+msgid ""
+"For example: 400 is normal, 700 is bold.The available font weights depend "
+"on the font.<br>Leave empty to use the theme default style"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:420 inc/admin/class-wd-metabox.php:438
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:420
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:438
+msgid "auto"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:421
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:421
+msgid "none"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:422
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:422
+msgid "uppercase"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:426
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:426
+msgid "Font transform"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:432
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:432
+msgid "\"auto\" is the default style in the theme options"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:440
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:440
+msgid "italic"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:444
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:444
+msgid "Font style"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:450
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:450
+msgid "\"auto\" is the default style defined in the theme options"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:457
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:457
+msgid "Font letter spacing (omit px)"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:459
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:459
+msgid "Leave empty to use the style defined in the theme options"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:481
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:481
+msgid "mp4 URL"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:489
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:489
+msgid "webm URL"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:497
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:497
+msgid "ogv URL"
+msgstr ""
+
+#: inc/admin/class-wd-metabox.php:505
+#: pack/wolf-discography/inc/admin/class-wd-metabox.php:505
+msgid "Video Image Fallback"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:39
+#: pack/wolf-discography/inc/admin/class-wd-options.php:39
+msgid "Shortcode"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:70 inc/admin/wd-admin-functions.php:28
+#: pack/wolf-discography/inc/admin/class-wd-options.php:70
+#: pack/wolf-discography/inc/admin/wd-admin-functions.php:28
+msgid "Discography Page"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:71
+#: pack/wolf-discography/inc/admin/class-wd-options.php:71
+msgid "Link Artist Name"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:72
+#: pack/wolf-discography/inc/admin/class-wd-options.php:72
+msgid "Link Label Name"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:73
+#: pack/wolf-discography/inc/admin/class-wd-options.php:73
+msgid "Link Genre"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:74
+#: pack/wolf-discography/inc/admin/class-wd-options.php:74
+msgid "Display format (like CD, digital download etc...)"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:114
+#: pack/wolf-discography/inc/admin/class-wd-options.php:114
+msgid "- Disabled -"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:127
+#: pack/wolf-discography/inc/admin/class-wd-options.php:127
+msgid "Select a page..."
+msgstr ""
+
+#: inc/admin/class-wd-options.php:193
+#: pack/wolf-discography/inc/admin/class-wd-options.php:193
+msgid "Discography Shortcode"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:194
+#: pack/wolf-discography/inc/admin/class-wd-options.php:194
+msgid ""
+"To display your last releases in your post or page you can use the "
+"following shortcode."
+msgstr ""
+
+#: inc/admin/class-wd-options.php:196
+#: pack/wolf-discography/inc/admin/class-wd-options.php:196
+msgid "Additionally, you can add a count, column, and categories attributes."
+msgstr ""
+
+#: inc/admin/class-wd-options.php:211
+#: pack/wolf-discography/inc/admin/class-wd-options.php:211
+msgid "Discography Options"
+msgstr ""
+
+#: inc/admin/class-wd-options.php:214
+#: pack/wolf-discography/inc/admin/class-wd-options.php:214
+msgid "Settings saved."
+msgstr ""
+
+#: inc/admin/class-wd-options.php:220
+#: pack/wolf-discography/inc/admin/class-wd-options.php:220
+msgid "Save Changes"
+msgstr ""
+
+#: inc/admin/updater.php:434
+msgid ""
+"The plugin has been updated, but could not be reactivated. Please "
+"reactivate it manually."
+msgstr ""
+
+#: inc/admin/updater.php:435
+msgid "Plugin reactivated successfully."
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:17
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:17
+msgid "Release Details"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:23 inc/frontend/wd-functions.php:247
+#: inc/widgets/class-wd-widget-discography.php:98
+#: inc/widgets/class-wd-widget-last-release.php:99
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:23
+#: pack/wolf-discography/inc/frontend/wd-functions.php:247
+#: pack/wolf-discography/inc/widgets/class-wd-widget-discography.php:98
+#: pack/wolf-discography/inc/widgets/class-wd-widget-last-release.php:99
+msgid "Title"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:29
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:29
+msgid "Release date"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:35
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:35
+msgid "Catalog Number"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:41
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:41
+msgid "Type"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:43
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:43
+msgid "You can choose to not display the format in the plugin setting."
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:46
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:46
+msgid "CD"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:47
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:47
+msgid "Digital Download"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:48
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:48
+msgid "DVD"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:49
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:49
+msgid "Vinyl"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:50
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:50
+msgid "Tape"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:55 inc/frontend/wd-functions.php:112
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:55
+#: pack/wolf-discography/inc/frontend/wd-functions.php:112
+msgid "iTunes"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:61
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:61
+msgid "YouTube Music"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:67 inc/frontend/wd-functions.php:122
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:67
+#: pack/wolf-discography/inc/frontend/wd-functions.php:122
+msgid "Amazon"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:73 inc/frontend/wd-functions.php:107
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:73
+#: pack/wolf-discography/inc/frontend/wd-functions.php:107
+msgid "Spotify"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:79
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:79
+msgid "Buy (any link where the release can be purchased)"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:85
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:85
+msgid "Free Download link"
+msgstr ""
+
+#: inc/admin/wd-metaboxes.php:91
+#: pack/wolf-discography/inc/admin/wd-metaboxes.php:91
+msgid "Tracklist"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:102
+#: pack/wolf-discography/inc/frontend/wd-functions.php:102
+msgid "Free Download"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:107
+#: pack/wolf-discography/inc/frontend/wd-functions.php:107
+msgid "Listen on %s"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:112 inc/frontend/wd-functions.php:117
+#: inc/frontend/wd-functions.php:122
+#: pack/wolf-discography/inc/frontend/wd-functions.php:112
+#: pack/wolf-discography/inc/frontend/wd-functions.php:117
+#: pack/wolf-discography/inc/frontend/wd-functions.php:122
+msgid "Buy on %s"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:117
+#: pack/wolf-discography/inc/frontend/wd-functions.php:117
+msgid "Google Play"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:127
+#: pack/wolf-discography/inc/frontend/wd-functions.php:127
+msgid "Buy Now"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:127
+#: pack/wolf-discography/inc/frontend/wd-functions.php:127
+msgid "Buy"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:149
+#: pack/wolf-discography/inc/frontend/wd-functions.php:149
+#: pack/wolf-discography/templates/content-release-shortcode.php:21
+#: pack/wolf-discography/templates/content-release.php:24
+#: templates/content-release-shortcode.php:21 templates/content-release.php:24
+msgid "Permalink to %s"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:252
+#: pack/wolf-discography/inc/frontend/wd-functions.php:252
+msgid "Release Date"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:259
+#: pack/wolf-discography/inc/frontend/wd-functions.php:259
+msgid "Catalog ref."
+msgstr ""
+
+#: inc/frontend/wd-functions.php:264
+#: pack/wolf-discography/inc/frontend/wd-functions.php:264
+msgid "Format"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:266
+#: pack/wolf-discography/inc/frontend/wd-functions.php:266
+msgid "Edit"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:494
+#: pack/wolf-discography/inc/frontend/wd-functions.php:494
+msgid "<span class=\"meta-nav\">&larr;</span> Older releases"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:498
+#: pack/wolf-discography/inc/frontend/wd-functions.php:498
+msgid "Newer releases <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: inc/wd-core-functions.php:215 inc/wd-core-functions.php:248
+#: pack/wolf-discography/inc/wd-core-functions.php:215
+#: pack/wolf-discography/inc/wd-core-functions.php:248
+msgid "No release to display yet."
+msgstr ""
+
+#: inc/wd-core-functions.php:243
+#: pack/wolf-discography/inc/wd-core-functions.php:243
+#: pack/wolf-discography/templates/content-release.php:35
+#: templates/content-release.php:35
+msgid "View Details"
+msgstr ""
+
+#: inc/wd-register-post-type.php:26 inc/wd-register-post-type.php:38
+#: inc/widgets/class-wd-widget-discography.php:91
+#: pack/wolf-discography/inc/wd-register-post-type.php:26
+#: pack/wolf-discography/inc/wd-register-post-type.php:38
+#: pack/wolf-discography/inc/widgets/class-wd-widget-discography.php:91
+msgid "Releases"
+msgstr ""
+
+#: inc/wd-register-post-type.php:27
+#: pack/wolf-discography/inc/wd-register-post-type.php:27
+msgid "Release"
+msgstr ""
+
+#: inc/wd-register-post-type.php:28
+#: pack/wolf-discography/inc/wd-register-post-type.php:28
+msgid "Add New"
+msgstr ""
+
+#: inc/wd-register-post-type.php:29
+#: pack/wolf-discography/inc/wd-register-post-type.php:29
+msgid "Add New Release"
+msgstr ""
+
+#: inc/wd-register-post-type.php:30
+#: pack/wolf-discography/inc/wd-register-post-type.php:30
+msgid "All Releases"
+msgstr ""
+
+#: inc/wd-register-post-type.php:31
+#: pack/wolf-discography/inc/wd-register-post-type.php:31
+msgid "Edit Release"
+msgstr ""
+
+#: inc/wd-register-post-type.php:32
+#: pack/wolf-discography/inc/wd-register-post-type.php:32
+msgid "New Release"
+msgstr ""
+
+#: inc/wd-register-post-type.php:33
+#: pack/wolf-discography/inc/wd-register-post-type.php:33
+msgid "View Release"
+msgstr ""
+
+#: inc/wd-register-post-type.php:34
+#: pack/wolf-discography/inc/wd-register-post-type.php:34
+msgid "Search Releases"
+msgstr ""
+
+#: inc/wd-register-post-type.php:35
+#: pack/wolf-discography/inc/wd-register-post-type.php:35
+msgid "No releases found"
+msgstr ""
+
+#: inc/wd-register-post-type.php:36
+#: pack/wolf-discography/inc/wd-register-post-type.php:36
+msgid "No releases found in Trash"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:16 inc/wd-register-taxonomy.php:31
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:16
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:31
+msgid "Artists"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:17
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:17
+msgid "Artist"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:18
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:18
+msgid "Search Artists"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:19
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:19
+msgid "Popular Artists"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:20
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:20
+msgid "All Artists"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:21
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:21
+msgid "Parent Artist"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:22
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:22
+msgid "Parent Artist:"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:23
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:23
+msgid "Edit Artist"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:24
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:24
+msgid "Update Artist"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:25
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:25
+msgid "Add New Artist"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:26
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:26
+msgid "New Artist"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:27
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:27
+msgid "Separate artists with commas"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:28
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:28
+msgid "Add or remove artists"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:29
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:29
+msgid "Choose from the most used artists"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:30
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:30
+msgid "No artists found"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:48 inc/wd-register-taxonomy.php:62
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:48
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:62
+msgid "Labels"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:49
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:49
+msgid "Label"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:50
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:50
+msgid "Search Labels"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:51
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:51
+msgid "Popular Labels"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:52
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:52
+msgid "All Labels"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:53
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:53
+msgid "Parent Label"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:54
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:54
+msgid "Parent Label:"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:55
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:55
+msgid "Edit Label"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:56
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:56
+msgid "Update Label"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:57
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:57
+msgid "Add New Label"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:58
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:58
+msgid "New Label"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:59
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:59
+msgid "Separate labels with commas"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:60
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:60
+msgid "Add or remove labels"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:61
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:61
+msgid "Choose from the most used labels"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:79 inc/wd-register-taxonomy.php:93
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:79
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:93
+msgid "Genres"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:80
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:80
+msgid "Genre"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:81
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:81
+msgid "Search Genres"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:82
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:82
+msgid "Popular Genres"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:83
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:83
+msgid "All Genres"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:84
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:84
+msgid "Parent Genre"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:85
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:85
+msgid "Parent Genre:"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:86
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:86
+msgid "Edit Genre"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:87
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:87
+msgid "Update Genre"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:88
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:88
+msgid "Add New Genre"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:89
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:89
+msgid "New Genre"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:90
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:90
+msgid "Separate genres with commas"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:91
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:91
+msgid "Add or remove genres"
+msgstr ""
+
+#: inc/wd-register-taxonomy.php:92
+#: pack/wolf-discography/inc/wd-register-taxonomy.php:92
+msgid "Choose from the most used genres"
+msgstr ""
+
+#: inc/widgets/class-wd-widget-discography.php:24
+#: pack/wolf-discography/inc/widgets/class-wd-widget-discography.php:24
+msgid "Display your discography"
+msgstr ""
+
+#: inc/widgets/class-wd-widget-discography.php:102
+#: inc/widgets/class-wd-widget-last-release.php:103
+#: pack/wolf-discography/inc/widgets/class-wd-widget-discography.php:102
+#: pack/wolf-discography/inc/widgets/class-wd-widget-last-release.php:103
+msgid "Optional Text"
+msgstr ""
+
+#: inc/widgets/class-wd-widget-discography.php:106
+#: pack/wolf-discography/inc/widgets/class-wd-widget-discography.php:106
+msgid "Count"
+msgstr ""
+
+#: inc/widgets/class-wd-widget-last-release.php:24
+#: pack/wolf-discography/inc/widgets/class-wd-widget-last-release.php:24
+msgid "Display your last release"
+msgstr ""
+
+#: inc/widgets/class-wd-widget-last-release.php:27
+#: inc/widgets/class-wd-widget-last-release.php:92
+#: pack/wolf-discography/inc/widgets/class-wd-widget-last-release.php:27
+#: pack/wolf-discography/inc/widgets/class-wd-widget-last-release.php:92
+msgid "Last Release"
+msgstr ""
+
+#: pack/wolf-discography/inc/admin/class-wd-admin.php:124
+msgid ""
+"<br><br>\r\n"
+"\t\t\t\t\t<a href=\"%1$s\" class=\"button button-primary\">Create a "
+"page</a>\r\n"
+"\t\t\t\t\t&nbsp;\r\n"
+"\t\t\t\t\t<a href=\"%2$s\" class=\"button button-primary\">Select an "
+"existing page</a>\r\n"
+"\t\t\t\t\t&nbsp;\r\n"
+"\t\t\t\t\t<a href=\"%3$s\" class=\"button\">Skip setup</a>"
+msgstr ""
+
+#: pack/wolf-discography/templates/loop/no-releases-found.php:1
+#: templates/loop/no-releases-found.php:1
+msgid "No release yet"
+msgstr ""
+
+#: pack/wolf-discography/wolf-discography.php:113 wolf-discography.php:110
+msgid ""
+"%1$s needs at least PHP %2$s installed on your server. You have version "
+"%3$s currently installed. Please contact your hosting service provider if "
+"you're not able to update PHP by yourself."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Wolf Discography"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wlfthm.es/wolf-discography"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A discography plugin to display your releases."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WolfThemes"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://wolfthemes.com"
+msgstr ""
+
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-all-domains.php:6
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-all-domains.php:7
+#: dev/node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-all-domains.php:8
+msgctxt "a string"
+msgid "String"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:465
+#: pack/wolf-discography/inc/frontend/wd-functions.php:465
+msgctxt "Previous post link"
+msgid "<span class=\"meta-nav\">&larr;</span> %title"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:466
+#: pack/wolf-discography/inc/frontend/wd-functions.php:466
+msgctxt "Next post link"
+msgid "%title <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""

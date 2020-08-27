@@ -1,12 +1,12 @@
 <?php
 /**
- * %NAME% Admin.
+ * Discography Admin.
  *
  * @class WD_Admin
  * @author WolfThemes
  * @category Admin
  * @package WolfDiscography/Admin
- * @version %VERSION%
+ * @version 1.5.1
  */
 
 defined( 'ABSPATH' ) || exit;

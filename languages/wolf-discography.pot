@@ -1,10 +1,10 @@
 # Copyright (C) 2020 WolfThemes
-# This file is distributed under the same license as the Wolf Discography package.
+# This file is distributed under the same license as the Discography package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Wolf Discography 1.5.1\n"
+"Project-Id-Version: Discography 1.5.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wolf-discography\n"
-"POT-Creation-Date: 2020-08-27 12:54:00+00:00\n"
+"POT-Creation-Date: 2020-09-02 18:48:02+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,21 +69,19 @@ msgid ""
 msgstr ""
 
 #: inc/admin/class-wd-admin.php:124
+#: pack/wolf-discography/inc/admin/class-wd-admin.php:124
 msgid ""
-"<br><br>\n"
+"<br><br>\r\n"
 "\t\t\t\t\t<a href=\"%1$s\" class=\"button button-primary\">Create a "
-"page</a>\n"
-"\t\t\t\t\t&nbsp;\n"
+"page</a>\r\n"
+"\t\t\t\t\t&nbsp;\r\n"
 "\t\t\t\t\t<a href=\"%2$s\" class=\"button button-primary\">Select an "
-"existing page</a>\n"
-"\t\t\t\t\t&nbsp;\n"
+"existing page</a>\r\n"
+"\t\t\t\t\t&nbsp;\r\n"
 "\t\t\t\t\t<a href=\"%3$s\" class=\"button\">Skip setup</a>"
 msgstr ""
 
-#: inc/admin/class-wd-admin.php:173
-#: inc/widgets/class-wd-widget-discography.php:27
-#: pack/wolf-discography/inc/admin/class-wd-admin.php:173
-#: pack/wolf-discography/inc/widgets/class-wd-widget-discography.php:27
+#. Plugin Name of the plugin/theme
 msgid "Discography"
 msgstr ""
 
@@ -361,13 +359,13 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: inc/admin/updater.php:434
+#: inc/admin/updater.php:434 pack/wolf-discography/inc/admin/updater.php:434
 msgid ""
 "The plugin has been updated, but could not be reactivated. Please "
 "reactivate it manually."
 msgstr ""
 
-#: inc/admin/updater.php:435
+#: inc/admin/updater.php:435 pack/wolf-discography/inc/admin/updater.php:435
 msgid "Plugin reactivated successfully."
 msgstr ""
 
@@ -858,32 +856,16 @@ msgstr ""
 msgid "Last Release"
 msgstr ""
 
-#: pack/wolf-discography/inc/admin/class-wd-admin.php:124
-msgid ""
-"<br><br>\r\n"
-"\t\t\t\t\t<a href=\"%1$s\" class=\"button button-primary\">Create a "
-"page</a>\r\n"
-"\t\t\t\t\t&nbsp;\r\n"
-"\t\t\t\t\t<a href=\"%2$s\" class=\"button button-primary\">Select an "
-"existing page</a>\r\n"
-"\t\t\t\t\t&nbsp;\r\n"
-"\t\t\t\t\t<a href=\"%3$s\" class=\"button\">Skip setup</a>"
-msgstr ""
-
 #: pack/wolf-discography/templates/loop/no-releases-found.php:1
 #: templates/loop/no-releases-found.php:1
 msgid "No release yet"
 msgstr ""
 
-#: pack/wolf-discography/wolf-discography.php:113 wolf-discography.php:110
+#: pack/wolf-discography/wolf-discography.php:110 wolf-discography.php:110
 msgid ""
 "%1$s needs at least PHP %2$s installed on your server. You have version "
 "%3$s currently installed. Please contact your hosting service provider if "
 "you're not able to update PHP by yourself."
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "Wolf Discography"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

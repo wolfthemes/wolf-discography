@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Wolf Discography
+ * Plugin Name: Discography
  * Plugin URI: https://wlfthm.es/wolf-discography
  * Description: A discography plugin to display your releases.
  * Version: 1.5.1

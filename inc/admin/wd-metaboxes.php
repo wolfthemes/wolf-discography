@@ -52,26 +52,50 @@ $metabox = array(
 			),
 
 			array(
-				'label'	=> esc_html__( 'iTunes', 'wolf-discography' ),
-				'id'	=> '_wolf_release_itunes',
-				'type'	=> 'url',
-			),
-
-			array(
-				'label'	=> esc_html__( 'YouTube Music', 'wolf-discography' ),
-				'id'	=> '_wolf_release_google_play',
-				'type'	=> 'url',
-			),
-
-			array(
 				'label'	=> esc_html__( 'Amazon', 'wolf-discography' ),
 				'id'	=> '_wolf_release_amazon',
 				'type'	=> 'url',
 			),
 
 			array(
+				'label'	=> esc_html__( 'Apple', 'wolf-discography' ),
+				'id'	=> '_wolf_release_apple',
+				'type'	=> 'url',
+			),
+
+			array(
+				'label'	=> esc_html__( 'Bandcamp', 'wolf-discography' ),
+				'id'	=> '_wolf_release_bandcamp',
+				'type'	=> 'url',
+			),
+
+			array(
+				'label'	=> esc_html__( 'Deezer', 'wolf-discography' ),
+				'id'	=> '_wolf_release_deezer',
+				'type'	=> 'url',
+			),
+
+			array(
+				'label'	=> esc_html__( 'iTunes', 'wolf-discography' ),
+				'id'	=> '_wolf_release_itunes',
+				'type'	=> 'url',
+			),
+
+			array(
 				'label'	=> esc_html__( 'Spotify', 'wolf-discography' ),
 				'id'	=> '_wolf_release_spotify',
+				'type'	=> 'url',
+			),
+
+			array(
+				'label'	=> esc_html__( 'Tidal', 'wolf-discography' ),
+				'id'	=> '_wolf_release_tidal',
+				'type'	=> 'url',
+			),
+
+			array(
+				'label'	=> esc_html__( 'YouTube Music', 'wolf-discography' ),
+				'id'	=> '_wolf_release_google_play',
 				'type'	=> 'url',
 			),
 

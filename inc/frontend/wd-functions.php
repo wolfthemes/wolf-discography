@@ -86,10 +86,16 @@ function wd_get_post_thumbnail_url( $format = 'medium', $post_id = null ) {
 function wd_release_buttons() {
 
 	$meta = wd_get_meta();
-	$release_itunes = $meta['itunes'];
-	$release_google_play = $meta['google_play'];
-	$release_amazon = $meta['amazon'];
-	$release_spotify = $meta['spotify'];
+	$release_itunes      = $meta['itunes'];
+	$release_amazon      = $meta['amazon'];
+	$release_bandcamp    = $meta['bandcamp'];
+	$release_spotify     = $meta['spotify'];
+	$release_buy         = $meta['buy'];
+	$release_free        = $meta['free'];
+	$release_apple       = $meta['apple'];
+	$release_deezer      = $meta['deezer'];
+	$release_tidal       = $meta['tidal'];
+	$release_yt          = $meta['google_play'];
 	$release_buy = $meta['buy'];
 	$release_free = $meta['free'];
 
@@ -107,6 +113,21 @@ function wd_release_buttons() {
 				<a title="<?php printf( esc_html__( 'Listen on %s', 'wolf-discography' ), 'Spotify' ); ?>" class="wolf-release-spotify" href="<?php echo $release_spotify; ?>"><?php esc_html_e( 'Spotify', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
+			<?php if ( $release_tidal ) : ?>
+			<span class="wolf-release-button">
+				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'Tidal' ); ?>" class="wolf-release-tidal <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_tidal ); ?>"><?php esc_html_e( 'Tidal', '%TEXTDOMAIN%' ); ?></a>
+			</span>
+			<?php endif; ?>
+				<?php if ( $release_apple ) : ?>
+			<span class="wolf-release-button">
+				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'Apple Music' ); ?>" class="wolf-release-apple <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_apple ); ?>"><?php esc_html_e( 'Apple', '%TEXTDOMAIN%' ); ?></a>
+			</span>
+			<?php endif; ?>
+				<?php if ( $release_deezer ) : ?>
+			<span class="wolf-release-button">
+				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'Deezer' ); ?>" class="wolf-release-deezer <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_deezer ); ?>"><?php esc_html_e( 'Deezer', '%TEXTDOMAIN%' ); ?></a>
+			</span>
+			<?php endif; ?>
 			<?php if ( $release_itunes ) : ?>
 			<span class="wolf-release-button">
 				<a title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'iTunes' ); ?>" class="wolf-release-itunes" href="<?php echo $release_itunes; ?>"><?php esc_html_e( 'iTunes', 'wolf-discography' ); ?></a>
@@ -120,6 +141,11 @@ function wd_release_buttons() {
 			<?php if ( $release_amazon ) : ?>
 			<span class="wolf-release-button">
 				<a title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'amazon' ); ?>" class="wolf-release-amazon" href="<?php echo $release_amazon; ?>"><?php esc_html_e( 'Amazon', 'wolf-discography' ); ?></a>
+			</span>
+			<?php endif; ?>
+			<?php if ( $release_bandcamp ) : ?>
+			<span class="wolf-release-button">
+				<a target="_blank" title="<?php printf( esc_html__( 'Buy on %s', '%TEXTDOMAIN%' ), 'bandcamp' ); ?>" class="wolf-release-bandcamp <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_bandcamp ); ?>"><?php esc_html_e( 'Bandcamp', '%TEXTDOMAIN%' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_buy ) : ?>
@@ -287,6 +313,10 @@ function wd_get_meta() {
 	$itunes = get_post_meta( $post_id, '_wolf_release_itunes', true );
 	$google_play = get_post_meta( $post_id, '_wolf_release_google_play', true );
 	$amazon = get_post_meta( $post_id, '_wolf_release_amazon', true );
+	$bandcamp = get_post_meta( $post_id, '_wolf_release_bandcamp', true );
+	$deezer = get_post_meta( $post_id, '_wolf_release_deezer', true );
+	$apple = get_post_meta( $post_id, '_wolf_release_apple', true );
+	$tidal = get_post_meta( $post_id, '_wolf_release_tidal', true );
 	$spotify = get_post_meta( $post_id, '_wolf_release_spotify', true );
 	$buy = get_post_meta( $post_id, '_wolf_release_buy', true );
 	$free = get_post_meta( $post_id, '_wolf_release_free', true );
@@ -327,6 +357,22 @@ function wd_get_meta() {
 		$meta['amazon'] = $amazon;
 	}
 
+	if ( $bandcamp ) {
+		$meta['bandcamp'] = $bandcamp;
+	}
+
+	if ( $deezer ) {
+		$meta['deezer'] = $deezer;
+	}
+
+	if ( $apple ) {
+		$meta['apple'] = $apple;
+	}
+
+	if ( $tidal ) {
+		$meta['tidal'] = $tidal;
+	}
+
 	if ( $spotify ) {
 		$meta['spotify'] = $spotify;
 	}
@@ -362,6 +408,10 @@ function wd_get_default_meta() {
 		'itunes' => '',
 		'google_play' => '',
 		'amazon' => '',
+		'bandcamp' => '',
+		'apple' => '',
+		'deezer' => '',
+		'tidal' => '',
 		'spotify' => '',
 		'buy' => '',
 		'free' => '',

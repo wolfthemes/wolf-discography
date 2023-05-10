@@ -1,5 +1,9 @@
 # Changelog
 
+#### 10th May 2023 - Version 1.5.2
+
+-   Tweak: Added Bandcamp, Deezer, Tidal and Apple links
+
 #### 26th August 2020 - Version 1.5.1
 
 -   Tweak: Unbrand plugin name

@@ -95,6 +95,7 @@ function wd_release_buttons() {
 	$release_apple       = $meta['apple'];
 	$release_deezer      = $meta['deezer'];
 	$release_tidal       = $meta['tidal'];
+	$release_qobuz       = $meta['qobuz'];
 	$release_yt          = $meta['google_play'];
 	$release_buy = $meta['buy'];
 	$release_free = $meta['free'];
@@ -146,6 +147,11 @@ function wd_release_buttons() {
 			<?php if ( $release_bandcamp ) : ?>
 			<span class="wolf-release-button">
 				<a target="_blank" title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'bandcamp' ); ?>" class="wolf-release-bandcamp <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_bandcamp ); ?>"><?php esc_html_e( 'Bandcamp', 'wolf-discography' ); ?></a>
+			</span>
+			<?php endif; ?>
+			<?php if ( $release_qobuz ) : ?>
+			<span class="wolf-release-button">
+				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Qobuz' ); ?>" class="wolf-release-qobuz <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_qobuz ); ?>"><?php esc_html_e( 'Qobuz', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_buy ) : ?>
@@ -317,6 +323,7 @@ function wd_get_meta() {
 	$deezer = get_post_meta( $post_id, '_wolf_release_deezer', true );
 	$apple = get_post_meta( $post_id, '_wolf_release_apple', true );
 	$tidal = get_post_meta( $post_id, '_wolf_release_tidal', true );
+	$qobuz = get_post_meta( $post_id, '_wolf_release_qobuz', true );
 	$spotify = get_post_meta( $post_id, '_wolf_release_spotify', true );
 	$buy = get_post_meta( $post_id, '_wolf_release_buy', true );
 	$free = get_post_meta( $post_id, '_wolf_release_free', true );
@@ -373,6 +380,10 @@ function wd_get_meta() {
 		$meta['tidal'] = $tidal;
 	}
 
+	if ( $qobuz ) {
+		$meta['qobuz'] = $qobuz;
+	}
+
 	if ( $spotify ) {
 		$meta['spotify'] = $spotify;
 	}
@@ -412,6 +423,7 @@ function wd_get_default_meta() {
 		'apple' => '',
 		'deezer' => '',
 		'tidal' => '',
+		'qobuz' => '',
 		'spotify' => '',
 		'buy' => '',
 		'free' => '',

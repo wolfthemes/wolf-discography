@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Discography package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discography 1.5.3\n"
+"Project-Id-Version: Discography 1.5.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wolf-discography\n"
-"POT-Creation-Date: 2024-08-19 09:19:13+00:00\n"
+"POT-Creation-Date: 2024-11-15 11:13:18+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -306,7 +306,7 @@ msgstr ""
 msgid "Release Details"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:23 inc/frontend/wd-functions.php:273
+#: inc/admin/wd-metaboxes.php:23 inc/frontend/wd-functions.php:279
 #: inc/widgets/class-wd-widget-discography.php:98
 #: inc/widgets/class-wd-widget-last-release.php:99
 msgid "Title"
@@ -348,31 +348,31 @@ msgstr ""
 msgid "Tape"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:55 inc/frontend/wd-functions.php:143
+#: inc/admin/wd-metaboxes.php:55 inc/frontend/wd-functions.php:144
 msgid "Amazon"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:61 inc/frontend/wd-functions.php:123
+#: inc/admin/wd-metaboxes.php:61 inc/frontend/wd-functions.php:124
 msgid "Apple"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:67 inc/frontend/wd-functions.php:148
+#: inc/admin/wd-metaboxes.php:67 inc/frontend/wd-functions.php:149
 msgid "Bandcamp"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:73 inc/frontend/wd-functions.php:128
+#: inc/admin/wd-metaboxes.php:73 inc/frontend/wd-functions.php:129
 msgid "Deezer"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:79 inc/frontend/wd-functions.php:133
+#: inc/admin/wd-metaboxes.php:79 inc/frontend/wd-functions.php:134
 msgid "iTunes"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:85 inc/frontend/wd-functions.php:113
+#: inc/admin/wd-metaboxes.php:85 inc/frontend/wd-functions.php:114
 msgid "Spotify"
 msgstr ""
 
-#: inc/admin/wd-metaboxes.php:91 inc/frontend/wd-functions.php:118
+#: inc/admin/wd-metaboxes.php:91 inc/frontend/wd-functions.php:119
 msgid "Tidal"
 msgstr ""
 
@@ -392,62 +392,66 @@ msgstr ""
 msgid "Tracklist"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:108
+#: inc/frontend/wd-functions.php:109
 msgid "Free Download"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:113
+#: inc/frontend/wd-functions.php:114
 msgid "Listen on %s"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:118 inc/frontend/wd-functions.php:123
-#: inc/frontend/wd-functions.php:128
+#: inc/frontend/wd-functions.php:119 inc/frontend/wd-functions.php:124
+#: inc/frontend/wd-functions.php:129 inc/frontend/wd-functions.php:154
 msgid "Stream on %s"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:133 inc/frontend/wd-functions.php:138
-#: inc/frontend/wd-functions.php:143 inc/frontend/wd-functions.php:148
+#: inc/frontend/wd-functions.php:134 inc/frontend/wd-functions.php:139
+#: inc/frontend/wd-functions.php:144 inc/frontend/wd-functions.php:149
 msgid "Buy on %s"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:138
+#: inc/frontend/wd-functions.php:139
 msgid "Google Play"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:153
+#: inc/frontend/wd-functions.php:154
+msgid "Qobuz"
+msgstr ""
+
+#: inc/frontend/wd-functions.php:159
 msgid "Buy Now"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:153
+#: inc/frontend/wd-functions.php:159
 msgid "Buy"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:175 templates/content-release-shortcode.php:21
+#: inc/frontend/wd-functions.php:181 templates/content-release-shortcode.php:21
 #: templates/content-release.php:24
 msgid "Permalink to %s"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:278
+#: inc/frontend/wd-functions.php:284
 msgid "Release Date"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:285
+#: inc/frontend/wd-functions.php:291
 msgid "Catalog ref."
 msgstr ""
 
-#: inc/frontend/wd-functions.php:290
+#: inc/frontend/wd-functions.php:296
 msgid "Format"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:292
+#: inc/frontend/wd-functions.php:298
 msgid "Edit"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:544
+#: inc/frontend/wd-functions.php:556
 msgid "<span class=\"meta-nav\">&larr;</span> Older releases"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:548
+#: inc/frontend/wd-functions.php:560
 msgid "Newer releases <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
@@ -732,12 +736,12 @@ msgctxt "a string"
 msgid "String"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:515
+#: inc/frontend/wd-functions.php:527
 msgctxt "Previous post link"
 msgid "<span class=\"meta-nav\">&larr;</span> %title"
 msgstr ""
 
-#: inc/frontend/wd-functions.php:516
+#: inc/frontend/wd-functions.php:528
 msgctxt "Next post link"
 msgid "%title <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""

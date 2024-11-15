@@ -3,11 +3,11 @@
  * Plugin Name: Discography
  * Plugin URI: https://wlfthm.es/wolf-discography
  * Description: A discography plugin to display your releases.
- * Version: 1.5.3
+ * Version: 1.5.4
  * Author: WolfThemes
  * Author URI: https://wolfthemes.com
- * Requires at least: 5.5
- * Tested up to: 6.0
+ * Requires at least: 6.0
+ * Tested up to: 6.6
  *
  * Text Domain: wolf-discography
  * Domain Path: /languages/
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 	 * Contains the main functions for Wolf_Discography
 	 *
 	 * @class Wolf_Discography
-	 * @version 1.5.3
+	 * @version 1.5.4
 	 * @since 1.0.0
 	 * @package WolfDiscography
 	 * @author WolfThemes
@@ -46,7 +46,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '1.5.3';
+		public $version = '1.5.4';
 
 		/**
 		 * @var Discography The single instance of the class

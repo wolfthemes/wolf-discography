@@ -1,9 +1,12 @@
 # Changelog
 
+#### 10th May 2023 - Version 1.5.2
+
+-   Tweak: Added Qobuz
+
 #### 19th August 2024 - Version 1.5.3
 
 -   Fix: PHP error message about undefined release_google_play variable
-
 
 #### 10th May 2023 - Version 1.5.2
 

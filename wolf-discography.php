@@ -91,8 +91,10 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 				return;
 			}
 
+
+
 			$this->define_constants();
-			$this->includes();
+			//$this->includes();
 			$this->init_hooks();
 
 			do_action( 'wolf_discography_loaded' );
@@ -122,6 +124,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		 */
 		private function init_hooks() {
 			add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
+			add_action( 'init', array( $this, 'includes' ), 0 );
 			add_action( 'init', array( $this, 'init' ), 0 );
 			register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		}

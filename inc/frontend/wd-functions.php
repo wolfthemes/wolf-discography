@@ -317,6 +317,7 @@ function wd_get_meta() {
 	$deezer = get_post_meta( $post_id, '_wolf_release_deezer', true );
 	$apple = get_post_meta( $post_id, '_wolf_release_apple', true );
 	$tidal = get_post_meta( $post_id, '_wolf_release_tidal', true );
+	$qobuz = get_post_meta( $post_id, '_wolf_release_qobuz', true );
 	$spotify = get_post_meta( $post_id, '_wolf_release_spotify', true );
 	$buy = get_post_meta( $post_id, '_wolf_release_buy', true );
 	$free = get_post_meta( $post_id, '_wolf_release_free', true );

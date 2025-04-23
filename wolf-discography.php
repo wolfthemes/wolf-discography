@@ -91,8 +91,6 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 				return;
 			}
 
-
-
 			$this->define_constants();
 
 			////$this->includes();

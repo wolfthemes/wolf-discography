@@ -1,14 +1,14 @@
-# Copyright (C) 2024 WolfThemes
+# Copyright (C) 2025 WolfThemes
 # This file is distributed under the same license as the Discography package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discography 1.5.4\n"
+"Project-Id-Version: Discography 1.5.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wolf-discography\n"
-"POT-Creation-Date: 2024-11-15 11:13:18+00:00\n"
+"POT-Creation-Date: 2025-04-24 10:01:31+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2025-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
@@ -706,7 +706,7 @@ msgstr ""
 msgid "No release yet"
 msgstr ""
 
-#: wolf-discography.php:110
+#: wolf-discography.php:112
 msgid ""
 "%1$s needs at least PHP %2$s installed on your server. You have version "
 "%3$s currently installed. Please contact your hosting service provider if "

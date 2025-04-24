@@ -1,6 +1,10 @@
 # Changelog
 
-#### 10th May 2023 - Version 1.5.2
+#### 24th April 2025 - Version 1.5.5
+
+-   Fix: Prevent loading_plugin_text notice message
+
+#### 10th May 2023 - Version 1.5.4
 
 -   Tweak: Added Qobuz
 

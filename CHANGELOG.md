@@ -1,5 +1,9 @@
 # Changelog
 
+#### 16th June 2025 - Version 1.5.6
+
+-   Improvement: added Qobuz default icon
+
 #### 24th April 2025 - Version 1.5.5
 
 -   Fix: Prevent loading_plugin_text notice message

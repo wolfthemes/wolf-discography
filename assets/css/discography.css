@@ -1,17 +1,17 @@
 @font-face {
-  font-family: 'discography';
+  font-family: "discography";
   src: url("fonts/discography.eot?-8lvnt7");
   src: url("fonts/discography.eot?#iefix-8lvnt7") format("embedded-opentype"), url("fonts/discography.svg?-8lvnt7#discography") format("svg"), url("fonts/discography.woff?-8lvnt7") format("woff"), url("fonts/discography.ttf?-8lvnt7") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
-
 .wolf-release-amazon:before,
 .wolf-release-spotify:before,
 .wolf-release-itunes:before,
+.wolf-release-qobuz:before,
 .wolf-release-buy:before,
 .wolf-release-free:before {
-  font-family: 'discography';
+  font-family: "discography";
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -59,6 +59,17 @@
 
 .wolf-release-googleplay:before {
   content: "\e902";
+}
+
+.wolf-release-qobuz:before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="%23ffffff" stroke-linecap="round" stroke-width="8" d="M140.672 157.486a76.004 76.004 0 0 1-102.464-12.128 76.001 76.001 0 0 1 107.15-107.15 76.004 76.004 0 0 1 12.128 102.464"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="8" d="M124.807 142.105a54.364 54.364 0 1 1 17.296-17.296"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="8" d="M95.997 117.193c11.705 0 21.193-9.488 21.193-21.193 0-11.704-9.488-21.193-21.193-21.193-11.704 0-21.193 9.489-21.193 21.193 0 11.705 9.489 21.193 21.193 21.193Z"/><circle fill="%23ffffff" cx="95.997" cy="96" r="2.103"/><path fill="%23ffffff" d="m121.193 121.196 41.871 41.625Z"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="12" d="m121.193 121.196 41.871 41.625"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .clear {
@@ -162,16 +173,17 @@ article.wolf-release footer.entry-meta {
 .release-navigation:after {
   clear: both;
 }
-.release-navigation a[rel="prev"] {
+.release-navigation a[rel=prev] {
   float: left;
 }
-.release-navigation a[rel="next"] {
+.release-navigation a[rel=next] {
   float: right;
 }
 
 /* Widget */
 .widget_discography a {
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: inline-block;
   padding: 0px 2px;
@@ -179,6 +191,7 @@ article.wolf-release footer.entry-meta {
 }
 .widget_discography a:after, .widget_discography a:before {
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .widget_discography a img {
@@ -239,7 +252,7 @@ article.wolf-release footer.entry-meta {
 }
 
 .release-grid-col-3 .wolf-release {
-  width: 33.33333%;
+  width: 33.3333333333%;
 }
 
 .release-grid-col-4 .wolf-release {
@@ -251,11 +264,11 @@ article.wolf-release footer.entry-meta {
 }
 
 .release-grid-col-6 .wolf-release {
-  width: 16.66667%;
+  width: 16.6666666667%;
 }
 
 .release-grid-col-7 .wolf-release {
-  width: 14.28571%;
+  width: 14.2857142857%;
 }
 
 .release-grid-col-8 .wolf-release {
@@ -263,7 +276,7 @@ article.wolf-release footer.entry-meta {
 }
 
 .release-grid-col-9 .wolf-release {
-  width: 11.11111%;
+  width: 11.1111111111%;
 }
 
 .release-grid-col-10 .wolf-release {
@@ -271,11 +284,11 @@ article.wolf-release footer.entry-meta {
 }
 
 .release-grid-col-11 .wolf-release {
-  width: 9.09091%;
+  width: 9.0909090909%;
 }
 
 .release-grid-col-12 .wolf-release {
-  width: 8.33333%;
+  width: 8.3333333333%;
 }
 
 @media screen and (max-width: 900px) {
@@ -291,7 +304,6 @@ article.wolf-release footer.entry-meta {
     margin-right: 0 !important;
     margin-left: 0 !important;
   }
-
   article.wolf-release .entry-content {
     margin-top: 15px;
   }
@@ -301,59 +313,50 @@ article.wolf-release footer.entry-meta {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-2 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-3 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-4 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-5 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-6 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-7 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-8 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-9 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-10 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-11 .wolf-release {
     width: 100%;
     float: none;
   }
-
   .release-grid-col-12 .wolf-release {
     width: 100%;
     float: none;
   }
 }
+
+/*# sourceMappingURL=discography.css.map */

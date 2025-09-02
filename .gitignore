@@ -3,6 +3,7 @@ dev
 pack
 build
 /node_modules/
+/vendor/
 
 # Windows image file caches
 Thumbs.db
@@ -12,4 +13,3 @@ Desktop.ini
 
 # Mac crap
 .DS_Store
-/vendor/

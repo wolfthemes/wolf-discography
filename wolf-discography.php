@@ -42,7 +42,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '1.5.6';
+		public $version = '1.6.0';
 
 		/**
 		 * @var Discography The single instance of the class
@@ -367,6 +367,27 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		 */
 		public function template_path() {
 			return apply_filters( 'wd_template_path', 'wolf-discography/' );
+		}
+
+		/**
+		 * Check if current installation uses WolfThemes
+		 * @return bool
+		 */
+		public function is_wolf_theme() {
+			$theme = wp_get_theme();
+			$author = $theme->get( 'Author' );
+			$author_uri = $theme->get( 'AuthorURI' );
+
+			// Check if it's a WolfThemes theme
+			if (
+				stripos( $author, 'wolf' ) !== false ||
+				stripos( $author_uri, 'wolfthemes' ) !== false ||
+				stripos( $author_uri, 'wpwolf' ) !== false
+			) {
+				return true;
+			}
+
+			return false;
 		}
 
 			/**

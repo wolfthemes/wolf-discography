@@ -22,7 +22,9 @@ class WD_Shortcode {
 	public function __construct() {
 
 		add_shortcode( 'wolf_last_releases', array( $this, 'shortcode' ) );
+		add_shortcode( 'wolf_releases', array( $this, 'shortcode' ) );
 		add_shortcode( 'wolf_last_release', array( $this, 'shortcode_single' ) );
+		add_shortcode( 'wolf_single_releas', array( $this, 'shortcode_single' ) );
 	}
 
 	/**
@@ -84,7 +86,7 @@ class WD_Shortcode {
 		add_filter( 'posts_where', array( $this, 'filter_where' ) );
 		$loop = new WP_Query( $args );
 		remove_filter( 'posts_where', array( $this, 'filter_where' ) );
-		
+
 		if ( $loop->have_posts() ) : ?>
 			<div class="<?php echo apply_filters( 'wolf_discography_last_releases_shortcode_class', $class ); ?>" data-animation-parent="<?php echo esc_attr( $animation ); ?>">
 				<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>

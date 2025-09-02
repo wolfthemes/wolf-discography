@@ -9,7 +9,7 @@
  */
 ?>
 <article itemscope itemtype="http://schema.org/MusicAlbum" id="post-<?php the_ID(); ?>" <?php post_class( array( 'wolf-release', 'clearfix' ) ); ?>>
-	<?php 
+	<?php
 		/**
 		 * wolf_release_start_hook
 		 */
@@ -18,7 +18,7 @@
 	<div class="entry-thumbnail release-thumbnail">
 		<?php wd_release_thumbnail(); ?>
 	</div><!-- .entry-thumbnail -->
-	
+
 	<div class="entry-content release-content">
 		<h2 class="entry-title release-title">
 			<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'wolf-discography' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
@@ -28,11 +28,9 @@
 		</div>
 		<?php
 			/**
-			 * Content with read more button
+			 * Content excerpt
 			 */
-			global $more;
-			$more = 0;
-			the_content( __( 'View Details', 'wolf-discography' ) );
+			the_excerpt();
 		?>
 	</div><!-- .entry-content -->
 	<div class="clear"></div>

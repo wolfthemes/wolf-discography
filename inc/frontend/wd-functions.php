@@ -46,7 +46,8 @@ add_action( 'wolf_release_start', 'wd_release_microdata' );
  * @param string $more
  * @return string
  */
-function wd_sample( $text, $num_words = 55, $more = '...' ) {
+function wd_sample( $text = null, $num_words = 55, $more = '...' ) {
+	$text = ( $text ) ? $text : get_the_excerpt();
 	return wp_trim_words( strip_shortcodes( $text ), $num_words, $more );
 }
 
@@ -491,8 +492,9 @@ function wd_get_label() {
  */
 function wd_enqueue_style() {
 
-	// wp_enqueue_style( 'wolf-discography', WD_URI . '/assets/css/discography.css', array(), WD_VERSION, 'all' );
-	wp_enqueue_style( 'wolf-discography', WD_URI . '/build/css/styles.css', array(), WD_VERSION, 'all' );
+	if ( ! WD()->is_wolf_theme() ) {
+		wp_enqueue_style( 'wolf-discography', WD_URI . '/build/styles.css', array(), WD_VERSION, 'all' );
+	}
 }
 add_action( 'wp_enqueue_scripts',  'wd_enqueue_style' );
 
@@ -564,4 +566,49 @@ function wolf_release_page_nav( $loop = null ) {
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
 	<?php
+}
+
+/**
+ * Add conditional layout classes to body
+ */
+function wd_add_layout_body_class( $classes ) {
+	// Only add classes for non-Wolf themes
+	if ( ! WD()->is_wolf_theme() ) {
+		if ( is_page( wolf_discography_get_page_id() ) || is_post_type_archive( 'release' ) || is_singular( 'release' ) || is_tax( array( 'band', 'label', 'release_genre' ) ) ) {
+			$classes[] = 'wolf-discography-active';
+
+			// Add default layout class (list by default)
+			$layout = get_option( 'wolf_discography_layout', 'list' );
+			$classes[] = 'wolf-discography-layout-' . $layout;
+
+			// Add grid columns if grid layout
+			if ( $layout === 'grid' ) {
+				$columns = get_option( 'wolf_discography_grid_columns', '3' );
+				$classes[] = 'wolf-discography-grid-' . $columns;
+			}
+		}
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'wd_add_layout_body_class' );
+
+/**
+ * Get discography layout wrapper class
+ */
+function wd_get_layout_wrapper_class() {
+	// Only add wrapper classes for non-Wolf themes
+	if ( ! WD()->is_wolf_theme() ) {
+		$layout = get_option( 'wolf_discography_layout', 'list' );
+		$class = 'wolf-discography-' . $layout;
+
+		if ( $layout === 'grid' ) {
+			$columns = get_option( 'wolf_discography_grid_columns', '3' );
+			$class .= ' wolf-discography-grid-' . $columns;
+		}
+
+		return $class;
+	}
+
+	return '';
 }

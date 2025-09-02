@@ -22,7 +22,7 @@ class WD_Options {
 
 		// default options
 		add_action( 'admin_init', array( $this, 'default_options' ) );
-		
+
 		// register settings
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 
@@ -68,6 +68,8 @@ class WD_Options {
 		register_setting( 'wolf-release-settings', 'wolf_release_settings', array( $this, 'settings_validate' ) );
 		add_settings_section( 'wolf-release-settings', '', array( $this, 'section_intro' ), 'wolf-release-settings' );
 		add_settings_field( 'page_id', esc_html__( 'Discography Page', 'wolf-discography' ), array( $this, 'setting_page_id' ), 'wolf-release-settings', 'wolf-release-settings' );
+		add_settings_field( 'layout', esc_html__( 'Layout', 'wolf-discography' ), array( $this, 'setting_layout' ), 'wolf-release-settings', 'wolf-release-settings' );
+		add_settings_field( 'columns', esc_html__( 'Columns', 'wolf-discography' ), array( $this, 'setting_columns' ), 'wolf-release-settings', 'wolf-release-settings' );
 		add_settings_field( 'use_band_tax', esc_html__( 'Link Artist Name', 'wolf-discography' ), array( $this, 'setting_use_band_tax' ), 'wolf-release-settings', 'wolf-release-settings' );
 		add_settings_field( 'use_label_tax', esc_html__( 'Link Label Name', 'wolf-discography' ), array( $this, 'setting_use_label_tax' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-link-label' ) );
 		add_settings_field( 'use_genre_tax', esc_html__( 'Link Genre', 'wolf-discography' ), array( $this, 'setting_use_genre_tax' ), 'wolf-release-settings', 'wolf-release-settings', array( 'class' => 'wolf-discography-settings-link-genre' ) );
@@ -87,6 +89,8 @@ class WD_Options {
 			unset( $input['page_id'] );
 		}
 
+		$input['layout'] = esc_attr( $input['layout'] );
+		$input['columns'] = esc_attr( $input['columns'] );
 		$input['use_band_tax'] = intval( $input['use_band_tax'] );
 		$input['use_label_tax'] = intval( $input['use_label_tax'] );
 		$input['display_format'] = intval( $input['display_format'] );
@@ -130,6 +134,27 @@ class WD_Options {
 			<?php endforeach; ?>
 		</select>
 		<?php
+	}
+
+	/**
+	 * Layout settings
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function setting_layout() {
+
+	}
+
+
+	/**
+	 * Columns settings
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function setting_columns() {
+
 	}
 
 	/**

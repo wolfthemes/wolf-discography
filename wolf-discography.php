@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Discography
  * Plugin URI: https://wlfthm.es/wolf-discography
- * Description: A discography plugin to display your releases.
+ * Description: A Professional Music Release Manager.
  * Version: 1.5.6
  * Author: WolfThemes
  * Author URI: https://wolfthemes.com
@@ -15,10 +15,6 @@
  * @package WolfDiscography
  * @category Core
  * @author WolfThemes
- *
- * Verified customers who have purchased a premium theme at https://wlfthm.es/tf/
- * will have access to support for this plugin in the forums
- * https://wlfthm.es/help/
  */
 
 defined( 'ABSPATH' ) || exit;

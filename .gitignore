@@ -1,6 +1,8 @@
 # ignore assets, build & dist etc...
 dev
 pack
+build
+/node_modules/
 
 # Windows image file caches
 Thumbs.db

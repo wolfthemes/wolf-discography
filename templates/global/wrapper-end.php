@@ -4,39 +4,20 @@
  *
  * @author WolfThemes
  * @package WolfDiscography/Templates
- * @version %VERISION%
+ * @version 1.6.0
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$template = get_option( 'template' );
-
-switch( $template ) {
-	case 'twentyeleven' :
-		echo '</div>';
-		get_sidebar( 'shop' );
-		echo '</div>';
-		break;
-	case 'twentytwelve' :
-		echo '</div></div>';
-		break;
-	case 'twentythirteen' :
-		echo '</div></div>';
-		break;
-	case 'twentyfourteen' :
-		echo '</div></div></div>';
-		get_sidebar( 'content' );
-		break;
-	case 'twentyfifteen' :
-		echo '</div></div>';
-		break;
-	case 'twentysixteen' :
-		echo '</main></div>';
-		break;
-	case 'twentyseventeen' :
-		echo '</main></div></div>';
-		break;
-	default :
-		echo '</div></div>';
-		break;
+// Check if theme supports block themes (WordPress 5.9+)
+if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+	// Close modern block theme wrappers
+	echo '</main>';
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
+} else {
+	// Close classic theme wrappers
+	echo '</main>';
+	echo '</div>';
 }

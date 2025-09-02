@@ -109,7 +109,7 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 			}
 
 			// Use nonce for verification
-			echo '<input type="hidden" name="custom_meta_box_nonce" value="' . wp_create_nonce( basename( __FILE__ ) ) . '" />';
+			echo '<input type="hidden" name="wolf_meta_box_nonce" value="' . wp_create_nonce( basename( __FILE__ ) ) . '" />';
 
 			// Begin the field table and loop
 			echo '<table class="form-table wolf-discography-metabox-table">';

@@ -491,7 +491,8 @@ function wd_get_label() {
  */
 function wd_enqueue_style() {
 
-	wp_enqueue_style( 'wolf-discography', WD_URI . '/assets/css/discography.css', array(), WD_VERSION, 'all' );
+	// wp_enqueue_style( 'wolf-discography', WD_URI . '/assets/css/discography.css', array(), WD_VERSION, 'all' );
+	wp_enqueue_style( 'wolf-discography', WD_URI . '/build/css/styles.css', array(), WD_VERSION, 'all' );
 }
 add_action( 'wp_enqueue_scripts',  'wd_enqueue_style' );
 

@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "strict": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "checkJs": false,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["assets/shared/*"],
+      "@utils/*": ["assets/utils/*"],
+      "@textShader/*": ["src/scripts/modules/text-shader/*"]
+    }
+  },
+  "include": [
+    "assets/**/src/**/*",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.d.ts"
+  ],
+  "typeRoots": [
+    "node_modules/@types",
+    "assets/js/t/*/src/types"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/dist/**",
+    "**/*.min.js"
+  ]
+}

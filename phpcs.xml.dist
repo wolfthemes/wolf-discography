@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="WordPress Coding Standards">
+	<description>A custom PHPCS Ruleset for WordPress Themes and Plugins</description>
+	<!-- Check files in this directory and subdirectories. -->
+	<file>.</file>
+	<!-- Excluse some files -->
+	<exclude-pattern>*/wp-config-sample.php</exclude-pattern>
+	<exclude-pattern>*/wp-config.php</exclude-pattern>
+	<exclude-pattern>./htdocs/index.php</exclude-pattern>
+	<!-- Exclude some directories. -->
+	<exclude-pattern>*/wp/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<!-- Pass flags to PHPCS:
+		 p: Show progress of the run.
+		 s: Show sniff codes in all reports.
+		 v: Print verbose output.
+	-->
+	<arg value="psv"/>
+	<!-- Strip the filepaths down to the relevant bit. Disabled, bug with VSCode. -->
+	<!-- <arg name="basepath" value="./"/> -->
+	<!-- Only check PHP files. -->
+	<arg name="extensions" value="php,css,scss/css"/>
+
+	<!-- <config name="installed_paths" value="C:\Users\const\Local Sites\dev-temp\app\public\wp-content\themes\wolf-supertheme\vendor\wp-coding-standards\wpcs" /> -->
+
+	<!-- Use the WordPress ruleset -->
+	<rule ref="WordPress" />
+	<!-- Allow theme-specific exceptions to WordPress filename rules. -->
+	<rule ref="WordPress.Files.FileName">
+		<properties>
+			<property name="is_theme" value="true"/>
+		</properties>
+	</rule>
+	<!-- Verify that no WP functions are used which are deprecated or removed. -->
+	<rule ref="WordPress.WP.DeprecatedFunctions">
+		<properties>
+			<property name="minimum_supported_version" value="5.5"/>
+		</properties>
+	</rule>
+	<!-- Check all globals have the expected prefix. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="CHILD_THEME"/>
+				<element value="CHILD_TEXT_DOMAIN"/>
+				<element value="wolftheme_kses"/>
+				<element value="wolftheme_"/>
+				<element value="wolf_"/>
+				<element value="woocommerce_"/>
+				<element value="ThemeClass_"/>
+				<element value="wvc_"/>
+				<element value="wolf_core_"/>
+				<element value="mptt_"/>
+			</property>
+		</properties>
+	</rule>
+	<rule ref="WordPress.Arrays.MultipleStatementAlignment">
+		<properties>
+			<!-- No need to adjust alignment of large arrays when the item with the largest key is removed. -->
+			<property name="exact" value="false"/>
+			<!-- Don't align multi-line items if ALL items in the array are multi-line. -->
+			<property name="alignMultilineItems" value="!=100"/>
+			<!-- Array assignment operator should always be on the same line as the array key. -->
+			<property name="ignoreNewlines" value="false"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
+		<properties>
+			<property name="blank_line_check" value="false"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.Security.EscapeOutput">
+	<properties>
+			<property name="customAutoEscapedFunctions" type="array">
+				<element value="wolftheme_kses"/>
+				<element value="wolftheme_sanitize_html_classes"/>
+				<element value="wolftheme_esc_style_attr"/>
+				<element value="wolftheme_sample"/>
+				<element value="wolftheme_background_img"/>
+				<element value="wolftheme_background_video"/>
+				<element value="wolftheme_background_slideshow"/>
+				<element value="wolftheme_post_thumbnail"/>
+				<element value="wolftheme_sanitize_style_attr"/>
+				<element value="wolftheme_get_color_scheme_css"/>
+				<element value="we_sanitize_date"/>
+				<element value="we_sanitize_action"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress-Extra">
+		<exclude name="Generic.Commenting.DocComment.SpacingAfter" />
+		<exclude name="Generic.Files.LineEndings.InvalidEOLChar" />
+		<exclude name="Generic.Functions.FunctionCallArgumentSpacing.SpaceBeforeComma" />
+		<exclude name="PEAR.Functions.FunctionCallSignature" />
+		<exclude name="Squiz.Commenting" />
+		<exclude name="Squiz.PHP.DisallowSizeFunctionsInLoops.Found" />
+		<exclude name="Squiz.WhiteSpace" />
+		<exclude name="WordPress.Arrays" />
+		<exclude name="WordPress.Files.FileName" />
+		<exclude name="WordPress.NamingConventions" />
+		<exclude name="WordPress.Security.ValidatedSanitizedInput.MissingUnslash" />
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
+		<exclude name="WordPress.WhiteSpace" />
+	</rule>
+
+	<rule ref="WooCommerce-Core">
+		<exclude name="Core.Commenting.CommentTags.AuthorTag" />
+		<exclude name="WordPress.PHP.DontExtract" />
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
+	</rule>
+	<!-- Enforce PSR1 compatible namespaces. -->
+	<rule ref="PSR1.Classes.ClassDeclaration"/>
+	<rule ref="PSR2.Methods.FunctionClosingBrace"/>
+	<!-- Check code for cross-version PHP compatibility. -->
+	<config name="testVersion" value="5.5-"/>
+</ruleset>

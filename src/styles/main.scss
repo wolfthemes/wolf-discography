@@ -1,7 +1,6 @@
-/* Wolf Discography - Modern CSS with Conditional Classes */
-/* Default: Clean List Layout for Non-Wolf Themes */
+/* Wolf Discography - Minimal CSS with Working Grid Layout */
 
-/* Font Icons - Keep existing */
+/* Font Icons */
 @font-face {
   font-family: "discography";
   src: url("/assets/css/fonts/discography.eot?-8lvnt7");
@@ -61,33 +60,29 @@
 	clear: both;
 }
 
-/* ===== DEFAULT LIST LAYOUT (Clean & Modern) ===== */
-/* This applies when no specific layout class is added */
+/* ===== DEFAULT LIST LAYOUT (Minimal Styling) ===== */
 
 article.wolf-release {
 	display: flex;
 	align-items: flex-start;
 	gap: 1.5rem;
-	background: #fff;
-	border: 1px solid #e0e0e0;
-	border-radius: 8px;
-	padding: 1.5rem;
-	margin: 0 auto 2rem auto;
+	padding: 1.5rem 0;
+	margin-bottom: 2rem;
 	max-width: 1000px;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-	transition: all 0.3s ease;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid #eee;
 	list-style: none;
 }
 
-article.wolf-release:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+article.wolf-release:last-child {
+	border-bottom: none;
 }
 
 /* Album Cover */
 article.wolf-release .entry-thumbnail {
 	flex-shrink: 0;
-	// width: 150px;
+	width: 150px;
 	margin: 0 !important;
 	float: none !important;
 }
@@ -95,7 +90,7 @@ article.wolf-release .entry-thumbnail {
 article.wolf-release .entry-thumbnail img {
 	width: 100%;
 	height: auto;
-	border-radius: 6px;
+	border-radius: 4px;
 	display: block;
 }
 
@@ -115,21 +110,15 @@ article.wolf-release .entry-title {
 }
 
 article.wolf-release .entry-title a {
-	color: #333;
 	text-decoration: none;
-	transition: color 0.3s ease;
-}
-
-article.wolf-release .entry-title a:hover {
-	color: #007cba;
 }
 
 /* Release Meta */
 .wolf-release-meta {
 	margin-bottom: 1rem;
 	font-size: 0.9rem;
-	color: #666;
 	line-height: 1.6;
+	opacity: 0.8;
 }
 
 article.wolf-release footer.entry-meta {
@@ -137,154 +126,103 @@ article.wolf-release footer.entry-meta {
 	margin-top: 1rem;
 }
 
-/* Buttons */
+/* ===== GRID LAYOUT SYSTEM (Fixed) ===== */
+
+/* Grid container - this is the key fix */
+.wolf-discography-layout-grid #primary,
+.wolf-discography-layout-grid .site-main,
+.wolf-discography-layout-grid main {
+	display: grid !important;
+	gap: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+}
+
+/* Grid columns */
+.wolf-discography-layout-grid.wolf-discography-grid-2 #primary,
+.wolf-discography-layout-grid.wolf-discography-grid-2 .site-main,
+.wolf-discography-layout-grid.wolf-discography-grid-2 main {
+	grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.wolf-discography-layout-grid.wolf-discography-grid-3 #primary,
+.wolf-discography-layout-grid.wolf-discography-grid-3 .site-main,
+.wolf-discography-layout-grid.wolf-discography-grid-3 main {
+	grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.wolf-discography-layout-grid.wolf-discography-grid-4 #primary,
+.wolf-discography-layout-grid.wolf-discography-grid-4 .site-main,
+.wolf-discography-layout-grid.wolf-discography-grid-4 main {
+	grid-template-columns: repeat(4, 1fr) !important;
+}
+
+/* Grid item styling */
+.wolf-discography-layout-grid article.wolf-release {
+	flex-direction: column;
+	text-align: center;
+	max-width: none;
+	margin: 0;
+	padding: 1rem;
+	border: 1px solid #eee;
+	border-radius: 8px;
+	transition: transform 0.2s ease;
+}
+
+.wolf-discography-layout-grid article.wolf-release:hover {
+	transform: translateY(-2px);
+}
+
+.wolf-discography-layout-grid .entry-thumbnail {
+	width: 100% !important;
+	margin-bottom: 1rem !important;
+}
+
+.wolf-discography-layout-grid .entry-content {
+	width: 100% !important;
+}
+
+.wolf-discography-layout-grid .entry-title {
+	font-size: 1.2rem;
+}
+
+/* ===== BUTTONS (Minimal Styling) ===== */
 #wolf-release-buttons,
 .wolf-release-buttons {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
 	margin-top: 1rem;
-	width: 100%;
-}
-
-.wolf-release-button {
-	flex: none;
 }
 
 .wolf-release-button a {
 	display: inline-flex;
 	align-items: center;
-	padding: 0.6rem 1.2rem;
-	background: #007cba;
+	padding: 0.5rem 1rem;
+	background: #0073aa;
 	color: white;
 	text-decoration: none !important;
-	border-radius: 4px;
+	border-radius: 3px;
 	font-size: 0.9rem;
-	font-weight: 500;
-	transition: all 0.3s ease;
-	border: none;
+	transition: background-color 0.2s ease;
 }
 
 .wolf-release-button a:hover {
-	background: #005a87;
+	background: #005177;
 	color: white;
-	transform: translateY(-1px);
 }
 
 .wolf-release-button a:before {
 	margin-right: 0.5rem;
 }
 
-/* ===== CONDITIONAL GRID LAYOUT ===== */
-/* Only active when body has wolf-discography-layout-grid class */
-.wolf-discography-layout-grid .wolf-release,
-.wolf-discography-grid .wolf-release {
-	flex-direction: column;
-	text-align: center;
-	width: auto;
-	max-width: none;
-}
-
-.wolf-discography-layout-grid .entry-thumbnail,
-.wolf-discography-grid .entry-thumbnail {
-	width: 100% !important;
-	margin-bottom: 1rem !important;
-	align-self: center;
-}
-
-.wolf-discography-layout-grid .entry-content,
-.wolf-discography-grid .entry-content {
-	width: 100% !important;
-}
-
-.wolf-discography-layout-grid .entry-title,
-.wolf-discography-grid .entry-title {
-	font-size: 1.2rem;
-}
-
-/* Grid Container Classes */
-.wolf-discography-layout-grid {
-	display: grid;
-	gap: 1.5rem;
-	margin: 2rem auto;
-	max-width: 1200px;
-	padding: 0 1rem;
-}
-
-.wolf-discography-layout-grid.wolf-discography-grid-2,
-.wolf-discography-grid-2 {
-	grid-template-columns: repeat(2, 1fr);
-}
-
-.wolf-discography-layout-grid.wolf-discography-grid-3,
-.wolf-discography-grid-3 {
-	grid-template-columns: repeat(3, 1fr);
-}
-
-.wolf-discography-layout-grid.wolf-discography-grid-4,
-.wolf-discography-grid-4 {
-	grid-template-columns: repeat(4, 1fr);
-}
-
-/* Legacy grid classes for backward compatibility */
-.wolf-discography-grid {
-	display: grid;
-	gap: 1.5rem;
-	margin: 2rem auto;
-	max-width: 1200px;
-	padding: 0 1rem;
-	list-style: none;
-}
-
-/* ===== ARCHIVE & TAXONOMY PAGES ===== */
-/* Apply grid layout to archive/taxonomy pages when grid layout is active */
-.wolf-discography-layout-grid.post-type-archive-release,
-.wolf-discography-layout-grid.tax-band,
-.wolf-discography-layout-grid.tax-label,
-.wolf-discography-layout-grid.tax-release_genre {
-	display: block;
-}
-
-.wolf-discography-layout-grid.post-type-archive-release .site-main,
-.wolf-discography-layout-grid.tax-band .site-main,
-.wolf-discography-layout-grid.tax-label .site-main,
-.wolf-discography-layout-grid.tax-release_genre .site-main {
-	display: grid;
-	gap: 1.5rem;
-	max-width: 1200px;
-	margin: 2rem auto;
-	padding: 0 1rem;
-}
-
-/* Discography main page container */
-.wolf-discography-layout-list #primary,
-.wolf-discography-layout-grid #primary {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 1rem;
-}
-
-/* ===== PAGE & ARCHIVE LAYOUTS ===== */
-.page-template-discography-template .wolf-discography-layout-grid,
-.post-type-archive-release.wolf-discography-layout-grid,
-.tax-band.wolf-discography-layout-grid,
-.tax-label.wolf-discography-layout-grid,
-.tax-release_genre.wolf-discography-layout-grid {
-	display: block;
-}
-
-.page-template-discography-template .wolf-discography-layout-grid .site-main,
-.post-type-archive-release.wolf-discography-layout-grid .site-main,
-.tax-band.wolf-discography-layout-grid .site-main,
-.tax-label.wolf-discography-layout-grid .site-main,
-.tax-release_genre.wolf-discography-layout-grid .site-main {
-	display: grid;
-	gap: 1.5rem;
-}
+/* ===== SINGLE RELEASE PAGE ===== */
 .single-release article.wolf-release {
 	max-width: 1000px;
 	margin: 2rem auto;
 	gap: 2rem;
+	border-bottom: none;
 }
 
 .single-release .entry-thumbnail {
@@ -296,19 +234,17 @@ article.wolf-release footer.entry-meta {
 	margin-bottom: 1rem;
 }
 
-/* ===== WIDGET STYLES ===== */
+/* ===== WIDGETS (Minimal) ===== */
 .widget_discography a {
 	display: block;
 	margin-bottom: 0.5rem;
-	border-radius: 4px;
-	overflow: hidden;
-	transition: transform 0.3s ease;
+	transition: opacity 0.2s ease;
 	box-sizing: border-box;
 	padding: 0 2px;
 }
 
 .widget_discography a:hover {
-	transform: scale(1.02);
+	opacity: 0.8;
 }
 
 .widget_discography a img {
@@ -329,10 +265,10 @@ article.wolf-release footer.entry-meta {
 	display: inline-block;
 }
 
-/* ===== SHORTCODE STYLES ===== */
+/* ===== SHORTCODE GRID (Fixed) ===== */
 .shortcode-release-grid {
 	display: grid;
-	gap: 1.5rem;
+	gap: 2rem;
 	margin: 2rem 0;
 	width: 100%;
 	padding: 0;
@@ -345,12 +281,10 @@ article.wolf-release footer.entry-meta {
 .shortcode-release-grid.release-grid-col-4 { grid-template-columns: repeat(4, 1fr); }
 
 .shortcode-release-grid .wolf-release {
-	background: #fff;
-	border: 1px solid #e0e0e0;
+	border: 1px solid #eee;
 	border-radius: 8px;
 	padding: 1rem;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-	transition: all 0.3s ease;
+	transition: transform 0.2s ease;
 	list-style: none;
 	margin: 0;
 	flex-direction: column;
@@ -358,8 +292,7 @@ article.wolf-release footer.entry-meta {
 }
 
 .shortcode-release-grid .wolf-release:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+	transform: translateY(-2px);
 }
 
 .shortcode-release-grid .entry-thumbnail {
@@ -389,15 +322,15 @@ article.wolf-release footer.entry-meta {
 
 .release-navigation a {
 	padding: 0.8rem 1.5rem;
-	background: #007cba;
+	background: #0073aa;
 	color: white;
 	text-decoration: none;
-	border-radius: 4px;
-	transition: background 0.3s ease;
+	border-radius: 3px;
+	transition: background 0.2s ease;
 }
 
 .release-navigation a:hover {
-	background: #005a87;
+	background: #005177;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -409,7 +342,7 @@ article.wolf-release footer.entry-meta {
 		flex-direction: column;
 		text-align: center;
 		gap: 1rem;
-		padding: 1.5rem;
+		padding: 1.5rem 0;
 	}
 
 	article.wolf-release .entry-thumbnail {
@@ -417,24 +350,18 @@ article.wolf-release footer.entry-meta {
 		align-self: center;
 	}
 
-	/* Grid layout responsive */
-	.wolf-discography-layout-grid.wolf-discography-grid-3,
-	.wolf-discography-layout-grid.wolf-discography-grid-4,
-	.wolf-discography-grid-3,
-	.wolf-discography-grid-4 {
-		grid-template-columns: repeat(2, 1fr);
+	/* Grid becomes 2 columns on tablets */
+	.wolf-discography-layout-grid.wolf-discography-grid-3 #primary,
+	.wolf-discography-layout-grid.wolf-discography-grid-3 .site-main,
+	.wolf-discography-layout-grid.wolf-discography-grid-3 main,
+	.wolf-discography-layout-grid.wolf-discography-grid-4 #primary,
+	.wolf-discography-layout-grid.wolf-discography-grid-4 .site-main,
+	.wolf-discography-layout-grid.wolf-discography-grid-4 main {
+		grid-template-columns: repeat(2, 1fr) !important;
 	}
 
 	.shortcode-release-grid.release-grid-col-3,
 	.shortcode-release-grid.release-grid-col-4 {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	/* Archive pages responsive */
-	.wolf-discography-layout-grid.post-type-archive-release .site-main,
-	.wolf-discography-layout-grid.tax-band .site-main,
-	.wolf-discography-layout-grid.tax-label .site-main,
-	.wolf-discography-layout-grid.tax-release_genre .site-main {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
@@ -450,8 +377,7 @@ article.wolf-release footer.entry-meta {
 /* Mobile */
 @media (max-width: 480px) {
 	article.wolf-release {
-		margin: 0 1rem 1.5rem 1rem;
-		padding: 1rem;
+		padding: 1rem 0;
 	}
 
 	article.wolf-release .entry-thumbnail {
@@ -462,24 +388,14 @@ article.wolf-release footer.entry-meta {
 		font-size: 1.3rem;
 	}
 
-	/* All grid layouts become single column on mobile */
-	.wolf-discography-layout-grid,
-	.wolf-discography-grid,
+	/* All grids become single column on mobile */
+	.wolf-discography-layout-grid #primary,
+	.wolf-discography-layout-grid .site-main,
+	.wolf-discography-layout-grid main,
 	.shortcode-release-grid {
 		grid-template-columns: 1fr !important;
 		gap: 1rem;
-		margin: 1rem;
-	}
-
-	/* Archive pages mobile */
-	.wolf-discography-layout-grid.post-type-archive-release .site-main,
-	.wolf-discography-layout-grid.tax-band .site-main,
-	.wolf-discography-layout-grid.tax-label .site-main,
-	.wolf-discography-layout-grid.tax-release_genre .site-main {
-		grid-template-columns: 1fr !important;
-		gap: 1rem;
-		margin: 1rem;
-		padding: 0 1rem;
+		padding: 1rem;
 	}
 
 	.single-release .wolf-release {
@@ -493,36 +409,13 @@ article.wolf-release footer.entry-meta {
 
 	.wolf-release-button a {
 		font-size: 0.8rem;
-		padding: 0.5rem 1rem;
+		padding: 0.4rem 0.8rem;
 	}
 
 	.release-navigation {
 		flex-direction: column;
 		gap: 1rem;
 		margin: 2rem 1rem;
-	}
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-	article.wolf-release {
-		background: #1a1a1a;
-		border-color: #333;
-		color: #f0f0f0;
-	}
-
-	article.wolf-release .entry-title a {
-		color: #f0f0f0;
-	}
-
-	article.wolf-release .entry-title a:hover {
-		color: #4a9eff;
-	}
-
-	.shortcode-release-grid .wolf-release {
-		background: #1a1a1a;
-		border-color: #333;
-		color: #f0f0f0;
 	}
 }
 
@@ -534,7 +427,6 @@ article.wolf-release footer.entry-meta {
 	}
 
 	article.wolf-release {
-		box-shadow: none;
 		border: 1px solid #ccc;
 		break-inside: avoid;
 	}
@@ -543,6 +435,6 @@ article.wolf-release footer.entry-meta {
 /* Accessibility */
 .wolf-release-button a:focus,
 article.wolf-release:focus-within {
-	outline: 2px solid #007cba;
+	outline: 2px solid #0073aa;
 	outline-offset: 2px;
 }

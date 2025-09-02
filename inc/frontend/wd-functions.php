@@ -578,12 +578,12 @@ function wd_add_layout_body_class( $classes ) {
 			$classes[] = 'wolf-discography-active';
 
 			// Add default layout class (list by default)
-			$layout = get_option( 'wolf_discography_layout', 'list' );
+			$layout = wolf_get_release_option( 'layout', 'list' );
 			$classes[] = 'wolf-discography-layout-' . $layout;
 
 			// Add grid columns if grid layout
 			if ( $layout === 'grid' ) {
-				$columns = get_option( 'wolf_discography_grid_columns', '3' );
+				$columns = wolf_get_release_option( 'columns', '3' );
 				$classes[] = 'wolf-discography-grid-' . $columns;
 			}
 		}

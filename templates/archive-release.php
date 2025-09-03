@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'discography' ); ?>
+get_header(); ?>
 
 	<?php
 		/**
@@ -25,21 +25,21 @@ get_header( 'discography' ); ?>
 
 	<?php
 		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>
-		
+
 		<?php if ( have_posts() ) : ?>
-			
+
 			<?php wolf_discography_loop_start(); ?>
-			
+
 				<?php while ( have_posts() ) : the_post(); ?>
-				
+
 					<?php wolf_discography_get_template_part( 'content', 'release' ); ?>
-				
+
 				<?php endwhile; ?>
-			
+
 			<?php wolf_discography_loop_end(); ?>
-		
+
 			<?php wolf_release_page_nav(); ?>
-		
+
 		<?php else : ?>
 
 			<?php wolf_discography_get_template( 'loop/no-releases-found.php' ); ?>
@@ -57,5 +57,5 @@ get_header( 'discography' ); ?>
 
 <?php
 get_sidebar( 'discography' );
-get_footer( 'discography' ); 
+get_footer();
 ?>

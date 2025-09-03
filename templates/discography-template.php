@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'discography' );
+get_header();
 
 	/**
 	 * wolf_discography_before_main_content hook
@@ -44,4 +44,4 @@ get_header( 'discography' );
 	 */
 	do_action('wolf_discography_after_main_content');
 
-get_footer( 'discography' );
+get_footer();

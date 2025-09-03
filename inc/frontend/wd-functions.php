@@ -486,18 +486,6 @@ function wd_enqueue_style() {
 add_action( 'wp_enqueue_scripts',  'wd_enqueue_style' );
 
 /**
- * Handle redirects before content is output - hooked into template_redirect so is_page works.
- */
-function wolf_discography_template_redirect() {
-
-	if ( is_page( wolf_discography_get_page_id() ) && ! post_password_required() ) {
-
-		wolf_discography_get_template( 'discography-template.php' );
-		exit();
-	}
-}
-
-/**
  * Displays release navigation
  *
  * @return string
@@ -598,4 +586,80 @@ function wd_get_layout_wrapper_class() {
 	}
 
 	return '';
+}
+
+/**
+ * Handle redirects before content is output - hooked into template_redirect so is_page works.
+ * Updated to work with both block themes and classic themes.
+ */
+function wolf_discography_template_redirect() {
+
+	if ( is_page( wolf_discography_get_page_id() ) && ! post_password_required() ) {
+
+		// Check if it's a block theme (FSE)
+		if ( wp_is_block_theme() ) {
+			// For block themes, inject content via filter instead of taking over the template
+			add_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
+			return; // Let the theme handle the template structure
+		}
+
+		// For classic themes, check if they have proper template files
+		$theme_root = get_template_directory();
+		$has_header = file_exists( $theme_root . '/header.php' );
+		$has_footer = file_exists( $theme_root . '/footer.php' );
+
+		if ( $has_header && $has_footer ) {
+			// Use the original template system for classic themes with proper files
+			wolf_discography_get_template( 'discography-template.php' );
+			exit();
+		} else {
+			// Fallback: inject content for themes without proper templates
+			add_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
+			return;
+		}
+	}
+}
+
+/**
+ * Inject discography content into the_content for block themes and fallback cases
+ */
+function wolf_discography_inject_loop_content( $content ) {
+
+	// Only on discography page and main query
+	if ( ! is_page( wolf_discography_get_page_id() ) || ! is_main_query() || ! in_the_loop() ) {
+		return $content;
+	}
+
+	// Remove this filter to prevent infinite loops
+	remove_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
+
+	ob_start();
+
+	// Hook for before content (replaces wolf_discography_before_main_content)
+	do_action( 'wolf_discography_before_loop_content' );
+
+	// Load the discography loop
+	do_action(
+		'wolf_discography_posts',
+		array(
+			'el_id'             => 'discography-index',
+			'post_type'         => 'release',
+			'pagination'        => wolf_get_release_option( 'release_pagination', '' ),
+			'releases_per_page' => wolf_get_release_option( 'releases_per_page', '' ),
+			'grid_padding'      => wolf_get_release_option( 'release_grid_padding', 'yes' ),
+			'item_animation'    => wolf_get_release_option( 'release_item_animation' ),
+		)
+	);
+
+	// Hook for after content (replaces wolf_discography_after_main_content)
+	do_action( 'wolf_discography_after_loop_content' );
+
+	$discography_content = ob_get_clean();
+
+	// Replace existing content or append if content exists
+	if ( empty( trim( strip_tags( $content ) ) ) ) {
+		return $discography_content;
+	} else {
+		return $content . $discography_content;
+	}
 }

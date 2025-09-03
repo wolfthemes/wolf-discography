@@ -218,6 +218,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 			if ( $this->is_request( 'frontend' ) ) {
 				include_once( 'inc/frontend/wd-functions.php' );
+				include_once( 'inc/frontend/wd-helpers.php' );
 				include_once( 'inc/frontend/wd-template-hooks.php' );
 				include_once( 'inc/frontend/wd-posts.php' );
 				include_once( 'inc/frontend/class-wd-shortcode.php' );

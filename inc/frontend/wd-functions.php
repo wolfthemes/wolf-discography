@@ -5,10 +5,12 @@
  * Hooked-in functions for Discography related events on the front-end.
  *
  * @author WolfThemes
- * @category Coref
+ * @category Core
  * @package WolfDiscography/Functions
  * @since 1.0.2
  */
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Output post microdata
@@ -35,21 +37,6 @@ function wd_release_microdata() {
 	<?php
 }
 add_action( 'wolf_release_start', 'wd_release_microdata' );
-
-/**
- * Create a formatted sample of any text
- *
- * Remove HTML and shortcode, sanitize and shorten a string
- *
- * @param string $text
- * @param int $num_words
- * @param string $more
- * @return string
- */
-function wd_sample( $text = null, $num_words = 55, $more = '...' ) {
-	$text = ( $text ) ? $text : get_the_excerpt();
-	return wp_trim_words( strip_shortcodes( $text ), $num_words, $more );
-}
 
 /**
  * Get any thumbnail URL

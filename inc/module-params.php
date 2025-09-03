@@ -5,6 +5,7 @@
  * @package WordPress
  * @subpackage %NAME%
  * @version %VERSION%
+ * @since 1.6.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -25,7 +26,7 @@ function wd_release_index_params() {
 			'properties' => array(
 				'name'          => esc_html__( 'Releases', 'wolf-discography' ),
 				'description'   => esc_html__( 'Display your releases using the theme layouts', 'wolf-discography' ),
-				'vc_base'       => 'wd_release_index',
+				'vc_base'       => 'wvc_release_index',
 				'el_base'       => 'release-index',
 				'vc_category'   => esc_html__( 'Content', 'wolf-discography' ),
 				'el_categories' => array( 'post-modules' ),
@@ -35,6 +36,26 @@ function wd_release_index_params() {
 
 			'params'     => array(
 
+				array(
+					'param_name'  => 'release_display',
+					'label'       => esc_html__( 'Release Display', '%TEXTDOMAIN%' ),
+					'type'        => 'select',
+
+					/**
+					 * Filters the release post display option
+					 *
+					 * @since 1.0.0
+					 */
+					'options'     => apply_filters(
+						'wd_release_display_options',
+						array(
+							'grid' => esc_html__( 'Grid', '%TEXTDOMAIN%' ),
+							'list' => esc_html__( 'List', '%TEXTDOMAIN%' ),
+						)
+					),
+					'default'     => 'list',
+					'admin_label' => true,
+				),
 			),
 		),
 	);

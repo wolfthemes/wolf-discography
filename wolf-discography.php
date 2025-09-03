@@ -210,7 +210,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			 * Functions used in frontend and admin
 			 */
 			include_once( 'inc/wd-core-functions.php' );
-			/* include_once( 'inc/wd-elementor.php' ); */
+			include_once( 'inc/wd-elementor-functions.php' );
 
 			if ( $this->is_request( 'admin' ) ) {
 				include_once( 'inc/admin/class-wd-admin.php' );
@@ -219,6 +219,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			if ( $this->is_request( 'frontend' ) ) {
 				include_once( 'inc/frontend/wd-functions.php' );
 				include_once( 'inc/frontend/wd-template-hooks.php' );
+				include_once( 'inc/frontend/wd-posts.php' );
 				include_once( 'inc/frontend/class-wd-shortcode.php' );
 			}
 		}

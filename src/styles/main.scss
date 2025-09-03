@@ -129,9 +129,9 @@ article.wolf-release footer.entry-meta {
 /* ===== GRID LAYOUT SYSTEM (Fixed) ===== */
 
 /* Grid container - this is the key fix */
-.wolf-discography-layout-grid #primary,
-.wolf-discography-layout-grid .site-main,
-.wolf-discography-layout-grid main {
+.wolf-discography-display-grid #primary,
+.wolf-discography-display-grid .site-main,
+.wolf-discography-display-grid main {
 	display: grid !important;
 	gap: 2rem;
 	max-width: 1200px;
@@ -140,21 +140,21 @@ article.wolf-release footer.entry-meta {
 }
 
 /* Grid columns */
-.wolf-discography-layout-grid.wolf-discography-grid-2 #primary,
-.wolf-discography-layout-grid.wolf-discography-grid-2 .site-main,
-.wolf-discography-layout-grid.wolf-discography-grid-2 main {
+.wolf-discography-display-grid.wolf-discography-grid-2 #primary,
+.wolf-discography-display-grid.wolf-discography-grid-2 .site-main,
+.wolf-discography-display-grid.wolf-discography-grid-2 main {
 	grid-template-columns: repeat(2, 1fr) !important;
 }
 
-.wolf-discography-layout-grid.wolf-discography-grid-3 #primary,
-.wolf-discography-layout-grid.wolf-discography-grid-3 .site-main,
-.wolf-discography-layout-grid.wolf-discography-grid-3 main {
+.wolf-discography-display-grid.wolf-discography-grid-3 #primary,
+.wolf-discography-display-grid.wolf-discography-grid-3 .site-main,
+.wolf-discography-display-grid.wolf-discography-grid-3 main {
 	grid-template-columns: repeat(3, 1fr) !important;
 }
 
-.wolf-discography-layout-grid.wolf-discography-grid-4 #primary,
-.wolf-discography-layout-grid.wolf-discography-grid-4 .site-main,
-.wolf-discography-layout-grid.wolf-discography-grid-4 main {
+.wolf-discography-display-grid.wolf-discography-grid-4 #primary,
+.wolf-discography-display-grid.wolf-discography-grid-4 .site-main,
+.wolf-discography-display-grid.wolf-discography-grid-4 main {
 	grid-template-columns: repeat(4, 1fr) !important;
 }
 

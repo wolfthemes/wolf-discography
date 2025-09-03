@@ -578,11 +578,11 @@ function wd_add_layout_body_class( $classes ) {
 			$classes[] = 'wolf-discography-active';
 
 			// Add default layout class (list by default)
-			$layout = wolf_get_release_option( 'layout', 'list' );
-			$classes[] = 'wolf-discography-layout-' . $layout;
+			$display = wolf_get_release_option( 'display', 'list' );
+			$classes[] = 'wolf-discography-display-' . $display;
 
-			// Add grid columns if grid layout
-			if ( $layout === 'grid' ) {
+			// Add grid columns if grid display
+			if ( $display === 'grid' ) {
 				$columns = wolf_get_release_option( 'columns', '3' );
 				$classes[] = 'wolf-discography-grid-' . $columns;
 			}
@@ -599,10 +599,10 @@ add_filter( 'body_class', 'wd_add_layout_body_class' );
 function wd_get_layout_wrapper_class() {
 	// Only add wrapper classes for non-Wolf themes
 	if ( ! WD()->is_wolf_theme() ) {
-		$layout = get_option( 'wolf_discography_layout', 'list' );
-		$class = 'wolf-discography-' . $layout;
+		$display = get_option( 'wolf_discography_display', 'list' );
+		$class = 'wolf-discography-' . $display;
 
-		if ( $layout === 'grid' ) {
+		if ( $display === 'grid' ) {
 			$columns = get_option( 'wolf_discography_grid_columns', '3' );
 			$class .= ' wolf-discography-grid-' . $columns;
 		}

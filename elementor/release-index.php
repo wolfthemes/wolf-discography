@@ -4,8 +4,9 @@
  *
  * @author WolfThemes
  * @category Core
- * @package WolfDiscography/Core
+ * @package WolfDiscography/Elementor
  * @version 1.5.1
+ * @since 1.6.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -33,14 +34,6 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 
 		$this->params = wd_release_index_params();
 
-		if ( isset( $this->params['properties']['register_scripts'] ) ) {
-
-			wp_register_scripts( $this->params['properties']['register_scripts'] );
-		}
-
-		if ( isset( $this->params['properties']['scripts'] ) ) {
-			$this->scripts = $this->params['properties']['scripts'];
-		}
 	}
 
 	/**
@@ -116,7 +109,7 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 	 */
 	protected function register_controls() { // phpcs:ignore
 
-		//wolf_core_register_elementor_controls( $this );
+		wd_register_elementor_controls( $this );
 	}
 
 	/**
@@ -129,10 +122,12 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 		$atts['post_type'] = 'release';
 		$atts['context'] = 'elementor';
 
+		debug( $atts );
+
 		/**
 		 * Uses the main post hook to display the releases.
 		 */
-		do_action( 'wolftheme_posts', $atts );
+		do_action( 'wolf_discography_posts', $atts );
 	}
 }
 \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Wolf_Discography_Elementor_Release_Index_Widget() );

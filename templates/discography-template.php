@@ -1,71 +1,34 @@
 <?php
 /**
- * The Template for displaying the main releases page
- *
- * Override this template by copying it to yourtheme/wolf-discography/discography-template.php
+ * The discography template file.
  *
  * @author WolfThemes
+ * @category Core
  * @package WolfDiscography/Templates
  * @version 1.5.1
- * @since 1.0.3
  */
-
-if ( ! defined( 'ABSPATH' ) ){
-	exit; // Exit if accessed directly
-}
-
-get_header( 'discography' );
-
-	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-	$posts_per_page = apply_filters( 'wd_posts_per_page', -1 );
-	
-	$args = array(
-		'post_type' => 'release',
-		'posts_per_page' => $posts_per_page,
-	);
-
-	if ( -1 < $posts_per_page ) {
-		$args['paged'] = $paged;
-	}
-
-	$loop = new WP_Query( $args );
-
-	/**
-	 * wolf_discography_before_main_content hook
-	 *
-	 * @hooked wolf_discography_output_content_wrapper - 10 (outputs opening divs for the content)
-	 */
-	do_action( 'wolf_discography_before_main_content' );
-
-	if ( $loop->have_posts() ) : ?>
-
-		<?php wolf_discography_loop_start(); ?>
-
-			<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-
-				<?php wolf_discography_get_template_part( 'content', 'release' ); ?>
-
-			<?php endwhile; ?>
-
-		<?php wolf_discography_loop_end(); ?>
-
-
-	<?php wolf_release_page_nav( $loop ); ?>
-
-	<?php else : ?>
-
-		<?php wolf_discography_get_template( 'loop/no-releases-found.php' ); ?>
-
-	<?php endif; ?>
-
-<?php
-	/**
-	 * wolf_discography_after_main_content hook
-	 *
-	 * @hooked wolf_discography_output_content_wrapper_end - 10 (outputs closing divs for the content)
-	 */
-	do_action('wolf_discography_after_main_content');
-
-get_sidebar( 'discography' );
-get_footer( 'discography' );
+get_header();
 ?>
+	<div id="primary" class="content-area">
+		<main id="content" class="clearfix">
+			<?php
+				/**
+				 * Output post loop through hook so we can do the magic however we want
+				 */
+				do_action(
+					'wolf_discography_posts',
+					array(
+						'el_id'             => 'discography-index',
+						'post_type'         => 'release',
+						'pagination'        => wolf_get_release_option( 'release_pagination', '' ),
+						'releases_per_page' => wolf_get_release_option( 'releases_per_page', '' ),
+						'grid_padding'      => wolf_get_release_option( 'release_grid_padding', 'yes' ),
+						'item_animation'    => wolf_get_release_option( 'release_item_animation' ),
+					)
+				);
+				?>
+		</main><!-- #content -->
+	</div><!-- #primary -->
+<?php
+get_sidebar( 'discography' );
+get_footer();

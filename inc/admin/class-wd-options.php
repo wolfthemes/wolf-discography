@@ -52,7 +52,7 @@ class WD_Options {
 				'use_band_tax' => 1,
 				'use_label_tax' => 1,
 				'display_format' => 1,
-				'layout' => 'list',
+				'display' => 'list',
 				'columns' => '3'
 			);
 
@@ -71,7 +71,7 @@ class WD_Options {
 
 		// Layout options only for non-Wolf themes
 		if ( ! WD()->is_wolf_theme() ) {
-			add_settings_field( 'layout', esc_html__( 'Layout Style', 'wolf-discography' ), array( $this, 'setting_layout' ), 'wolf-release-settings', 'wolf-release-settings' );
+			add_settings_field( 'display', esc_html__( 'Layout Style', 'wolf-discography' ), array( $this, 'setting_display' ), 'wolf-release-settings', 'wolf-release-settings' );
 			add_settings_field( 'columns', esc_html__( 'Grid Columns', 'wolf-discography' ), array( $this, 'setting_columns' ), 'wolf-release-settings', 'wolf-release-settings' );
 		}
 
@@ -95,8 +95,8 @@ class WD_Options {
 		}
 
 		// Validate layout and columns only if they exist (non-Wolf themes)
-		if ( isset( $input['layout'] ) ) {
-			$input['layout'] = in_array( $input['layout'], array( 'list', 'grid' ) ) ? $input['layout'] : 'list';
+		if ( isset( $input['display'] ) ) {
+			$input['display'] = in_array( $input['display'], array( 'list', 'grid' ) ) ? $input['display'] : 'list';
 		}
 
 		if ( isset( $input['columns'] ) ) {
@@ -156,28 +156,28 @@ class WD_Options {
 	 * @access public
 	 * @return string
 	 */
-	public function setting_layout() {
-		$current_layout = wolf_get_release_option( 'layout', 'list' );
+	public function setting_display() {
+		$current_layout = wolf_get_release_option( 'display', 'list' );
 		?>
-		<select name="wolf_release_settings[layout]" id="wolf_discography_layout">
-			<option value="list" <?php selected( $current_layout, 'list' ); ?>><?php esc_html_e( 'List View', 'wolf-discography' ); ?></option>
-			<option value="grid" <?php selected( $current_layout, 'grid' ); ?>><?php esc_html_e( 'Grid View', 'wolf-discography' ); ?></option>
+		<select name="wolf_release_settings[display]" id="wolf_discography_display">
+			<option value="list" <?php selected( $current_display, 'list' ); ?>><?php esc_html_e( 'List View', 'wolf-discography' ); ?></option>
+			<option value="grid" <?php selected( $current_display, 'grid' ); ?>><?php esc_html_e( 'Grid View', 'wolf-discography' ); ?></option>
 		</select>
 		<p class="description"><?php esc_html_e( 'Choose how to display your releases. List view shows releases horizontally with details, Grid view shows them as cards in columns.', 'wolf-discography' ); ?></p>
 
 		<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			function toggleColumnsField() {
-				var layout = $('#wolf_discography_layout').val();
+				var display = $('#wolf_discography_display').val();
 				var columnsRow = $('#wolf_discography_columns').closest('tr');
-				if (layout === 'grid') {
+				if (display === 'grid') {
 					columnsRow.show();
 				} else {
 					columnsRow.hide();
 				}
 			}
 
-			$('#wolf_discography_layout').on('change', toggleColumnsField);
+			$('#wolf_discography_display').on('change', toggleColumnsField);
 			toggleColumnsField(); // Run on page load
 		});
 		</script>
@@ -273,8 +273,8 @@ class WD_Options {
 			<?php if ( ! WD()->is_wolf_theme() ) : ?>
 			<h3><?php esc_html_e( 'Layout Options', 'wolf-discography' ); ?></h3>
 			<p><?php esc_html_e( 'You can override the default layout settings using shortcode parameters:', 'wolf-discography' ); ?></p>
-			<p><code>[wolf_last_releases layout="list"]</code> - <?php esc_html_e( 'Force list layout', 'wolf-discography' ); ?></p>
-			<p><code>[wolf_last_releases layout="grid" col="4"]</code> - <?php esc_html_e( 'Force grid layout with 4 columns', 'wolf-discography' ); ?></p>
+			<p><code>[wolf_last_releases display="list"]</code> - <?php esc_html_e( 'Force list layout', 'wolf-discography' ); ?></p>
+			<p><code>[wolf_last_releases display="grid" col="4"]</code> - <?php esc_html_e( 'Force grid layout with 4 columns', 'wolf-discography' ); ?></p>
 			<?php endif; ?>
 		</div>
 		<?php

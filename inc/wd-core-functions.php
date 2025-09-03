@@ -250,3 +250,19 @@ function wolf_widget_last_release() {
 	}
 	wp_reset_postdata();
 }
+
+if ( ! function_exists( 'debug' ) ) {
+	/**
+	 *  Debug function for developpment
+	 *  Display less infos than a var_dump
+	 *
+	 * @param string $var The variable to debug.
+	 */
+	function debug( $var ) { // phpcs:ignore
+		if ( WP_DEBUG ) {
+			echo '<br><pre style="border: 1px solid #ccc; padding:5px; width:98%">';
+			print_r( $var ); // phpcs:ignore
+			echo '</pre>';
+		}
+	}
+}

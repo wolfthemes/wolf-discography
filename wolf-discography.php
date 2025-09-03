@@ -120,6 +120,9 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
 			add_action( 'init', array( $this, 'includes' ), 0 );
 			add_action( 'init', array( $this, 'init' ), 0 );
+
+			add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_elementor_widgets' ) );
+
 			register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		}
 
@@ -207,6 +210,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			 * Functions used in frontend and admin
 			 */
 			include_once( 'inc/wd-core-functions.php' );
+			/* include_once( 'inc/wd-elementor.php' ); */
 
 			if ( $this->is_request( 'admin' ) ) {
 				include_once( 'inc/admin/class-wd-admin.php' );
@@ -217,6 +221,20 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 				include_once( 'inc/frontend/wd-template-hooks.php' );
 				include_once( 'inc/frontend/class-wd-shortcode.php' );
 			}
+		}
+
+		public function init_elementor_widgets() {
+			if ( ! $this->is_wolf_theme() ) {
+
+				$cpt = 'release';
+
+				if ( post_type_exists( $cpt ) ) {
+
+					require_once $this->plugin_path() . '/inc/module-params.php';
+					require_once $this->plugin_path() . '/elementor/' . sanitize_title_with_dashes( $cpt ) . '-index.php';
+				}
+			}
+
 		}
 
 		/**

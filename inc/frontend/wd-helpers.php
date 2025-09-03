@@ -130,3 +130,53 @@ function wd_attr_bool( $var ) {
 	$falsey = array( 'false', '0', 'no', 'n', '', ' ' );
 	return ( ! $var || in_array( strtolower( $var ), $falsey, true ) ) ? false : true;
 }
+
+/**
+ * sanitize_html_class works just fine for a single class
+ * Some times le wild <span class="blue hedgehog"> appears, which is when you need this function,
+ * to validate both blue and hedgehog,
+ * Because sanitize_html_class doesn't allow spaces.
+ *
+ * @uses sanitize_html_class
+ * @param (mixed: string/array) $class   "blue hedgehog goes shopping" or array("blue", "hedgehog", "goes", "shopping")
+ * @param (mixed)               $fallback Anything you want returned in case of a failure
+ * @return (mixed: string / $fallback )
+ */
+function wd_sanitize_html_classes( $class, $fallback = null ) {
+
+	// Explode it, if it's a string
+	if ( is_string( $class ) ) {
+		$class = explode( ' ', $class );
+	}
+
+	if ( is_array( $class ) && count( $class ) > 0 ) {
+		$class = array_unique( array_map( 'sanitize_html_class', $class ) );
+		return trim( implode( ' ', $class ) );
+	} else {
+		return trim( sanitize_html_class( $class, $fallback ) );
+	}
+}
+
+/**
+ * Escape html style attribute
+ *
+ * @param string $style The style attribute to clean
+ * @return string
+ */
+function wd_esc_style_attr( $style ) {
+
+	if ( '' === $style || empty( $style ) ) {
+		return;
+	}
+
+	if ( ';' !== substr( $style, -1 ) ) {
+		$style = $style . ';'; // add end semicolon if missing.
+	}
+
+	// remove double semicolon.
+	$style = str_replace( array( ';;', '; ;' ), '', $style );
+
+	$style = ( ';' !== $style ) ? $style : '';
+
+	return esc_attr( trim( wolf_core_clean_spaces( $style ) ) );
+}

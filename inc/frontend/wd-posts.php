@@ -23,6 +23,9 @@ function wd_get_default_post_atts() {
 		'posts_per_page'                         => 100,
 		'paged'                                  => null,
 
+		'orderby'                                => '',
+		'order'                                  => '',
+
 		/* Common attributes */
 		'grid_padding'                           => wolf_get_release_option( 'post_grid_padding', 'yes' ),
 		'item_animation'                         => wolf_get_release_option( 'post_item_animation' ),
@@ -31,7 +34,34 @@ function wd_get_default_post_atts() {
 		'exclude_ids'                            => '',
 		'offset'                                 => 0,
 
+		/**
+		 * Item default overlay color filtered
+		 *
+		 * @since 1.0.0
+		 */
+		'overlay_color'                          => apply_filters( 'wd_default_item_overlay_color', 'black' ),
 
+		/**
+		 * Item default overlay custom color filtered
+		 *
+		 * @since 1.0.0
+		 */
+		'overlay_custom_color'                   => apply_filters( 'wd_default_item_overlay_custom_color', '' ),
+
+		/**
+		 * Item default overlay text color filtered
+		 *
+		 * @since 1.0.0
+		 */
+		'overlay_text_color'                     => apply_filters( 'wd_default_item_overlay_text_color', 'white' ),
+		'overlay_text_custom_color'              => '',
+
+		/**
+		 * Item default overlay opacity filtered
+		 *
+		 * @since 1.0.0
+		 */
+		'overlay_opacity'                        => apply_filters( 'wd_default_item_overlay_opacity', 44 ),
 
 		/**
 		 * Item default text alignement
@@ -184,6 +214,12 @@ function wd_output_posts( $atts ) {
 	$class .= " $post_type-layout-$layout";
 
 
+	$is_list = in_array( $display, array( 'list', 'minimal-list', 'list_minimal', 'small-list', 'text-background' ), true );
+
+	if ( $is_list ) {
+		$class .= ' list';
+	}
+
 	// Disable pagination & filter for carousel module.
 	if ( 'carousel' === $module ) {
 		$pagination      = 'none';
@@ -335,6 +371,155 @@ function wd_output_posts( $atts ) {
 	$class .= " hover-effect-$release_hover_effect";
 	$class .= " release-hover-effect-$release_hover_effect";
 
-	debug( $args );
+	// Custom Order.
+	if ( $orderby ) {
+
+		$args['orderby'] = $orderby;
+
+	} elseif ( ! isset( $args['orderby'] ) && function_exists( 'initCPTO' ) ) { // post type order plugin.
+
+		$cpto_options = get_option( 'cpto_options' );
+
+		if ( empty( $cpto_options['autosort'] ) ) {
+			$args['orderby'] = 'menu_order';
+			$args['order']   = 'ASC';
+		}
+	}
+
+	if ( $order ) {
+		$args['order'] = $order;
+	}
+
+	// Get main WP query in a variable.
+	if ( $is_index ) { // is index page.
+
+		global $wp_query;
+		$query = $wp_query;
+		// $query->set( 'posts_per_page', $posts_per_page );
+
+	}
+
+
+	/* The query */
+	$query = new WP_Query( apply_filters( 'wd_post_module_main_query_args', $args, $atts ) );
+
+
+	/**
+	 * Add action before the output
+	 *
+	 * @since 1.0.0
+	 */
+	do_action( 'wd_before_post_module', $atts, $query );
+
+	// Start returning content if we have results.
+	if ( $query->have_posts() ) {
+
+		if ( $category_filter ) {
+			/*
+			 * Pass args to filter template. Cool stuff.
+			 */
+			set_query_var(
+				'filter_args',
+				array()
+			);
+
+			// Category filter template part
+		}
+
+
+		$tag = ( $is_list ) ? 'ul' : 'div';
+
+
+		// Container open tag.
+		echo '<' . esc_attr( $tag ) . ' id="' . esc_attr( $id ) . '" data-post-type="' . esc_attr( $post_type ) . '" data-params="' . esc_js( $json_params ) . '" class="' . wd_sanitize_html_classes( $class ) . '"';
+
+		if ( wd_esc_style_attr( $inline_style ) ) {
+			echo ' style="' . wd_esc_style_attr( $inline_style ) . '" ';
+		}
+
+		echo ' data-scroll data-scroll-css-progress';
+
+		echo apply_filters( 'wd_post_module_additional_params', '' );
+
+		echo '>';
+		echo "\n";
+
+		$i = 0;
+
+		if ( ( 0 !== absint( $posts_per_page ) % 2 ) && ( 1 !== absint( $paged ) ) ) {
+			$i = 1;
+		}
+
+		while ( $query->have_posts() ) {
+
+			$i++;
+
+			$query->the_post();
+			$post_id = get_the_ID();
+
+
+			set_query_var( 'module_atts', $atts );
+
+			/**
+			 * Pass args to template
+			 */
+			set_query_var(
+				'template_args',
+				/**
+				 * Filters post template args to pass
+				 *
+				 * @since 1.0.0
+				 */
+				apply_filters(
+					'post_template_args',
+					array(
+
+						'index'                     => $i,
+						'post_id'                   => $post_id,
+
+						'display'                   => $display,
+						'layout'                    => $layout,
+
+						'overlay_color'             => $overlay_color,
+						'overlay_custom_color'      => $overlay_custom_color,
+						'overlay_opacity'           => $overlay_opacity,
+						'overlay_text_color'        => $overlay_text_color,
+						'overlay_text_custom_color' => $overlay_text_custom_color,
+						'thumbnail_size'            => $thumbnail_size,
+						'custom_thumbnail_size'     => $custom_thumbnail_size,
+
+						'release_alternate_thumbnail_position' => $release_alternate_thumbnail_position,
+						'release_add_buy_links'     => $release_add_buy_links,
+						'release_do_redirect_url'   => $release_do_redirect_url,
+					),
+					$atts
+				)
+			);
+
+			/*
+			 * Include the template part for the content.
+			 */
+			/* echo '<p>' . get_the_title() . '</p>'; */
+			wolf_discography_get_template_part( 'content', apply_filters( 'wd_post_template_part_name', $display, $atts ) );
+		}
+
+		/**
+		 * Add action at the end
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'wd_post_module_end', $atts );
+
+		echo '</' . esc_attr( $tag ) . '><!--.release-items-->';
+
+		/**
+		 * After post module hook
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'wd_after_post_module', $atts );
+
+	}
+
 }
 add_action( 'wolf_discography_posts', 'wd_output_posts' );

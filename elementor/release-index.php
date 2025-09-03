@@ -122,8 +122,6 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 		$atts['post_type'] = 'release';
 		$atts['context'] = 'elementor';
 
-		debug( $atts );
-
 		/**
 		 * Uses the main post hook to display the releases.
 		 */

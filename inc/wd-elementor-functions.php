@@ -67,7 +67,6 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 
 				$r_type = ( isset( $r_param['type'] ) ) ? $elementor_types[ $r_param['type'] ] : 'text';
 
-				//debug(  $r_param['type'] );
 
 				if ( isset( $r_param['type'] ) && 'background' === $r_param['type'] ) {
 

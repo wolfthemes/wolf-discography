@@ -80,10 +80,10 @@ function wd_get_default_post_atts() {
 
 		/* Release */
 		'release_index'                          => false,
-		'release_display'                        => wolf_get_release_option( 'release_display', 'grid' ),
+		'release_display'                        => wolf_get_release_option( 'display', 'grid' ),
 		'release_metro_pattern'                  => 'pattern-1',
-		'release_hover_effect'                   => apply_filters( 'release_default_hover_effect', 'default' ),
-		'release_category_filter'                => wolf_get_release_option( 'release_category_filter', false ),
+		'release_hover_effect'                   => apply_filters( 'default_hover_effect', 'default' ),
+		'release_category_filter'                => wolf_get_release_option( 'category_filter', false ),
 		'release_category_filter_text_alignment' => 'center',
 		'release_module'                         => 'grid',
 		'release_thumbnail_size'                 => 'square',
@@ -499,7 +499,6 @@ function wd_output_posts( $atts ) {
 			/*
 			 * Include the template part for the content.
 			 */
-			/* echo '<p>' . get_the_title() . '</p>'; */
 			wolf_discography_get_template_part( 'content', apply_filters( 'wd_post_template_part_name', $display, $atts ) );
 		}
 

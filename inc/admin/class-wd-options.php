@@ -157,7 +157,7 @@ class WD_Options {
 	 * @return string
 	 */
 	public function setting_display() {
-		$current_layout = wolf_get_release_option( 'display', 'list' );
+		$current_display = wolf_get_release_option( 'display', 'list' );
 		?>
 		<select name="wolf_release_settings[display]" id="wolf_discography_display">
 			<option value="list" <?php selected( $current_display, 'list' ); ?>><?php esc_html_e( 'List View', 'wolf-discography' ); ?></option>

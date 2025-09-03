@@ -27,11 +27,6 @@ get_header( 'discography' );
 			'wolf_discography_posts',
 			array(
 				'el_id'             => 'discography-index',
-				'post_type'         => 'release',
-				'pagination'        => wolf_get_release_option( 'release_pagination', '' ),
-				'releases_per_page' => wolf_get_release_option( 'releases_per_page', '' ),
-				'grid_padding'      => wolf_get_release_option( 'release_grid_padding', 'yes' ),
-				'item_animation'    => wolf_get_release_option( 'release_item_animation' ),
 			)
 		);
 

@@ -251,6 +251,86 @@ function wolf_widget_last_release() {
 	wp_reset_postdata();
 }
 
+/**
+ * Get post attributes
+ *
+ * @param int $post_id The post ID.
+ * @return array $post_attrs
+ */
+function wd_get_post_attr( $post_id ) {
+
+	$post_attrs = array();
+
+	$post_attrs['id']           = 'post-' . $post_id;
+	$post_attrs['class']        = wd_array_to_list( get_post_class(), ' ' );
+	$post_attrs['data-post-id'] = $post_id;
+	if ( 'release' === get_post_type() ) {
+		$post_attrs['itemscope'] = '';
+		$post_attrs['itemtype']  = 'https://schema.org/MusicAlbum';
+	}
+
+	if ( has_post_thumbnail( $post_id ) ) {
+
+		$img_dominant_color = wd_get_image_dominant_color( get_post_thumbnail_id( $post_id ) );
+		$img_color_tone     = wd_get_color_tone( $img_dominant_color, 180 );
+
+		$post_attrs['data-thumbnail-color-tone'] = $img_color_tone;
+	}
+
+	/**
+	 * Filters post tag attributes
+	 *
+	 * @since %NAME% 1.0.0
+	 */
+	return apply_filters( 'wd_post_attrs', $post_attrs, $post_id );
+}
+
+/**
+ * Output post attributes
+ *
+ * @param int $post_id The post ID.
+ */
+function wd_post_attr( $class = '', $post_id = null ) {
+
+	$post_id = ( $post_id ) ? $post_id : get_the_ID();
+	$attrs   = wd_get_post_attr( $post_id );
+	$output  = '';
+
+	$classes = array();
+
+	if ( $class ) {
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+			$classes = array_map( 'esc_attr', $class );
+	} else {
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	foreach ( $attrs as $attr => $value ) {
+		if ( $value ) {
+
+			if ( array() !== $classes && 'class' === $attr ) {
+				$classes = array_unique( $classes );
+
+				foreach ( $classes as $class ) {
+					$value .= ' ' . $class;
+				}
+			}
+
+			$output .= esc_attr( $attr ) . '="' . esc_attr( $value ) . '" ';
+
+		} else {
+			$output .= esc_attr( $attr ) . ' ';
+		}
+	}
+
+	// debug( $output );
+
+	echo wp_kses_data( $output );
+}
+
 if ( ! function_exists( 'debug' ) ) {
 	/**
 	 *  Debug function for developpment

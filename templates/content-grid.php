@@ -7,31 +7,109 @@
  * @version 1.5.1
  * @since 1.0.2
  */
+
+extract(
+	wp_parse_args(
+		$template_args,
+		array(
+			'overlay_color'             => 'auto',
+			'overlay_custom_color'      => '',
+			'overlay_opacity'           => 88,
+			'overlay_text_color'        => '',
+			'overlay_text_custom_color' => '',
+			'release_add_buy_links'     => false,
+			'release_do_redirect_url'   => false,
+			'thumbnail_size'            => '400x400',
+			'custom_thumbnail_size'     => '',
+		)
+	)
+);
+
+if ( $custom_thumbnail_size ) {
+	$thumbnail_size = $custom_thumbnail_size;
+}
+
+$text_style         = '';
+$overlay_text_color = apply_filters( 'wd_release_overlay_text_color', $overlay_text_color );
+
+if ( $overlay_text_color && 'overlay' === $layout ) {
+	$text_color = wd_convert_color_class_to_hex_value( $overlay_text_color, $overlay_text_custom_color );
+	if ( $text_color ) {
+		$text_style .= 'color:' . wd_sanitize_color( $text_color ) . '!important;';
+	}
+}
+
+$dominant_color       = wd_get_image_dominant_color( get_post_thumbnail_id() );
+$actual_overlay_color = '';
+
+if ( 'auto' === $overlay_color ) {
+
+	$actual_overlay_color = $dominant_color;
+
+} else {
+	$actual_overlay_color = wd_convert_color_class_to_hex_value( $overlay_color, $overlay_custom_color );
+}
+
+$overlay_tone_class = 'overlay-tone-' . wd_get_color_tone( $actual_overlay_color );
+$custom_redirect_link = get_post_meta( get_the_ID(), '_release_redirect_url', true );
+$permalink            = ( $custom_redirect_link ) ? $custom_redirect_link : get_the_permalink();
+$target               = ( $release_do_redirect_url && $custom_redirect_link ) ? '_blank' : '';
 ?>
-<article itemscope itemtype="http://schema.org/MusicAlbum" id="post-<?php the_ID(); ?>" <?php post_class( array( 'wolf-release', 'clearfix' ) ); ?>>
+<article <?php wd_post_attr( array( $overlay_tone_class ) ); ?>>
 	<?php
 		/**
 		 * wolf_release_start_hook
 		 */
 		do_action( 'wolf_release_start' );
 	?>
-	<div class="entry-thumbnail release-thumbnail">
-		<?php wd_release_thumbnail(); ?>
-	</div><!-- .entry-thumbnail -->
+	<div class="entry-box">
+		<div class="entry-container">
+			<a class="entry-link-mask" target="<?php echo esc_attr( $target ); ?>" href="<?php echo esc_url( $permalink ); ?>"></a>
+			<?php
+				$style              = '';
+				$img_dominant_color = wd_get_image_dominant_color( get_post_thumbnail_id() );
 
-	<div class="entry-content release-content">
-		<h2 class="entry-title release-title">
-			<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'wolf-discography' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
-		</h2>
-		<div class="wolf-release-meta">
-			<?php wd_release_meta(); ?>
+			if ( $img_dominant_color ) {
+				$img_dominant_color = wd_sanitize_color( $img_dominant_color );
+				$style              = "background-color:$img_dominant_color;";
+			}
+			?>
+				<div class="entry-image" style="<?php echo wd_esc_style_attr( $style ); ?>">
+				<?php
+
+					wd_resized_thumbnail( $custom_thumbnail_size ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,Generic.Files.EndFileNewline.NotFound
+				?>
+			</div>
+			<div class="entry-inner">
+				<?php
+					$dominant_color = wd_get_image_dominant_color( get_post_thumbnail_id() );
+
+				if ( $dominant_color && 'auto' === $overlay_color ) {
+					$overlay_custom_color = $dominant_color;
+				}
+
+					echo wd_background_overlay(
+						array(
+							'overlay_color'        => $overlay_color,
+							'overlay_custom_color' => $overlay_custom_color,
+							'overlay_opacity'      => $overlay_opacity,
+						)
+					);
+
+					if ( wd_is_elementor_editor() ) {
+						$text_style = '';
+					}
+					?>
+				<div style="<?php echo wd_esc_style_attr( $text_style ); ?>" class="entry-summary">
+					<h3 class="entry-title"><a target="<?php echo esc_attr( $target ); ?>"  href="<?php echo esc_url( $permalink ); ?>" style="<?php echo wd_esc_style_attr( $text_style ); ?>"><?php the_title(); ?></a></h3>
+					<div style="<?php echo wd_esc_style_attr( $text_style ); ?>" class="entry-taxonomy">
+						<?php echo get_the_term_list( get_the_ID(), 'band', apply_filters( 'wd_release_tax_before', '' ), ' / ', '' ); ?>
+					</div><!-- .entry-taxonomy -->
+					<?php do_action( 'wd_loop_release_caption_end' ); ?>
+				</div><!--  .entry-summary  -->
+			</div><!--  .entry-summary-container  -->
 		</div>
-		<?php
-			/**
-			 * Content excerpt
-			 */
-			the_excerpt();
-		?>
-	</div><!-- .entry-content -->
-	<div class="clear"></div>
-</article><!-- article.wolf-release -->
+	</div><!-- .entry-box -->
+
+	<?php do_action( 'wd_loop_release_end', $release_add_buy_links ); ?>
+</article><!-- #post-## -->

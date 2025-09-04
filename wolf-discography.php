@@ -37,7 +37,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		/**
 		 * @var string
 		 */
-		private $required_php_version = '5.4.0';
+		private $required_php_version = '7.4.0';
 
 		/**
 		 * @var string
@@ -121,8 +121,9 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			add_action( 'init', array( $this, 'includes' ), 0 );
 			add_action( 'init', array( $this, 'init' ), 0 );
 
-			add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_elementor_widgets' ) );
-
+			if ( ! $this-> is_wolf_theme() ) {
+				add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_elementor_widgets' ) );
+			}
 			register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		}
 
@@ -219,6 +220,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			if ( $this->is_request( 'frontend' ) ) {
 				include_once( 'inc/frontend/wd-functions.php' );
 				include_once( 'inc/frontend/wd-helpers.php' );
+				include_once( 'inc/frontend/wd-image-functions.php' );
 				include_once( 'inc/frontend/wd-template-hooks.php' );
 				include_once( 'inc/frontend/wd-posts.php' );
 				include_once( 'inc/frontend/class-wd-shortcode.php' );

@@ -104,17 +104,17 @@ function wd_release_buttons() {
 			<?php endif; ?>
 			<?php if ( $release_tidal ) : ?>
 			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Tidal' ); ?>" class="wolf-release-tidal <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_tidal ); ?>"><?php esc_html_e( 'Tidal', 'wolf-discography' ); ?></a>
+				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Tidal' ); ?>" class="wolf-release-tidal <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_tidal ); ?>"><?php esc_html_e( 'Tidal', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 				<?php if ( $release_apple ) : ?>
 			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Apple Music' ); ?>" class="wolf-release-apple <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_apple ); ?>"><?php esc_html_e( 'Apple', 'wolf-discography' ); ?></a>
+				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Apple Music' ); ?>" class="wolf-release-apple <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_apple ); ?>"><?php esc_html_e( 'Apple', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 				<?php if ( $release_deezer ) : ?>
 			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Deezer' ); ?>" class="wolf-release-deezer <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_deezer ); ?>"><?php esc_html_e( 'Deezer', 'wolf-discography' ); ?></a>
+				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Deezer' ); ?>" class="wolf-release-deezer <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_deezer ); ?>"><?php esc_html_e( 'Deezer', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_itunes ) : ?>
@@ -134,12 +134,12 @@ function wd_release_buttons() {
 			<?php endif; ?>
 			<?php if ( $release_bandcamp ) : ?>
 			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'bandcamp' ); ?>" class="wolf-release-bandcamp <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_bandcamp ); ?>"><?php esc_html_e( 'Bandcamp', 'wolf-discography' ); ?></a>
+				<a target="_blank" title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'bandcamp' ); ?>" class="wolf-release-bandcamp <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_bandcamp ); ?>"><?php esc_html_e( 'Bandcamp', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_qobuz ) : ?>
 			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Qobuz' ); ?>" class="wolf-release-qobuz <?php echo apply_filters( 'wolftheme_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_qobuz ); ?>"><?php esc_html_e( 'Qobuz', 'wolf-discography' ); ?></a>
+				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Qobuz' ); ?>" class="wolf-release-qobuz <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_qobuz ); ?>"><?php esc_html_e( 'Qobuz', 'wolf-discography' ); ?></a>
 			</span>
 			<?php endif; ?>
 			<?php if ( $release_buy ) : ?>
@@ -657,4 +657,43 @@ function wolf_discography_inject_loop_content( $content ) {
 	} else {
 		return $content . $discography_content;
 	}
+}
+
+
+/**
+ * Display background overlay
+ *
+ * @param array $args
+ * @return string $output
+ */
+function wd_background_overlay( $args ) {
+
+	extract(
+		wp_parse_args(
+			$args,
+			array(
+				'overlay_color'        => 'black',
+				'overlay_custom_color' => '#000000',
+				'overlay_opacity'      => '',
+				'overlay_tag'          => 'div',
+			)
+		)
+	);
+
+	$overlay_opacity = ( $overlay_opacity ) ? absint( $overlay_opacity ) / 100 : .4;
+
+	$overlay_style = '';
+	$class         = 'wolf-core-bg-overlay';
+
+	if ( ( 'custom' === $overlay_color || 'auto' === $overlay_color ) && $overlay_custom_color ) {
+
+		$overlay_style .= 'background-color:' . wd_sanitize_color( $overlay_custom_color ) . ';';
+
+	} else {
+		$class .= " wolf-core-background-color-$overlay_color";
+	}
+
+	$overlay_style .= "opacity:$overlay_opacity;";
+
+	return '<' . $overlay_tag . ' style="' . wd_esc_style_attr( $overlay_style ) . '" class="' . wd_sanitize_html_classes( $class ) . '"></' . $overlay_tag . '><!--.wolf-core-bg-overlay-->';
 }

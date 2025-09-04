@@ -1,0 +1,74 @@
+/* List Layout Component */
+
+.release-display-list {
+	list-style: none !important;
+	margin: 0;
+	padding: 0;
+
+	li.wolf-release {
+		list-style-type: none !important;
+	}
+}
+
+.wolf-release {
+	display: flex;
+	align-items: flex-start;
+	gap: 1.5rem;
+	padding: 1.5rem 0;
+	margin-bottom: 2rem;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid #eee;
+	list-style: none;
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	// Album Cover
+	.entry-thumbnail {
+		flex-shrink: 0;
+		margin: 0 !important;
+		float: none !important;
+
+		img {
+			width: 100%;
+			height: auto;
+			border-radius: 4px;
+			display: block;
+		}
+	}
+
+	// Content Area
+	.entry-content {
+		flex: 1;
+		margin: 0 !important;
+		float: none !important;
+		width: auto !important;
+	}
+
+	.entry-title {
+		margin: 0 0 0.5rem 0;
+		font-size: 1.5rem;
+		font-weight: 600;
+		line-height: 1.3;
+
+		a {
+			text-decoration: none;
+		}
+	}
+
+	// Release Meta
+	footer.entry-meta {
+		padding-left: 0 !important;
+		margin-top: 1rem;
+	}
+}
+
+.wolf-release-meta {
+	margin-bottom: 1rem;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	opacity: 0.8;
+}

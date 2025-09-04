@@ -1,0 +1,68 @@
+/* Responsive Design */
+
+// Tablets
+@media (max-width: 768px) {
+	// List layout responsive
+	article.wolf-release {
+		flex-direction: column;
+		text-align: center;
+		gap: 1rem;
+		padding: 1.5rem 0;
+
+		.entry-thumbnail {
+			width: 200px;
+			align-self: center;
+		}
+	}
+
+	// Grid becomes 2 columns on tablets
+	.wolf-discography-layout-grid.wolf-discography-grid-3 .release-items,
+	.wolf-discography-layout-grid.wolf-discography-grid-4 .release-items {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+
+	.shortcode-release-grid.release-grid-col-3,
+	.shortcode-release-grid.release-grid-col-4 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.single-release .wolf-release {
+		padding: 1.5rem;
+
+		.entry-thumbnail {
+			width: 250px;
+		}
+	}
+}
+
+// Mobile
+@media (max-width: 480px) {
+	article.wolf-release {
+		padding: 1rem 0;
+
+		.entry-thumbnail {
+			width: 150px;
+		}
+
+		.entry-title {
+			font-size: 1.3rem;
+		}
+	}
+
+	// All grids become single column on mobile
+	.wolf-discography-layout-grid .release-items,
+	.shortcode-release-grid {
+		grid-template-columns: 1fr !important;
+		gap: 1rem;
+		padding: 1rem;
+	}
+
+	.single-release .wolf-release {
+		margin: 1rem;
+		padding: 1rem;
+
+		.entry-thumbnail {
+			width: 200px;
+		}
+	}
+}

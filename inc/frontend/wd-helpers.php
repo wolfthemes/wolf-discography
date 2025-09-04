@@ -577,3 +577,11 @@ function wd_is_elementor_editor() {
 function wd_is_wpb_vc_frontend() {
 	return function_exists( 'vc_is_inline' ) && vc_is_inline() ? true : false;
 }
+
+/**
+ * Get current page URL
+ */
+function wd_get_current_url() {
+	global $wp;
+	return esc_url( home_url( add_query_arg( array(), $wp->request ) ) );
+}

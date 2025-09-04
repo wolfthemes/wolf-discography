@@ -74,6 +74,8 @@ function wd_get_post_thumbnail_url( $format = 'medium', $post_id = null ) {
 function wd_release_buttons() {
 
 	$meta = wd_get_meta();
+
+
 	$release_itunes      = $meta['itunes'];
 	$release_amazon      = $meta['amazon'];
 	$release_bandcamp    = $meta['bandcamp'];
@@ -83,70 +85,75 @@ function wd_release_buttons() {
 	$release_apple       = $meta['apple'];
 	$release_deezer      = $meta['deezer'];
 	$release_tidal       = $meta['tidal'];
-	$release_qobuz       = $meta['qobuz'];
 	$release_yt          = $meta['google_play'];
-	$release_buy = $meta['buy'];
-	$release_free = $meta['free'];
+	$release_qobuz       = $meta['qobuz'];
+	$product_id = absint( get_post_meta( get_the_ID(), '_post_wc_product_id', true ) );
 
 	ob_start();
 	?>
 	<span class="wolf-release-buttons">
 
+
 		<?php if ( $release_free ) : ?>
 		<span class="wolf-release-button">
-			<a class="wolf-release-free" href="<?php echo $release_free; ?>"><?php esc_html_e( 'Free Download', 'wolf-discography' ); ?></a>
+			<a class="wolf-release-free <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" title="<?php esc_html_e( 'Download Now', '%TEXTDOMAIN%' ); ?>" href="<?php echo esc_url( $release_free ); ?>"><?php esc_html_e( 'Free Download', '%TEXTDOMAIN%' ); ?></a>
 		</span>
-		<?php else : ?>
-			<?php if ( $release_spotify ) : ?>
-			<span class="wolf-release-button">
-				<a title="<?php printf( esc_html__( 'Listen on %s', 'wolf-discography' ), 'Spotify' ); ?>" class="wolf-release-spotify" href="<?php echo $release_spotify; ?>"><?php esc_html_e( 'Spotify', 'wolf-discography' ); ?></a>
-			</span>
-			<?php endif; ?>
-			<?php if ( $release_tidal ) : ?>
-			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Tidal' ); ?>" class="wolf-release-tidal <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_tidal ); ?>"><?php esc_html_e( 'Tidal', 'wolf-discography' ); ?></a>
-			</span>
-			<?php endif; ?>
-				<?php if ( $release_apple ) : ?>
-			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Apple Music' ); ?>" class="wolf-release-apple <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_apple ); ?>"><?php esc_html_e( 'Apple', 'wolf-discography' ); ?></a>
-			</span>
-			<?php endif; ?>
-				<?php if ( $release_deezer ) : ?>
-			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Deezer' ); ?>" class="wolf-release-deezer <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_deezer ); ?>"><?php esc_html_e( 'Deezer', 'wolf-discography' ); ?></a>
-			</span>
-			<?php endif; ?>
-			<?php if ( $release_itunes ) : ?>
-			<span class="wolf-release-button">
-				<a title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'iTunes' ); ?>" class="wolf-release-itunes" href="<?php echo $release_itunes; ?>"><?php esc_html_e( 'iTunes', 'wolf-discography' ); ?></a>
-			</span>
-			<?php endif; ?>
+		<?php endif; ?>
+		<?php if ( $release_spotify ) : ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'Spotify' ); ?>" class="wolf-release-spotify <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_spotify ); ?>"><?php esc_html_e( 'Spotify', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
+		<?php if ( $release_tidal ) : ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'Tidal' ); ?>" class="wolf-release-tidal <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_tidal ); ?>"><?php esc_html_e( 'Tidal', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
+			<?php if ( $release_apple ) : ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'Apple Music' ); ?>" class="wolf-release-apple <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_apple ); ?>"><?php esc_html_e( 'Apple', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
+		<?php if ( $release_deezer ) : ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'Deezer' ); ?>" class="wolf-release-deezer <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_deezer ); ?>"><?php esc_html_e( 'Deezer', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
+		<?php if ( $release_itunes ) : ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'iTunes' ); ?>" class="wolf-release-itunes <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_itunes ); ?>"><?php esc_html_e( 'iTunes', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
+		<?php if ( $release_amazon ) : ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'Amazon Music' ); ?>" class="wolf-release-amazon <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_amazon ); ?>"><?php esc_html_e( 'Amazon', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
+		<?php if ( $release_bandcamp ) : ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php printf( esc_html__( 'Buy on %s', '%TEXTDOMAIN%' ), 'Bandcamp' ); ?>" class="wolf-release-bandcamp <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_bandcamp ); ?>"><?php esc_html_e( 'Bandcamp', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
+		<?php if ( $release_qobuz ) : ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php printf( esc_html__( 'Buy on %s', '%TEXTDOMAIN%' ), 'Qobuz' ); ?>" class="wolf-release-qobuz <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_qobuz ); ?>"><?php esc_html_e( 'Qobuz', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
 			<?php if ( $release_yt ) : ?>
-			<span class="wolf-release-button">
-				<a title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'Google Play' ); ?>" class="wolf-release-google_play" href="<?php echo $release_google_play; ?>"><?php esc_html_e( 'Google Play', 'wolf-discography' ); ?></a>
-			</span>
-			<?php endif; ?>
-			<?php if ( $release_amazon ) : ?>
-			<span class="wolf-release-button">
-				<a title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'amazon' ); ?>" class="wolf-release-amazon" href="<?php echo $release_amazon; ?>"><?php esc_html_e( 'Amazon', 'wolf-discography' ); ?></a>
-			</span>
-			<?php endif; ?>
-			<?php if ( $release_bandcamp ) : ?>
-			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Buy on %s', 'wolf-discography' ), 'bandcamp' ); ?>" class="wolf-release-bandcamp <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_bandcamp ); ?>"><?php esc_html_e( 'Bandcamp', 'wolf-discography' ); ?></a>
-			</span>
-			<?php endif; ?>
-			<?php if ( $release_qobuz ) : ?>
-			<span class="wolf-release-button">
-				<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', 'wolf-discography' ), 'Qobuz' ); ?>" class="wolf-release-qobuz <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_qobuz ); ?>"><?php esc_html_e( 'Qobuz', 'wolf-discography' ); ?></a>
-			</span>
-			<?php endif; ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php printf( esc_html__( 'Stream on %s', '%TEXTDOMAIN%' ), 'YouTube Music' ); ?>" class="wolf-release-google_play <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_yt ); ?>"><?php esc_html_e( 'YT Music', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
 			<?php if ( $release_buy ) : ?>
+		<span class="wolf-release-button">
+			<a target="_blank" title="<?php esc_html_e( 'Buy Now', '%TEXTDOMAIN%' ); ?>" class="wolf-release-buy <?php echo apply_filters( 'wd_release_button_class', 'button' ); ?>" href="<?php echo esc_url( $release_buy ); ?>"><?php esc_html_e( 'Buy', '%TEXTDOMAIN%' ); ?></a>
+		</span>
+		<?php endif; ?>
+			<?php if ( $product_id && 0 != $product_id ) : ?>
 			<span class="wolf-release-button">
-				<a title="<?php esc_html_e( 'Buy Now', 'wolf-discography' ); ?>" class="wolf-release-buy" href="<?php echo $release_buy; ?>"><?php esc_html_e( 'Buy', 'wolf-discography' ); ?></a>
+				<?php echo wd_add_to_cart( $product_id, 'wolf-release-add-to-cart ' . apply_filters( 'wd_release_button_class', 'button' ), '<span class="wolf-release-add-to-cart-button-title" title="' . esc_html__( 'Add to cart', '%TEXTDOMAIN%' ) . '">' . esc_html__( 'Add to cart', '%TEXTDOMAIN%' ) . '</span>' ); ?>
+
 			</span>
-			<?php endif; ?>
 		<?php endif; ?>
 	</span><!-- .wolf-release-buttons -->
 	<?php

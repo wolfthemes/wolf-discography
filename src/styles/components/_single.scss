@@ -1,0 +1,16 @@
+// Single Release Page
+.single-release article.wolf-release {
+	max-width: 1000px;
+	margin: 2rem auto;
+	gap: 2rem;
+	border-bottom: none;
+
+	.entry-thumbnail {
+		width: 300px;
+	}
+
+	.entry-title {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+}

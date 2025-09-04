@@ -1,0 +1,47 @@
+/* Font Icons */
+@font-face {
+  font-family: "discography";
+  src: url("/assets/css/fonts/discography.eot?-8lvnt7");
+  src: url("/assets/css/fonts/discography.eot?#iefix-8lvnt7") format("embedded-opentype"),
+       url("/assets/css/fonts/discography.svg?-8lvnt7#discography") format("svg"),
+       url("/assets/css/fonts/discography.woff?-8lvnt7") format("woff"),
+       url("/assets/css/fonts/discography.ttf?-8lvnt7") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.wolf-release-amazon:before,
+.wolf-release-spotify:before,
+.wolf-release-itunes:before,
+.wolf-release-qobuz:before,
+.wolf-release-buy:before,
+.wolf-release-free:before {
+  font-family: "discography";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wolf-release-spotify:before { content: "\e903"; position: relative; top: 0px; }
+.wolf-release-add-to-cart:before { content: "\e901"; }
+.wolf-release-amazon:before { content: "\ea87"; position: relative; top: 2px; }
+.wolf-release-itunes:before { content: "\eabe"; position: relative; top: -1px; }
+.wolf-release-buy:before { content: "\e900"; position: relative; top: 1px; }
+.wolf-release-free:before { content: "\ea36"; position: relative; top: 1px; }
+.wolf-release-googleplay:before { content: "\e902"; }
+
+.wolf-release-qobuz:before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="%23ffffff" stroke-linecap="round" stroke-width="8" d="M140.672 157.486a76.004 76.004 0 0 1-102.464-12.128 76.001 76.001 0 0 1 107.15-107.15 76.004 76.004 0 0 1 12.128 102.464"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="8" d="M124.807 142.105a54.364 54.364 0 1 1 17.296-17.296"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="8" d="M95.997 117.193c11.705 0 21.193-9.488 21.193-21.193 0-11.704-9.488-21.193-21.193-21.193-11.704 0-21.193 9.489-21.193 21.193 0 11.705 9.489 21.193 21.193 21.193Z"/><circle fill="%23ffffff" cx="95.997" cy="96" r="2.103"/><path fill="%23ffffff" d="m121.193 121.196 41.871 41.625Z"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="12" d="m121.193 121.196 41.871 41.625"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

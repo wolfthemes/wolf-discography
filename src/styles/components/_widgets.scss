@@ -1,0 +1,33 @@
+/* Widget Components */
+
+.widget_discography {
+	a {
+		display: block;
+		margin-bottom: 0.5rem;
+		transition: opacity 0.2s ease;
+		box-sizing: border-box;
+		padding: 0 2px;
+
+		&:hover {
+			opacity: 0.8;
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+			vertical-align: bottom;
+		}
+
+		&.release-widget-first-child {
+			width: 100%;
+			margin-bottom: 3px;
+			padding: 0;
+		}
+
+		&:not(.release-widget-first-child) {
+			width: 50%;
+			display: inline-block;
+		}
+	}
+}

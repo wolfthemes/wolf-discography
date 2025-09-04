@@ -585,3 +585,23 @@ function wd_get_current_url() {
 	global $wp;
 	return esc_url( home_url( add_query_arg( array(), $wp->request ) ) );
 }
+
+/**
+ * Check if we're on a discography page
+ *
+ * @return bool
+ */
+function wd_is_discography_archives() {
+    return is_page( wolf_discography_get_page_id() ) ||
+           is_post_type_archive( 'release' ) ||
+           is_tax( array( 'band', 'label', 'release_genre' ) );
+}
+
+/**
+ * Check if we're on a discography page
+ *
+ * @return bool
+ */
+function wd_is_discography() {
+	return wd_is_discography_archives() || is_singular( 'release' );
+}

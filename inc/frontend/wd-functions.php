@@ -595,36 +595,25 @@ function wd_get_layout_wrapper_class() {
 	return '';
 }
 
-/**
- * Handle redirects before content is output - hooked into template_redirect so is_page works.
- * Updated to work with both block themes and classic themes.
- */
 function wolf_discography_template_redirect() {
 
-	if ( is_page( wolf_discography_get_page_id() ) && ! post_password_required() ) {
 
-		// Check if it's a block theme (FSE)
-		if ( wp_is_block_theme() ) {
-			// For block themes, inject content via filter instead of taking over the template
-			add_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
-			return; // Let the theme handle the template structure
-		}
+    if ( wd_is_discography() && ! post_password_required() ) {
+        // Handle discography archive/taxonomy pages
+        if ( wp_is_block_theme() ) {
+            add_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
+            return;
+        }
 
-		// For classic themes, check if they have proper template files
-		$theme_root = get_template_directory();
-		$has_header = file_exists( $theme_root . '/header.php' );
-		$has_footer = file_exists( $theme_root . '/footer.php' );
-
-		if ( $has_header && $has_footer ) {
-			// Use the original template system for classic themes with proper files
-			wolf_discography_get_template( 'discography-template.php' );
-			exit();
-		} else {
-			// Fallback: inject content for themes without proper templates
-			add_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
-			return;
-		}
-	}
+        // Use template system for classic themes
+        $theme_root = get_template_directory();
+        if ( file_exists( $theme_root . '/header.php' ) && file_exists( $theme_root . '/footer.php' ) ) {
+            wolf_discography_get_template( 'discography-template.php' );
+            exit();
+        } else {
+            add_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
+        }
+    }
 }
 
 /**
@@ -632,40 +621,32 @@ function wolf_discography_template_redirect() {
  */
 function wolf_discography_inject_loop_content( $content ) {
 
-	// Only on discography page and main query
-	if ( ! is_page( wolf_discography_get_page_id() ) || ! is_main_query() || ! in_the_loop() ) {
-		return $content;
-	}
 
-	// Remove this filter to prevent infinite loops
-	remove_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
+    // Only on discography pages
+    if ( ! wd_is_discography() ) {
+        return $content;
+    }
 
-	ob_start();
+    // Remove this filter to prevent infinite loops
+    remove_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
 
-	// Hook for before content (replaces wolf_discography_before_main_content)
-	do_action( 'wolf_discography_before_loop_content' );
+    ob_start();
 
-	// Load the discography loop
-	do_action(
-		'wolf_discography_posts',
-		array(
-			'el_id'             => 'discography-index',
-		)
-	);
+	if ( is_singular( 'release' ) ) {
 
-	// Hook for after content (replaces wolf_discography_after_main_content)
-	do_action( 'wolf_discography_after_loop_content' );
+		wolf_discography_get_template_part( 'content', 'single' );
+		wolf_release_nav();
 
-	$discography_content = ob_get_clean();
-
-	// Replace existing content or append if content exists
-	if ( empty( trim( strip_tags( $content ) ) ) ) {
-		return $discography_content;
 	} else {
-		return $content . $discography_content;
-	}
-}
 
+		do_action( 'wolf_discography_before_loop_content' );
+		do_action( 'wolf_discography_posts', array( 'el_id' => 'discography-index' ) );
+		do_action( 'wolf_discography_after_loop_content' );
+	}
+    $content = ob_get_clean();
+
+    return $content;
+}
 
 /**
  * Display background overlay
@@ -703,4 +684,25 @@ function wd_background_overlay( $args ) {
 	$overlay_style .= "opacity:$overlay_opacity;";
 
 	return '<' . $overlay_tag . ' style="' . wd_esc_style_attr( $overlay_style ) . '" class="' . wd_sanitize_html_classes( $class ) . '"></' . $overlay_tag . '><!--.wolf-core-bg-overlay-->';
+}
+
+/**
+ * Add to cart tag
+ *
+ * @param int    $product_id
+ * @param string $text link text content
+ * @param string $class button class
+ * @return string
+ */
+function wd_add_to_cart( $product_id, $classes = '', $text = '' ) {
+
+	$wc_url = untrailingslashit( wd_get_current_url() ) . '/?add-to-cart=' . absint( $product_id );
+
+	$classes .= ' product_type_simple add_to_cart_button ajax_add_to_cart';
+
+	return '<a
+		href="' . esc_url( $wc_url ) . '"
+		rel="nofollow"
+		data-quantity="1" data-product_id="' . absint( $product_id ) . '"
+		class="' . wd_sanitize_html_classes( $classes ) . '">' . $text . '</a>';
 }

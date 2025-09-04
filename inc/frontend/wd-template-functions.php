@@ -115,24 +115,3 @@ if ( ! function_exists( 'wolf_discography_loop_end' ) ) {
 			return ob_get_clean();
 	}
 }
-
-/**
- * Add to cart tag
- *
- * @param int    $product_id
- * @param string $text link text content
- * @param string $class button class
- * @return string
- */
-function wd_add_to_cart( $product_id, $classes = '', $text = '' ) {
-
-	$wc_url = untrailingslashit( wd_get_current_url() ) . '/?add-to-cart=' . absint( $product_id );
-
-	$classes .= ' product_type_simple add_to_cart_button ajax_add_to_cart';
-
-	return '<a
-		href="' . esc_url( $wc_url ) . '"
-		rel="nofollow"
-		data-quantity="1" data-product_id="' . absint( $product_id ) . '"
-		class="' . wd_sanitize_html_classes( $classes ) . '">' . $text . '</a>';
-}

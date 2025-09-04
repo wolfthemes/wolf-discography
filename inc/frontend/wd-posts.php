@@ -458,7 +458,7 @@ function wd_output_posts( $atts ) {
 			$post_id = get_the_ID();
 
 
-			set_query_var( 'module_atts', $atts );
+			set_query_var( 'wd_module_atts', $atts );
 
 			/**
 			 * Pass args to template

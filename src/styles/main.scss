@@ -60,9 +60,23 @@
 	clear: both;
 }
 
-/* ===== DEFAULT LIST LAYOUT (Minimal Styling) ===== */
+.release-items{
+	//max-width: ;
+}
 
-article.wolf-release {
+/* ===== DEFAULT LIST LAYOUT (Minimal Styling) ===== */
+.release-display-list{
+	list-style: none!important;
+	margin:0;
+	padding:0;
+
+	li.wolf-release{
+		list-style-type: none!important;
+	}
+}
+
+
+.wolf-release {
 	display: flex;
 	align-items: flex-start;
 	gap: 1.5rem;
@@ -75,19 +89,19 @@ article.wolf-release {
 	list-style: none;
 }
 
-article.wolf-release:last-child {
+.wolf-release:last-child {
 	border-bottom: none;
 }
 
 /* Album Cover */
-article.wolf-release .entry-thumbnail {
+.wolf-release .entry-thumbnail {
 	flex-shrink: 0;
 	// width: 150px;
 	margin: 0 !important;
 	float: none !important;
 }
 
-article.wolf-release .entry-thumbnail img {
+.wolf-release .entry-thumbnail img {
 	width: 100%;
 	height: auto;
 	border-radius: 4px;
@@ -95,21 +109,21 @@ article.wolf-release .entry-thumbnail img {
 }
 
 /* Content Area */
-article.wolf-release .entry-content {
+.wolf-release .entry-content {
 	flex: 1;
 	margin: 0 !important;
 	float: none !important;
 	width: auto !important;
 }
 
-article.wolf-release .entry-title {
+.wolf-release .entry-title {
 	margin: 0 0 0.5rem 0;
 	font-size: 1.5rem;
 	font-weight: 600;
 	line-height: 1.3;
 }
 
-article.wolf-release .entry-title a {
+.wolf-release .entry-title a {
 	text-decoration: none;
 }
 
@@ -121,7 +135,7 @@ article.wolf-release .entry-title a {
 	opacity: 0.8;
 }
 
-article.wolf-release footer.entry-meta {
+.wolf-release footer.entry-meta {
 	padding-left: 0 !important;
 	margin-top: 1rem;
 }
@@ -129,32 +143,24 @@ article.wolf-release footer.entry-meta {
 /* ===== GRID LAYOUT SYSTEM (Fixed) ===== */
 
 /* Grid container - this is the key fix */
-.wolf-discography-display-grid #primary,
-.wolf-discography-display-grid .site-main,
-.wolf-discography-display-grid main {
+.wolf-discography-display-grid .release-items{
 	display: grid !important;
 	gap: 2rem;
-	max-width: 1200px;
+	// max-width: 1200px;
 	margin: 0 auto;
 	padding: 2rem 1rem;
 }
 
 /* Grid columns */
-.wolf-discography-display-grid.wolf-discography-grid-2 #primary,
-.wolf-discography-display-grid.wolf-discography-grid-2 .site-main,
-.wolf-discography-display-grid.wolf-discography-grid-2 main {
+.wolf-discography-display-grid.wolf-discography-grid-2 .release-items{
 	grid-template-columns: repeat(2, 1fr) !important;
 }
 
-.wolf-discography-display-grid.wolf-discography-grid-3 #primary,
-.wolf-discography-display-grid.wolf-discography-grid-3 .site-main,
-.wolf-discography-display-grid.wolf-discography-grid-3 main {
+.wolf-discography-display-grid.wolf-discography-grid-3 .release-items{
 	grid-template-columns: repeat(3, 1fr) !important;
 }
 
-.wolf-discography-display-grid.wolf-discography-grid-4 #primary,
-.wolf-discography-display-grid.wolf-discography-grid-4 .site-main,
-.wolf-discography-display-grid.wolf-discography-grid-4 main {
+.wolf-discography-display-grid.wolf-discography-grid-4 .release-items{
 	grid-template-columns: repeat(4, 1fr) !important;
 }
 
@@ -351,12 +357,8 @@ article.wolf-release footer.entry-meta {
 	}
 
 	/* Grid becomes 2 columns on tablets */
-	.wolf-discography-layout-grid.wolf-discography-grid-3 #primary,
-	.wolf-discography-layout-grid.wolf-discography-grid-3 .site-main,
-	.wolf-discography-layout-grid.wolf-discography-grid-3 main,
-	.wolf-discography-layout-grid.wolf-discography-grid-4 #primary,
-	.wolf-discography-layout-grid.wolf-discography-grid-4 .site-main,
-	.wolf-discography-layout-grid.wolf-discography-grid-4 main {
+	.wolf-discography-layout-grid.wolf-discography-grid-3 .release-items,
+	.wolf-discography-layout-grid.wolf-discography-grid-4 .release-items{
 		grid-template-columns: repeat(2, 1fr) !important;
 	}
 
@@ -389,9 +391,7 @@ article.wolf-release footer.entry-meta {
 	}
 
 	/* All grids become single column on mobile */
-	.wolf-discography-layout-grid #primary,
-	.wolf-discography-layout-grid .site-main,
-	.wolf-discography-layout-grid main,
+	.wolf-discography-layout-grid .release-items,
 	.shortcode-release-grid {
 		grid-template-columns: 1fr !important;
 		gap: 1rem;

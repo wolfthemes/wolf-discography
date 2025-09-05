@@ -1,5 +1,6 @@
 
-.grid.grid-padding-yes {
+.release-display-grid.grid-padding-yes {
+	* { box-sizing: border-box; }
 	// margin: 0 !important;
     // padding:var(--wd-grid-padding);
 	margin-left: calc(var(--wd-grid-padding) * -1) !important; // to fit wrapper
@@ -7,7 +8,7 @@
 	width: calc(100% + var(--wd-grid-padding) * 2);
 	// width:100%;
 
-	.entry-grid {
+	article.release {
 		padding: var(--wd-grid-padding);
 	}
 }

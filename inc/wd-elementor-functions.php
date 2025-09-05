@@ -10,6 +10,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+defined( 'ELEMENTOR_VERSION' ) || exit;
 
 /**
  * Covert raw params to Elementor format params

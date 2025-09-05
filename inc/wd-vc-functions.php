@@ -10,6 +10,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+defined( 'WPB_VC_VERSION' ) || exit;
 
 /**
  * Covert raw params to VC format params

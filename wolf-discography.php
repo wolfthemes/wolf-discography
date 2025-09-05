@@ -123,7 +123,9 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		 */
 		private function init_hooks() {
 			add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
+
 			add_action( 'init', array( $this, 'includes' ), 0 );
+
 			add_action( 'init', array( $this, 'init' ), 0 );
 
 			if ( ! $this-> is_wolf_theme() ) {
@@ -220,8 +222,20 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			 * Functions used in frontend and admin
 			 */
 			include_once( 'inc/wd-core-functions.php' );
-			include_once( 'inc/wd-elementor-functions.php' );
-			include_once( 'inc/wd-vc-functions.php' );
+
+			if ( ! $this->is_wolf_theme() ) {
+				if ( defined( 'ELEMENTOR_VERSION' ) ) {
+
+					include_once( 'inc/wd-elementor-functions.php' );
+				}
+
+				if ( defined( 'WPB_VC_VERSION' ) ) {
+
+					include_once( 'inc/wd-vc-functions.php' );
+				}
+			}
+
+
 
 			if ( $this->is_request( 'admin' ) ) {
 				include_once( 'inc/admin/class-wd-admin.php' );
@@ -248,8 +262,10 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		}
 
 		public function include_vc_modules() {
-			require_once $this->plugin_path() . '/vc/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
+			if ( defined( 'WPB_VC_VERSION' ) ) {
 
+				require_once $this->plugin_path() . '/vc/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
+			}
 		}
 
 		/**

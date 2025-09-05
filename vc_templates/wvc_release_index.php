@@ -12,6 +12,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+defined( 'WPB_VC_VERSION' ) || exit;
 
 /* retrieve shortcode attributes */
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );

@@ -22,7 +22,8 @@
   font-style: normal;
 }
 
-.wolf-release-button a {
+.wolf-release-button a,
+.wolf-release-elementor-icon{
 
 	//@extend .button;
 	margin-bottom: 8px;
@@ -135,11 +136,14 @@
 	}
 }
 
-
+.wolf-release-elementor-icon:before{
+	content: '\e804';
+}
 // .icon-itunes:before { content: '\e800'; } /* '' */
 // .icon-basket:before { content: '\e801'; } /* '' */
 // .icon-bag:before { content: '\e802'; } /* '' */
 // .icon-download:before { content: '\e803'; } /* '' */
+// .icon-cd:before { content: '\e804'; } /* '' */
 // .icon-download-1:before { content: '\f02e'; } /* '' */
 // .icon-download-cloud:before { content: '\f0ed'; } /* '' */
 // .icon-youtube-play:before { content: '\f16a'; } /* '' */

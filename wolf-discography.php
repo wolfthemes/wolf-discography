@@ -60,6 +60,11 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		public $template_url;
 
 		/**
+		 * @var string
+		 */
+		public $cpt_slug = 'release';
+
+		/**
 		 * Main Discography Instance
 		 *
 		 * Ensures only one instance of Discography is loaded or can be loaded.
@@ -122,7 +127,11 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			add_action( 'init', array( $this, 'init' ), 0 );
 
 			if ( ! $this-> is_wolf_theme() ) {
+
+				require_once $this->plugin_path() . '/inc/module-params.php';
 				add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_elementor_widgets' ) );
+
+				add_action( 'init', array( $this, 'include_vc_modules' ) );
 			}
 			register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		}
@@ -212,6 +221,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			 */
 			include_once( 'inc/wd-core-functions.php' );
 			include_once( 'inc/wd-elementor-functions.php' );
+			include_once( 'inc/wd-vc-functions.php' );
 
 			if ( $this->is_request( 'admin' ) ) {
 				include_once( 'inc/admin/class-wd-admin.php' );
@@ -228,16 +238,17 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		}
 
 		public function init_elementor_widgets() {
-			if ( ! $this->is_wolf_theme() ) {
 
-				$cpt = 'release';
 
-				if ( post_type_exists( $cpt ) ) {
+			if ( post_type_exists( $cpt ) ) {
 
-					require_once $this->plugin_path() . '/inc/module-params.php';
-					require_once $this->plugin_path() . '/elementor/' . sanitize_title_with_dashes( $cpt ) . '-index.php';
-				}
+				require_once $this->plugin_path() . '/elementor/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
 			}
+
+		}
+
+		public function include_vc_modules() {
+			require_once $this->plugin_path() . '/vc/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
 
 		}
 
@@ -324,9 +335,9 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			$find = array( 'wolf-discography.php' ); // nope! not used
 			$file = '';
 
-			if ( is_single() && 'release' == get_post_type() ) {
+			if ( is_single() && $this->cpt_slug == get_post_type() ) {
 
-				$file    = 'single-release.php';
+				$file    = 'single-' . $this->cpt_slug . '.php';
 				$find[] = $file;
 				$find[] = $this->template_url . $file;
 
@@ -340,9 +351,9 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 				$find[] 	= $file;
 				$find[] 	= $this->template_url . $file;
 
-			} elseif ( is_post_type_archive( 'release' ) ) {
+			} elseif ( is_post_type_archive( $this->cpt_slug ) ) {
 
-				$file = 'archive-release.php';
+				$file = 'archive-' . $this->cpt_slug . '.php';
 				$find[] = $file;
 				$find[] = $this->template_url . $file;
 
@@ -389,6 +400,16 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		 */
 		public function template_path() {
 			return apply_filters( 'wd_template_path', 'wolf-discography/' );
+		}
+
+
+		/**
+		 * Get the WPBakery Page Builder template path.
+		 *
+		 * @return string
+		 */
+		public function vc_shortcode_template_path() {
+			return apply_filters( 'wd_vc_shortcode_template_path', 'vc_templates/' );
 		}
 
 		/**

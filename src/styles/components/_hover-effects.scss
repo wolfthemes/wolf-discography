@@ -1,13 +1,11 @@
 
-.release-items{
-	.release-hover-effect-default{
-		article.release {
-			transition: transform 0.2s ease;
+.release-hover-effect-default{
+	article.release {
+		transition: transform 0.2s ease;
 
-			&:hover {
-				transform: translateY(-2px);
-			}
-
+		&:hover {
+			transform: translateY(-2px);
 		}
+
 	}
 }

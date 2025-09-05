@@ -52,7 +52,7 @@ class WD_Shortcode {
 					'label' => null,
 					'columns' => wolf_get_release_option( 'columns', 4 ),
 					'padding' => wolf_get_release_option( 'padding', 'yes' ),
-					'display' => wolf_get_release_option( 'display', 'grid' ), // for custom appareance in theme
+					'release_display' => wolf_get_release_option( 'display', 'grid' ),			'release_layout' => wolf_get_release_option( 'layout', 'standard' ),
 					'animation' => '',
 					'animation_delay' => '',
 				), $atts

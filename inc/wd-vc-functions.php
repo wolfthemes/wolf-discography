@@ -223,17 +223,19 @@ function wd_convert_params_to_vc( $params ) {
  */
 function wd_vc_hook_template_dir() {
 
-	$template_dir   = WD()->plugin_path() . '/vc_templates';
+	$vc_template_dir   = WD()->plugin_path() . '/vc_templates';
 
 	$slug = 'release-index';
 
-	$vc_filename = wd_locate_shortcode_template( 'vc_' . sanitize_title_with_dashes( $slug ) . '.php' );
+	// Important: we use the wvc prefix for compatilbiilty with WolfThemes themes
+	$slug = 'wvc_' . str_replace( '-', '_', basename( $slug ) );
 
+	$vc_filename = $vc_template_dir . '/' . $slug . '.php';
 
 	if ( is_file( $vc_filename ) ) {
 
 		vc_map_update(
-			'vc_' . $slug,
+			$slug,
 			array(
 				'html_template' => $vc_filename,
 			)
@@ -242,19 +244,3 @@ function wd_vc_hook_template_dir() {
 	}
 }
 add_action( 'vc_after_init', 'wd_vc_hook_template_dir' );
-
-/**
- * Locate a file and return the path for inclusion.
- *
- * Used to check if the file is in a theme folder of from the original plugin directory
- *
- * @param string $filename The file to include.
- * @return string
- */
-function wd_locate_shortcode_template( $filename ) {
-
-	$file = WD()->plugin_path() . '/' . WD()->vc_shortcode_template_path() . '/' . untrailingslashit( $filename );
-
-	// Return what we found.
-	return apply_filters( 'wd_locate_shortcode_template', $file );
-}

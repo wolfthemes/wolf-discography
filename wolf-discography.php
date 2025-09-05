@@ -402,16 +402,6 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			return apply_filters( 'wd_template_path', 'wolf-discography/' );
 		}
 
-
-		/**
-		 * Get the WPBakery Page Builder template path.
-		 *
-		 * @return string
-		 */
-		public function vc_shortcode_template_path() {
-			return apply_filters( 'wd_vc_shortcode_template_path', 'vc_templates/' );
-		}
-
 		/**
 		 * Check if current installation uses WolfThemes
 		 * @return bool

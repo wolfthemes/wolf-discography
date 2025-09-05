@@ -1,0 +1,13 @@
+
+.grid.grid-padding-yes {
+	// margin: 0 !important;
+    // padding:var(--wd-grid-padding);
+	margin-left: calc(var(--wd-grid-padding) * -1) !important; // to fit wrapper
+	margin-right: calc(var(--wd-grid-padding) * -1) !important; // to fit wrapper
+	width: calc(100% + var(--wd-grid-padding) * 2);
+	// width:100%;
+
+	.entry-grid {
+		padding: var(--wd-grid-padding);
+	}
+}

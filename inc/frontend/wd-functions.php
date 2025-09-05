@@ -573,7 +573,7 @@ function wd_add_layout_body_class( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'wd_add_layout_body_class' );
+/* add_filter( 'body_class', 'wd_add_layout_body_class' ); */
 
 /**
  * Get discography layout wrapper class

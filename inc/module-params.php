@@ -30,7 +30,7 @@ function wd_release_index_params() {
 				'el_base'       => 'release-index',
 				'vc_category'   => esc_html__( 'Content', 'wolf-discography' ),
 				'el_categories' => array( 'post-modules' ),
-				'icon'          => 'linea-arrows linea-arrows-squares',
+				'icon'          => 'fas fa-compact-disc',
 				'weight'        => 999,
 			),
 

@@ -210,6 +210,11 @@ function wd_output_posts( $atts ) {
 	$class .= " module-$module";
 	$class .= " $post_type-module-$module";
 
+	if ( 'grid' === $display ) {
+		$class .= "post-grid-columns post-grid-columns-$columns";
+		$class .= "release-grid-columns release-grid-columns-$columns";
+	}
+
 	$class .= " layout-$layout";
 	$class .= " $post_type-layout-$layout";
 

@@ -1,0 +1,20 @@
+// Grid item styling
+.wolf-discography-display-grid article.release {
+	flex-direction: column;
+	text-align: center;
+	max-width: none;
+	margin: 0;
+
+	.entry-thumbnail {
+		width: 100% !important;
+	}
+
+	.entry-content {
+		width: 100% !important;
+	}
+
+	.entry-title {
+		font-size: 1.2rem;
+		margin-bottom:0;
+	}
+}

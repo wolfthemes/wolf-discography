@@ -50,9 +50,9 @@ class WD_Shortcode {
 					'count' => 4,
 					'band' => null,
 					'label' => null,
-					'col' => wolf_get_release_option( 'col', 4 ),
-					'padding' => 'yes',
-					'display' => '', // for custom appareance in theme
+					'columns' => wolf_get_release_option( 'columns', 4 ),
+					'padding' => wolf_get_release_option( 'padding', 'yes' ),
+					'display' => wolf_get_release_option( 'display', 'grid' ), // for custom appareance in theme
 					'animation' => '',
 					'animation_delay' => '',
 				), $atts
@@ -60,47 +60,7 @@ class WD_Shortcode {
 		);
 
 		ob_start();
-
-		$args = array(
-			'post_type' => array( 'release' ),
-			'posts_per_page' => absint( $count ),
-		);
-
-		if ( $band ) {
-			$args['band'] = $band;
-		}
-
-		if ( $label ) {
-			$args['label'] = $label;
-		}
-
-		$class = 'shortcode-release-grid';
-
-		if ( $display ) {
-			$class .= ' discography-display-' . esc_attr( $display );
-		}
-
-		$class .= ' release-grid-col-' . absint( $col );
-		$class .= ' shortcode-release-padding-' . esc_attr( $padding );
-
-		add_filter( 'posts_where', array( $this, 'filter_where' ) );
-		$loop = new WP_Query( $args );
-		remove_filter( 'posts_where', array( $this, 'filter_where' ) );
-
-		if ( $loop->have_posts() ) : ?>
-			<div class="<?php echo apply_filters( 'wolf_discography_last_releases_shortcode_class', $class ); ?>" data-animation-parent="<?php echo esc_attr( $animation ); ?>">
-				<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-
-					<?php wolf_discography_get_template_part( 'content', 'release-shortcode' ); ?>
-
-				<?php endwhile; ?>
-			</div><!-- .shortcode-release-grid -->
-			<div class="clear"></div>
-		<?php else : // no release ?>
-			<?php wolf_discography_get_template( 'loop/no-releases-found.php' ); ?>
-		<?php endif;
-		wp_reset_postdata();
-
+		do_action( 'wolf_discography_posts', $atts );
 		$html = ob_get_contents();
 		ob_end_clean();
 		return $html;

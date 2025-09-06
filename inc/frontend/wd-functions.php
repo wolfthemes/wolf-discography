@@ -595,59 +595,6 @@ function wd_get_layout_wrapper_class() {
 	return '';
 }
 
-function wolf_discography_template_redirect() {
-
-
-    if ( wd_is_discography() && ! post_password_required() ) {
-        // Handle discography archive/taxonomy pages
-        if ( wp_is_block_theme() ) {
-            add_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
-            return;
-        }
-
-        // Use template system for classic themes
-        $theme_root = get_template_directory();
-        if ( file_exists( $theme_root . '/header.php' ) && file_exists( $theme_root . '/footer.php' ) ) {
-            wolf_discography_get_template( 'discography-template.php' );
-            exit();
-        } else {
-            add_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
-        }
-    }
-}
-
-/**
- * Inject discography content into the_content for block themes and fallback cases
- */
-function wolf_discography_inject_loop_content( $content ) {
-
-
-    // Only on discography pages
-    if ( ! wd_is_discography() ) {
-        return $content;
-    }
-
-    // Remove this filter to prevent infinite loops
-    remove_filter( 'the_content', 'wolf_discography_inject_loop_content', 20 );
-
-    ob_start();
-
-	if ( is_singular( 'release' ) ) {
-
-		wolf_discography_get_template_part( 'content', 'single' );
-		wolf_release_nav();
-
-	} else {
-
-		do_action( 'wolf_discography_before_loop_content' );
-		do_action( 'wolf_discography_posts', array( 'el_id' => 'discography-index' ) );
-		do_action( 'wolf_discography_after_loop_content' );
-	}
-    $content = ob_get_clean();
-
-    return $content;
-}
-
 /**
  * Display background overlay
  *

@@ -131,10 +131,12 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			if ( ! $this-> is_wolf_theme() ) {
 
 				require_once $this->plugin_path() . '/inc/module-params.php';
-				add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_elementor_widgets' ) );
 
 				add_action( 'init', array( $this, 'include_vc_modules' ) );
+				add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_elementor_widgets' ) );
+
 			}
+
 			register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		}
 
@@ -248,21 +250,24 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 				include_once( 'inc/frontend/wd-template-hooks.php' );
 				include_once( 'inc/frontend/wd-posts.php' );
 				include_once( 'inc/frontend/class-wd-shortcode.php' );
+				include_once( 'inc/frontend/class-wd-template-manager.php' );
 			}
 		}
 
 		public function init_elementor_widgets() {
 
-
-			if ( post_type_exists( $cpt ) ) {
+			if ( post_type_exists( $this->cpt_slug ) ) {
 
 				require_once $this->plugin_path() . '/elementor/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
 			}
 
 		}
 
+		/**
+		 * Include WPBakery Module
+	 	 */
 		public function include_vc_modules() {
-			if ( defined( 'WPB_VC_VERSION' ) ) {
+			if ( defined( 'WPB_VC_VERSION' ) && post_type_exists( $this->cpt_slug ) ) {
 
 				require_once $this->plugin_path() . '/vc/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
 			}
@@ -307,10 +312,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 			// Classes/actions loaded for the frontend and for ajax requests
 			if ( ! is_admin() || defined( 'DOING_AJAX' ) ) {
-
-				// Hooks
-				add_filter( 'template_include', array( $this, 'template_loader' ) );
-
+			//	add_filter( 'template_include', array( $this, 'template_loader' ) );
 			}
 
 			// Hooks

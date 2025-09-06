@@ -7,6 +7,7 @@
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Templates
+ * @version 1.6.0
  * @since 1.0.2
  */
 
@@ -113,5 +114,35 @@ if ( ! function_exists( 'wolf_discography_loop_end' ) ) {
 			echo ob_get_clean();
 		else
 			return ob_get_clean();
+	}
+}
+
+if ( ! function_exists( 'wolf_discography_output_single_content' ) ) {
+	function wolf_discography_output_single_content( $echo = true ) {
+		ob_start();
+
+ echo 'test';
+
+        // For block themes, ensure we have post data
+        if ( wp_is_block_theme() && is_singular( 'release' ) ) {
+            global $post;
+            if ( $post ) {
+                setup_postdata( $post );
+                wolf_discography_get_template_part( 'content', 'single' );
+                wolf_release_nav();
+                wp_reset_postdata();
+            }
+        } else {
+            // Classic theme with proper query loop
+            while ( have_posts() ) : the_post();
+                wolf_discography_get_template_part( 'content', 'single' );
+                wolf_release_nav();
+            endwhile;
+        }
+		if ( $echo )
+			echo ob_get_clean();
+		else
+			return ob_get_clean();
+
 	}
 }

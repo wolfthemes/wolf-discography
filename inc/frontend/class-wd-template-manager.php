@@ -224,67 +224,17 @@ class WD_Template_Manager {
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 <main class="wp-block-group" style="margin-top:0;margin-bottom:0">
 
-    <!-- wp:post-title {"level":1,"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} /-->
+    <!-- wp:query-title {"type":"archive","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|50"}}}} /-->
 
-    <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-    <div class="wp-block-group">
-        <!-- wp:post-date /-->
-        <!-- wp:post-terms {"term":"band"} /-->
-        <!-- wp:post-terms {"term":"label"} /-->
-    </div>
-    <!-- /wp:group -->
+    <!-- wp:archive-description {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} /-->
 
-    <!-- wp:post-featured-image {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}}} /-->
-
-    <!-- wp:post-content /-->
-
-    <!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
-    <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--50)">
-        <!-- wp:heading {"level":3} -->
-        <h3>' . __( 'Release Information', 'wolf-discography' ) . '</h3>
-        <!-- /wp:heading -->
-
-        <!-- wp:html -->
-        <?php
-        if ( function_exists( "wd_release_meta" ) ) {
-            wd_release_meta();
-        }
-        ?>
-        <!-- /wp:html -->
-    </div>
-    <!-- /wp:group -->
-
-    <!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
-    <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--50)">
-        <!-- wp:heading {"level":3} -->
-        <h3>' . __( 'Tracklist', 'wolf-discography' ) . '</h3>
-        <!-- /wp:heading -->
-
-        <!-- wp:html -->
-        <?php
-        if ( function_exists( "wd_release_tracklist" ) ) {
-            wd_release_tracklist();
-        }
-        ?>
-        <!-- /wp:html -->
-    </div>
-    <!-- /wp:group -->
-
-    <!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
-    <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--50)">
-        <!-- wp:heading {"level":3} -->
-        <h3>' . __( 'Listen & Buy', 'wolf-discography' ) . '</h3>
-        <!-- /wp:heading -->
-
-        <!-- wp:html -->
-        <?php
-        if ( function_exists( "wd_release_buttons" ) ) {
-            wd_release_buttons();
-        }
-        ?>
-        <!-- /wp:html -->
-    </div>
-    <!-- /wp:group -->
+    <!-- wp:html -->
+    <?php
+    do_action( "wolf_discography_before_main_content" );
+	do_action( "wolf_discography_single_content" );
+    do_action( "wolf_discography_after_main_content" );
+    ?>
+    <!-- /wp:html -->
 
 </main>
 <!-- /wp:group -->

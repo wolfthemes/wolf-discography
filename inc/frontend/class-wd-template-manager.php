@@ -332,8 +332,6 @@ class WD_Template_Manager {
 			$find[] = WD()->template_url . $file;
 
 		}
-debug( $file );
-
 
 		if ( $file ) {
 			$template = locate_template( $find );

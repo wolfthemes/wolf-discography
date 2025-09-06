@@ -19,11 +19,11 @@ class WD_Template_Manager {
         add_filter( 'theme_templates', array( $this, 'add_templates_to_dropdown' ), 10, 4 );
 
 		if ( wp_is_block_theme() ) {
-			debug( 'block theme' );
+			// debug( 'block theme' );
 			add_action( 'template_redirect', array( $this, 'handle_block_theme' ), 40 );
 
 		} else {
-			debug( 'none block theme' );
+			// debug( 'none block theme' );
 			add_action( 'template_redirect', array( $this, 'discography_template_redirect' ), 40 );
 			if ( ! is_admin() || defined( 'DOING_AJAX' ) ) {
 				add_filter( 'template_include', array( $this, 'handle_classic_theme' ) );
@@ -47,7 +47,7 @@ class WD_Template_Manager {
     /**
      * Handle block theme templates
      */
-    private function handle_block_theme() {
+    public function handle_block_theme() {
 
         // For single release pages
         if ( is_singular( 'release' ) ) {

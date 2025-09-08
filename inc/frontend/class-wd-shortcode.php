@@ -47,7 +47,7 @@ class WD_Shortcode {
 		extract(
 			shortcode_atts(
 				array(
-					'count' => 4,
+					'posts_per_page' => 4,
 					'band' => null,
 					'label' => null,
 					'columns' => wolf_get_release_option( 'columns', 4 ),

@@ -605,3 +605,23 @@ function wd_is_discography_archives() {
 function wd_is_discography() {
 	return wd_is_discography_archives() || is_singular( 'release' );
 }
+
+/**
+ * Check if elementor
+ */
+function wd_is_elementor_page( $post_id = null ) {
+
+	if ( defined( 'ELEMENTOR_VERSION' ) ) {
+		global $post;
+
+		$post_id = ( $post_id ) ? $post_id : null;
+
+		if ( ! $post_id && is_object( $post ) ) {
+			$post_id = $post->ID;
+		}
+
+		if ( $post_id ) {
+			return \Elementor\Plugin::$instance->documents->get( $post_id )->is_built_with_elementor();
+		}
+	}
+}

@@ -16,21 +16,28 @@ class WD_Template_Manager {
 
     public function __construct() {
         add_action( 'init', array( $this, 'register_block_templates' ) );
+        add_action( 'init', array( $this, 'handle_templates' ) );
         add_filter( 'theme_templates', array( $this, 'add_templates_to_dropdown' ), 10, 4 );
 
-		if ( wp_is_block_theme() ) {
-			// debug( 'block theme' );
-			add_action( 'template_redirect', array( $this, 'handle_block_theme' ), 40 );
 
-		} else {
-			// debug( 'none block theme' );
+	}
+	public function handle_templates() {
+		// debug( is_singular('release') );
+
+		if ( ! $this->is_block_page() ) {
+			//debug( 'so' );
 			add_action( 'template_redirect', array( $this, 'discography_template_redirect' ), 40 );
-			if ( ! is_admin() || defined( 'DOING_AJAX' ) ) {
-				add_filter( 'template_include', array( $this, 'handle_classic_theme' ) );
-			}
 
-        }
-    }
+			add_filter( 'template_include', array( $this, 'handle_classic_theme' ) );
+		} else {
+			add_action( 'template_redirect', array( $this, 'handle_block_theme' ), 40 );
+		}
+
+	}
+
+	public function is_block_page() {
+		return wp_is_block_theme();
+	}
 
     /**
      * Check if we're on a discography-related page
@@ -51,6 +58,7 @@ class WD_Template_Manager {
 
         // For single release pages
         if ( is_singular( 'release' ) ) {
+
             $template = $this->get_block_template( 'single-release' );
             if ( $template ) {
                 $this->render_block_template( $template );

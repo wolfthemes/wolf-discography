@@ -9,49 +9,49 @@
  */
 ?>
 <article itemscope itemtype="http://schema.org/MusicAlbum" data-post-id="<?php the_ID(); ?>" id="post-<?php the_ID(); ?>" <?php post_class( array( 'wolf-release' ) ); ?>>
+	<?php
+		/**
+		 * wolf_release_start_hook
+		 */
+		do_action( 'wolf_release_start' );
+	?>
+	<div class="entry-thumbnail">
 		<?php
 			/**
-			 * wolf_release_start_hook
+			 * Cover
 			 */
-			do_action( 'wolf_release_start' );
+			wd_release_thumbnail();
+
+			/**
+			 * Buy Buttons
+			 */
+			wd_release_buttons();
 		?>
-		<div class="entry-thumbnail">
+	</div>
+
+	<div class="entry-content">
+		<h2 class="entry-title">
+			<?php the_title(); ?>
+		</h2>
+		<div class="wolf-release-meta">
 			<?php
 				/**
-				 * Cover
+				 * Meta
 				 */
-				wd_release_thumbnail();
+				wd_release_meta();
 
 				/**
-				 * Buy Buttons
+				 * Tracklists
 				 */
-				wd_release_buttons();
+				wd_release_tracklist();
 			?>
 		</div>
 
-		<div class="entry-content">
-			<h2 class="entry-title">
-				<?php the_title(); ?>
-			</h2>
-			<div class="wolf-release-meta">
-				<?php
-					/**
-					 * Meta
-					 */
-					wd_release_meta();
+		<?php the_content(); ?>
+	</div><!-- .entry-content -->
 
-					/**
-					 * Tracklists
-					 */
-					wd_release_tracklist();
-				?>
-			</div>
+	<div class="clear"></div>
 
-			<?php the_content(); ?>
-		</div><!-- .entry-content -->
+	<?php // comments_template(); ?>
 
-		<div class="clear"></div>
-
-		<?php // comments_template(); ?>
-
-	</article><!-- .wolf-release -->
+</article><!-- .wolf-release -->

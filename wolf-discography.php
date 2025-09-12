@@ -19,29 +19,20 @@
 
 defined( 'ABSPATH' ) || exit;
 
-// Toggle between legacy and namespaced approach
-define( 'WD_USE_LEGACY', false );
-
 // Load Composer autoloader if available
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
 // Initialize plugin - only once
-if ( class_exists( 'WolfDiscography\Core\Plugin' ) && ! WD_USE_LEGACY ) {
+if ( class_exists( 'WolfDiscography\Core\Plugin' ) ) {
 	// New namespaced approach
 	try {
 		\WolfDiscography\Core\Plugin::getInstance();
 	} catch ( Exception $e ) {
 		// Fallback to legacy if something goes wrong
 		error_log( 'Wolf Discography Namespace Error: ' . $e->getMessage() );
-		require_once __DIR__ . '/legacy.php';
-		Wolf_Discography_Legacy::instance();
 	}
-} else {
-	// Legacy approach
-	require_once __DIR__ . '/legacy.php';
-	Wolf_Discography_Legacy::instance();
 }
 
 /**
@@ -51,8 +42,7 @@ if ( class_exists( 'WolfDiscography\Core\Plugin' ) && ! WD_USE_LEGACY ) {
  * @return Wolf_Discography_Legacy|WolfDiscography\Core\Plugin
  */
 function WD() {
-	if ( class_exists( 'WolfDiscography\Core\Plugin' ) && ! WD_USE_LEGACY ) {
+	if ( class_exists( 'WolfDiscography\Core\Plugin' ) ) {
 		return \WolfDiscography\Core\Plugin::getInstance();
 	}
-	// return Wolf_Discography_Legacy::instance();
 }

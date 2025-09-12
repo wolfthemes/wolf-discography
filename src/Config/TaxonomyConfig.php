@@ -9,7 +9,7 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Taxonomies;
+namespace WolfDiscography\Config;
 
 defined( 'ABSPATH' ) || exit;
 

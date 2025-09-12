@@ -11,7 +11,7 @@
 
 namespace WolfDiscography\Admin;
 
-use WolfDiscography\Admin\Config\MetaboxConfig;
+use WolfDiscography\Config\MetaboxConfig;
 
 defined( 'ABSPATH' ) || exit;
 

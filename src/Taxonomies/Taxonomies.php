@@ -11,7 +11,7 @@
 
 namespace WolfDiscography\Taxonomies;
 
-use WolfDiscography\Taxonomies\TaxonomyConfig;
+use WolfDiscography\Config\TaxonomyConfig;
 
 defined( 'ABSPATH' ) || exit;
 

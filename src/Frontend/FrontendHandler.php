@@ -40,6 +40,9 @@ class FrontendHandler {
 	 * Load frontend-related classes and files
 	 */
 	private function loadFrontendClasses(): void {
+
+		new ShortcodeManager();
+
 		// Load legacy frontend files during migration
 		$frontend_files = array(
 			'wd-functions.php',
@@ -47,7 +50,6 @@ class FrontendHandler {
 			'wd-image-functions.php',
 			'wd-template-hooks.php',
 			'wd-posts.php',
-			'class-wd-shortcode.php',
 			'class-wd-template-manager.php',
 		);
 

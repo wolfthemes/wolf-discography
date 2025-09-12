@@ -11,8 +11,8 @@ namespace WolfDiscography\Core;
 
 use WolfDiscography\Admin\AdminHandler;
 use WolfDiscography\Frontend\FrontendHandler;
-use WolfDiscography\PostTypes\DiscographyPostType;
-use WolfDiscography\Taxonomies\DiscographyTaxonomies;
+use WolfDiscography\PostTypes\PostType;
+use WolfDiscography\Taxonomies\Taxonomies;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -82,16 +82,16 @@ class Plugin {
 	/**
 	 * Post type manager instance
 	 *
-	 * @var DiscographyPostType|null
+	 * @var PostType|null
 	 */
-	private ?DiscographyPostType $post_type_manager = null;
+	private ?PostType $post_type_manager = null;
 
 	/**
 	 * Taxonomy manager instance
 	 *
-	 * @var DiscographyTaxonomies|null
+	 * @var Taxonomies|null
 	 */
-	private ?DiscographyTaxonomies $taxonomy_manager = null;
+	private ?Taxonomies $taxonomy_manager = null;
 
 	/**
 	 * Get main Plugin instance
@@ -273,8 +273,8 @@ class Plugin {
 		$this->template_url = apply_filters( 'wolf_discography_url', 'wolf-discography/' );
 
 		// Initialize post types and taxonomies
-		$this->post_type_manager = new DiscographyPostType();
-		$this->taxonomy_manager  = new DiscographyTaxonomies();
+		$this->post_type_manager = new PostType();
+		$this->taxonomy_manager  = new Taxonomies();
 
 		// Register post types and taxonomies
 		$this->post_type_manager->register();

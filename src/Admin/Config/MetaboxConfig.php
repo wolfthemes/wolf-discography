@@ -26,7 +26,7 @@ class MetaboxConfig {
 	public static function getConfig(): array {
 		return array(
 			'release_details' => array(
-				'title'    => __( 'Release Details', 'wolf-discography' ),
+				'title'    => esc_html__( 'Release Details', 'wolf-discography' ),
 				'screen'   => 'release',
 				'context'  => 'normal',
 				'priority' => 'high',

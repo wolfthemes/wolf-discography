@@ -10,6 +10,7 @@
  */
 
 namespace WolfDiscography\Taxonomies;
+use WolfDiscography\Taxonomies\TaxonomyConfig;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -18,78 +19,29 @@ defined( 'ABSPATH' ) || exit;
  *
  * Manages the registration of band, label, and genre taxonomies
  */
-class DiscographyTaxonomies {
+class Taxonomies {
 
 	/**
 	 * Taxonomies configuration
 	 *
 	 * @var array
 	 */
-	private array $taxonomies = array(
-		'band'          => array(
-			'labels'       => array(
-				'name'              => 'Bands',
-				'singular_name'     => 'Band',
-				'search_items'      => 'Search Bands',
-				'all_items'         => 'All Bands',
-				'parent_item'       => 'Parent Band',
-				'parent_item_colon' => 'Parent Band:',
-				'edit_item'         => 'Edit Band',
-				'update_item'       => 'Update Band',
-				'add_new_item'      => 'Add New Band',
-				'new_item_name'     => 'New Band Name',
-				'menu_name'         => 'Bands',
-			),
-			'hierarchical' => true,
-			'show_ui'      => true,
-			'show_in_rest' => true,
-			'rewrite'      => array( 'slug' => 'band' ),
-		),
-		'label'         => array(
-			'labels'       => array(
-				'name'              => 'Labels',
-				'singular_name'     => 'Label',
-				'search_items'      => 'Search Labels',
-				'all_items'         => 'All Labels',
-				'parent_item'       => 'Parent Label',
-				'parent_item_colon' => 'Parent Label:',
-				'edit_item'         => 'Edit Label',
-				'update_item'       => 'Update Label',
-				'add_new_item'      => 'Add New Label',
-				'new_item_name'     => 'New Label Name',
-				'menu_name'         => 'Labels',
-			),
-			'hierarchical' => true,
-			'show_ui'      => true,
-			'show_in_rest' => true,
-			'rewrite'      => array( 'slug' => 'label' ),
-		),
-		'release_genre' => array(
-			'labels'       => array(
-				'name'              => 'Genres',
-				'singular_name'     => 'Genre',
-				'search_items'      => 'Search Genres',
-				'all_items'         => 'All Genres',
-				'parent_item'       => 'Parent Genre',
-				'parent_item_colon' => 'Parent Genre:',
-				'edit_item'         => 'Edit Genre',
-				'update_item'       => 'Update Genre',
-				'add_new_item'      => 'Add New Genre',
-				'new_item_name'     => 'New Genre Name',
-				'menu_name'         => 'Genres',
-			),
-			'hierarchical' => true,
-			'show_ui'      => true,
-			'show_in_rest' => true,
-			'rewrite'      => array( 'slug' => 'genre' ),
-		),
-	);
+	private array $taxonomies = array();
 
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		// Constructor is kept light - actual registration happens in register()
+		$this->load_config();
+
+	}
+
+	/**
+	 * Load metabox configuration from Config class
+	 */
+	private function load_config(): void {
+		$this->taxonomies = TaxonomyConfig::get_config();
 	}
 
 	/**
@@ -103,23 +55,9 @@ class DiscographyTaxonomies {
 	 * Register the discography taxonomies
 	 */
 	public function registerTaxonomies(): void {
-		// During migration, we can either:
-		// 1. Call the legacy file (safe approach)
-		// 2. Implement the registration here (new approach)
-
-		// Option 1: Legacy approach (safe during migration)
-		$legacy_file = WD_DIR . '/inc/wd-register-taxonomy.php';
-		if ( file_exists( $legacy_file ) ) {
-			include_once $legacy_file;
-			return;
-		}
-
-		// Option 2: New implementation (uncomment when ready to migrate)
-		/*
 		foreach ($this->taxonomies as $taxonomy_slug => $config) {
 			$this->registerTaxonomy($taxonomy_slug, $config);
 		}
-		*/
 	}
 
 	/**

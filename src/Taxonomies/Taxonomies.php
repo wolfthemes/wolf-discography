@@ -10,6 +10,7 @@
  */
 
 namespace WolfDiscography\Taxonomies;
+
 use WolfDiscography\Taxonomies\TaxonomyConfig;
 
 defined( 'ABSPATH' ) || exit;
@@ -34,7 +35,6 @@ class Taxonomies {
 	public function __construct() {
 		// Constructor is kept light - actual registration happens in register()
 		$this->load_config();
-
 	}
 
 	/**
@@ -55,8 +55,8 @@ class Taxonomies {
 	 * Register the discography taxonomies
 	 */
 	public function registerTaxonomies(): void {
-		foreach ($this->taxonomies as $taxonomy_slug => $config) {
-			$this->registerTaxonomy($taxonomy_slug, $config);
+		foreach ( $this->taxonomies as $taxonomy_slug => $config ) {
+			$this->registerTaxonomy( $taxonomy_slug, $config );
 		}
 	}
 

@@ -91,8 +91,7 @@ class PostType {
 			'menu_icon'           => $icon_url,
 		);
 
-
-		register_post_type($this->post_type, $args);
+		register_post_type( $this->post_type, $args );
 	}
 
 	/**

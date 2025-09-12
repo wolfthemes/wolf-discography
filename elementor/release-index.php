@@ -33,7 +33,6 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 		parent::__construct( $data, $args );
 
 		$this->params = wd_release_index_params();
-
 	}
 
 	/**
@@ -105,7 +104,6 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 
 	/**
 	 * Register Post Index widget controls.
-	 *
 	 */
 	protected function register_controls() { // phpcs:ignore
 
@@ -114,13 +112,12 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 
 	/**
 	 * Render widget output on the frontend.
-	 *
 	 */
 	protected function render() {
 
 		$atts              = $this->get_settings_for_display();
 		$atts['post_type'] = 'release';
-		$atts['context'] = 'elementor';
+		$atts['context']   = 'elementor';
 
 		/**
 		 * Uses the main post hook to display the releases.

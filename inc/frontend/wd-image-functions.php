@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Discography image functions
@@ -38,7 +37,7 @@ function wd_convert_img_size_name( $name = 'standard' ) {
 	}
 	*/
 
-	//$dimensions = '450x350';
+	// $dimensions = '450x350';
 
 	if ( 'standard' === $name ) {
 
@@ -114,7 +113,6 @@ function wd_resized_thumbnail( $size = '150x150', $class = '', $image_id = null,
 	if ( $thumbnail ) {
 		return wd_kses( $thumbnail['thumbnail'] );
 	}
-
 }
 
 /**
@@ -295,7 +293,7 @@ function wd_get_img_by_size( $params = array() ) {
 
 	$post_id = $params['post_id'];
 
-	$attach_id   = $post_id ? get_post_thumbnail_id( $post_id ) : $params['attach_id'];
+	$attach_id = $post_id ? get_post_thumbnail_id( $post_id ) : $params['attach_id'];
 	/**
 	 * Filters attach_id object
 	 *

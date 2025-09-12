@@ -9,7 +9,7 @@
  */
 ?>
 <article itemscope itemtype="http://schema.org/MusicAlbum" id="post-<?php the_ID(); ?>" <?php post_class( array( 'wolf-release', 'clearfix' ) ); ?>>
-	<?php 
+	<?php
 		/**
 		 * wolf_release_start_hook
 		 */

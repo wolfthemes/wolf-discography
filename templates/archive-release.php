@@ -23,17 +23,17 @@ get_header( 'discography' );
 		do_action(
 			'wolf_discography_posts',
 			array(
-				'el_id'             => 'discography-index',
+				'el_id' => 'discography-index',
 			)
 		);
 
-	get_sidebar( 'discography' );
+		get_sidebar( 'discography' );
 
-	/**
-	 * wolf_discography_after_main_content hook
-	 *
-	 * @hooked wolf_discography_output_content_wrapper_end - 10 (outputs closing divs for the content)
-	 */
-	do_action('wolf_discography_after_main_content');
+		/**
+		 * wolf_discography_after_main_content hook
+		 *
+		 * @hooked wolf_discography_output_content_wrapper_end - 10 (outputs closing divs for the content)
+		 */
+		do_action( 'wolf_discography_after_main_content' );
 
-get_footer( 'discography' );
+		get_footer( 'discography' );

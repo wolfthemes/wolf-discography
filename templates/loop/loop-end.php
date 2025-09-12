@@ -6,4 +6,3 @@
  * @package WolfDiscography/Templates
  * @since 1.0.2
  */
-?>

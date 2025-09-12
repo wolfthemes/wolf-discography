@@ -50,7 +50,7 @@ if ( 'auto' === $overlay_color ) {
 	$actual_overlay_color = wd_convert_color_class_to_hex_value( $overlay_color, $overlay_custom_color );
 }
 
-$overlay_tone_class = 'overlay-tone-' . wd_get_color_tone( $actual_overlay_color );
+$overlay_tone_class   = 'overlay-tone-' . wd_get_color_tone( $actual_overlay_color );
 $custom_redirect_link = get_post_meta( get_the_ID(), '_release_redirect_url', true );
 $permalink            = ( $custom_redirect_link ) ? $custom_redirect_link : get_the_permalink();
 $target               = ( $release_do_redirect_url && $custom_redirect_link ) ? '_blank' : '';

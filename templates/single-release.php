@@ -7,7 +7,7 @@
  * @version 1.5.1
  * @since 1.2.6
  */
- get_header();
+get_header();
 	/**
 	 * wolf_discography_before_main_content hook
 	 *
@@ -15,10 +15,11 @@
 	 */
 	do_action( 'wolf_discography_before_main_content' );
 
-	while ( have_posts() ) : the_post();
+while ( have_posts() ) :
+	the_post();
 
-		wolf_discography_get_template_part( 'content', 'single' );
-		wolf_release_nav();
+	wolf_discography_get_template_part( 'content', 'single' );
+	wolf_release_nav();
 
 	endwhile;
 
@@ -28,6 +29,5 @@
 	 * @hooked wolf_discography_output_content_wrapper_end - 10 (outputs closing divs for the content)
 	 */
 	do_action( 'wolf_discography_after_main_content' );
-//get_sidebar();
+// get_sidebar();
 get_footer();
-?>

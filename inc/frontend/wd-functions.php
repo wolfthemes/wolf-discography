@@ -19,10 +19,10 @@ defined( 'ABSPATH' ) || exit;
  */
 function wd_release_microdata() {
 
-	$band = strip_tags( get_the_term_list( get_the_ID(), 'band', '', ', ', '' ) );
-	$meta = wd_get_meta();
+	$band         = strip_tags( get_the_term_list( get_the_ID(), 'band', '', ', ', '' ) );
+	$meta         = wd_get_meta();
 	$release_date = $meta['date'];
-	$tracklist = wd_release_get_tracklist();
+	$tracklist    = wd_release_get_tracklist();
 	?>
 	<meta itemprop="publisher" content="<?php echo esc_url( home_url( '/' ) ); ?>">
 	<link itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>">
@@ -40,8 +40,9 @@ add_action( 'wolf_release_start', 'wd_release_microdata' );
 
 /**
  * Get any thumbnail URL
+ *
  * @param string $format
- * @param int $post_id
+ * @param int    $post_id
  * @return string
  */
 function wd_get_post_thumbnail_url( $format = 'medium', $post_id = null ) {
@@ -60,8 +61,9 @@ function wd_get_post_thumbnail_url( $format = 'medium', $post_id = null ) {
 		if ( $attachment_id ) {
 			$img_src = wp_get_attachment_image_src( $attachment_id, $format );
 
-			if ( $img_src && isset( $img_src[0] ) )
+			if ( $img_src && isset( $img_src[0] ) ) {
 				return esc_url( $img_src[0] );
+			}
 		}
 	}
 }
@@ -75,19 +77,18 @@ function wd_release_buttons() {
 
 	$meta = wd_get_meta();
 
-
-	$release_itunes      = $meta['itunes'];
-	$release_amazon      = $meta['amazon'];
-	$release_bandcamp    = $meta['bandcamp'];
-	$release_spotify     = $meta['spotify'];
-	$release_buy         = $meta['buy'];
-	$release_free        = $meta['free'];
-	$release_apple       = $meta['apple'];
-	$release_deezer      = $meta['deezer'];
-	$release_tidal       = $meta['tidal'];
-	$release_yt          = $meta['google_play'];
-	$release_qobuz       = $meta['qobuz'];
-	$product_id = absint( get_post_meta( get_the_ID(), '_post_wc_product_id', true ) );
+	$release_itunes   = $meta['itunes'];
+	$release_amazon   = $meta['amazon'];
+	$release_bandcamp = $meta['bandcamp'];
+	$release_spotify  = $meta['spotify'];
+	$release_buy      = $meta['buy'];
+	$release_free     = $meta['free'];
+	$release_apple    = $meta['apple'];
+	$release_deezer   = $meta['deezer'];
+	$release_tidal    = $meta['tidal'];
+	$release_yt       = $meta['google_play'];
+	$release_qobuz    = $meta['qobuz'];
+	$product_id       = absint( get_post_meta( get_the_ID(), '_post_wc_product_id', true ) );
 
 	ob_start();
 	?>
@@ -168,10 +169,11 @@ function wd_release_buttons() {
  */
 function wd_release_thumbnail( $thumbnail_size = '' ) {
 
-	$post_id = get_the_ID();
+	$post_id        = get_the_ID();
 	$thumbnail_size = get_post_meta( $post_id, '_wolf_release_type', true ) == 'DVD' || get_post_meta( $post_id, '_wolf_release_type', true ) == 'K7' ? 'DVD' : 'CD';
 	$thumbnail_size = apply_filters( 'wd_thumbnail_size', $thumbnail_size );
-	if ( has_post_thumbnail() ) : ?>
+	if ( has_post_thumbnail() ) :
+		?>
 		<?php if ( ! is_single() ) : ?>
 			<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( esc_html__( 'Permalink to %s', 'wolf-discography' ), the_title_attribute( 'echo=0' ) ) ); ?>">
 		<?php endif ?>
@@ -194,7 +196,8 @@ function wd_release_thumbnail( $thumbnail_size = '' ) {
 		<?php if ( ! is_single() ) : ?>
 			</a>
 		<?php endif ?>
-	<?php endif;
+		<?php
+	endif;
 }
 
 /**
@@ -202,7 +205,7 @@ function wd_release_thumbnail( $thumbnail_size = '' ) {
  */
 function wd_release_get_tracklist() {
 
-	$post_id = get_the_ID();
+	$post_id   = get_the_ID();
 	$tracklist = ( is_array( get_post_meta( $post_id, '_wolf_release_tracklist', true ) ) ) ? get_post_meta( $post_id, '_wolf_release_tracklist', true ) : array();
 
 	if ( isset( $tracklist[0] ) && '' != $tracklist[0] ) {
@@ -216,8 +219,8 @@ function wd_release_get_tracklist() {
  */
 function wd_release_tracklist() {
 
-	$post_id = get_the_ID();
-	$tracklist = wd_release_get_tracklist();
+	$post_id         = get_the_ID();
+	$tracklist       = wd_release_get_tracklist();
 	$tracklist_count = wd_release_get_tracklist_count();
 
 	if ( $tracklist ) {
@@ -247,7 +250,7 @@ function wd_release_tracklist() {
  */
 function wd_release_get_tracklist_count() {
 
-	$post_id = get_the_ID();
+	$post_id   = get_the_ID();
 	$tracklist = wd_release_get_tracklist();
 
 	if ( $tracklist ) {
@@ -260,34 +263,42 @@ function wd_release_get_tracklist_count() {
  */
 function wd_release_meta() {
 
-	$meta = wd_get_meta();
-	$release_title = $meta['title'];
-	$release_date = $meta['date'];
+	$meta            = wd_get_meta();
+	$release_title   = $meta['title'];
+	$release_date    = $meta['date'];
 	$release_catalog = $meta['catalog'];
-	$release_format = $meta['format'];
+	$release_format  = $meta['format'];
 
 	ob_start();
 	echo wd_get_artist();
 	?>
-	<?php // Title
-	if ( $release_title ) : ?>
+	<?php
+	// Title
+	if ( $release_title ) :
+		?>
 	<strong><?php esc_html_e( 'Title', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_title ); ?><br>
 	<?php endif; ?>
 
-	<?php // Date
-	if ( $release_date ) : ?>
+	<?php
+	// Date
+	if ( $release_date ) :
+		?>
 	<strong><?php esc_html_e( 'Release Date', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_date ); ?><br>
 	<?php endif; ?>
 
 	<?php echo wd_get_label(); ?>
 
-	<?php // Catalog number
-	if ( $release_catalog ) : ?>
+	<?php
+	// Catalog number
+	if ( $release_catalog ) :
+		?>
 	<strong><?php esc_html_e( 'Catalog ref.', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_catalog ); ?><br>
 	<?php endif; ?>
 
-	<?php // Type
-	if ( $release_format && wolf_get_release_option( 'display_format' ) ) : ?>
+	<?php
+	// Type
+	if ( $release_format && wolf_get_release_option( 'display_format' ) ) :
+		?>
 	<strong><?php esc_html_e( 'Format', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_format ); ?><br>
 	<?php endif; ?>
 	<?php edit_post_link( esc_html__( 'Edit', 'wolf-discography' ), '<span class="edit-link">', '</span>' ); ?>
@@ -306,29 +317,29 @@ function wd_get_meta() {
 
 	$meta = wd_get_default_meta(); // get empty object
 
-	$post_id = get_the_ID();
-	$title = get_post_meta( $post_id, '_wolf_release_title', true );
-	$date = get_post_meta( $post_id, '_wolf_release_date', true );
-	$catalog = get_post_meta( $post_id, '_wolf_release_catalog_number', true );
-	$format = get_post_meta( $post_id, '_wolf_release_type', true );
-	$itunes = get_post_meta( $post_id, '_wolf_release_itunes', true );
+	$post_id     = get_the_ID();
+	$title       = get_post_meta( $post_id, '_wolf_release_title', true );
+	$date        = get_post_meta( $post_id, '_wolf_release_date', true );
+	$catalog     = get_post_meta( $post_id, '_wolf_release_catalog_number', true );
+	$format      = get_post_meta( $post_id, '_wolf_release_type', true );
+	$itunes      = get_post_meta( $post_id, '_wolf_release_itunes', true );
 	$google_play = get_post_meta( $post_id, '_wolf_release_google_play', true );
-	$amazon = get_post_meta( $post_id, '_wolf_release_amazon', true );
-	$bandcamp = get_post_meta( $post_id, '_wolf_release_bandcamp', true );
-	$deezer = get_post_meta( $post_id, '_wolf_release_deezer', true );
-	$apple = get_post_meta( $post_id, '_wolf_release_apple', true );
-	$tidal = get_post_meta( $post_id, '_wolf_release_tidal', true );
-	$qobuz = get_post_meta( $post_id, '_wolf_release_qobuz', true );
-	$spotify = get_post_meta( $post_id, '_wolf_release_spotify', true );
-	$buy = get_post_meta( $post_id, '_wolf_release_buy', true );
-	$free = get_post_meta( $post_id, '_wolf_release_free', true );
-	$tracklist = wd_release_get_tracklist();
+	$amazon      = get_post_meta( $post_id, '_wolf_release_amazon', true );
+	$bandcamp    = get_post_meta( $post_id, '_wolf_release_bandcamp', true );
+	$deezer      = get_post_meta( $post_id, '_wolf_release_deezer', true );
+	$apple       = get_post_meta( $post_id, '_wolf_release_apple', true );
+	$tidal       = get_post_meta( $post_id, '_wolf_release_tidal', true );
+	$qobuz       = get_post_meta( $post_id, '_wolf_release_qobuz', true );
+	$spotify     = get_post_meta( $post_id, '_wolf_release_spotify', true );
+	$buy         = get_post_meta( $post_id, '_wolf_release_buy', true );
+	$free        = get_post_meta( $post_id, '_wolf_release_free', true );
+	$tracklist   = wd_release_get_tracklist();
 
 	$display_date = '';
 	if ( $date ) {
-		list( $month, $day, $year ) = explode( "-", $date );
-		$sql_date = $year . '-' . $month . '-' . $day . ' 00:00:00';
-		$display_date = mysql2date( get_option( 'date_format' ), $sql_date );
+		list( $month, $day, $year ) = explode( '-', $date );
+		$sql_date                   = $year . '-' . $month . '-' . $day . ' 00:00:00';
+		$display_date               = mysql2date( get_option( 'date_format' ), $sql_date );
 	}
 
 	if ( $title ) {
@@ -407,22 +418,22 @@ function wd_get_meta() {
 function wd_get_default_meta() {
 
 	$meta = array(
-		'title' => '',
-		'date' => '',
-		'catalog' => '',
-		'format' => '',
-		'itunes' => '',
+		'title'       => '',
+		'date'        => '',
+		'catalog'     => '',
+		'format'      => '',
+		'itunes'      => '',
 		'google_play' => '',
-		'amazon' => '',
-		'bandcamp' => '',
-		'apple' => '',
-		'deezer' => '',
-		'tidal' => '',
-		'qobuz' => '',
-		'spotify' => '',
-		'buy' => '',
-		'free' => '',
-		'tracklist' => array(),
+		'amazon'      => '',
+		'bandcamp'    => '',
+		'apple'       => '',
+		'deezer'      => '',
+		'tidal'       => '',
+		'qobuz'       => '',
+		'spotify'     => '',
+		'buy'         => '',
+		'free'        => '',
+		'tracklist'   => array(),
 	);
 
 	return $meta;
@@ -437,11 +448,11 @@ function wd_get_default_meta() {
 function wd_get_artist() {
 
 	$post_id = get_the_ID();
-	$band = '';
+	$band    = '';
 
 	if ( strip_tags( get_the_term_list( $post_id, 'band', '', ', ', '' ) ) != '' ) {
 
-		$band =  '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', 'wolf-discography' ) ) . ' </strong> : ' . strip_tags( get_the_term_list( $post_id, 'band', '', ', ', '' ) ) . '<br>';
+		$band = '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', 'wolf-discography' ) ) . ' </strong> : ' . strip_tags( get_the_term_list( $post_id, 'band', '', ', ', '' ) ) . '<br>';
 
 	}
 
@@ -461,7 +472,7 @@ function wd_get_artist() {
 function wd_get_label() {
 
 	$post_id = get_the_ID();
-	$label = '';
+	$label   = '';
 
 	if ( ! taxonomy_exists( 'label' ) ) {
 		return;
@@ -469,11 +480,11 @@ function wd_get_label() {
 
 	if ( wp_strip_all_tags( get_the_term_list( $post_id, 'label', '', ', ', '' ) ) != '' ) {
 
-		$label =  '<strong>' . esc_html( 'Label', 'wolf-discography') . ' </strong> : ' . wp_strip_all_tags( get_the_term_list( $post_id, 'label', '', ', ', '' ) ) . '<br>';
+		$label = '<strong>' . esc_html( 'Label', 'wolf-discography' ) . ' </strong> : ' . wp_strip_all_tags( get_the_term_list( $post_id, 'label', '', ', ', '' ) ) . '<br>';
 	}
 
 	if ( wolf_get_release_option( 'use_label_tax' ) ) {
-		$label = get_the_term_list( $post_id, 'label', '<strong>' . esc_html( 'Label', 'wolf-discography') . ' </strong> : ', ', ', '<br>' );
+		$label = get_the_term_list( $post_id, 'label', '<strong>' . esc_html( 'Label', 'wolf-discography' ) . ' </strong> : ', ', ', '<br>' );
 	}
 
 	return $label;
@@ -490,7 +501,7 @@ function wd_enqueue_style() {
 		wp_enqueue_style( 'wolf-discography', WD_URI . '/build/styles.css', array(), WD_VERSION, 'all' );
 	}
 }
-add_action( 'wp_enqueue_scripts',  'wd_enqueue_style' );
+add_action( 'wp_enqueue_scripts', 'wd_enqueue_style' );
 
 /**
  * Displays release navigation
@@ -503,10 +514,11 @@ function wolf_release_nav() {
 
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = get_adjacent_post( false, '', true );
-	$next = get_adjacent_post( false, '', false );
+	$next     = get_adjacent_post( false, '', false );
 
-	if ( ! $next && ! $previous )
+	if ( ! $next && ! $previous ) {
 		return;
+	}
 	?>
 	<nav class="release-navigation" role="navigation">
 		<?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'wolf-discography' ) ); ?>
@@ -522,7 +534,7 @@ function wolf_release_nav() {
  */
 function wolf_release_page_nav( $loop = null ) {
 
-	if ( ! $loop ){
+	if ( ! $loop ) {
 		global $wp_query;
 		$max = $wp_query->max_num_pages;
 	} else {
@@ -530,8 +542,9 @@ function wolf_release_page_nav( $loop = null ) {
 	}
 
 	// Don't print empty markup if there's only one page.
-	if ( $max < 2 )
+	if ( $max < 2 ) {
 		return;
+	}
 
 	?>
 	<nav class="navigation release-paging-navigation" role="navigation">
@@ -560,12 +573,12 @@ function wd_add_layout_body_class( $classes ) {
 			$classes[] = 'wolf-discography-active';
 
 			// Add default layout class (list by default)
-			$display = wolf_get_release_option( 'display', 'list' );
+			$display   = wolf_get_release_option( 'display', 'list' );
 			$classes[] = 'wolf-discography-display-' . $display;
 
 			// Add grid columns if grid display
 			if ( $display === 'grid' ) {
-				$columns = wolf_get_release_option( 'columns', '3' );
+				$columns   = wolf_get_release_option( 'columns', '3' );
 				$classes[] = 'wolf-discography-grid-' . $columns;
 			}
 		}
@@ -582,11 +595,11 @@ function wd_get_layout_wrapper_class() {
 	// Only add wrapper classes for non-Wolf themes
 	if ( ! WD()->is_wolf_theme() ) {
 		$display = get_option( 'wolf_discography_display', 'list' );
-		$class = 'wolf-discography-' . $display;
+		$class   = 'wolf-discography-' . $display;
 
 		if ( $display === 'grid' ) {
 			$columns = get_option( 'wolf_discography_grid_columns', '3' );
-			$class .= ' wolf-discography-grid-' . $columns;
+			$class  .= ' wolf-discography-grid-' . $columns;
 		}
 
 		return $class;

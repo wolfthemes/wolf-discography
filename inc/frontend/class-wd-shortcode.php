@@ -47,15 +47,17 @@ class WD_Shortcode {
 		extract(
 			shortcode_atts(
 				array(
-					'posts_per_page' => 4,
-					'band' => null,
-					'label' => null,
-					'columns' => wolf_get_release_option( 'columns', 4 ),
-					'padding' => wolf_get_release_option( 'padding', 'yes' ),
-					'release_display' => wolf_get_release_option( 'display', 'grid' ),			'release_layout' => wolf_get_release_option( 'layout', 'standard' ),
-					'animation' => '',
+					'posts_per_page'  => 4,
+					'band'            => null,
+					'label'           => null,
+					'columns'         => wolf_get_release_option( 'columns', 4 ),
+					'padding'         => wolf_get_release_option( 'padding', 'yes' ),
+					'release_display' => wolf_get_release_option( 'display', 'grid' ),
+					'release_layout'  => wolf_get_release_option( 'layout', 'standard' ),
+					'animation'       => '',
 					'animation_delay' => '',
-				), $atts
+				),
+				$atts
 			)
 		);
 
@@ -76,21 +78,22 @@ class WD_Shortcode {
 		extract(
 			shortcode_atts(
 				array(
-					'count' => 4,
-					'band' => null,
-					'label' => null,
-					'display_title' => true,
+					'count'           => 4,
+					'band'            => null,
+					'label'           => null,
+					'display_title'   => true,
 					'display_buttons' => true,
-					'animation' => '',
+					'animation'       => '',
 					'animation_delay' => '',
-				), $atts
+				),
+				$atts
 			)
 		);
 
 		ob_start();
 
 		$args = array(
-			'post_type' => array( 'release' ),
+			'post_type'      => array( 'release' ),
 			'posts_per_page' => 1,
 		);
 
@@ -116,7 +119,10 @@ class WD_Shortcode {
 		$loop = new WP_Query( $args );
 		if ( $loop->have_posts() ) : ?>
 			<div class="<?php echo $class; ?>" style="<?php echo esc_attr( $style ); ?>" data-animation="<?php echo esc_attr( $animation ); ?>">
-				<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+				<?php
+				while ( $loop->have_posts() ) :
+					$loop->the_post();
+					?>
 
 					<?php wolf_discography_get_template_part( 'content', 'release-shortcode' ); ?>
 
@@ -125,7 +131,8 @@ class WD_Shortcode {
 			<div class="clear"></div>
 		<?php else : // no release ?>
 			<?php wolf_discography_get_template( 'loop/no-releases-found.php' ); ?>
-		<?php endif;
+			<?php
+		endif;
 		wp_reset_postdata();
 
 		$html = ob_get_contents();
@@ -145,7 +152,6 @@ class WD_Shortcode {
 		$falsey = array( 'false', '0', 'no', 'n' );
 		return ( ! $var || in_array( strtolower( $var ), $falsey, true ) ) ? false : true;
 	}
-
 } // end class
 
 return new WD_Shortcode();

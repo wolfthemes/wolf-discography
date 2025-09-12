@@ -3,6 +3,7 @@
  * Post hooks functions
  *
  * A function that returns the release loop
+ *
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Functions
@@ -77,7 +78,6 @@ function wd_get_default_post_atts() {
 		 */
 		'caption_v_align'                        => apply_filters( 'wd_default_caption_v_align', 'middle' ),
 
-
 		/* Release */
 		'release_index'                          => false,
 		'release_display'                        => wolf_get_release_option( 'display', 'grid' ),
@@ -100,7 +100,6 @@ function wd_get_default_post_atts() {
 		'genre_exclude'                          => '',
 		'release_category_link_id'               => '',
 		'release_do_redirect_url'                => false,
-
 
 		/* Additional styles */
 		'context'                                => 'archive',
@@ -135,7 +134,7 @@ function wd_output_posts( $atts ) {
 
 	$clean_atts  = array_filter(
 		$atts,
-		function( $var ) {
+		function ( $var ) {
 			return ( $var );
 		}
 	); // clean empty atts for json params.
@@ -206,7 +205,6 @@ function wd_output_posts( $atts ) {
 		$class .= ' items-entrance-animation-' . $item_animation;
 	}
 
-
 	$class .= " module-$module";
 	$class .= " $post_type-module-$module";
 
@@ -217,7 +215,6 @@ function wd_output_posts( $atts ) {
 
 	$class .= " layout-$layout";
 	$class .= " $post_type-layout-$layout";
-
 
 	$is_list = in_array( $display, array( 'list', 'minimal-list', 'list_minimal', 'small-list', 'text-background' ), true );
 
@@ -262,20 +259,18 @@ function wd_output_posts( $atts ) {
 		$pagination = 'none';
 	}
 
-
 	// Set default args.
 	$args = array(
-		'post_type'           => $post_type,
-		'post_status'         => array( 'publish' ), // published post only.
-		'posts_per_page'      => $posts_per_page,
-		'paged'               => $paged,
-		'post__in'            => array(),
-		'post__not_in'        => array(),
+		'post_type'      => $post_type,
+		'post_status'    => array( 'publish' ), // published post only.
+		'posts_per_page' => $posts_per_page,
+		'paged'          => $paged,
+		'post__in'       => array(),
+		'post__not_in'   => array(),
 	);
 
-
 	if ( $offset ) {
-		$args['offset']              = $offset;
+		$args['offset'] = $offset;
 	}
 
 	// Include.
@@ -404,10 +399,8 @@ function wd_output_posts( $atts ) {
 
 	}
 
-
 	/* The query */
 	$query = new WP_Query( apply_filters( 'wd_post_module_main_query_args', $args, $atts ) );
-
 
 	/**
 	 * Add action before the output
@@ -431,9 +424,7 @@ function wd_output_posts( $atts ) {
 			// Category filter template part
 		}
 
-
 		$tag = ( $is_list ) ? 'ul' : 'div';
-
 
 		// Container open tag.
 		echo '<' . esc_attr( $tag ) . ' id="' . esc_attr( $id ) . '" data-post-type="' . esc_attr( $post_type ) . '" data-params="' . esc_js( $json_params ) . '" class="' . wd_sanitize_html_classes( $class ) . '"';
@@ -457,11 +448,10 @@ function wd_output_posts( $atts ) {
 
 		while ( $query->have_posts() ) {
 
-			$i++;
+			++$i;
 
 			$query->the_post();
 			$post_id = get_the_ID();
-
 
 			set_query_var( 'wd_module_atts', $atts );
 
@@ -479,23 +469,23 @@ function wd_output_posts( $atts ) {
 					'post_template_args',
 					array(
 
-						'index'                     => $i,
-						'post_id'                   => $post_id,
+						'index'                                => $i,
+						'post_id'                              => $post_id,
 
-						'display'                   => $display,
-						'layout'                    => $layout,
+						'display'                              => $display,
+						'layout'                               => $layout,
 
-						'overlay_color'             => $overlay_color,
-						'overlay_custom_color'      => $overlay_custom_color,
-						'overlay_opacity'           => $overlay_opacity,
-						'overlay_text_color'        => $overlay_text_color,
-						'overlay_text_custom_color' => $overlay_text_custom_color,
-						'thumbnail_size'            => $thumbnail_size,
-						'custom_thumbnail_size'     => $custom_thumbnail_size,
+						'overlay_color'                        => $overlay_color,
+						'overlay_custom_color'                 => $overlay_custom_color,
+						'overlay_opacity'                      => $overlay_opacity,
+						'overlay_text_color'                   => $overlay_text_color,
+						'overlay_text_custom_color'            => $overlay_text_custom_color,
+						'thumbnail_size'                       => $thumbnail_size,
+						'custom_thumbnail_size'                => $custom_thumbnail_size,
 
 						'release_alternate_thumbnail_position' => $release_alternate_thumbnail_position,
-						'release_add_buy_links'     => $release_add_buy_links,
-						'release_do_redirect_url'   => $release_do_redirect_url,
+						'release_add_buy_links'                => $release_add_buy_links,
+						'release_do_redirect_url'              => $release_do_redirect_url,
 					),
 					$atts
 				)
@@ -524,6 +514,5 @@ function wd_output_posts( $atts ) {
 		do_action( 'wd_after_post_module', $atts );
 
 	}
-
 }
 add_action( 'wolf_discography_posts', 'wd_output_posts' );

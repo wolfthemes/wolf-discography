@@ -68,7 +68,6 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 
 				$r_type = ( isset( $r_param['type'] ) ) ? $elementor_types[ $r_param['type'] ] : 'text';
 
-
 				if ( isset( $r_param['type'] ) && 'background' === $r_param['type'] ) {
 
 					$repeater->add_group_control(
@@ -90,7 +89,7 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 						'placeholder' => ( isset( $r_param['placeholder'] ) ) ? $r_param['placeholder'] : '',
 						'description' => ( isset( $r_param['description'] ) ) ? $r_param['description'] : '',
 						'condition'   => ( isset( $r_param['condition'] ) ) ? $r_param['condition'] : array(),
-						'conditions'   => ( isset( $r_param['conditions'] ) ) ? $r_param['conditions'] : array(),
+						'conditions'  => ( isset( $r_param['conditions'] ) ) ? $r_param['conditions'] : array(),
 						'label_block' => true,
 					);
 
@@ -115,7 +114,7 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 						}
 					}
 
-					//debug( $r_params );
+					// debug( $r_params );
 
 					$repeater->add_control(
 						$r_param['param_name'],
@@ -124,7 +123,7 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 				}
 			}
 
-			//die();
+			// die();
 
 			$widget->add_control(
 				$p['param_name'],
@@ -134,7 +133,7 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 					'fields'      => $repeater->get_controls(),
 					'default'     => ( isset( $p['defaults'] ) ) ? $p['defaults'] : array(),
 					'condition'   => ( isset( $p['condition'] ) ) ? $p['condition'] : array(),
-					'conditions'   => ( isset( $p['conditions'] ) ) ? $p['conditions'] : array(),
+					'conditions'  => ( isset( $p['conditions'] ) ) ? $p['conditions'] : array(),
 					'title_field' => '{{{ ' . $p['params'][0]['param_name'] . ' }}}',
 				)
 			);
@@ -146,7 +145,6 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 			if ( isset( $p['ai'] ) ) {
 				$field_params['ai'] = $p['ai'];
 			}
-
 		} elseif ( 'textarea' === $type ) {
 
 			$field_params['type'] = \Elementor\Controls_Manager::TEXTAREA;
@@ -185,7 +183,6 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 					'enableTime' => false,
 				);
 			}
-
 		} elseif ( 'number' === $type ) {
 
 			$field_params['type'] = \Elementor\Controls_Manager::NUMBER;
@@ -325,36 +322,36 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 			} elseif ( 'padding' === $type ) {
 
 				$widget->add_responsive_control(
-						$p['param_name'],
-						array(
-							'label'      => $field_params['label'],
-							'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-							'size_units' => array( 'px', 'em', '%', 'rem' ),
-							'selectors'  => array(
-								$p['selector'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-							),
-							'default'    => isset( $field_params['default'] ) ? $field_params['default'] : array(),
-							'condition'  => isset( $p['condition'] ) ? $p['condition'] : array(),
-							'conditions' => isset( $p['conditions'] ) ? $p['conditions'] : array(),
-						)
-					);
+					$p['param_name'],
+					array(
+						'label'      => $field_params['label'],
+						'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+						'size_units' => array( 'px', 'em', '%', 'rem' ),
+						'selectors'  => array(
+							$p['selector'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						),
+						'default'    => isset( $field_params['default'] ) ? $field_params['default'] : array(),
+						'condition'  => isset( $p['condition'] ) ? $p['condition'] : array(),
+						'conditions' => isset( $p['conditions'] ) ? $p['conditions'] : array(),
+					)
+				);
 
 			} elseif ( 'margin' === $type ) {
 
 				$widget->add_responsive_control(
-						$p['param_name'],
-						array(
-							'label'      => $field_params['label'],
-							'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-							'size_units' => array( 'px', 'em', '%', 'rem' ),
-							'selectors'  => array(
-								$p['selector'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-							),
-							'default'    => isset( $field_params['default'] ) ? $field_params['default'] : array(),
-							'condition'  => isset( $p['condition'] ) ? $p['condition'] : array(),
-							'conditions' => isset( $p['conditions'] ) ? $p['conditions'] : array(),
-						)
-					);
+					$p['param_name'],
+					array(
+						'label'      => $field_params['label'],
+						'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+						'size_units' => array( 'px', 'em', '%', 'rem' ),
+						'selectors'  => array(
+							$p['selector'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						),
+						'default'    => isset( $field_params['default'] ) ? $field_params['default'] : array(),
+						'condition'  => isset( $p['condition'] ) ? $p['condition'] : array(),
+						'conditions' => isset( $p['conditions'] ) ? $p['conditions'] : array(),
+					)
+				);
 			} elseif ( 'css_filters' === $type ) {
 
 				$widget->add_group_control(
@@ -434,8 +431,8 @@ function wd_convert_params_to_elementor( $widget, $params = array() ) {
 			if ( isset( $p['group_tabs'] ) && 'close' === $p['group_tabs'] ) {
 				$widget->end_controls_tabs();
 			}
-		}
 	}
+}
 
 /**
  * Register Elementor controls.

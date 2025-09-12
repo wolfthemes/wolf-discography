@@ -92,7 +92,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 			$this->define_constants();
 
-			//$this->includes();
+			// $this->includes();
 
 			$this->init_hooks();
 
@@ -105,7 +105,8 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		public function warning_php_version() {
 			?>
 			<div class="notice notice-error">
-				<p><?php
+				<p>
+				<?php
 
 				printf(
 					esc_html__( '%1$s needs at least PHP %2$s installed on your server. You have version %3$s currently installed. Please contact your hosting service provider if you\'re not able to update PHP by yourself.', 'wolf-discography' ),
@@ -113,7 +114,8 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 					$this->required_php_version,
 					phpversion()
 				);
-				?></p>
+				?>
+				</p>
 			</div>
 			<?php
 		}
@@ -128,7 +130,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 			add_action( 'init', array( $this, 'init' ), 0 );
 
-			if ( ! $this-> is_wolf_theme() ) {
+			if ( ! $this->is_wolf_theme() ) {
 
 				require_once $this->plugin_path() . '/inc/module-params.php';
 
@@ -155,7 +157,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		/**
 		 * Flush rewrite rules on plugin activation to avoid 404 error
 		 */
-		public function flush_rewrite_rules(){
+		public function flush_rewrite_rules() {
 			if ( get_option( '_wolf_discography_flush_rewrite_rules_flag' ) ) {
 				flush_rewrite_rules();
 				delete_option( '_wolf_discography_flush_rewrite_rules_flag' );
@@ -168,16 +170,16 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		private function define_constants() {
 
 			$constants = array(
-				'WD_DEV' => false,
-				'WD_DIR' => $this->plugin_path(),
-				'WD_URI' => $this->plugin_url(),
-				'WD_CSS' => $this->plugin_url() . '/assets/css',
-				'WD_JS' => $this->plugin_url() . '/assets/js',
-				'WD_SLUG' => plugin_basename( dirname( __FILE__ ) ),
-				'WD_PATH' => plugin_basename( __FILE__ ),
-				'WD_VERSION' => $this->version,
+				'WD_DEV'         => false,
+				'WD_DIR'         => $this->plugin_path(),
+				'WD_URI'         => $this->plugin_url(),
+				'WD_CSS'         => $this->plugin_url() . '/assets/css',
+				'WD_JS'          => $this->plugin_url() . '/assets/js',
+				'WD_SLUG'        => plugin_basename( __DIR__ ),
+				'WD_PATH'        => plugin_basename( __FILE__ ),
+				'WD_VERSION'     => $this->version,
 				'WD_SUPPORT_URL' => $this->support_url,
-				'WD_DOC_URI' => 'https://docs.wolfthemes.com/documentation/plugins/' . plugin_basename( dirname( __FILE__ ) ),
+				'WD_DOC_URI'     => 'https://docs.wolfthemes.com/documentation/plugins/' . plugin_basename( __DIR__ ),
 				'WD_WOLF_DOMAIN' => 'wolfthemes.com',
 			);
 
@@ -188,7 +190,8 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 		/**
 		 * Define constant if not already set
-		 * @param  string $name
+		 *
+		 * @param  string      $name
 		 * @param  string|bool $value
 		 */
 		private function define( $name, $value ) {
@@ -200,17 +203,18 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		/**
 		 * What type of request is this?
 		 * string $type ajax, frontend or admin
+		 *
 		 * @return bool
 		 */
 		private function is_request( $type ) {
 			switch ( $type ) {
-				case 'admin' :
+				case 'admin':
 					return is_admin();
-				case 'ajax' :
+				case 'ajax':
 					return defined( 'DOING_AJAX' );
-				case 'cron' :
+				case 'cron':
 					return defined( 'DOING_CRON' );
-				case 'frontend' :
+				case 'frontend':
 					return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
 			}
 		}
@@ -223,34 +227,32 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			/**
 			 * Functions used in frontend and admin
 			 */
-			include_once( 'inc/wd-core-functions.php' );
+			include_once 'inc/wd-core-functions.php';
 
 			if ( ! $this->is_wolf_theme() ) {
 				if ( defined( 'ELEMENTOR_VERSION' ) ) {
 
-					include_once( 'inc/wd-elementor-functions.php' );
+					include_once 'inc/wd-elementor-functions.php';
 				}
 
 				if ( defined( 'WPB_VC_VERSION' ) ) {
 
-					include_once( 'inc/wd-vc-functions.php' );
+					include_once 'inc/wd-vc-functions.php';
 				}
 			}
 
-
-
 			if ( $this->is_request( 'admin' ) ) {
-				include_once( 'inc/admin/class-wd-admin.php' );
+				include_once 'inc/admin/class-wd-admin.php';
 			}
 
 			if ( $this->is_request( 'frontend' ) ) {
-				include_once( 'inc/frontend/wd-functions.php' );
-				include_once( 'inc/frontend/wd-helpers.php' );
-				include_once( 'inc/frontend/wd-image-functions.php' );
-				include_once( 'inc/frontend/wd-template-hooks.php' );
-				include_once( 'inc/frontend/wd-posts.php' );
-				include_once( 'inc/frontend/class-wd-shortcode.php' );
-				include_once( 'inc/frontend/class-wd-template-manager.php' );
+				include_once 'inc/frontend/wd-functions.php';
+				include_once 'inc/frontend/wd-helpers.php';
+				include_once 'inc/frontend/wd-image-functions.php';
+				include_once 'inc/frontend/wd-template-hooks.php';
+				include_once 'inc/frontend/wd-posts.php';
+				include_once 'inc/frontend/class-wd-shortcode.php';
+				include_once 'inc/frontend/class-wd-template-manager.php';
 			}
 		}
 
@@ -260,12 +262,11 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 				require_once $this->plugin_path() . '/elementor/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
 			}
-
 		}
 
 		/**
 		 * Include WPBakery Module
-	 	 */
+		 */
 		public function include_vc_modules() {
 			if ( defined( 'WPB_VC_VERSION' ) && post_type_exists( $this->cpt_slug ) ) {
 
@@ -277,7 +278,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		 * Function used to Init Discography Template Functions - This makes them pluggable by plugins and themes.
 		 */
 		public function include_template_functions() {
-			include_once( 'inc/frontend/wd-template-functions.php' );
+			include_once 'inc/frontend/wd-template-functions.php';
 		}
 
 		/**
@@ -289,8 +290,8 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		public function register_widget() {
 
 			// Include
-			include_once( 'inc/widgets/class-wd-widget-discography.php' );
-			include_once( 'inc/widgets/class-wd-widget-last-release.php' );
+			include_once 'inc/widgets/class-wd-widget-discography.php';
+			include_once 'inc/widgets/class-wd-widget-last-release.php';
 
 			// Register widgets
 			register_widget( 'WD_Widget_Discography' );
@@ -312,7 +313,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 			// Classes/actions loaded for the frontend and for ajax requests
 			if ( ! is_admin() || defined( 'DOING_AJAX' ) ) {
-			//	add_filter( 'template_include', array( $this, 'template_loader' ) );
+				// add_filter( 'template_include', array( $this, 'template_loader' ) );
 			}
 
 			// Hooks
@@ -330,14 +331,14 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		 * Register post type
 		 */
 		public function register_post_type() {
-			include_once( 'inc/wd-register-post-type.php' );
+			include_once 'inc/wd-register-post-type.php';
 		}
 
 		/**
 		 * Register taxonomy
 		 */
 		public function register_taxonomy() {
-			include_once( 'inc/wd-register-taxonomy.php' );
+			include_once 'inc/wd-register-taxonomy.php';
 		}
 
 		/**
@@ -355,7 +356,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 			if ( is_single() && $this->cpt_slug == get_post_type() ) {
 
-				$file    = 'single-' . $this->cpt_slug . '.php';
+				$file   = 'single-' . $this->cpt_slug . '.php';
 				$find[] = $file;
 				$find[] = $this->template_url . $file;
 
@@ -363,15 +364,15 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 				$term = get_queried_object();
 
-				$file 	= 'taxonomy-' . $term->taxonomy . '.php';
-				$find[] 	= 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
-				$find[] 	= $this->template_url . 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
-				$find[] 	= $file;
-				$find[] 	= $this->template_url . $file;
+				$file   = 'taxonomy-' . $term->taxonomy . '.php';
+				$find[] = 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
+				$find[] = $this->template_url . 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
+				$find[] = $file;
+				$find[] = $this->template_url . $file;
 
 			} elseif ( is_post_type_archive( $this->cpt_slug ) ) {
 
-				$file = 'archive-' . $this->cpt_slug . '.php';
+				$file   = 'archive-' . $this->cpt_slug . '.php';
 				$find[] = $file;
 				$find[] = $this->template_url . $file;
 
@@ -379,7 +380,9 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 			if ( $file ) {
 				$template = locate_template( $find );
-				if ( ! $template ) $template = $this->plugin_path() . '/templates/' . $file;
+				if ( ! $template ) {
+					$template = $this->plugin_path() . '/templates/' . $file;
+				}
 			}
 
 			return $template;
@@ -393,11 +396,12 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			$domain = 'wolf-discography';
 			$locale = apply_filters( 'wolf-discography', get_locale(), $domain );
 			load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-			load_plugin_textdomain( $domain, FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+			load_plugin_textdomain( $domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		}
 
 		/**
 		 * Get the plugin url.
+		 *
 		 * @return string
 		 */
 		public function plugin_url() {
@@ -406,6 +410,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 		/**
 		 * Get the plugin path.
+		 *
 		 * @return string
 		 */
 		public function plugin_path() {
@@ -414,6 +419,7 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 		/**
 		 * Get the template path.
+		 *
 		 * @return string
 		 */
 		public function template_path() {
@@ -422,11 +428,12 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 
 		/**
 		 * Check if current installation uses WolfThemes
+		 *
 		 * @return bool
 		 */
 		public function is_wolf_theme() {
-			$theme = wp_get_theme();
-			$author = $theme->get( 'Author' );
+			$theme      = wp_get_theme();
+			$author     = $theme->get( 'Author' );
 			$author_uri = $theme->get( 'AuthorURI' );
 
 			// Check if it's a WolfThemes theme
@@ -442,8 +449,8 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		}
 
 			/**
-		 * Plugin update
-		 */
+			 * Plugin update
+			 */
 		public function plugin_update() {
 
 			if ( ! class_exists( 'WP_GitHub_Updater' ) ) {
@@ -453,17 +460,17 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			$repo = 'wolfthemes/wolf-discography';
 
 			$config = array(
-				'slug' => plugin_basename( __FILE__ ),
+				'slug'               => plugin_basename( __FILE__ ),
 				'proper_folder_name' => 'wolf-discography',
-				'api_url' => 'https://api.github.com/repos/' . $repo . '',
-				'raw_url' => 'https://raw.github.com/' . $repo . '/master/',
-				'github_url' => 'https://github.com/' . $repo . '',
-				'zip_url' => 'https://github.com/' . $repo . '/archive/master.zip',
-				'sslverify' => true,
-				'requires' => '5.0',
-				'tested' => '5.5',
-				'readme' => 'README.md',
-				'access_token' => '',
+				'api_url'            => 'https://api.github.com/repos/' . $repo . '',
+				'raw_url'            => 'https://raw.github.com/' . $repo . '/master/',
+				'github_url'         => 'https://github.com/' . $repo . '',
+				'zip_url'            => 'https://github.com/' . $repo . '/archive/master.zip',
+				'sslverify'          => true,
+				'requires'           => '5.0',
+				'tested'             => '5.5',
+				'readme'             => 'README.md',
+				'access_token'       => '',
 			);
 
 			new WP_GitHub_Updater( $config );

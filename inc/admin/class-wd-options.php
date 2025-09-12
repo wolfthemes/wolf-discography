@@ -46,14 +46,14 @@ class WD_Options {
 
 		global $options;
 
-		if ( false ===  get_option( 'wolf_release_settings' )  ) {
+		if ( false === get_option( 'wolf_release_settings' ) ) {
 
 			$default = array(
-				'use_band_tax' => 1,
-				'use_label_tax' => 1,
+				'use_band_tax'   => 1,
+				'use_label_tax'  => 1,
 				'display_format' => 1,
-				'display' => 'list',
-				'columns' => '3'
+				'display'        => 'list',
+				'columns'        => '3',
 			);
 
 			add_option( 'wolf_release_settings', $default );
@@ -103,9 +103,9 @@ class WD_Options {
 			$input['columns'] = in_array( $input['columns'], array( '2', '3', '4' ) ) ? $input['columns'] : '3';
 		}
 
-		$input['use_band_tax'] = isset( $input['use_band_tax'] ) ? intval( $input['use_band_tax'] ) : 0;
-		$input['use_label_tax'] = isset( $input['use_label_tax'] ) ? intval( $input['use_label_tax'] ) : 0;
-		$input['use_genre_tax'] = isset( $input['use_genre_tax'] ) ? intval( $input['use_genre_tax'] ) : 0;
+		$input['use_band_tax']   = isset( $input['use_band_tax'] ) ? intval( $input['use_band_tax'] ) : 0;
+		$input['use_label_tax']  = isset( $input['use_label_tax'] ) ? intval( $input['use_label_tax'] ) : 0;
+		$input['use_genre_tax']  = isset( $input['use_genre_tax'] ) ? intval( $input['use_genre_tax'] ) : 0;
 		$input['display_format'] = isset( $input['display_format'] ) ? intval( $input['display_format'] ) : 0;
 
 		return $input;
@@ -119,7 +119,7 @@ class WD_Options {
 	public function section_intro() {
 		// debug
 		// global $options;
-		//var_dump(get_option('_wolf_discography_page_id'));
+		// var_dump(get_option('_wolf_discography_page_id'));
 	}
 
 	/**
@@ -130,7 +130,7 @@ class WD_Options {
 	 */
 	public function setting_page_id() {
 		$page_option = array( '' => esc_html__( '- Disabled -', 'wolf-discography' ) );
-		$pages = get_pages();
+		$pages       = get_pages();
 
 		foreach ( $pages as $page ) {
 
@@ -210,7 +210,7 @@ class WD_Options {
 	public function setting_use_band_tax() {
 		?>
 		<input type="hidden" name="wolf_release_settings[use_band_tax]" value="0">
-		<label><input type="checkbox" name="wolf_release_settings[use_band_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_band_tax' ) == 1) ? ' checked="checked"' : '' ); ?>>
+		<label><input type="checkbox" name="wolf_release_settings[use_band_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_band_tax' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
 		<?php esc_html_e( 'Make artist names clickable links to show all releases by that artist', 'wolf-discography' ); ?>
 		</label>
 		<?php
@@ -224,7 +224,7 @@ class WD_Options {
 	public function setting_use_label_tax() {
 		?>
 		<input type="hidden" name="wolf_release_settings[use_label_tax]" value="0">
-		<label><input type="checkbox" name="wolf_release_settings[use_label_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_label_tax' ) == 1) ? ' checked="checked"' : '' ); ?>>
+		<label><input type="checkbox" name="wolf_release_settings[use_label_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_label_tax' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
 		<?php esc_html_e( 'Make label names clickable links to show all releases by that label', 'wolf-discography' ); ?>
 		</label>
 		<?php
@@ -238,7 +238,7 @@ class WD_Options {
 	public function setting_use_genre_tax() {
 		?>
 		<input type="hidden" name="wolf_release_settings[use_genre_tax]" value="0">
-		<label><input type="checkbox" name="wolf_release_settings[use_genre_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_genre_tax' ) == 1) ? ' checked="checked"' : '' ); ?>>
+		<label><input type="checkbox" name="wolf_release_settings[use_genre_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_genre_tax' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
 		<?php esc_html_e( 'Make genre names clickable links to show all releases in that genre', 'wolf-discography' ); ?>
 		</label>
 		<?php
@@ -252,7 +252,7 @@ class WD_Options {
 	public function setting_display_format() {
 		?>
 		<input type="hidden" name="wolf_release_settings[display_format]" value="0">
-		<label><input type="checkbox" name="wolf_release_settings[display_format]" value="1" <?php echo ( ( wolf_get_release_option( 'display_format' ) == 1) ? ' checked="checked"' : '' ); ?>>
+		<label><input type="checkbox" name="wolf_release_settings[display_format]" value="1" <?php echo ( ( wolf_get_release_option( 'display_format' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
 		<?php esc_html_e( 'Display the release format (CD, Digital Download, Vinyl, etc.)', 'wolf-discography' ); ?>
 		</label>
 		<?php
@@ -264,7 +264,7 @@ class WD_Options {
 	public function help() {
 		?>
 		<div class="wrap">
-			<h2><?php esc_html_e( 'Discography Shortcode', 'wolf-discography' ) ?></h2>
+			<h2><?php esc_html_e( 'Discography Shortcode', 'wolf-discography' ); ?></h2>
 			<p><?php esc_html_e( 'To display your last releases in your post or page you can use the following shortcode.', 'wolf-discography' ); ?></p>
 			<p><code>[wolf_last_releases]</code></p>
 			<p><?php esc_html_e( 'Additionally, you can add a count, column, and categories attributes.', 'wolf-discography' ); ?></p>

@@ -88,7 +88,7 @@ function wd_clean_spaces( $string, $hard = false ) {
  */
 function wd_shortcode_custom_style( $param_value ) {
 
-	if ( preg_match( "/\s*\.([^\{]+)\s*\{\s*([^\}]+)\s*\}\s*/", $param_value, $match ) ) {
+	if ( preg_match( '/\s*\.([^\{]+)\s*\{\s*([^\}]+)\s*\}\s*/', $param_value, $match ) ) {
 		if ( isset( $match[2] ) ) {
 			return wd_clean_spaces( str_replace( '!important', '', $match[2] ), true ); // remove !important to allow CSS overwriting
 		}
@@ -101,7 +101,7 @@ function wd_shortcode_custom_style( $param_value ) {
  * Remove HTML and shortcode, sanitize and shorten a string
  *
  * @param string $text
- * @param int $num_words
+ * @param int    $num_words
  * @param string $more
  * @return string
  */
@@ -245,9 +245,7 @@ function wd_get_shared_colors_hex() {
 
 	$wd_shared_colors_hex = apply_filters( 'wd_shared_colors_hex', $wd_shared_colors_hex );
 
-
 	return $wd_shared_colors_hex;
-
 }
 
 /**
@@ -307,26 +305,26 @@ function wd_get_image_dominant_color( $attachment_id ) {
 function wd_get_color_tone( $hex, $index = 215 ) {
 
 	// Sanitize the color
-    $hex = sanitize_hex_color( $hex );
+	$hex = sanitize_hex_color( $hex );
 
-    // If sanitize_hex_color returns null, default to a fallback value (e.g., '#000000').
-    if ( is_null( $hex ) ) {
-        $hex = '#ffffff';
-    }
+	// If sanitize_hex_color returns null, default to a fallback value (e.g., '#000000').
+	if ( is_null( $hex ) ) {
+		$hex = '#ffffff';
+	}
 
-    // Remove #
-    $hex = str_replace( '#', '', $hex );
+	// Remove #
+	$hex = str_replace( '#', '', $hex );
 
-    // Convert hex to RGB
-    $c_r        = hexdec( substr( $hex, 0, 2 ) );
-    $c_g        = hexdec( substr( $hex, 2, 2 ) );
-    $c_b        = hexdec( substr( $hex, 4, 2 ) );
+	// Convert hex to RGB
+	$c_r = hexdec( substr( $hex, 0, 2 ) );
+	$c_g = hexdec( substr( $hex, 2, 2 ) );
+	$c_b = hexdec( substr( $hex, 4, 2 ) );
 
-    // Calculate brightness
-    $brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
+	// Calculate brightness
+	$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
 
-    // Return light or dark
-    return ( $index < $brightness ) ? 'light' : 'dark';
+	// Return light or dark
+	return ( $index < $brightness ) ? 'light' : 'dark';
 }
 
 /**
@@ -394,8 +392,8 @@ function wd_sanitize_color( $color ) {
 	elseif ( 'rgb(' === substr( $color, 0, 4 ) ) {
 		sscanf( $color, 'rgb(%d,%d,%d)', $red, $green, $blue );
 		if ( ( $red >= 0 && $red <= 255 ) &&
-			 ( $green >= 0 && $green <= 255 ) &&
-			 ( $blue >= 0 && $blue <= 255 )
+			( $green >= 0 && $green <= 255 ) &&
+			( $blue >= 0 && $blue <= 255 )
 			) {
 			return "rgb({$red},{$green},{$blue})";
 		}
@@ -404,9 +402,9 @@ function wd_sanitize_color( $color ) {
 	elseif ( 'rgba(' === substr( $color, 0, 5 ) ) {
 		sscanf( $color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
 		if ( ( $red >= 0 && $red <= 255 ) &&
-			 ( $green >= 0 && $green <= 255 ) &&
-			 ( $blue >= 0 && $blue <= 255 ) &&
-			   $alpha >= 0 && $alpha <= 1
+			( $green >= 0 && $green <= 255 ) &&
+			( $blue >= 0 && $blue <= 255 ) &&
+				$alpha >= 0 && $alpha <= 1
 			) {
 			return "rgba({$red},{$green},{$blue},{$alpha})";
 		}
@@ -480,7 +478,7 @@ function wd_kses( $output ) {
 				'class' => array(),
 				'id'    => array(),
 			),
-			'em'     => array(
+			'em'         => array(
 				'class' => array(),
 				'id'    => array(),
 			),
@@ -544,16 +542,16 @@ function wd_kses( $output ) {
 				'class' => array(),
 				'id'    => array(),
 			),
-			'iframe'        => array(
-				'class' => array(),
-				'id'    => array(),
-				'src'    => array(),
-				'width'    => array(),
-				'height'   => array(),
-				'style'   => array(),
-				'allowfullscreen'   => array(),
-				'loading'   => array(),
-				'referrerpolicy'   => array(),
+			'iframe'     => array(
+				'class'           => array(),
+				'id'              => array(),
+				'src'             => array(),
+				'width'           => array(),
+				'height'          => array(),
+				'style'           => array(),
+				'allowfullscreen' => array(),
+				'loading'         => array(),
+				'referrerpolicy'  => array(),
 			),
 		)
 	);
@@ -592,9 +590,9 @@ function wd_get_current_url() {
  * @return bool
  */
 function wd_is_discography_archives() {
-    return is_page( wolf_discography_get_page_id() ) ||
-           is_post_type_archive( 'release' ) ||
-           is_tax( array( 'band', 'label', 'release_genre' ) );
+	return is_page( wolf_discography_get_page_id() ) ||
+			is_post_type_archive( 'release' ) ||
+			is_tax( array( 'band', 'label', 'release_genre' ) );
 }
 
 /**

@@ -10,17 +10,17 @@
  * @since 1.0.3
  */
 
-if ( ! defined( 'ABSPATH' ) ){
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
 get_header( 'discography' );
 
-	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+	$paged          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$posts_per_page = apply_filters( 'wd_posts_per_page', -1 );
 
 	$args = array(
-		'post_type' => 'release',
+		'post_type'      => 'release',
 		'posts_per_page' => $posts_per_page,
 	);
 
@@ -41,7 +41,10 @@ get_header( 'discography' );
 
 		<?php wolf_discography_loop_start(); ?>
 
-			<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+			<?php
+			while ( $loop->have_posts() ) :
+				$loop->the_post();
+				?>
 
 				<?php wolf_discography_get_template_part( 'content', 'release' ); ?>
 
@@ -50,7 +53,7 @@ get_header( 'discography' );
 		<?php wolf_discography_loop_end(); ?>
 
 
-	<?php wolf_release_page_nav( $loop ); ?>
+		<?php wolf_release_page_nav( $loop ); ?>
 
 	<?php else : ?>
 
@@ -64,8 +67,8 @@ get_header( 'discography' );
 	 *
 	 * @hooked wolf_discography_output_content_wrapper_end - 10 (outputs closing divs for the content)
 	 */
-	do_action('wolf_discography_after_main_content');
+	do_action( 'wolf_discography_after_main_content' );
 
 get_sidebar( 'discography' );
 get_footer( 'discography' );
-?>
+

@@ -17,16 +17,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Display archive page state
  *
- * @param array $states
+ * @param array  $states
  * @param object $post
  * @return array $states
  */
-function wd_custom_post_states( $states, $post ) { 
+function wd_custom_post_states( $states, $post ) {
 
 	if ( 'page' == get_post_type( $post->ID ) && absint( $post->ID ) === wolf_discography_get_page_id() ) {
 
 		$states[] = esc_html__( 'Discography Page' );
-	} 
+	}
 
 	return $states;
 }

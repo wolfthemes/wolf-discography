@@ -24,13 +24,17 @@ get_header(); ?>
 	?>
 
 	<?php
-		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>
+		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+	?>
 
 		<?php if ( have_posts() ) : ?>
 
 			<?php wolf_discography_loop_start(); ?>
 
-				<?php while ( have_posts() ) : the_post(); ?>
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					?>
 
 					<?php wolf_discography_get_template_part( 'content', 'release' ); ?>
 
@@ -52,10 +56,10 @@ get_header(); ?>
 		 *
 		 * @hooked wolf_discography_output_content_wrapper_end - 10 (outputs closing divs for the content)
 		 */
-		do_action('wolf_discography_after_main_content');
+		do_action( 'wolf_discography_after_main_content' );
 	?>
 
 <?php
 get_sidebar( 'discography' );
 get_footer();
-?>
+

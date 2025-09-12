@@ -60,26 +60,28 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 		 */
 		public function add_meta() {
 
-			foreach ( $this->meta as $k => $v) {
+			foreach ( $this->meta as $k => $v ) {
 
 				if ( is_array( $v['page'] ) ) {
-					foreach ( $v['page'] as $p) {
+					foreach ( $v['page'] as $p ) {
 						add_meta_box(
-						sanitize_title( $k ).'_we_meta_box',
-						$v['title'],
-						array( $this, 'render' ),
-						$p,
-						'normal',
-						'default' );
+							sanitize_title( $k ) . '_we_meta_box',
+							$v['title'],
+							array( $this, 'render' ),
+							$p,
+							'normal',
+							'default'
+						);
 					}
 				} else {
 					add_meta_box(
-					sanitize_title( $k ).'_we_meta_box',
-					$v['title'],
-					array( $this, 'render' ),
-					$v['page'],
-					'normal',
-					'default' );
+						sanitize_title( $k ) . '_we_meta_box',
+						$v['title'],
+						array( $this, 'render' ),
+						$v['page'],
+						'normal',
+						'default'
+					);
 				}
 			}
 		}
@@ -98,13 +100,11 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 
 			foreach ( $this->meta as $k => $v ) {
 				if ( is_array( $v['page'] ) ) {
-					if (  in_array( $current_post_type, $v['page'] ) ) {
+					if ( in_array( $current_post_type, $v['page'] ) ) {
 						$meta_fields = $v['metafields'];
 					}
-				} else {
-					if ( $v['page'] == $current_post_type ) {
+				} elseif ( $v['page'] == $current_post_type ) {
 						$meta_fields = $v['metafields'];
-					}
 				}
 			}
 
@@ -123,14 +123,14 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 
 			foreach ( $meta_fields as $field ) {
 
-				$field_id	= sanitize_title( $field['id'] );
-				$type     	= ( isset( $field['type'] ) ) ? $field['type'] : 'text';
-				$label    	= ( isset( $field['label'] ) ) ? $field['label'] : 'Label';
-				$desc    	= ( isset( $field['desc'] ) ) ? $field['desc'] : '';
+				$field_id      = sanitize_title( $field['id'] );
+				$type          = ( isset( $field['type'] ) ) ? $field['type'] : 'text';
+				$label         = ( isset( $field['label'] ) ) ? $field['label'] : 'Label';
+				$desc          = ( isset( $field['desc'] ) ) ? $field['desc'] : '';
 				$default_value = ( isset( $field['value'] ) ) ? $field['value'] : '';
-				$dependency	= ( isset( $field['dependency'] ) ) ? $field['dependency'] : array();
-				$class 		= "option-section-$field_id";
-				$data 		= '';
+				$dependency    = ( isset( $field['dependency'] ) ) ? $field['dependency'] : array();
+				$class         = "option-section-$field_id";
+				$data          = '';
 
 				if ( array() != $dependency ) {
 					$class .= ' has-dependency';
@@ -149,7 +149,9 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 				// get value of this field if it exists for this post
 				$meta = get_post_meta( $post_id, $field_id, true );
 
-				if ( ! $meta ) $meta = $default_value;
+				if ( ! $meta ) {
+					$meta = $default_value;
+				}
 
 				// begin a table row with
 				echo "<tr class='$class'$data>";
@@ -161,85 +163,85 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 				<td>";
 
 					// editor
-					if ( 'editor' == $type ) {
-						wp_editor( $meta, $field_id, $options = array() );
-						echo '<br><span class="description">' . $desc . '</span>';
+				if ( 'editor' == $type ) {
+					wp_editor( $meta, $field_id, $options = array() );
+					echo '<br><span class="description">' . $desc . '</span>';
 					// text
-					} elseif ( 'text' == $type || 'int' == $type || 'url' == $type ) {
+				} elseif ( 'text' == $type || 'int' == $type || 'url' == $type ) {
 
-						echo '<input type="text" name="' . $field_id . '" id="' . $field_id . '" value="' . $meta . '" size="30" />
+					echo '<input type="text" name="' . $field_id . '" id="' . $field_id . '" value="' . $meta . '" size="30" />
 						<br><span class="description">' . $desc . '</span>';
 
 					// textarea
-					} elseif ( 'textarea' == $type ) {
-						echo '<textarea name="' . $field_id . '" id="' . $field_id . '" cols="60" rows="4">' . $meta . '</textarea>
+				} elseif ( 'textarea' == $type ) {
+					echo '<textarea name="' . $field_id . '" id="' . $field_id . '" cols="60" rows="4">' . $meta . '</textarea>
 						<br><span class="description">' . $desc . '</span>';
 
 					// checkbox
-					} elseif ( 'checkbox' == $type ) {
-						echo '<input type="checkbox" name="' . $field_id . '" id="' . $field_id . '" ', ( $meta ) ? ' checked="checked"' : '','/>
+				} elseif ( 'checkbox' == $type ) {
+					echo '<input type="checkbox" name="' . $field_id . '" id="' . $field_id . '" ', ( $meta ) ? ' checked="checked"' : '', '/>
 						<span class="description">' . $desc . '</span>';
 
 					// select
-					} elseif ( 'select' == $type ) {
+				} elseif ( 'select' == $type ) {
 
-						echo '<select name="' . $field_id . '" id="' . $field_id . '">';
-						if ( array_keys( $field['choices'] ) != array_keys( array_keys( $field['choices'] ) ) ) {
-							foreach ( $field['choices'] as $k => $option) {
-								echo '<option', $k == $meta ? ' selected="selected"' : '', ' value="'.$k.'">' . $option . '</option>';
-							}
-						} else{
-							foreach ( $field['choices'] as $option) {
-								echo '<option', $option == $meta ? ' selected="selected"' : '', ' value="' . $option . '">' . $option . '</option>';
-							}
+					echo '<select name="' . $field_id . '" id="' . $field_id . '">';
+					if ( array_keys( $field['choices'] ) != array_keys( array_keys( $field['choices'] ) ) ) {
+						foreach ( $field['choices'] as $k => $option ) {
+							echo '<option', $k == $meta ? ' selected="selected"' : '', ' value="' . $k . '">' . $option . '</option>';
 						}
+					} else {
+						foreach ( $field['choices'] as $option ) {
+							echo '<option', $option == $meta ? ' selected="selected"' : '', ' value="' . $option . '">' . $option . '</option>';
+						}
+					}
 
-						echo '</select><br><span class="description">' . $desc . '</span>';
+					echo '</select><br><span class="description">' . $desc . '</span>';
 
 					// datepicker
-					} elseif ( $field['type'] == 'datepicker' ) {
-						echo '<input type="text" class="wd-metabox-datepicker" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . $meta . '" size="30">
+				} elseif ( $field['type'] == 'datepicker' ) {
+					echo '<input type="text" class="wd-metabox-datepicker" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . $meta . '" size="30">
 						<br><span class="description">' . $desc . '</span>';
 
 					// colorpicker
-					} elseif ( 'colorpicker' == $type ) {
+				} elseif ( 'colorpicker' == $type ) {
 
-						echo '<input type="text" class="wd-options-colorpicker wolf-colorpicker-input" name="' . $field_id . '" id="' . $field_id . '" value="' . $meta . '" />
+					echo '<input type="text" class="wd-options-colorpicker wolf-colorpicker-input" name="' . $field_id . '" id="' . $field_id . '" value="' . $meta . '" />
 						<br><span class="description">' . $desc . '</span>';
 
 					// repeatable
-					} elseif( 'repeatable' == $type ) {
+				} elseif ( 'repeatable' == $type ) {
 
-						echo '<a class="wd-repeatable-add button" href="#">+</a>
-								<ul id="'.$field['id'].'-repeatable" class="wd-custom_repeatable">';
-						$i = 0;
-						if ( is_array( $meta ) ) {
+					echo '<a class="wd-repeatable-add button" href="#">+</a>
+								<ul id="' . $field['id'] . '-repeatable" class="wd-custom_repeatable">';
+					$i = 0;
+					if ( is_array( $meta ) ) {
 
-							foreach( $meta as $row) {
+						foreach ( $meta as $row ) {
 
-								//if ( '' == $row ) {
-								//	continue;
-								//}
+							// if ( '' == $row ) {
+							// continue;
+							// }
 
-								echo '<li><span class="sort hndle">|||</span>
-										<input type="text" name="' . $field['id'] . '['  .$i . ']" id="' . $field_id . '" value="' . esc_attr( $row ) . '" size="30" />
-											<a class="wd-repeatable-remove button" href="#">-</a></li>';
-								$i++;
-							}
-						} else {
 							echo '<li><span class="sort hndle">|||</span>
+										<input type="text" name="' . $field['id'] . '[' . $i . ']" id="' . $field_id . '" value="' . esc_attr( $row ) . '" size="30" />
+											<a class="wd-repeatable-remove button" href="#">-</a></li>';
+							++$i;
+						}
+					} else {
+						echo '<li><span class="sort hndle">|||</span>
 								<input type="text" name="' . $field_id . '[' . $i . ']" id="' . $field_id . '" value="" size="30" />
 								<a class="wd-repeatable-remove button" href="#">-</a></li>';
-						}
-						echo '</ul>
-						<span class="description">'. $desc .'</span>';
+					}
+					echo '</ul>
+						<span class="description">' . $desc . '</span>';
 
 					// file
-					} elseif ( 'file' == $type ) {
-						$meta_img = get_post_meta( $post_id, $field_id, true );
+				} elseif ( 'file' == $type ) {
+					$meta_img = get_post_meta( $post_id, $field_id, true );
 					?>
 					<div>
-						<input type="text"  name="<?php echo esc_attr( $field_id ); ?>" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo esc_url( $meta_img); ?>">
+						<input type="text"  name="<?php echo esc_attr( $field_id ); ?>" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo esc_url( $meta_img ); ?>">
 						<br><a href="#" class="button wolf-options-reset-file"><?php esc_html_e( 'Clear', 'wolf-discography' ); ?></a>
 						<a href="#" class="button wolf-options-set-file"><?php esc_html_e( 'Choose a file', 'wolf-discography' ); ?></a>
 					</div>
@@ -248,13 +250,18 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 					<?php
 
 					// image
-					} elseif ( 'image' == $type ) {
-						$meta_img = absint( get_post_meta( $post_id, $field_id, true ) );
-						$meta_img_url = esc_url( wolf_get_url_from_attachment_id( $meta_img ) );
+				} elseif ( 'image' == $type ) {
+					$meta_img     = absint( get_post_meta( $post_id, $field_id, true ) );
+					$meta_img_url = esc_url( wolf_get_url_from_attachment_id( $meta_img ) );
 					?>
 					<div>
-						<input type="hidden"  name="<?php echo esc_attr( $field_id ); ?>" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo absint( $meta_img); ?>">
-						<img style="max-width:250px;<?php if ( 0 == $meta_img ) echo ' display:none;'; ?>" class="wolf-options-img-preview" src="<?php echo esc_url( $meta_img_url ); ?>" alt="<?php echo esc_attr( $field_id ); ?>">
+						<input type="hidden"  name="<?php echo esc_attr( $field_id ); ?>" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo absint( $meta_img ); ?>">
+						<img style="max-width:250px;
+						<?php
+						if ( 0 == $meta_img ) {
+							echo ' display:none;';}
+						?>
+						" class="wolf-options-img-preview" src="<?php echo esc_url( $meta_img_url ); ?>" alt="<?php echo esc_attr( $field_id ); ?>">
 						<br><a href="#" class="button wolf-options-reset-img"><?php esc_html_e( 'Clear', 'wolf-discography' ); ?></a>
 						<a href="#" class="button wolf-options-set-img"><?php esc_html_e( 'Choose an image', 'wolf-discography' ); ?></a>
 					</div>
@@ -262,95 +269,112 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 					<div style="clear:both"></div>
 					<?php
 
-					/*  Background
+					/*
+						Background
 					-------------------------------------------*/
-					} elseif ( 'background' == $type ) {
+				} elseif ( 'background' == $type ) {
 
-						$parallax           		= isset( $field['parallax'] ) ? $field['parallax'] : false;
-						$bg_meta_color      	= get_post_meta( $post_id, $field_id . '_color', true );
-						$bg_meta_repeat     	= get_post_meta( $post_id, $field_id . '_repeat', true );
-						$bg_meta_position   	= get_post_meta( $post_id, $field_id . '_position', true );
-						$bg_meta_attachment = get_post_meta( $post_id, $field_id . '_attachment', true );
-						$bg_meta_size       	= get_post_meta( $post_id, $field_id . '_size', true );
-						$bg_meta_parallax   	= get_post_meta( $post_id, $field_id . '_parallax', true );
-						$exclude_params 	= isset( $field['exclude_params'] ) ?$field['exclude_params'] : array();
+					$parallax           = isset( $field['parallax'] ) ? $field['parallax'] : false;
+					$bg_meta_color      = get_post_meta( $post_id, $field_id . '_color', true );
+					$bg_meta_repeat     = get_post_meta( $post_id, $field_id . '_repeat', true );
+					$bg_meta_position   = get_post_meta( $post_id, $field_id . '_position', true );
+					$bg_meta_attachment = get_post_meta( $post_id, $field_id . '_attachment', true );
+					$bg_meta_size       = get_post_meta( $post_id, $field_id . '_size', true );
+					$bg_meta_parallax   = get_post_meta( $post_id, $field_id . '_parallax', true );
+					$exclude_params     = isset( $field['exclude_params'] ) ? $field['exclude_params'] : array();
 
-						$img = get_post_meta( $post_id, $field_id . '_img', true );
+					$img = get_post_meta( $post_id, $field_id . '_img', true );
 
-						if ( is_numeric( $img ) ) {
-							$img = absint( get_post_meta( $post_id, $field_id . '_img', true ) );
-							$img_url = wolf_get_url_from_attachment_id( $img, 'thumbnail' );
-						} else {
-							$img = esc_url( get_post_meta( $post_id, $field_id . '_img', true ) );
-							$img_url = esc_url( $img );
-						}
+					if ( is_numeric( $img ) ) {
+						$img     = absint( get_post_meta( $post_id, $field_id . '_img', true ) );
+						$img_url = wolf_get_url_from_attachment_id( $img, 'thumbnail' );
+					} else {
+						$img     = esc_url( get_post_meta( $post_id, $field_id . '_img', true ) );
+						$img_url = esc_url( $img );
+					}
 
-						/* Bg Image */
-						if ( ! in_array( 'color', $exclude_params ) ) {
+					/* Bg Image */
+					if ( ! in_array( 'color', $exclude_params ) ) {
 						?>
 						<p><?php esc_html_e( 'Background color', 'wolf-discography' ); ?></p>
 						<input name="<?php echo esc_attr( $field_id . '_color' ); ?>" name="<?php echo esc_attr( $field_id . '_color' ); ?>" class="wolf-options-colorpicker" type="text" value="<?php echo esc_attr( $bg_meta_color ); ?>">
 						<br><br>
 						<?php
-						}
-						if ( ! in_array( 'image', $exclude_params ) ) {
+					}
+					if ( ! in_array( 'image', $exclude_params ) ) {
 
 						?>
 						<p><?php esc_html_e( 'Background image', 'wolf-discography' ); ?></p>
 						<div>
 							<input type="hidden" name="<?php echo esc_attr( $field_id ); ?>_img" id="<?php echo esc_attr( $field_id ); ?>_img" value="<?php echo esc_attr( $img ); ?>">
-							<img style="max-width:250px;<?php if ( ! $img ) echo ' display:none;'; ?>" class="wolf-options-img-preview" src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $field_id ); ?>">
+							<img style="max-width:250px;
+							<?php
+							if ( ! $img ) {
+								echo ' display:none;';}
+							?>
+							" class="wolf-options-img-preview" src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $field_id ); ?>">
 							<br><a href="#" class="button wolf-options-reset-bg"><?php esc_html_e( 'Clear', 'wolf-discography' ); ?></a>
 							<a href="#" class="button wolf-options-set-bg"><?php esc_html_e( 'Choose an image', 'wolf-discography' ); ?></a>
 						</div>
 						<br><br>
 						<?php
-						}
+					}
 
-						if ( ! in_array( 'repeat', $exclude_params ) ) {
+					if ( ! in_array( 'repeat', $exclude_params ) ) {
 						/* Bg Repeat */
-						$options = array(  'no-repeat', 'repeat','repeat-x', 'repeat-y' );
+						$options = array( 'no-repeat', 'repeat', 'repeat-x', 'repeat-y' );
 
 						?>
 						<br>
 						<p><?php esc_html_e( 'Background repeat', 'wolf-discography' ); ?></p>
 						<select name="<?php echo esc_attr( $field_id ) . '_repeat'; ?>" id="<?php echo esc_attr( $field_id ) . '_repeat'; ?>">
-							<?php foreach ( $options as $o): ?>
-								<option value="<?php echo esc_attr( $o ); ?>" <?php if ( $o == $bg_meta_repeat ) echo 'selected="selected"'; ?>><?php echo esc_attr( $o ); ?></option>
+						<?php foreach ( $options as $o ) : ?>
+								<option value="<?php echo esc_attr( $o ); ?>" 
+								<?php
+								if ( $o == $bg_meta_repeat ) {
+									echo 'selected="selected"';}
+								?>
+								><?php echo esc_attr( $o ); ?></option>
 							<?php endforeach; ?>
 						</select>
 						<?php
-						}
-						if ( ! in_array( 'position', $exclude_params ) ) {
+					}
+					if ( ! in_array( 'position', $exclude_params ) ) {
 						/* Bg position */
 						$options = array(
 							'center center',
 							'center top',
-							'left top' ,
-							'right top' ,
+							'left top',
+							'right top',
 							'center bottom',
-							'left bottom' ,
-							'right bottom' ,
-							'left center' ,
-							'right center'
+							'left bottom',
+							'right bottom',
+							'left center',
+							'right center',
 						);
 
 						?>
 						<br><br>
 						<p><?php esc_html_e( 'Background position', 'wolf-discography' ); ?></p>
 						<select name="<?php echo esc_attr( $field_id ) . '_position'; ?>" id="<?php echo esc_attr( $field_id ) . '_position'; ?>">
-							<?php foreach ( $options as $o): ?>
-								<option value="<?php echo esc_attr( $o ); ?>" <?php if ( $o == $bg_meta_position ) echo 'selected="selected"'; ?>><?php echo esc_attr( $o ); ?></option>
+						<?php foreach ( $options as $o ) : ?>
+								<option value="<?php echo esc_attr( $o ); ?>" 
+								<?php
+								if ( $o == $bg_meta_position ) {
+									echo 'selected="selected"';}
+								?>
+								><?php echo esc_attr( $o ); ?></option>
 							<?php endforeach; ?>
 						</select>
 						<?php
-						}
-						if ( ! in_array( 'size', $exclude_params ) ) {
+					}
+					if ( ! in_array( 'size', $exclude_params ) ) {
 
-						/* size
+						/*
+						size
 						--------------------*/
 						$options = array(
-							'cover' => esc_html__( 'cover (resize)', 'wolf-discography' ),
+							'cover'  => esc_html__( 'cover (resize)', 'wolf-discography' ),
 							'normal' => esc_html__( 'normal', 'wolf-discography' ),
 							'resize' => esc_html__( 'responsive (hard resize)', 'wolf-discography' ),
 						);
@@ -359,124 +383,151 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 						<br><br>
 						<p><?php esc_html_e( 'Background size', 'wolf-discography' ); ?></p>
 						<select name="<?php echo esc_attr( $field_id ) . '_size'; ?>" id="<?php echo esc_attr( $field_id ) . '_size'; ?>">
-							<?php foreach ( $options as $k => $v ) : ?>
-								<option value="<?php echo esc_attr( $k ); ?>" <?php if ( $k == $bg_meta_size ) echo 'selected="selected"'; ?>><?php echo sanitize_text_field( $v ); ?></option>
+						<?php foreach ( $options as $k => $v ) : ?>
+								<option value="<?php echo esc_attr( $k ); ?>" 
+								<?php
+								if ( $k == $bg_meta_size ) {
+									echo 'selected="selected"';}
+								?>
+								><?php echo sanitize_text_field( $v ); ?></option>
 							<?php endforeach; ?>
 						</select>
 						<?php
-						}
-						if ( $parallax ) {
-							?>
+					}
+					if ( $parallax ) {
+						?>
 							<br><br>
 							<p><strong><?php esc_html_e( 'Parallax', 'wolf-discography' ); ?></strong></p>
-							<input <?php if ( $bg_meta_parallax ) echo 'checked="checked"'; ?> type="checkbox" name="<?php echo esc_attr( $field_id ) . '_parallax'; ?>" id="<?php echo esc_attr( $field_id ) . '_parallax'; ?>">
+							<input 
 							<?php
-						}
+							if ( $bg_meta_parallax ) {
+								echo 'checked="checked"';}
+							?>
+							type="checkbox" name="<?php echo esc_attr( $field_id ) . '_parallax'; ?>" id="<?php echo esc_attr( $field_id ) . '_parallax'; ?>">
+							<?php
+					}
 
-					/*  Font
+					/*
+						Font
 					-------------------------------------------*/
-					} elseif ( 'font' == $type ) {
-						$color 			= get_post_meta( $post_id, $field_id . '_font_color', true );
-						$name 			= get_post_meta( $post_id, $field_id . '_font_name', true );
-						$weight 		= get_post_meta( $post_id, $field_id . '_font_weight', true );
-						$transform 		= get_post_meta( $post_id, $field_id . '_font_transform', true );
-						$letter_spacing 		= get_post_meta( $post_id, $field_id . '_font_letter_spacing', true );
-						$style 			= get_post_meta( $post_id, $field_id . '_font_style', true );
-						$exclude_params 	= isset( $field['exclude_params'] ) ? $field['exclude_params'] : array();
+				} elseif ( 'font' == $type ) {
+					$color          = get_post_meta( $post_id, $field_id . '_font_color', true );
+					$name           = get_post_meta( $post_id, $field_id . '_font_name', true );
+					$weight         = get_post_meta( $post_id, $field_id . '_font_weight', true );
+					$transform      = get_post_meta( $post_id, $field_id . '_font_transform', true );
+					$letter_spacing = get_post_meta( $post_id, $field_id . '_font_letter_spacing', true );
+					$style          = get_post_meta( $post_id, $field_id . '_font_style', true );
+					$exclude_params = isset( $field['exclude_params'] ) ? $field['exclude_params'] : array();
 
-						if ( ! in_array( 'color', $exclude_params ) ) {
+					if ( ! in_array( 'color', $exclude_params ) ) {
 						?>
 						<p><?php esc_html_e( 'Font color', 'wolf-discography' ); ?></p>
-						<input name="<?php echo esc_attr( $field_id ) . '_font_color'; ?>" name="<?php echo  $field_id . '_font_color'; ?>" class="wolf-options-colorpicker" type="text" value="<?php echo esc_attr( $color ); ?>">
+						<input name="<?php echo esc_attr( $field_id ) . '_font_color'; ?>" name="<?php echo $field_id . '_font_color'; ?>" class="wolf-options-colorpicker" type="text" value="<?php echo esc_attr( $color ); ?>">
 						<br><br>
 						<?php
-						}
+					}
 
-						if ( ! in_array( 'name', $exclude_params ) ) {
-							global $wolf_google_fonts;
-							$wolf_fonts = $wolf_google_fonts;
+					if ( ! in_array( 'name', $exclude_params ) ) {
+						global $wolf_google_fonts;
+						$wolf_fonts = $wolf_google_fonts;
 						?>
 							<p><?php esc_html_e( 'Font Family', 'wolf-discography' ); ?></p>
 							<select name="<?php echo esc_attr( $field_id ) . '_font_name'; ?>" id="<?php echo esc_attr( $field_id ) . '_font_name'; ?>">
 								<option value=''><?php esc_html_e( 'default', 'wolf-discography' ); ?></option>
-								<?php foreach ( $wolf_fonts as $k =>$v ) : ?>
-									<option value="<?php echo esc_attr( $k ); ?>" <?php if ( $k == $name ) echo 'selected="selected"'; ?>><?php echo esc_attr( $k ); ?></option>
+							<?php foreach ( $wolf_fonts as $k => $v ) : ?>
+									<option value="<?php echo esc_attr( $k ); ?>" 
+									<?php
+									if ( $k == $name ) {
+										echo 'selected="selected"';}
+									?>
+									><?php echo esc_attr( $k ); ?></option>
 								<?php endforeach; ?>
 							</select>
 						<?php
-						}
+					}
 
-						if ( ! in_array( 'weight', $exclude_params ) ) {
+					if ( ! in_array( 'weight', $exclude_params ) ) {
 						?>
 							<br><br>
 							<p><?php esc_html_e( 'Font weight', 'wolf-discography' ); ?></p>
-							<input type="text" name="<?php echo esc_attr( $field_id ) ?>_font_weight" id="<?php echo esc_attr( $field_id ); ?>_font_weight" value="<?php echo esc_attr( $weight ); ?>" >
+							<input type="text" name="<?php echo esc_attr( $field_id ); ?>_font_weight" id="<?php echo esc_attr( $field_id ); ?>_font_weight" value="<?php echo esc_attr( $weight ); ?>" >
 							<br><span class="description"><?php esc_html_e( 'For example: 400 is normal, 700 is bold.The available font weights depend on the font.<br>Leave empty to use the theme default style', 'wolf-discography' ); ?></span>
 						<?php
-						}
+					}
 
-						if ( ! in_array( 'transform', $exclude_params ) ) {
-							$options = array(
-								'' => esc_html__( 'auto', 'wolf-discography' ),
-								'none' => esc_html__( 'none', 'wolf-discography' ),
-								'uppercase' => esc_html__( 'uppercase', 'wolf-discography' ),
-							);
+					if ( ! in_array( 'transform', $exclude_params ) ) {
+						$options = array(
+							''          => esc_html__( 'auto', 'wolf-discography' ),
+							'none'      => esc_html__( 'none', 'wolf-discography' ),
+							'uppercase' => esc_html__( 'uppercase', 'wolf-discography' ),
+						);
 						?>
 							<br><br>
 							<p><?php esc_html_e( 'Font transform', 'wolf-discography' ); ?></p>
 							<select name="<?php echo esc_attr( $field_id ) . '_font_transform'; ?>" id="<?php echo esc_attr( $field_id ) . '_font_transform'; ?>">
-								<?php foreach ( $options as $k => $v ) : ?>
-									<option value="<?php echo esc_attr( $k ); ?>" <?php if ( $k == $transform ) echo 'selected="selected"'; ?>><?php echo sanitize_text_field( $v ); ?></option>
+							<?php foreach ( $options as $k => $v ) : ?>
+									<option value="<?php echo esc_attr( $k ); ?>" 
+									<?php
+									if ( $k == $transform ) {
+										echo 'selected="selected"';}
+									?>
+									><?php echo sanitize_text_field( $v ); ?></option>
 								<?php endforeach; ?>
 							</select>
 							<br><span class="description"><?php esc_html_e( '"auto" is the default style in the theme options', 'wolf-discography' ); ?></span>
 						<?php
-						}
+					}
 
-						if ( ! in_array( 'style', $exclude_params ) ) {
-							$options = array(
-								'' => esc_html__( 'auto', 'wolf-discography' ),
-								'normal' => esc_html__( 'normal', 'wolf-discography' ),
-								'italic' => esc_html__( 'italic', 'wolf-discography' ),
-							);
+					if ( ! in_array( 'style', $exclude_params ) ) {
+						$options = array(
+							''       => esc_html__( 'auto', 'wolf-discography' ),
+							'normal' => esc_html__( 'normal', 'wolf-discography' ),
+							'italic' => esc_html__( 'italic', 'wolf-discography' ),
+						);
 						?>
 							<br><br>
 							<p><?php esc_html_e( 'Font style', 'wolf-discography' ); ?></p>
 							<select name="<?php echo esc_attr( $field_id ) . '_font_style'; ?>" id="<?php echo esc_attr( $field_id ) . '_font_style'; ?>">
-								<?php foreach ( $options as $k => $v ) : ?>
-									<option value="<?php echo esc_attr( $k ); ?>" <?php if ( $k == $style ) echo 'selected="selected"'; ?>><?php echo sanitize_text_field( $v ); ?></option>
+							<?php foreach ( $options as $k => $v ) : ?>
+									<option value="<?php echo esc_attr( $k ); ?>" 
+									<?php
+									if ( $k == $style ) {
+										echo 'selected="selected"';}
+									?>
+									><?php echo sanitize_text_field( $v ); ?></option>
 								<?php endforeach; ?>
 							</select>
 							<br><span class="description"><?php esc_html_e( '"auto" is the default style defined in the theme options', 'wolf-discography' ); ?></span>
 						<?php
-						}
+					}
 
-						if ( ! in_array( 'letter_spacing', $exclude_params ) ) {
+					if ( ! in_array( 'letter_spacing', $exclude_params ) ) {
 						?>
 							<br><br>
 							<p><?php esc_html_e( 'Font letter spacing (omit px)', 'wolf-discography' ); ?></p>
-							<input type="text" name="<?php echo esc_attr( $field_id ) ?>_font_letter_spacing" id="<?php echo esc_attr( $field_id ); ?>_font_letter_spacing" value="<?php echo esc_attr( $letter_spacing ); ?>">
+							<input type="text" name="<?php echo esc_attr( $field_id ); ?>_font_letter_spacing" id="<?php echo esc_attr( $field_id ); ?>_font_letter_spacing" value="<?php echo esc_attr( $letter_spacing ); ?>">
 							<br><span class="description"><?php esc_html_e( 'Leave empty to use the style defined in the theme options', 'wolf-discography' ); ?></span>
 						<?php
-						}
+					}
 
-					/*  Video
+					/*
+						Video
 					-------------------------------------------*/
-					} elseif ( 'video' == $type ) {
-						$mp4 		= get_post_meta( $post_id, $field_id . '_mp4', true );
-						$webm 	= get_post_meta( $post_id, $field_id . '_webm', true );
-						$ogv 		= get_post_meta( $post_id, $field_id . '_ogv', true );
-						$opacity 	= get_post_meta( $post_id, $field_id . '_opacity', true ) ? intval( get_post_meta( $post_id, $field_id . '_opacity', true ) ) : 100;
-						$img 		= get_post_meta( $post_id, $field_id . '_img', true );
+				} elseif ( 'video' == $type ) {
+					$mp4     = get_post_meta( $post_id, $field_id . '_mp4', true );
+					$webm    = get_post_meta( $post_id, $field_id . '_webm', true );
+					$ogv     = get_post_meta( $post_id, $field_id . '_ogv', true );
+					$opacity = get_post_meta( $post_id, $field_id . '_opacity', true ) ? intval( get_post_meta( $post_id, $field_id . '_opacity', true ) ) : 100;
+					$img     = get_post_meta( $post_id, $field_id . '_img', true );
 
-						if ( is_numeric( $img ) ) {
-							$img = absint( get_post_meta( $post_id, $field_id . '_img', true ) );
-							$img_url = wolf_get_url_from_attachment_id( $img, 'thumbnail' );
-						} else {
-							$img = esc_url( get_post_meta( $post_id, $field_id . '_img', true ) );
-							$img_url = esc_url( $img );
-						}
-						?>
+					if ( is_numeric( $img ) ) {
+						$img     = absint( get_post_meta( $post_id, $field_id . '_img', true ) );
+						$img_url = wolf_get_url_from_attachment_id( $img, 'thumbnail' );
+					} else {
+						$img     = esc_url( get_post_meta( $post_id, $field_id . '_img', true ) );
+						$img_url = esc_url( $img );
+					}
+					?>
 						<div>
 							<p><strong><?php esc_html_e( 'mp4 URL', 'wolf-discography' ); ?></strong></p>
 							<input type="text"  name="<?php echo esc_attr( $field_id ); ?>_mp4" id="<?php echo esc_attr( $field_id ); ?>_mp4" value="<?php echo esc_url( $mp4 ); ?>">
@@ -504,15 +555,14 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 						<div>
 						<p><strong><?php esc_html_e( 'Video Image Fallback', 'wolf-discography' ); ?></strong></p>
 						<input type="hidden"  name="<?php echo esc_attr( $field_id ); ?>_img" id="<?php echo esc_attr( $field_id ); ?>_img" value="<?php echo esc_attr( $img ); ?>">
-						<img style="max-width:200px;<?php echo ( ! $img ) ? 'display:none;' : '' ?>" src="<?php echo esc_url( $img_url ); ?>" class="wolf-options-img-preview">
+						<img style="max-width:200px;<?php echo ( ! $img ) ? 'display:none;' : ''; ?>" src="<?php echo esc_url( $img_url ); ?>" class="wolf-options-img-preview">
 						<br><a href="#" class="button wolf-options-reset-img"><?php esc_html_e( 'Clear', 'wolf-discography' ); ?></a>
 						<a href="#" class="button wolf-options-set-img"><?php esc_html_e( 'Choose an image', 'wolf-discography' ); ?></a>
 						</div>
 						<?php
 
-
 				} //end conditions
-			echo '</td></tr>';
+				echo '</td></tr>';
 			} // end foreach
 			echo '</table>'; // end table
 		}
@@ -526,12 +576,14 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 			$meta_fields = '';
 
 			// verify nonce
-			if ( ( isset( $_POST['wolf_meta_box_nonce'] ) ) && ( ! wp_verify_nonce( $_POST['wolf_meta_box_nonce'], basename( __FILE__ ) ) ) )
+			if ( ( isset( $_POST['wolf_meta_box_nonce'] ) ) && ( ! wp_verify_nonce( $_POST['wolf_meta_box_nonce'], basename( __FILE__ ) ) ) ) {
 				return $post_id;
+			}
 
 			// check autosave
-			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 				return $post_id;
+			}
 
 			// check permissions
 			if ( isset( $_POST['post_type'] ) && is_object( $post ) ) {
@@ -549,10 +601,11 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 
 				foreach ( $this->meta as $k => $v ) {
 
-					if ( is_array( $v['page'] ) )
+					if ( is_array( $v['page'] ) ) {
 						$condition = isset( $_POST['post_type'] ) && in_array( $_POST['post_type'], $v['page'] );
-					else
+					} else {
 						$condition = isset( $_POST['post_type'] ) && $_POST['post_type'] == $v['page'];
+					}
 
 					if ( $condition ) {
 
@@ -562,8 +615,8 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 						foreach ( $meta_fields as $field ) {
 
 							$field_id = $field['id'];
-							$type = $field['type'];
-							$meta = get_post_meta( $post_id, $field_id, true );
+							$type     = $field['type'];
+							$meta     = get_post_meta( $post_id, $field_id, true );
 
 							if ( 'background' == $type ) {
 
@@ -584,7 +637,6 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 											} else {
 												$bg_data = absint( $_POST[ $o ] );
 											}
-
 										} else {
 											$data = sanitize_text_field( $bg_data );
 										}
@@ -635,7 +687,6 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 											} else {
 												$video_bg_data = absint( $_POST[ $o ] );
 											}
-
 										} else {
 											$data = esc_url( $video_bg_data );
 										}
@@ -647,7 +698,6 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 										delete_post_meta( $post_id, $o );
 									}
 								}
-
 							} // end video
 
 							elseif ( 'repeatable' == $type ) {
@@ -682,7 +732,6 @@ if ( ! class_exists( 'WD_Admin_Metabox' ) ) {
 										$new = sanitize_text_field( $_POST[ $field_id ] );
 									}
 								}
-
 
 								if ( $new && $new != $old ) {
 

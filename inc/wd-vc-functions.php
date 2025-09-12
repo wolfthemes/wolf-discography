@@ -127,7 +127,7 @@ function wd_convert_params_to_vc( $params ) {
 			);
 
 			foreach ( $all_libraries as $library ) {
-				$i++;
+				++$i;
 
 				$vc_params['params'][ $i ] = array(
 					'type'        => 'iconpicker',
@@ -172,7 +172,7 @@ function wd_convert_params_to_vc( $params ) {
 			$vc_params['params'][ $i ]['type'] = 'attach_images';
 
 		} elseif ( 'hover_animation' === $type ) {
-			$vc_params['params'][ $i ]['type'] = 'dropdown';
+			$vc_params['params'][ $i ]['type']  = 'dropdown';
 			$vc_params['params'][ $i ]['value'] = array_flip( wd_get_hover_animations() );
 		}
 
@@ -208,7 +208,7 @@ function wd_convert_params_to_vc( $params ) {
 			$vc_params['params'][ $i ]['admin_label'] = $p['admin_label'];
 		}
 
-		$i++;
+		++$i;
 	}
 
 	// die( debug( $vc_params ) );
@@ -224,7 +224,7 @@ function wd_convert_params_to_vc( $params ) {
  */
 function wd_vc_hook_template_dir() {
 
-	$vc_template_dir   = WD()->plugin_path() . '/vc_templates';
+	$vc_template_dir = WD()->plugin_path() . '/vc_templates';
 
 	$slug = 'release-index';
 

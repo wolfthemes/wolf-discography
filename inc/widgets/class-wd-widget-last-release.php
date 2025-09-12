@@ -11,7 +11,9 @@
  * @extends WP_Widget
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 class WD_Widget_Last_Release extends WP_Widget {
 
@@ -21,11 +23,13 @@ class WD_Widget_Last_Release extends WP_Widget {
 	public function __construct() {
 
 		// Widget settings
-		$ops = array( 'classname' => 'widget_last_release', 'description' => esc_html__( 'Display your last release', 'wolf-discography' ) );
+		$ops = array(
+			'classname'   => 'widget_last_release',
+			'description' => esc_html__( 'Display your last release', 'wolf-discography' ),
+		);
 
 		// Create the widget
 		parent::__construct( 'widget_last_release', esc_html__( 'Last Release', 'wolf-discography' ), $ops );
-
 	}
 
 	/**
@@ -40,14 +44,16 @@ class WD_Widget_Last_Release extends WP_Widget {
 	function widget( $args, $instance ) {
 
 		extract( $args );
-		
+
 		$title = ( isset( $instance['title'] ) ) ? sanitize_text_field( $instance['title'] ) : '';
 		$title = apply_filters( 'widget_title', $title );
 
 		$desc = ( isset( $instance['desc'] ) ) ? sanitize_text_field( $instance['desc'] ) : '';
-		
+
 		echo $before_widget;
-		if ( ! empty( $title ) ) echo $before_title . $title . $after_title;
+		if ( ! empty( $title ) ) {
+			echo $before_title . $title . $after_title;
+		}
 		if ( ! empty( $desc ) ) {
 			echo '<p>';
 			echo $desc;
@@ -55,7 +61,6 @@ class WD_Widget_Last_Release extends WP_Widget {
 		}
 		wolf_widget_last_release();
 		echo $after_widget;
-
 	}
 
 	/**
@@ -69,11 +74,11 @@ class WD_Widget_Last_Release extends WP_Widget {
 	 */
 	function update( $new_instance, $old_instance ) {
 
-		$instance = $old_instance;
+		$instance          = $old_instance;
 		$instance['title'] = $new_instance['title'];
-		$instance['desc'] = $new_instance['desc'];
+		$instance['desc']  = $new_instance['desc'];
 		$instance['count'] = absint( $new_instance['count'] );
-		//$instance['hide_release_title'] = $new_instance['hide_release_title'];
+		// $instance['hide_release_title'] = $new_instance['hide_release_title'];
 		return $instance;
 	}
 
@@ -90,14 +95,14 @@ class WD_Widget_Last_Release extends WP_Widget {
 		// Set up some default widget settings
 		$defaults = array(
 			'title' => esc_html__( 'Last Release', 'wolf-discography' ),
-			'desc' => '',
-			//'hide_release_title' => '',
+			'desc'  => '',
+			// 'hide_release_title' => '',
 		);
-		$instance = wp_parse_args( ( array ) $instance, $defaults);
+		$instance = wp_parse_args( (array) $instance, $defaults );
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>"><?php _e(  'Title' , 'wolf-discography' ); ?>:</label>
-			<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'title' ));  ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title', 'wolf-discography' ); ?>:</label>
+			<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>">
 		</p>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>"><?php _e( 'Optional Text', 'wolf-discography' ); ?>:</label>
@@ -105,5 +110,4 @@ class WD_Widget_Last_Release extends WP_Widget {
 		</p>
 		<?php
 	}
-
 }

@@ -32,11 +32,10 @@
         }
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.11",
+        "squizlabs/php_codesniffer": "^3.13",
         "phpunit/phpunit": "*"
     },
 	"scripts": {
-      "format": "./vendor/bin/phpcbf --report-summary --report-source || true",
-      "lint": "./vendor/bin/phpcs"
-  }
+      "format": "./vendor/bin/phpcbf --standard=phpcs.xml.dist --report-summary --report-source || true",
+    "lint": "./vendor/bin/phpcs --standard=phpcs.xml.dist"  }
 }

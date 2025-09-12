@@ -18,7 +18,7 @@ get_header( 'discography' );
 
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$posts_per_page = apply_filters( 'wd_posts_per_page', -1 );
-	
+
 	$args = array(
 		'post_type' => 'release',
 		'posts_per_page' => $posts_per_page,

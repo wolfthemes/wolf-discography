@@ -33,9 +33,14 @@ class WD_Template_Manager {
             is_singular( 'release' ) ||
             is_post_type_archive( 'release' ) ||
             is_tax( array( 'band', 'label', 'release_genre' ) ) ||
-            ( function_exists( 'wolf_discography_get_page_id' ) && is_page( wolf_discography_get_page_id() ) )
+			$this->is_discography_index()
         );
     }
+
+	public function is_discography_index() {
+
+            return ( function_exists( 'wolf_discography_get_page_id' ) && is_page( wolf_discography_get_page_id() ) );
+	}
 
 	public function discography_template_redirect() {
 		if ( is_page( wolf_discography_get_page_id() ) && ! post_password_required() ) {
@@ -65,7 +70,7 @@ class WD_Template_Manager {
 			$find[] 	= $file;
 			$find[] 	= WD()->template_url . $file;
 
-		} elseif ( is_post_type_archive( WD()->cpt_slug ) ) {
+		} elseif ( is_post_type_archive( WD()->cpt_slug ) || $this->is_discography_index() ) {
 
 			$file = 'archive-' . WD()->cpt_slug . '.php';
 			$find[] = $file;

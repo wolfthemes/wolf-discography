@@ -5,14 +5,11 @@
  * @author WolfThemes
  * @category Core
  * @package WolfDiscography/Templates
- * @version 1.5.1
+ * @version 1.6.0
  */
 
-
 defined( 'ABSPATH' ) || exit;
-
 get_header( 'discography' );
-
 	/**
 	 * wolf_discography_before_main_content hook
 	 *

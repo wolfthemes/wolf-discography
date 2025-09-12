@@ -1,61 +1,42 @@
 <?php
 /**
- * The Template for displaying release archives
- *
- * Override this template by copying it to yourtheme/wolf-discography/archive-release.php
+ * The discography template file.
  *
  * @author WolfThemes
+ * @category Core
  * @package WolfDiscography/Templates
  * @version 1.5.1
- * @since 1.0.2
  */
+
 
 defined( 'ABSPATH' ) || exit;
 
-get_header(); ?>
+get_header( 'discography' );
 
-	<?php
+	/**
+	 * wolf_discography_before_main_content hook
+	 *
+	 * @hooked wolf_discography_output_content_wrapper - 10 (outputs opening divs for the content)
+	 */
+	do_action( 'wolf_discography_before_main_content' );
+
 		/**
-		 * wolf_discography_before_main_content hook
-		 *
-		 * @hooked wolf_discography_output_content_wrapper - 10 (outputs opening divs for the content)
+		 * Output post loop through hook so we can do the magic however we want
 		 */
-		do_action( 'wolf_discography_before_main_content' );
-	?>
+		do_action(
+			'wolf_discography_posts',
+			array(
+				'el_id'             => 'discography-index',
+			)
+		);
 
-	<?php
-		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>
+	get_sidebar( 'discography' );
 
-		<?php if ( have_posts() ) : ?>
+	/**
+	 * wolf_discography_after_main_content hook
+	 *
+	 * @hooked wolf_discography_output_content_wrapper_end - 10 (outputs closing divs for the content)
+	 */
+	do_action('wolf_discography_after_main_content');
 
-			<?php wolf_discography_loop_start(); ?>
-
-				<?php while ( have_posts() ) : the_post(); ?>
-
-					<?php wolf_discography_get_template_part( 'content', 'release' ); ?>
-
-				<?php endwhile; ?>
-
-			<?php wolf_discography_loop_end(); ?>
-
-			<?php wolf_release_page_nav(); ?>
-
-		<?php else : ?>
-
-			<?php wolf_discography_get_template( 'loop/no-releases-found.php' ); ?>
-
-		<?php endif; ?>
-
-	<?php
-		/**
-		 * wolf_discography_after_main_content hook
-		 *
-		 * @hooked wolf_discography_output_content_wrapper_end - 10 (outputs closing divs for the content)
-		 */
-		do_action('wolf_discography_after_main_content');
-	?>
-
-<?php
-get_sidebar( 'discography' );
-get_footer();
-?>
+get_footer( 'discography' );

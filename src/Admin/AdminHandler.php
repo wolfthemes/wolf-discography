@@ -39,7 +39,7 @@ class AdminHandler {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
 
 		add_filter( 'display_post_states', array( $this, 'custom_post_state' ), 10, 2 );
-		add_filter('plugin_action_links_' . plugin_basename(WD()->getPluginPath() . '/wolf-discography.php'), [$this, 'settings_action_links']);
+		add_filter( 'plugin_action_links_' . plugin_basename( WD()->getPluginPath() . '/wolf-discography.php' ), array( $this, 'settings_action_links' ) );
 	}
 
 	/**
@@ -48,10 +48,10 @@ class AdminHandler {
 	private function load_admin_classes(): void {
 
 		// Load specialized admin classes
-        new PageSetupNotices();  // Handles page creation notices
-        new MetaboxManager();    // Handles all metaboxes
-        new AdminColumns();      // Handles admin list columns
-        new Options();           // Handles settings page
+		new PageSetupNotices();  // Handles page creation notices
+		new MetaboxManager();    // Handles all metaboxes
+		new AdminColumns();      // Handles admin list columns
+		new Options();           // Handles settings page
 	}
 
 	/**

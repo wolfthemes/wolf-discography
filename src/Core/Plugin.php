@@ -116,7 +116,6 @@ class Plugin {
 		$this->checkPhpVersion();
 		$this->defineConstants();
 		$this->initHooks();
-		// $this->loadDependencies();
 
 		do_action( 'wolf_discography_loaded' );
 	}

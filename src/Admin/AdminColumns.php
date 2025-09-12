@@ -27,7 +27,6 @@ class AdminColumns {
 		// Add columns to post list
 		add_filter( 'manage_release_posts_columns', array( $this, 'admin_columns_head_release_thumb' ), 10 );
 		add_action( 'manage_release_posts_custom_column', array( $this, 'admin_columns_content_release_thumb' ), 10, 2 );
-
 	}
 
 	/**
@@ -103,5 +102,4 @@ class AdminColumns {
 			}
 		}
 	}
-
 }

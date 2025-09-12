@@ -5,7 +5,7 @@
  * Defines all metabox configurations for the plugin
  *
  * @package WolfDiscography
- * @subpackage Admin\Config
+ * @subpackage Config
  * @since 2.0.0
  */
 

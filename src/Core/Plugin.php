@@ -129,12 +129,13 @@ class Plugin {
 
 	// Rest of methods stay the same...
 	public function loadPageBuilderIntegrations(): void {
-		$module_params_file = $this->getPluginPath() . '/inc/module-params.php';
-		if ( file_exists( $module_params_file ) ) {
-			require_once $module_params_file;
-		}
+		/* $module_params_file = $this->getPluginPath() . '/inc/module-params.php'; */
+		/* if ( file_exists( $module_params_file ) ) { */
+		/* 	require_once $module_params_file; */
+		/* } */
 
 		if ( defined( 'ELEMENTOR_VERSION' ) ) {
+			include_once $this->getPluginPath() . '/inc/wd-elementor-functions.php';
 			add_action( 'elementor/widgets/widgets_registered', array( $this, 'initElementorWidgets' ) );
 		}
 

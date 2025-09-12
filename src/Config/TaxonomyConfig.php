@@ -5,7 +5,7 @@
  * Defines all taxonomy configurations for the plugin
  *
  * @package WolfDiscography
- * @subpackage Taxonomies\Config
+ * @subpackage Config
  * @since 2.0.0
  */
 

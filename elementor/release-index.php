@@ -9,6 +9,8 @@
  * @since 1.6.0
  */
 
+use WolfDiscography\Config\ModuleParams;
+
 defined( 'ABSPATH' ) || exit;
 defined( 'ELEMENTOR_VERSION' ) || exit;
 
@@ -32,7 +34,8 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 
 		parent::__construct( $data, $args );
 
-		$this->params = wd_release_index_params();
+		/* $this->params = wd_release_index_params(); */
+		$this->params = ModuleParams::getReleaseIndexParams();
 	}
 
 	/**

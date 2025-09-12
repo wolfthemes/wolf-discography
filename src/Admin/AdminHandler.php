@@ -11,7 +11,7 @@
 
 namespace WolfDiscography\Admin;
 
-use WolfDiscography\Admin\Updater;
+use WolfDiscography\Admin;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -37,23 +37,27 @@ class AdminHandler {
 		// Admin-specific hooks can go here
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
+
+		add_filter( 'display_post_states', array( $this, 'custom_post_state' ), 10, 2 );
+		add_filter('plugin_action_links_' . plugin_basename(WD()->getPluginPath() . '/wolf-discography.php'), [$this, 'settings_action_links']);
 	}
 
 	/**
 	 * Load admin-related classes and files
 	 */
 	private function load_admin_classes(): void {
+
+		// Load specialized admin classes
+        //new PageSetupNotices();  // Handles page creation notices
+        new MetaboxManager();    // Handles all metaboxes
+        //new AdminColumns();      // Handles admin list columns
+        new Options();           // Handles settings page
+
 		// Load legacy admin class during migration
 		$legacy_admin_file = WD_DIR . '/inc/admin/class-wd-admin.php';
 		if ( file_exists( $legacy_admin_file ) ) {
 			include_once $legacy_admin_file;
 		}
-
-		// TODO: Progressively migrate admin functionality to new classes
-		// Examples:
-		// new MetaboxManager();
-		// new AdminPages();
-		// new AdminAjax();
 	}
 
 	/**
@@ -94,6 +98,32 @@ class AdminHandler {
 				WD_VERSION
 			);
 		}
+	}
+	/**
+	 * Display archive page state
+	 *
+	 * @param array  $states
+	 * @param object $post
+	 * @return array $states
+	 */
+	public function custom_post_state( $states, $post ) {
+
+		if ( 'page' == get_post_type( $post->ID ) && absint( $post->ID ) === wolf_discography_get_page_id() ) {
+
+			$states[] = esc_html__( 'Discography Page', 'wolf-discography' );
+		}
+
+		return $states;
+	}
+
+	/**
+	 * add settings link in plugin page
+	 */
+	public function settings_action_links( $links ) {
+		$setting_link = array(
+			'<a href="' . admin_url( 'edit.php?post_type=release&page=wolf-discography-settings' ) . '">' . esc_html__( 'settings', 'wolf-discography' ) . '</a>',
+		);
+		return array_merge( $links, $setting_link );
 	}
 
 	public function plugin_update() {

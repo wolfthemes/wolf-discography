@@ -24,7 +24,7 @@ class WD_Admin {
 		$this->includes();
 
 		// Set metaboxes
-		$this->metaboxes();
+		//$this->metaboxes();
 
 		// Admin init hooks
 		$this->admin_init_hooks();
@@ -34,9 +34,9 @@ class WD_Admin {
 	 * Include any classes we need within admin.
 	 */
 	public function includes() {
-		include_once 'class-wd-options.php';
-		include_once 'class-wd-metabox.php';
-		include_once 'wd-admin-functions.php';
+		//include_once 'class-wd-options.php';
+		//include_once 'class-wd-metabox.php';
+		// include_once 'wd-admin-functions.php';
 	}
 
 	/**
@@ -45,7 +45,7 @@ class WD_Admin {
 	public function admin_init_hooks() {
 
 		// Plugin settings link
-		add_filter( 'plugin_action_links_' . plugin_basename( WD_PATH ), array( $this, 'settings_action_links' ) );
+		//add_filter( 'plugin_action_links_' . plugin_basename( WD_PATH ), array( $this, 'settings_action_links' ) );
 
 		// Plugin update notifications
 		// add_action( 'admin_init', array( $this, 'plugin_update' ) );
@@ -276,11 +276,11 @@ class WD_Admin {
 	}
 
 	/**
-	 * Add settings link in plugin page
+	 * add settings link in plugin page
 	 */
 	public function settings_action_links( $links ) {
 		$setting_link = array(
-			'<a href="' . admin_url( 'edit.php?post_type=release&page=wolf-discography-settings' ) . '">' . esc_html__( 'Settings', 'wolf-discography' ) . '</a>',
+			'<a href="' . admin_url( 'edit.php?post_type=release&page=wolf-discography-settings' ) . '">' . esc_html__( 'settings', 'wolf-discography' ) . '</a>',
 		);
 		return array_merge( $links, $setting_link );
 	}

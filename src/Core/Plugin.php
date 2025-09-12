@@ -489,6 +489,4 @@ class Plugin {
 	public function plugin_path(): string {
 		return $this->getPluginPath();
 	}
-
-
 }

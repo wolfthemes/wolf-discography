@@ -15,6 +15,10 @@ defined( 'ABSPATH' ) || exit;
 class WD_Template_Manager {
 
     public function __construct() {
+
+		if ( wp_is_block_theme() ) {
+			return;
+		}
         add_action( 'init', array( $this, 'handle_templates' ) );
 
 	}

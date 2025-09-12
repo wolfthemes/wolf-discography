@@ -70,7 +70,7 @@ class WD_Options {
 		add_settings_field( 'page_id', esc_html__( 'Discography Page', 'wolf-discography' ), array( $this, 'setting_page_id' ), 'wolf-release-settings', 'wolf-release-settings' );
 
 		// Layout options only for non-Wolf themes
-		if ( ! WD()->isWolfTheme() ) {
+		if ( ! WD()->is_wolf_theme() ) {
 			add_settings_field( 'display', esc_html__( 'Layout Style', 'wolf-discography' ), array( $this, 'setting_display' ), 'wolf-release-settings', 'wolf-release-settings' );
 			add_settings_field( 'columns', esc_html__( 'Grid Columns', 'wolf-discography' ), array( $this, 'setting_columns' ), 'wolf-release-settings', 'wolf-release-settings' );
 		}
@@ -270,7 +270,7 @@ class WD_Options {
 			<p><?php esc_html_e( 'Additionally, you can add a count, column, and categories attributes.', 'wolf-discography' ); ?></p>
 			<p><code>[wolf_last_releases count="6" col="3" label="my-label" band="this-band"]</code></p>
 
-			<?php if ( ! WD()->isWolfTheme() ) : ?>
+			<?php if ( ! WD()->is_wolf_theme() ) : ?>
 			<h3><?php esc_html_e( 'Layout Options', 'wolf-discography' ); ?></h3>
 			<p><?php esc_html_e( 'You can override the default layout settings using shortcode parameters:', 'wolf-discography' ); ?></p>
 			<p><code>[wolf_last_releases display="list"]</code> - <?php esc_html_e( 'Force list layout', 'wolf-discography' ); ?></p>
@@ -291,7 +291,7 @@ class WD_Options {
 			<div id="icon-options-general" class="icon32"></div>
 			<h2><?php esc_html_e( 'Discography Options', 'wolf-discography' ); ?></h2>
 
-			<?php if ( WD()->isWolfTheme() ) : ?>
+			<?php if ( WD()->is_wolf_theme() ) : ?>
 				<div class="notice notice-info">
 					<p><strong><?php esc_html_e( 'Wolf Theme Detected', 'wolf-discography' ); ?></strong></p>
 					<p><?php esc_html_e( 'You are using a Wolf Theme. Layout options are managed by your theme and not shown here.', 'wolf-discography' ); ?></p>

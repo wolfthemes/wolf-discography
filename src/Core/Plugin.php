@@ -448,6 +448,8 @@ class Plugin {
 		return untrailingslashit( plugin_dir_path( dirname( __DIR__, 2 ) . '/wolf-discography.php' ) );
 	}
 
+
+
 	/**
 	 * Get the template path
 	 *
@@ -474,4 +476,19 @@ class Plugin {
 	public function getCptSlug(): string {
 		return $this->cpt_slug;
 	}
+
+	/**
+	 * Legacy functions
+	 *
+	 * @return string
+	 */
+	public function is_wolf_theme(): string {
+		return $this->isWolfTheme();
+	}
+
+	public function plugin_path(): string {
+		return $this->getPluginPath();
+	}
+
+
 }

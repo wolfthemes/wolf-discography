@@ -497,7 +497,7 @@ function wd_get_label() {
  */
 function wd_enqueue_style() {
 
-	if ( ! WD()->isWolfTheme() ) {
+	if ( ! WD()->is_wolf_theme() ) {
 		wp_enqueue_style( 'wolf-discography', WD_URI . '/build/styles.css', array(), WD_VERSION, 'all' );
 	}
 }
@@ -568,7 +568,7 @@ function wolf_release_page_nav( $loop = null ) {
  */
 function wd_add_layout_body_class( $classes ) {
 	// Only add classes for non-Wolf themes
-	if ( ! WD()->isWolfTheme() ) {
+	if ( ! WD()->is_wolf_theme() ) {
 		if ( is_page( wolf_discography_get_page_id() ) || is_post_type_archive( 'release' ) || is_singular( 'release' ) || is_tax( array( 'band', 'label', 'release_genre' ) ) ) {
 			$classes[] = 'wolf-discography-active';
 
@@ -593,7 +593,7 @@ function wd_add_layout_body_class( $classes ) {
  */
 function wd_get_layout_wrapper_class() {
 	// Only add wrapper classes for non-Wolf themes
-	if ( ! WD()->isWolfTheme() ) {
+	if ( ! WD()->is_wolf_theme() ) {
 		$display = get_option( 'wolf_discography_display', 'list' );
 		$class   = 'wolf-discography-' . $display;
 

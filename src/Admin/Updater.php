@@ -454,8 +454,8 @@ class Updater {
 		$activate              = activate_plugin( WP_PLUGIN_DIR . '/' . $this->config['slug'] );
 
 		// Output the update message
-		$fail    = __( 'The plugin has been updated, but could not be reactivated. Please reactivate it manually.', 'github_plugin_updater' );
-		$success = __( 'Plugin reactivated successfully.', 'github_plugin_updater' );
+		$fail    = esc_html__( 'The plugin has been updated, but could not be reactivated. Please reactivate it manually.', 'github_plugin_updater' );
+		$success = esc_html__( 'Plugin reactivated successfully.', 'github_plugin_updater' );
 		echo is_wp_error( $activate ) ? $fail : $success;
 		return $result;
 	}

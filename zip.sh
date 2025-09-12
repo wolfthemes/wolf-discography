@@ -8,6 +8,7 @@ cd .. && zip -r "${FOLDER_NAME}.zip" "${FOLDER_NAME}/" \
     -x "*/node_modules/*" \
     -x "*/.git/*" \
     -x "*/.*" \
+    -x "*/deprecated/*" \
     -x "*/vendor/*" \
     -x "*/src/*" \
     -x "*/tests/*" \

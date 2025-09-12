@@ -2,8 +2,6 @@
 /**
  * Shortcode
  *
- * Manages all frontend-related functionality
- *
  * @package WolfDiscography
  * @subpackage Frontend
  * @since 2.0.0

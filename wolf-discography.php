@@ -54,5 +54,5 @@ function WD() {
 	if ( class_exists( 'WolfDiscography\Core\Plugin' ) && ! WD_USE_LEGACY ) {
 		return \WolfDiscography\Core\Plugin::getInstance();
 	}
-	return Wolf_Discography_Legacy::instance();
+	// return Wolf_Discography_Legacy::instance();
 }

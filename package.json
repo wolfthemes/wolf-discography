@@ -11,10 +11,15 @@
     "dev": "cross-env THEME=$npm_config_theme wp-scripts start --mode=development",
     "check-engines": "wp-scripts check-engines",
     "check-licenses": "wp-scripts check-licenses",
-    "format": "wp-scripts format",
-    "lint:css": "wp-scripts lint-style",
-    "lint:js": "wp-scripts lint-js",
-    "lint:md:docs": "wp-scripts lint-md-docs",
+	"lint": "npm run lint:js && npm run lint:php && npm run lint:css",
+	"format": "npm run format:js && npm run format:php && npm run format:css",
+    "lint:css": "stylelint \"**/*.scss\" --max-warnings=0",
+    "format:css": "stylelint \"**/*.scss\" --fix",
+    "lint:js": "wp-scripts lint-js --max-warnings=0",
+	"format:js": "wp-scripts lint-js --fix",
+	"lint:php": "composer run lint",
+	"format:php": "phpcbf --standard=phpcs.xml.dist -v",
+	"lint:md:docs": "wp-scripts lint-md-docs",
     "lint:pkg-json": "wp-scripts lint-pkg-json",
     "packages-update": "wp-scripts packages-update",
     "plugin-zip": "wp-scripts plugin-zip",
@@ -40,6 +45,7 @@
     "isotope-layout": "^3.0.6",
     "locomotive-scroll": "^5.0.0-beta.13",
     "masonry-layout": "^4.2.2",
+    "motion": "^10.16.0",
     "normalize-wheel": "^1.0.1",
     "popmotion": "^8.6.4",
     "react-anchor-link-smooth-scroll": "^1.0.12",
@@ -50,18 +56,20 @@
     "swiper": "^11.0.4",
     "three": "^0.157.0",
     "troika-three-text": "^0.49.1",
-    "typescript": "^5.0.0",
-    "motion": "^10.16.0"
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.19.1",
     "@types/three": "^0.157.2",
+    "@wordpress/eslint-plugin": "^22.16.0",
+    "@wordpress/prettier-config": "^4.30.0",
     "browser-sync": "^2.29.1",
     "browser-sync-webpack-plugin": "^2.3.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
+    "eslint-config-prettier": "^10.1.8",
     "filemanager-webpack-plugin": "^7.0.0",
-    "ts-loader": "^9.4.2",
-    "raw-loader": "^4.0.2"
+    "raw-loader": "^4.0.2",
+    "ts-loader": "^9.4.2"
   }
 }

@@ -1,1 +1,0 @@
-cd ../ && zip -r wolf-discography.zip wolf-discography/ -x "*/node_modules/*" "*/vendor/*" "*/dev/*" "*/pack/*" "*/.git/*" "*/.*"

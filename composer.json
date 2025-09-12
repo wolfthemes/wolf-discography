@@ -10,6 +10,16 @@
 			"homepage": "https://wolfthemes.com"
 		}
 	],
+	"autoload": {
+        "psr-4": {
+            "wolf-discography\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "wolf-discography\\Tests\\": "tests/"
+        }
+    },
 	"require": {
 		"php": ">=7.4",
         "wp-coding-standards/wpcs": "^2.3",
@@ -23,6 +33,7 @@
         }
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.11"
+        "squizlabs/php_codesniffer": "^3.11",
+        "phpunit/phpunit": "*"
     }
 }

@@ -129,9 +129,12 @@ class Plugin {
 
 	// Rest of methods stay the same...
 	public function loadPageBuilderIntegrations(): void {
-		/* $module_params_file = $this->getPluginPath() . '/inc/module-params.php'; */
-		/* if ( file_exists( $module_params_file ) ) { */
-		/* 	require_once $module_params_file; */
+		/*
+		$module_params_file = $this->getPluginPath() . '/inc/module-params.php'; */
+		/*
+		if ( file_exists( $module_params_file ) ) { */
+		/*
+			require_once $module_params_file; */
 		/* } */
 
 		if ( defined( 'ELEMENTOR_VERSION' ) ) {

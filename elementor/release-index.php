@@ -1,131 +1,123 @@
 <?php
 /**
- * Release Index
+ * Release Index Elementor Widget
  *
- * @author WolfThemes
- * @category Core
- * @package WolfDiscography/Elementor
- * @version 1.5.1
- * @since 1.6.0
+ * @package WolfDiscography
+ * @subpackage Elementor
+ * @since 2.0.0
  */
 
 use WolfDiscography\Config\ModuleParams;
+use WolfDiscography\PageBuilders\ElementorHelper;
 
 defined( 'ABSPATH' ) || exit;
 defined( 'ELEMENTOR_VERSION' ) || exit;
 
-class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_Base { // phpcs:ignore
+class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_Base {
 
 	/**
 	 * Element parameters
 	 *
-	 * @var string
+	 * @var array
 	 */
 	public $params = array();
 
 	/**
-	 *  Element scripts
+	 * Element scripts
 	 *
-	 * @var string
+	 * @var array
 	 */
 	public $scripts = array();
 
-	public function __construct( $data = array(), $args = null ) { // phpcs:ignore
-
+	/**
+	 * Constructor
+	 *
+	 * @param array $data
+	 * @param mixed $args
+	 */
+	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		/* $this->params = wd_release_index_params(); */
+		// Load parameters using namespaced config
 		$this->params = ModuleParams::getReleaseIndexParams();
 	}
 
 	/**
-	 * Retrieve the list of scripts the counter widget depended on.
+	 * Get widget name
 	 *
-	 * Used to set scripts dependencies required to run the widget.
+	 * @return string
+	 */
+	public function get_name() {
+		return $this->params['properties']['el_base'] ?? 'release-index';
+	}
+
+	/**
+	 * Get widget title
 	 *
-	 * @version 1.0.0
+	 * @return string
+	 */
+	public function get_title() {
+		return $this->params['properties']['name'] ?? __( 'Releases', 'wolf-discography' );
+	}
+
+	/**
+	 * Get widget icon
 	 *
-	 * @return array Widget scripts dependencies.
+	 * @return string
+	 */
+	public function get_icon() {
+		return $this->params['properties']['icon'] ?? 'wolf-release-elementor-icon';
+	}
+
+	/**
+	 * Get widget categories
+	 *
+	 * @return array
+	 */
+	public function get_categories() {
+		return $this->params['properties']['el_categories'] ?? array( 'post-modules' );
+	}
+
+	/**
+	 * Get widget keywords
+	 *
+	 * @return array
+	 */
+	public function get_keywords() {
+		return $this->params['properties']['keywords'] ?? array( 'release', 'discography', 'music' );
+	}
+
+	/**
+	 * Get script dependencies
+	 *
+	 * @return array
 	 */
 	public function get_script_depends() {
 		return $this->scripts;
 	}
 
 	/**
-	 * Get widget name
-	 *
-	 * @return string Widget name.
+	 * Register widget controls
 	 */
-	public function get_name() {
-
-		if ( isset( $this->params['properties']['el_base'] ) ) {
-			return $this->params['properties']['el_base'];
-		}
+	protected function register_controls() {
+		// Use the namespaced helper class instead of global function
+		ElementorHelper::register_elementor_controls( $this );
 	}
 
 	/**
-	 * Get widget title.
-	 *
-	 * @return string Widget title.
-	 */
-	public function get_title() {
-		return $this->params['properties']['name'];
-	}
-
-	/**
-	 * Get widget icon.
-	 *
-	 * @return string Widget icon.
-	 */
-	public function get_icon() {
-		return $this->params['properties']['icon'];
-	}
-
-	/**
-	 * Get widget categories.
-	 *
-	 * @return array Widget categories.
-	 */
-	public function get_categories() {
-		return $this->params['properties']['el_categories'];
-	}
-
-	/**
-	 * Get widget keywords.
-	 *
-	 * Retrieve the list of keywords the widget belongs to.
-	 *
-	 * @version 1.0.0
-	 *
-	 * @return array Widget keywords.
-	 */
-	public function get_keywords() {
-		if ( isset( $this->params['properties']['keywords'] ) ) {
-			return $this->params['properties']['keywords'];
-		}
-	}
-
-	/**
-	 * Register Post Index widget controls.
-	 */
-	protected function register_controls() { // phpcs:ignore
-
-		wd_register_elementor_controls( $this );
-	}
-
-	/**
-	 * Render widget output on the frontend.
+	 * Render widget output
 	 */
 	protected function render() {
-
 		$atts              = $this->get_settings_for_display();
 		$atts['post_type'] = 'release';
 		$atts['context']   = 'elementor';
 
-		/**
-		 * Uses the main post hook to display the releases.
-		 */
+		// Uses the main post hook to display the releases
 		do_action( 'wolf_discography_posts', $atts );
 	}
 }
-\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Wolf_Discography_Elementor_Release_Index_Widget() );
+
+// Register the widget
+\Elementor\Plugin::instance()->widgets_manager->register_widget_type(
+	new \Wolf_Discography_Elementor_Release_Index_Widget()
+);

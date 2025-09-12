@@ -9,7 +9,9 @@
  * @since 1.6.0
  */
 
+use WolfDiscography\Config\ModuleParams;
+
 defined( 'ABSPATH' ) || exit;
 defined( 'WPB_VC_VERSION' ) || exit;
 
-vc_map( wd_convert_params_to_vc( wd_release_index_params() ) );
+vc_map( wd_convert_params_to_vc( ModuleParams::getReleaseIndexParams() ) );

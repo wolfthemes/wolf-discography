@@ -51,17 +51,17 @@ class WD_Admin {
 		// add_action( 'admin_init', array( $this, 'plugin_update' ) );
 
 		// Create page notice
-		add_action( 'admin_notices', array( $this, 'check_page' ) );
-		add_action( 'admin_notices', array( $this, 'create_page' ) );
+		// add_action( 'admin_notices', array( $this, 'check_page' ) );
+		// add_action( 'admin_notices', array( $this, 'create_page' ) );
 
 		// Hide editors from index page
-		add_action( 'edit_form_after_title', array( $this, 'is_index_page' ) );
-		add_action( 'admin_init', array( $this, 'hide_editor' ) );
-		add_action( 'admin_head', array( $this, 'hide_wpb_editor' ) );
+		// add_action( 'edit_form_after_title', array( $this, 'is_index_page' ) );
+		// add_action( 'admin_init', array( $this, 'hide_editor' ) );
+		// add_action( 'admin_head', array( $this, 'hide_wpb_editor' ) );
 
 		// Add columns to post list
-		add_filter( 'manage_release_posts_columns', array( $this, 'admin_columns_head_release_thumb' ), 10 );
-		add_action( 'manage_release_posts_custom_column', array( $this, 'admin_columns_content_release_thumb' ), 10, 2 );
+		// add_filter( 'manage_release_posts_columns', array( $this, 'admin_columns_head_release_thumb' ), 10 );
+		// add_action( 'manage_release_posts_custom_column', array( $this, 'admin_columns_content_release_thumb' ), 10, 2 );
 	}
 
 	/**

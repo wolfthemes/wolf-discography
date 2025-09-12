@@ -48,16 +48,10 @@ class AdminHandler {
 	private function load_admin_classes(): void {
 
 		// Load specialized admin classes
-        //new PageSetupNotices();  // Handles page creation notices
+        new PageSetupNotices();  // Handles page creation notices
         new MetaboxManager();    // Handles all metaboxes
-        //new AdminColumns();      // Handles admin list columns
+        new AdminColumns();      // Handles admin list columns
         new Options();           // Handles settings page
-
-		// Load legacy admin class during migration
-		$legacy_admin_file = WD_DIR . '/inc/admin/class-wd-admin.php';
-		if ( file_exists( $legacy_admin_file ) ) {
-			include_once $legacy_admin_file;
-		}
 	}
 
 	/**
@@ -127,9 +121,6 @@ class AdminHandler {
 	}
 
 	public function plugin_update() {
-		if ( ! class_exists( 'WP_GitHub_Updater' ) ) {
-			include_once WD()->getPluginPath() . '/inc/admin/updater.php';
-		}
 
 		$repo = 'wolfthemes/wolf-discography';
 

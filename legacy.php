@@ -336,29 +336,5 @@ if ( ! class_exists( 'Wolf_Discography_Legacy' ) ) {
 
 			return false;
 		}
-
-		public function plugin_update() {
-			if ( ! class_exists( 'WP_GitHub_Updater' ) ) {
-				include_once 'inc/admin/updater.php';
-			}
-
-			$repo = 'wolfthemes/wolf-discography';
-
-			$config = array(
-				'slug'               => plugin_basename( __FILE__ ),
-				'proper_folder_name' => 'wolf-discography',
-				'api_url'            => 'https://api.github.com/repos/' . $repo . '',
-				'raw_url'            => 'https://raw.github.com/' . $repo . '/master/',
-				'github_url'         => 'https://github.com/' . $repo . '',
-				'zip_url'            => 'https://github.com/' . $repo . '/archive/master.zip',
-				'sslverify'          => true,
-				'requires'           => '5.0',
-				'tested'             => '5.5',
-				'readme'             => 'README.md',
-				'access_token'       => '',
-			);
-
-			new WP_GitHub_Updater( $config );
-		}
 	}
 }

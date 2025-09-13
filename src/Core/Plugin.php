@@ -14,6 +14,7 @@ use WolfDiscography\Admin\AdminNotices;
 use WolfDiscography\Frontend\FrontendHandler;
 use WolfDiscography\PostTypes\PostType;
 use WolfDiscography\Taxonomies\Taxonomies;
+use WolfDiscography\PageBuilders\WPBakeryTemplateHandler;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -39,7 +40,7 @@ class Plugin {
 
 	private function __construct() {
 		$this->checkPhpVersion();
-		Constants::define( $this->getPluginPath(), $this->getPluginUrl() );
+		Constants::define( $this->get_plugin_path(), $this->getPluginUrl() );
 		$this->initHooks();
 
 		do_action( 'wolf_discography_loaded' );
@@ -58,18 +59,17 @@ class Plugin {
 
 	private function initHooks(): void {
 		add_action( 'after_setup_theme', array( $this, 'includeTemplateFunctions' ), 11 );
-		add_action( 'init', array( $this, 'loadCoreFunctions' ), 0 );
+		add_action( 'init', array( $this, 'load_core_functions' ), 0 );
 		add_action( 'init', array( $this, 'init' ), 0 );
-
-		register_activation_hook( $this->getPluginPath() . '/wolf-discography.php', array( $this, 'activate' ) );
-
-		if ( ! $this->isWolfTheme() ) {
-			add_action( 'init', array( $this, 'loadPageBuilderIntegrations' ) );
+		if ( ! $this->is_wolf_theme() ) {
+			add_action( 'init', array( $this, 'load_pagebuilder_integrations' ) );
 		}
+
+		register_activation_hook( $this->get_plugin_path() . '/wolf-discography.php', array( $this, 'activate' ) );
 	}
 
-	public function loadCoreFunctions(): void {
-		$core_file = $this->getPluginPath() . '/inc/wd-core-functions.php';
+	public function load_core_functions(): void {
+		$core_file = $this->get_plugin_path() . '/inc/wd-core-functions.php';
 		if ( file_exists( $core_file ) ) {
 			include_once $core_file;
 		}
@@ -127,20 +127,19 @@ class Plugin {
 		}
 	}
 
-	// Rest of methods stay the same...
-	public function loadPageBuilderIntegrations(): void {
+	public function load_pagebuilder_integrations(): void {
 
 		if ( defined( 'ELEMENTOR_VERSION' ) ) {
 			add_action( 'elementor/widgets/widgets_registered', array( $this, 'initElementorWidgets' ) );
 		}
 
 		if ( defined( 'WPB_VC_VERSION' ) ) {
-			add_action( 'init', array( $this, 'includeVcModules' ) );
+			$this->include_vc_modules();
 		}
 	}
 
 	public function includeTemplateFunctions(): void {
-		$template_file = $this->getPluginPath() . '/inc/frontend/wd-template-functions.php';
+		$template_file = $this->get_plugin_path() . '/inc/frontend/wd-template-functions.php';
 		if ( file_exists( $template_file ) ) {
 			include_once $template_file;
 		}
@@ -148,19 +147,20 @@ class Plugin {
 
 	public function initElementorWidgets(): void {
 		if ( post_type_exists( $this->cpt_slug ) ) {
-			$elementor_file = $this->getPluginPath() . '/elementor/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
+			$elementor_file = $this->get_plugin_path() . '/elementor/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
 			if ( file_exists( $elementor_file ) ) {
 				require_once $elementor_file;
 			}
 		}
 	}
 
-	public function includeVcModules(): void {
-		if ( post_type_exists( $this->cpt_slug ) ) {
-			$vc_file = $this->getPluginPath() . '/vc/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
-			if ( file_exists( $vc_file ) ) {
-				require_once $vc_file;
-			}
+	public function include_vc_modules(): void {
+
+		new WPBakeryTemplateHandler();
+
+		$vc_file = $this->get_plugin_path() . '/vc/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
+		if ( file_exists( $vc_file ) ) {
+			require_once $vc_file;
 		}
 	}
 
@@ -171,7 +171,7 @@ class Plugin {
 		);
 
 		foreach ( $widget_files as $widget_file ) {
-			$file_path = $this->getPluginPath() . '/inc/widgets/' . $widget_file;
+			$file_path = $this->get_plugin_path() . '/inc/widgets/' . $widget_file;
 			if ( file_exists( $file_path ) ) {
 				include_once $file_path;
 			}
@@ -197,10 +197,10 @@ class Plugin {
 		$locale = apply_filters( 'wolf-discography', get_locale(), $domain );
 
 		load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( $domain, false, dirname( plugin_basename( $this->getPluginPath() . '/wolf-discography.php' ) ) . '/languages/' );
+		load_plugin_textdomain( $domain, false, dirname( plugin_basename( $this->get_plugin_path() . '/wolf-discography.php' ) ) . '/languages/' );
 	}
 
-	public function isWolfTheme(): bool {
+	public function is_wolf_theme(): bool {
 		$theme      = wp_get_theme();
 		$author     = $theme->get( 'Author' );
 		$author_uri = $theme->get( 'AuthorURI' );
@@ -216,28 +216,23 @@ class Plugin {
 		return untrailingslashit( plugins_url( '/', dirname( __DIR__, 2 ) . '/wolf-discography.php' ) );
 	}
 
-	public function getPluginPath(): string {
+	public function get_plugin_path(): string {
 		return untrailingslashit( plugin_dir_path( dirname( __DIR__, 2 ) . '/wolf-discography.php' ) );
 	}
 
-	public function getTemplatePath(): string {
+	public function get_template_path(): string {
 		return apply_filters( 'wd_template_path', 'wolf-discography/' );
 	}
 
-	public function getVersion(): string {
+	public function get_version(): string {
 		return Constants::VERSION;
 	}
 
-	public function getCptSlug(): string {
+	public function get_cpt_slug(): string {
 		return $this->cpt_slug;
 	}
 
-	// Legacy compatibility
-	public function is_wolf_theme(): bool {
-		return $this->isWolfTheme();
-	}
-
 	public function plugin_path(): string {
-		return $this->getPluginPath();
+		return $this->get_plugin_path();
 	}
 }

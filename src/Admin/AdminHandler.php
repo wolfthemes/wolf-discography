@@ -39,7 +39,7 @@ class AdminHandler {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
 
 		add_filter( 'display_post_states', array( $this, 'custom_post_state' ), 10, 2 );
-		add_filter( 'plugin_action_links_' . plugin_basename( WD()->getPluginPath() . '/wolf-discography.php' ), array( $this, 'settings_action_links' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( WD()->get_plugin_path() . '/wolf-discography.php' ), array( $this, 'settings_action_links' ) );
 	}
 
 	/**
@@ -125,7 +125,7 @@ class AdminHandler {
 		$repo = 'wolfthemes/wolf-discography';
 
 		$config = array(
-			'slug'               => plugin_basename( WD()->getPluginPath() . '/wolf-discography.php' ),
+			'slug'               => plugin_basename( WD()->get_plugin_path() . '/wolf-discography.php' ),
 			'proper_folder_name' => 'wolf-discography',
 			'api_url'            => 'https://api.github.com/repos/' . $repo . '',
 			'raw_url'            => 'https://raw.github.com/' . $repo . '/master/',

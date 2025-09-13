@@ -36,7 +36,6 @@ function wd_release_microdata() {
 	<?php endif; ?>
 	<?php
 }
-add_action( 'wolf_release_start', 'wd_release_microdata' );
 
 /**
  * Get any thumbnail URL

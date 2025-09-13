@@ -41,17 +41,11 @@ class FrontendHandler {
 	 */
 	private function loadFrontendClasses(): void {
 
-		new TemplateManager();
-		new Post();
-		new ShortcodeManager();
-
 		// Load legacy frontend files during migration
 		$frontend_files = array(
 			'wd-functions.php',
 			'wd-helpers.php',
 			'wd-image-functions.php',
-			'wd-template-hooks.php',
-			/* 'wd-posts.php', */
 		);
 
 		foreach ( $frontend_files as $file ) {
@@ -60,6 +54,11 @@ class FrontendHandler {
 				include_once $file_path;
 			}
 		}
+
+		new TemplateManager();
+		new Post();
+		new Hooks();
+		new ShortcodeManager();
 
 		// TODO: Progressively migrate frontend functionality to new classes
 		// Examples:

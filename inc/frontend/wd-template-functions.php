@@ -123,8 +123,6 @@ if ( ! function_exists( 'wolf_discography_output_single_content' ) ) {
 	function wolf_discography_output_single_content( $echo = true ) {
 		ob_start();
 
-		echo 'test';
-
 		// For block themes, ensure we have post data
 		if ( wp_is_block_theme() && is_singular( 'release' ) ) {
 			global $post;

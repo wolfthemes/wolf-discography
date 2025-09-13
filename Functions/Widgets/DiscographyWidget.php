@@ -1,0 +1,151 @@
+<?php
+/**
+ * Discography Widget
+ *
+ * @package WolfDiscography
+ * @subpackage Widgets
+ * @since 2.0.0
+ */
+
+namespace WolfDiscography\Widgets;
+
+defined( 'ABSPATH' ) || exit;
+
+class DiscographyWidget extends \WP_Widget {
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		// Widget settings
+		$ops = array(
+			'classname'   => 'widget_discography',
+			'description' => esc_html__( 'Display your discography', 'wolf-discography' ),
+		);
+
+		// Create the widget
+		parent::__construct( 'widget_discography', esc_html__( 'Discography', 'wolf-discography' ), $ops );
+	}
+
+	/**
+	 * widget function.
+	 *
+	 * @see WP_Widget
+	 * @access public
+	 * @param array $args
+	 * @param array $instance
+	 * @return void
+	 */
+	public function widget( $args, $instance ) {
+
+		extract( $args );
+		$title = ( isset( $instance['title'] ) ) ? sanitize_text_field( $instance['title'] ) : '';
+		$title = apply_filters( 'widget_title', $title );
+
+		$desc  = ( isset( $instance['desc'] ) ) ? sanitize_text_field( $instance['desc'] ) : '';
+		$count = isset( $instance['count'] ) ? absint( $instance['count'] ) : 3;
+
+		echo $before_widget;
+
+		if ( ! empty( $title ) ) {
+			echo $before_title . $title . $after_title;
+		}
+		if ( ! empty( $desc ) ) {
+			echo '<p>';
+			echo $desc;
+			echo '</p>';
+		}
+		$this->widget_discography( $count );
+		echo $after_widget;
+	}
+
+	/**
+	 * update function.
+	 *
+	 * @see WP_Widget->update
+	 * @access public
+	 * @param array $new_instance
+	 * @param array $old_instance
+	 * @return array
+	 */
+	public function update( $new_instance, $old_instance ) {
+
+		$instance          = $old_instance;
+		$instance['title'] = sanitize_text_field( $new_instance['title'] );
+		$instance['desc']  = sanitize_text_field( $new_instance['desc'] );
+		$instance['count'] = absint( $new_instance['count'] );
+		return $instance;
+	}
+
+	/**
+	 * form function.
+	 *
+	 * @see WP_Widget->form
+	 * @access public
+	 * @param array $instance
+	 * @return void
+	 */
+	public function form( $instance ) {
+
+		// Set up some default widget settings
+		$defaults = array(
+			'title' => esc_html__( 'Releases', 'wolf-discography' ),
+			'desc'  => '',
+			'count' => 3,
+		);
+		$instance = wp_parse_args( (array) $instance, $defaults );
+		?>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title', 'wolf-discography' ); ?>:</label>
+			<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>">
+		</p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>"><?php esc_html_e( 'Optional Text', 'wolf-discography' ); ?>:</label>
+			<textarea class="widefat"  id="<?php echo esc_attr( $this->get_field_id( 'desc' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'desc' ) ); ?>" ><?php echo $instance['desc']; ?></textarea>
+		</p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>"><?php esc_html_e( 'Count', 'wolf-discography' ); ?>:</label>
+			<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'count' ) ); ?>" value="<?php echo absint( $instance['count'] ); ?>">
+		</p>
+		<?php
+	}
+
+
+	/**
+	 * Discography Widget function
+	 *
+	 * Displays the discography widget
+	 *
+	 * @param int $count
+	 * @return string
+	 */
+	public function widget_discography( $count = 3 ) {
+		global $wpdb;
+		$query = new \WP_Query(
+			array(
+				'post_type'      => 'release',
+				'posts_per_page' => $count,
+			)
+		);
+
+		if ( $query->have_posts() ) {
+			$i = 0;
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				++$i;
+				$post_id = get_the_ID();
+				$class   = $i == 1 ? ' class="release-widget-first-child"' : '';
+				$thumb   = $i == 1 ? 'CD' : 'thumbnail';
+				?>
+				<a<?php echo $class; ?> href="<?php echo the_permalink(); ?>"><?php the_post_thumbnail( 'CD' ); ?></a>
+				<?php
+			}
+			echo '<div style="clear:both"></div>';
+		} else {
+			echo '<p>';
+			_e( 'No release to display yet.', 'wolf-discography' );
+			echo '</p>';
+		}
+		wp_reset_postdata();
+	}
+}

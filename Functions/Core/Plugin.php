@@ -15,6 +15,8 @@ use WolfDiscography\Frontend\FrontendHandler;
 use WolfDiscography\PostTypes\PostType;
 use WolfDiscography\Taxonomies\Taxonomies;
 use WolfDiscography\PageBuilders\WPBakeryTemplateHandler;
+use WolfDiscography\Widgets\DiscographyWidget;
+use WolfDiscography\Widgets\LastReleaseWidget;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -91,7 +93,7 @@ class Plugin {
 		$this->initializeComponents();
 
 		$this->flushRewriteRules();
-		add_action( 'widgets_init', array( $this, 'registerWidgets' ) );
+		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 
 		do_action( 'wolf_discography_init' );
 	}
@@ -130,7 +132,7 @@ class Plugin {
 	public function load_pagebuilder_integrations(): void {
 
 		if ( defined( 'ELEMENTOR_VERSION' ) ) {
-			add_action( 'elementor/widgets/widgets_registered', array( $this, 'initElementorWidgets' ) );
+			add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_elementor_widgets' ) );
 		}
 
 		if ( defined( 'WPB_VC_VERSION' ) ) {
@@ -145,7 +147,7 @@ class Plugin {
 		}
 	}
 
-	public function initElementorWidgets(): void {
+	public function init_elementor_widgets(): void {
 		if ( post_type_exists( $this->cpt_slug ) ) {
 			$elementor_file = $this->get_plugin_path() . '/elementor/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
 			if ( file_exists( $elementor_file ) ) {
@@ -164,25 +166,9 @@ class Plugin {
 		}
 	}
 
-	public function registerWidgets(): void {
-		$widget_files = array(
-			'class-wd-widget-discography.php',
-			'class-wd-widget-last-release.php',
-		);
-
-		foreach ( $widget_files as $widget_file ) {
-			$file_path = $this->get_plugin_path() . '/inc/widgets/' . $widget_file;
-			if ( file_exists( $file_path ) ) {
-				include_once $file_path;
-			}
-		}
-
-		if ( class_exists( 'WD_Widget_Discography' ) ) {
-			register_widget( 'WD_Widget_Discography' );
-		}
-		if ( class_exists( 'WD_Widget_Last_Release' ) ) {
-			register_widget( 'WD_Widget_Last_Release' );
-		}
+	public function register_widgets(): void {
+		register_widget( DiscographyWidget::class );
+		register_widget( LastReleaseWidget::class );
 	}
 
 	public function flushRewriteRules(): void {

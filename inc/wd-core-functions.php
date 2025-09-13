@@ -192,6 +192,8 @@ function wolf_get_release_option( $value, $default = null ) {
 }
 
 /**
+ * DEPRECATED
+ *
  * Discography Widget function
  *
  * Displays the discography widget
@@ -229,6 +231,7 @@ function wolf_widget_discography( $count = 3 ) {
 }
 
 /**
+ * DEPRECATED
  * Last Release Widget function
  *
  * Displays the last release widget

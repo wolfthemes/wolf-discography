@@ -10,7 +10,7 @@ cd .. && zip -r "${FOLDER_NAME}.zip" "${FOLDER_NAME}/" \
     -x "*/.*" \
     -x "*/deprecated/*" \
     -x "*/vendor/*" \
-    -x "*/src/*" \
+    -x "*/ressources/*" \
     -x "*/tests/*" \
     -x "*/test/*" \
     -x "*/phpunit.xml" \

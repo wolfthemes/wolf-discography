@@ -30,7 +30,7 @@ class MetaboxConfig {
 				'screen'   => 'release',
 				'context'  => 'normal',
 				'priority' => 'high',
-				'fields'   => self::getReleaseDetailFields(),
+				'fields'   => self::get_release_detail_fields(),
 			),
 		);
 	}
@@ -40,7 +40,7 @@ class MetaboxConfig {
 	 *
 	 * @return array
 	 */
-	private static function getReleaseDetailFields(): array {
+	private static function get_release_detail_fields(): array {
 		return array(
 			array(
 				'label' => esc_html__( 'Title', 'wolf-discography' ),

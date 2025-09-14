@@ -13,44 +13,6 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * Output generator tag to aid debugging.
- */
-function wd_generator_tag( $gen, $type ) {
-	switch ( $type ) {
-		case 'html':
-			$gen .= "\n" . '<meta name="generator" content="WolfDiscography ' . esc_attr( WD_VERSION ) . '">';
-			break;
-		case 'xhtml':
-			$gen .= "\n" . '<meta name="generator" content="WolfDiscography ' . esc_attr( WD_VERSION ) . '" />';
-			break;
-	}
-	return $gen;
-}
-
-/**
- * Add specific class to the body when we're on the discography page
- *
- * @since 1.2.6
- * @param array $classes
- * @return array $classes
- */
-function wd_body_class( $classes ) {
-
-	if ( is_page( wolf_discography_get_page_id() ) ) {
-		$classes[] = 'discography-page';
-	}
-
-	if (
-		! is_singular( 'release' )
-		&& ( 'release' == get_post_type() || ( function_exists( 'wolf_discography_get_page_id' ) && is_page( wolf_discography_get_page_id() ) ) )
-	) {
-		$classes[] = 'wolf-discography';
-	}
-
-	return $classes;
-}
-
 if ( ! function_exists( 'wolf_discography_output_content_wrapper' ) ) {
 
 	/**
@@ -63,7 +25,6 @@ if ( ! function_exists( 'wolf_discography_output_content_wrapper' ) ) {
 		wolf_discography_get_template( 'global/wrapper-start.php' );
 	}
 }
-
 
 if ( ! function_exists( 'wolf_discography_output_content_wrapper_end' ) ) {
 

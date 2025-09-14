@@ -87,34 +87,34 @@ class Plugin {
 	public function init(): void {
 		do_action( 'before_wolf_discography_init' );
 
-		$this->loadPluginTextdomain();
+		$this->load_plugin_textdomain();
 		$this->template_url = apply_filters( 'wolf_discography_url', 'wolf-discography/' );
 
-		$this->initializeComponents();
+		$this->initialize_components();
 
-		$this->flushRewriteRules();
+		$this->flush_rewrite_rules();
 		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 
 		do_action( 'wolf_discography_init' );
 	}
 
-	private function initializeComponents(): void {
+	private function initialize_components(): void {
 		$this->post_type_manager = new PostType();
 		$this->taxonomy_manager  = new Taxonomies();
 
 		$this->post_type_manager->register();
 		$this->taxonomy_manager->register();
 
-		if ( $this->isRequest( 'admin' ) ) {
+		if ( $this->is_request( 'admin' ) ) {
 			$this->admin_handler = new AdminHandler();
 		}
 
-		if ( $this->isRequest( 'frontend' ) ) {
+		if ( $this->is_request( 'frontend' ) ) {
 			$this->frontend_handler = new FrontendHandler();
 		}
 	}
 
-	private function isRequest( string $type ): bool {
+	private function is_request( string $type ): bool {
 		switch ( $type ) {
 			case 'admin':
 				return is_admin();
@@ -171,14 +171,14 @@ class Plugin {
 		register_widget( LastReleaseWidget::class );
 	}
 
-	public function flushRewriteRules(): void {
+	public function flush_rewrite_rules(): void {
 		if ( get_option( '_wolf_discography_flush_rewrite_rules_flag' ) ) {
 			flush_rewrite_rules();
 			delete_option( '_wolf_discography_flush_rewrite_rules_flag' );
 		}
 	}
 
-	public function loadPluginTextdomain(): void {
+	public function load_plugin_textdomain(): void {
 		$domain = Constants::TEXT_DOMAIN;
 		$locale = apply_filters( 'wolf-discography', get_locale(), $domain );
 

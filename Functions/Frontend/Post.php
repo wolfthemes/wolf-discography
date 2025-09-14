@@ -182,7 +182,7 @@ class Post {
 		$module = apply_filters( 'wd_post_module_module', $module, $atts );
 
 		// Filter.
-		$category_filter = ( isset( ${$post_type . '_category_filter'} ) ) ? wd_attr_bool( ${$post_type . '_category_filter'} ) : false;
+		$category_filter = ( isset( ${$post_type . '_category_filter'} ) ) ? Helpers::attr_bool( ${$post_type . '_category_filter'} ) : false;
 
 		// if ( $pagination && 'none' !== $pagination && -1 !== $posts_per_page && 'post' !== $post_type ) {
 		// $category_filter = false;
@@ -192,7 +192,7 @@ class Post {
 		$custom_thumbnail_size = ( isset( ${$post_type . '_custom_thumbnail_size'} ) ) ? ${$post_type . '_custom_thumbnail_size'} : '';
 		$custom_thumbnail_size = apply_filters( 'wd_post_module_custom_thumbnail_size', $custom_thumbnail_size, $display, $atts );
 
-		$is_index = ( isset( ${$post_type . '_index'} ) ) ? wd_attr_bool( ${$post_type . '_index'} ) : false;
+		$is_index = ( isset( ${$post_type . '_index'} ) ) ? Helpers::attr_bool( ${$post_type . '_index'} ) : false;
 
 		$inline_style  = wd_sanitize_css_field( $inline_style ); // sanitize user CSS input.
 		$inline_style .= wd_shortcode_custom_style( $css ); // add VC CSS from custom class.
@@ -284,7 +284,7 @@ class Post {
 
 		// Include.
 		if ( $include_ids ) {
-			$args['post__in'] = wd_clean_list( $include_ids );
+			$args['post__in'] = Helpers::clean_list( $include_ids );
 
 			if ( ! $orderby ) {
 				$args['orderby'] = 'post__in';
@@ -293,10 +293,10 @@ class Post {
 
 		// Exclude.
 		$exclude_ids_array   = array();
-		$exclude_ids_array[] = wd_get_the_id(); // exclude current post, obviously or the internet will explode.
+		$exclude_ids_array[] = Helpers::get_the_id(); // exclude current post, obviously or the internet will explode.
 
 		if ( $exclude_ids ) {
-			$exclude_ids_array = array_merge( $exclude_ids_array, wd_clean_list( $exclude_ids ) );
+			$exclude_ids_array = array_merge( $exclude_ids_array, Helpers::clean_list( $exclude_ids ) );
 		}
 
 		$exclude_ids_array = array_unique( $exclude_ids_array );
@@ -305,7 +305,7 @@ class Post {
 
 		// Include Band.
 		if ( $band_include ) {
-			$args['band'] = wd_clean_list( $band_include );
+			$args['band'] = Helpers::clean_list( $band_include );
 		}
 
 		// Exclude Band.
@@ -313,7 +313,7 @@ class Post {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'band',
-					'terms'    => wd_clean_list( $band_exclude ),
+					'terms'    => Helpers::clean_list( $band_exclude ),
 					'field'    => 'slug',
 					'operator' => 'NOT IN',
 				),
@@ -322,7 +322,7 @@ class Post {
 
 		// Include Label.
 		if ( $label_include ) {
-			$args['label'] = wd_clean_list( $label_include );
+			$args['label'] = Helpers::clean_list( $label_include );
 		}
 
 		// Exclude Label.
@@ -330,7 +330,7 @@ class Post {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'label',
-					'terms'    => wd_clean_list( $label_exclude ),
+					'terms'    => Helpers::clean_list( $label_exclude ),
 					'field'    => 'slug',
 					'operator' => 'NOT IN',
 				),
@@ -339,7 +339,7 @@ class Post {
 
 		// Include Label.
 		if ( $genre_include ) {
-			$args['genre'] = wd_clean_list( $genre_include );
+			$args['genre'] = Helpers::clean_list( $genre_include );
 		}
 
 		// Exclude genre.
@@ -347,7 +347,7 @@ class Post {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'release_genre',
-					'terms'    => wd_clean_list( $genre_exclude ),
+					'terms'    => Helpers::clean_list( $genre_exclude ),
 					'field'    => 'slug',
 					'operator' => 'NOT IN',
 				),

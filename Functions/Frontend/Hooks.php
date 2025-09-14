@@ -33,7 +33,7 @@ class Hooks {
 		add_action( 'get_the_generator_html', array( $this, 'generator_tag' ), 10, 2 );
 		add_action( 'get_the_generator_xhtml', array( $this, 'generator_tag' ), 10, 2 );
 
-		add_action( 'wolf_release_start', array( $this, 'wd_release_microdata' ) );
+		add_action( 'wolf_release_start', array( $this, 'release_microdata' ) );
 
 		/**
 		 * Content wrappers

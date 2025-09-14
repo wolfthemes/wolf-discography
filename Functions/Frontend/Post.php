@@ -194,8 +194,8 @@ class Post {
 
 		$is_index = ( isset( ${$post_type . '_index'} ) ) ? Helpers::attr_bool( ${$post_type . '_index'} ) : false;
 
-		$inline_style  = wd_sanitize_css_field( $inline_style ); // sanitize user CSS input.
-		$inline_style .= wd_shortcode_custom_style( $css ); // add VC CSS from custom class.
+		$inline_style  = Helpers::sanitize_css_field( $inline_style ); // sanitize user CSS input.
+		$inline_style .= Helpers::shortcode_custom_style( $css ); // add VC CSS from custom class.
 
 		// Start writing container class.
 		$class  = $el_class;
@@ -436,10 +436,10 @@ class Post {
 			$tag = ( $is_list ) ? 'ul' : 'div';
 
 			// Container open tag.
-			echo '<' . esc_attr( $tag ) . ' id="' . esc_attr( $id ) . '" data-post-type="' . esc_attr( $post_type ) . '" data-params="' . esc_js( $json_params ) . '" class="' . wd_sanitize_html_classes( $class ) . '"';
+			echo '<' . esc_attr( $tag ) . ' id="' . esc_attr( $id ) . '" data-post-type="' . esc_attr( $post_type ) . '" data-params="' . esc_js( $json_params ) . '" class="' . Helpers::sanitize_html_classes( $class ) . '"';
 
-			if ( wd_esc_style_attr( $inline_style ) ) {
-				echo ' style="' . wd_esc_style_attr( $inline_style ) . '" ';
+			if ( Helpers::esc_style_attr( $inline_style ) ) {
+				echo ' style="' . Helpers::esc_style_attr( $inline_style ) . '" ';
 			}
 
 			echo ' data-scroll data-scroll-css-progress';

@@ -13,31 +13,6 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Output post microdata
- *
- * @since 1.3.0
- */
-function wd_release_microdata() {
-
-	$band         = strip_tags( get_the_term_list( get_the_ID(), 'band', '', ', ', '' ) );
-	$meta         = wd_get_meta();
-	$release_date = $meta['date'];
-	$tracklist    = wd_release_get_tracklist();
-	?>
-	<meta itemprop="publisher" content="<?php echo esc_url( home_url( '/' ) ); ?>">
-	<link itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>">
-	<meta itemprop="name" content="<?php the_title(); ?>">
-	<meta itemprop="image" content="<?php echo wd_get_post_thumbnail_url( 'large' ); ?>">
-	<?php if ( $band ) : ?>
-		<meta itemprop="byArtist" content="<?php echo esc_attr( $band ); ?>">
-	<?php endif; ?>
-	<?php if ( $release_date ) : ?>
-		<meta itemprop="datePublished" content="<?php echo esc_attr( $release_date ); ?>">
-	<?php endif; ?>
-	<?php
-}
-
-/**
  * Get any thumbnail URL
  *
  * @param string $format

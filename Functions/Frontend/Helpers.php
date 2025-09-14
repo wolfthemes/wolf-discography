@@ -58,7 +58,7 @@ class Helpers {
 			$style = $style . ';'; // add end semicolon if missing.
 		}
 
-		return esc_attr( trim( Helpers::clean_spaces( $style ) ) );
+		return esc_attr( trim( self::clean_spaces( $style ) ) );
 	}
 
 	/**
@@ -91,7 +91,7 @@ class Helpers {
 
 		if ( preg_match( '/\s*\.([^\{]+)\s*\{\s*([^\}]+)\s*\}\s*/', $param_value, $match ) ) {
 			if ( isset( $match[2] ) ) {
-				return Helpers::clean_spaces( str_replace( '!important', '', $match[2] ), true ); // remove !important to allow CSS overwriting
+				return self::clean_spaces( str_replace( '!important', '', $match[2] ), true ); // remove !important to allow CSS overwriting
 			}
 		}
 	}
@@ -169,7 +169,7 @@ class Helpers {
 
 		$style = ( ';' !== $style ) ? $style : '';
 
-		return esc_attr( trim( Helpers::clean_spaces( $style ) ) );
+		return esc_attr( trim( self::clean_spaces( $style ) ) );
 	}
 
 	/**
@@ -202,7 +202,7 @@ class Helpers {
 			'white'       => '#ffffff',
 		);
 
-		$colors = Helpers::get_shared_colors_hex();
+		$colors = self::get_shared_colors_hex();
 
 		if ( 'custom' === $color ) {
 			$hex_color = $custom_color;
@@ -335,7 +335,7 @@ class Helpers {
 	 * @return array
 	 */
 	public static function list_to_array( $list, $separator = ',' ) {
-		return ( $list ) ? explode( ',', trim( Helpers::clean_spaces( Helpers::clean_list( $list ) ) ) ) : array();
+		return ( $list ) ? explode( ',', trim( self::clean_spaces( self::clean_list( $list ) ) ) ) : array();
 	}
 
 	/**
@@ -351,7 +351,7 @@ class Helpers {
 			$list = rtrim( implode( $separator, array_unique( $array ) ), $separator );
 		}
 
-		return Helpers::clean_list( $list );
+		return self::clean_list( $list );
 	}
 
 	/**
@@ -602,7 +602,7 @@ class Helpers {
 	 * @return bool
 	 */
 	public static function is_discography() {
-		return Helpers::is_discography_archives() || is_singular( 'release' );
+		return self::is_discography_archives() || is_singular( 'release' );
 	}
 
 	/**

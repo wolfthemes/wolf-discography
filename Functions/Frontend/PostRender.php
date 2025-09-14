@@ -1,10 +1,15 @@
-<?/**
+<?php
+/**
+ * Post Render
  *
- *
- *
- * @param type $param description
- * @return type description
+ * @package WolfDiscography
+ * @subpackage Frontend
+ * @since 2.0.0
  */
+
+namespace WolfDiscography\Frontend;
+
+defined( 'ABSPATH' ) || exit;
 
 class PostRenderer {
     public function render($data, $atts) {

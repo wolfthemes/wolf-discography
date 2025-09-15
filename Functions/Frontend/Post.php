@@ -10,12 +10,14 @@
 namespace WolfDiscography\Frontend;
 
 use WolfDiscography\Core\AttributeProcessor;
+use WolfDiscography\Core\QueryBuilder;
 
 defined( 'ABSPATH' ) || exit;
 
 class Post {
 
 	private $attribute_processor;
+	private $query_builder;
 
 	public string $cpt_slug = 'release';
 
@@ -25,6 +27,7 @@ class Post {
 	 */
 	public function __construct() {
 		$this->attribute_processor = new AttributeProcessor();
+		$this->query_builder       = new QueryBuilder( $this->cpt_slug );
 		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ) );
 	}
 
@@ -119,170 +122,8 @@ class Post {
 			$category_filter = null;
 		}
 
-		// Query args.
-		if ( isset( $_GET['wpage'] ) && isset( $_GET['index'] ) && sanitize_key( $_GET['index'] ) === $id ) {
-			$paged = absint( $_GET['wpage'] );
-		}
-
-		if ( ! $paged ) {
-			/* Fixed in  4.8 ? */
-			$page_var = ( is_front_page() ) ? 'page' : 'paged';
-			$paged    = ( get_query_var( $page_var ) ) ? get_query_var( $page_var ) : 1;
-		}
-
-		if ( $offset ) {
-
-			// offset is ignored if posts per page is -1, so we use the default ppp setting insead.
-			if ( -1 === $posts_per_page ) {
-				$posts_per_page = get_option( 'posts_per_page' );
-			}
-
-			$offset = $offset + ( ( $paged - 1 ) * $posts_per_page );
-		}
-
-		if ( $category_filter ) {
-			$pagination = 'none';
-		}
-
-		// Set default args.
-		$args = array(
-			'post_type'      => $post_type,
-			'post_status'    => array( 'publish' ), // published post only.
-			'posts_per_page' => $posts_per_page,
-			'paged'          => $paged,
-			'post__in'       => array(),
-			'post__not_in'   => array(),
-		);
-
-		if ( $offset ) {
-			$args['offset'] = $offset;
-		}
-
-		// Include.
-		if ( $include_ids ) {
-			$args['post__in'] = Helpers::clean_list( $include_ids );
-
-			if ( ! $orderby ) {
-				$args['orderby'] = 'post__in';
-			}
-		}
-
-		// Exclude.
-		$exclude_ids_array   = array();
-		$exclude_ids_array[] = Helpers::get_the_id(); // exclude current post, obviously or the internet will explode.
-
-		if ( $exclude_ids ) {
-			$exclude_ids_array = array_merge( $exclude_ids_array, Helpers::clean_list( $exclude_ids ) );
-		}
-
-		$exclude_ids_array = array_unique( $exclude_ids_array );
-
-		$args['post__not_in'] = $exclude_ids_array;
-
-		// Include Band.
-		if ( $band_include ) {
-			$args['band'] = Helpers::clean_list( $band_include );
-		}
-
-		// Exclude Band.
-		if ( $band_exclude ) {
-			$args['tax_query'] = array(
-				array(
-					'taxonomy' => 'band',
-					'terms'    => Helpers::clean_list( $band_exclude ),
-					'field'    => 'slug',
-					'operator' => 'NOT IN',
-				),
-			);
-		}
-
-		// Include Label.
-		if ( $label_include ) {
-			$args['label'] = Helpers::clean_list( $label_include );
-		}
-
-		// Exclude Label.
-		if ( $label_exclude ) {
-			$args['tax_query'] = array(
-				array(
-					'taxonomy' => 'label',
-					'terms'    => Helpers::clean_list( $label_exclude ),
-					'field'    => 'slug',
-					'operator' => 'NOT IN',
-				),
-			);
-		}
-
-		// Include Label.
-		if ( $genre_include ) {
-			$args['genre'] = Helpers::clean_list( $genre_include );
-		}
-
-		// Exclude genre.
-		if ( $genre_exclude ) {
-			$args['tax_query'] = array(
-				array(
-					'taxonomy' => 'release_genre',
-					'terms'    => Helpers::clean_list( $genre_exclude ),
-					'field'    => 'slug',
-					'operator' => 'NOT IN',
-				),
-			);
-		}
-
-		$args['meta_key'] = '_thumbnail_id'; // force post with thumbnail.
-
-		if ( 'featured' === $release_meta ) {
-
-			$args['meta_query'] = array(
-				array(
-					'key'     => '_post_release_meta',
-					'value'   => 'featured',
-					'compare' => '=',
-				),
-			);
-
-		} elseif ( 'upcoming' === $release_meta ) {
-
-			$args['meta_query'] = array(
-				array(
-					'key'     => '_post_release_meta',
-					'value'   => 'upcoming',
-					'compare' => '=',
-				),
-			);
-		}
-
-		// Custom Order.
-		if ( $orderby ) {
-
-			$args['orderby'] = $orderby;
-
-		} elseif ( ! isset( $args['orderby'] ) && function_exists( 'initCPTO' ) ) { // post type order plugin.
-
-			$cpto_options = get_option( 'cpto_options' );
-
-			if ( empty( $cpto_options['autosort'] ) ) {
-				$args['orderby'] = 'menu_order';
-				$args['order']   = 'ASC';
-			}
-		}
-
-		if ( $order ) {
-			$args['order'] = $order;
-		}
-
-		// Get main WP query in a variable.
-		if ( $is_index ) { // is index page.
-
-			global $wp_query;
-			$query = $wp_query;
-			// $query->set( 'posts_per_page', $posts_per_page );
-
-		}
-
-		/* The query */
-		$query = new \WP_Query( apply_filters( 'wd_post_module_main_query_args', $args, $atts ) );
+		/* Main Query */
+		$query = $this->query_builder->build_query( $atts );
 
 		/**
 		 * Add action before the output
@@ -395,9 +236,6 @@ class Post {
 			do_action( 'wd_after_post_module', $atts );
 
 		}
-	}
-
-	public function build_query( $atts ) {
 	}
 
 	/**

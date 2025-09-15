@@ -125,7 +125,7 @@ class Post {
 	}
 
 	public function build_json_params( $atts ) {
-		$clean_atts  = array_filter(
+		$clean_atts = array_filter(
 			$atts,
 			function ( $var ) {
 				return ( $var );
@@ -142,15 +142,15 @@ class Post {
 	 */
 	public function output_posts( $atts ) {
 
-		debug( 'Input attributes: ' . print_r( $atts, true ) );
+		debug( 'Input attributes: ', $atts );
 
 		/* Retrieve all VC shortcode attributes and/or set default values */
 		$atts = wp_parse_args(
 			$atts,
-			$this->get_default_post_atts()
+			$this->attribute_processor->get_all_defaults()
 		);
 
-		debug( 'Defalut + input attributes: ' . print_r( $atts, true ) );
+		debug( 'Defalut + input attributes: ', $atts );
 
 		/**
 		 * Post module attributes filtered
@@ -161,7 +161,6 @@ class Post {
 
 		/* Build JSON params array for data attribute */
 		$json_params = $this->build_json_params( $atts );
-
 
 		/* Extract all attributes as var (mayb be optmized as well!) */
 		extract( $atts ); // phpcs:ignore
@@ -538,5 +537,11 @@ class Post {
 			do_action( 'wd_after_post_module', $atts );
 
 		}
+	}
+
+	public function build_query( $atts ) {
+	}
+
+	public function build_css_class( $atts ) {
 	}
 }

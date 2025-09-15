@@ -477,7 +477,7 @@ function wd_enqueue_style() {
 		wp_enqueue_style( 'wolf-discography', WD_URI . '/build/styles.css', array(), WD_VERSION, 'all' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'wd_enqueue_style' );
+// add_action( 'wp_enqueue_scripts', 'wd_enqueue_style' );
 
 /**
  * Displays release navigation
@@ -538,31 +538,6 @@ function wolf_release_page_nav( $loop = null ) {
 	</nav><!-- .navigation -->
 	<?php
 }
-
-/**
- * Add conditional layout classes to body
- */
-function wd_add_layout_body_class( $classes ) {
-	// Only add classes for non-Wolf themes
-	if ( ! WD()->is_wolf_theme() ) {
-		if ( is_page( wolf_discography_get_page_id() ) || is_post_type_archive( 'release' ) || is_singular( 'release' ) || is_tax( array( 'band', 'label', 'release_genre' ) ) ) {
-			$classes[] = 'wolf-discography-active';
-
-			// Add default layout class (list by default)
-			$display   = wolf_get_release_option( 'display', 'list' );
-			$classes[] = 'wolf-discography-display-' . $display;
-
-			// Add grid columns if grid display
-			if ( $display === 'grid' ) {
-				$columns   = wolf_get_release_option( 'columns', '3' );
-				$classes[] = 'wolf-discography-grid-' . $columns;
-			}
-		}
-	}
-
-	return $classes;
-}
-/* add_filter( 'body_class', 'wd_add_layout_body_class' ); */
 
 /**
  * Get discography layout wrapper class

@@ -16,6 +16,8 @@
 
 namespace WolfDiscography\Core;
 
+use WolfDiscography\Config\ModuleAttributes;
+
 defined( 'ABSPATH' ) || exit;
 
 class AttributeProcessor {
@@ -23,244 +25,8 @@ class AttributeProcessor {
 	/**
 	 * Attribute registry - single source of truth
 	 */
-	private function get_attribute_registry() {
-		return array(
-			// Query attributes (affect database queries)
-			'query'    => array(
-				'post_type'      => array(
-					'default'     => 'release',
-					'type'        => 'string',
-					'description' => 'Post type to query',
-				),
-				'posts_per_page' => array(
-					'default'     => 100,
-					'type'        => 'int',
-					'aliases'     => array( 'postsPerPage', 'per_page', 'count' ),
-					'min'         => -1,
-					'max'         => 500,
-					'description' => 'Number of posts to retrieve (-1 for all)',
-				),
-				'paged'          => array(
-					'default'     => null,
-					'type'        => 'int',
-					'aliases'     => array( 'page', 'currentPage' ),
-					'min'         => 1,
-					'description' => 'Page number for pagination',
-				),
-				'orderby'        => array(
-					'default'     => '',
-					'type'        => 'string',
-					'enum'        => array( '', 'date', 'title', 'menu_order', 'rand', 'post__in', 'release_date' ),
-					'description' => 'Field to order posts by',
-				),
-				'order'          => array(
-					'default'     => 'DESC',
-					'type'        => 'string',
-					'enum'        => array( 'ASC', 'DESC' ),
-					'description' => 'Sort order direction',
-				),
-				'include_ids'    => array(
-					'default'     => '',
-					'type'        => 'csv',
-					'aliases'     => array( 'includeIds', 'post__in', 'ids' ),
-					'description' => 'Comma-separated list of post IDs to include',
-				),
-				'exclude_ids'    => array(
-					'default'     => '',
-					'type'        => 'csv',
-					'aliases'     => array( 'excludeIds', 'post__not_in' ),
-					'description' => 'Comma-separated list of post IDs to exclude',
-				),
-				'band_include'   => array(
-					'default'     => '',
-					'type'        => 'csv',
-					'aliases'     => array( 'bandInclude', 'bands', 'band' ),
-					'description' => 'Include specific bands (slugs or names)',
-				),
-				'band_exclude'   => array(
-					'default'     => '',
-					'type'        => 'csv',
-					'aliases'     => array( 'bandExclude' ),
-					'description' => 'Exclude specific bands',
-				),
-				'genre_include'  => array(
-					'default'     => '',
-					'type'        => 'csv',
-					'aliases'     => array( 'genreInclude', 'genres', 'genre' ),
-					'description' => 'Include specific genres',
-				),
-				'genre_exclude'  => array(
-					'default'     => '',
-					'type'        => 'csv',
-					'aliases'     => array( 'genreExclude' ),
-					'description' => 'Exclude specific genres',
-				),
-				'label_include'  => array(
-					'default'     => '',
-					'type'        => 'csv',
-					'aliases'     => array( 'labelInclude', 'labels', 'label' ),
-					'description' => 'Include specific labels',
-				),
-				'label_exclude'  => array(
-					'default'     => '',
-					'type'        => 'csv',
-					'aliases'     => array( 'labelExclude' ),
-					'description' => 'Exclude specific labels',
-				),
-				'release_meta'   => array(
-					'default'     => '',
-					'type'        => 'string',
-					'aliases'     => array( 'releaseMeta', 'meta' ),
-					'enum'        => array( '', 'featured', 'upcoming' ),
-					'description' => 'Filter by release meta status',
-				),
-				'offset'         => array(
-					'default'     => 0,
-					'type'        => 'int',
-					'min'         => 0,
-					'description' => 'Number of posts to skip',
-				),
-			),
-
-			// Display attributes (affect HTML structure)
-			'display'  => array(
-				'columns'               => array(
-					'default'     => 3,
-					'type'        => 'int',
-					'min'         => 1,
-					'max'         => 6,
-					'description' => 'Number of columns for grid display',
-				),
-				'display'               => array(
-					'default'     => 'grid',
-					'type'        => 'string',
-					'aliases'     => array( 'layout_type', 'view' ),
-					'enum'        => array( 'grid', 'list', 'carousel', 'masonry' ),
-					'description' => 'Display layout type',
-				),
-				'layout'                => array(
-					'default'     => 'standard',
-					'type'        => 'string',
-					'enum'        => array( 'standard', 'minimal', 'detailed' ),
-					'description' => 'Layout variation within display type',
-				),
-				'thumbnail_size'        => array(
-					'default'     => 'square',
-					'type'        => 'string',
-					'aliases'     => array( 'thumbnailSize', 'image_size', 'imageSize' ),
-					'description' => 'Featured image size',
-				),
-				'custom_thumbnail_size' => array(
-					'default'     => '',
-					'type'        => 'string',
-					'aliases'     => array( 'customThumbnailSize', 'custom_image_size' ),
-					'description' => 'Custom image size (WxH)',
-				),
-				'grid_padding'          => array(
-					'default'     => 'yes',
-					'type'        => 'bool',
-					'aliases'     => array( 'gridPadding', 'padding' ),
-					'description' => 'Add padding between grid items',
-				),
-			),
-
-			// Behavior attributes (affect JavaScript/interactions)
-			'behavior' => array(
-				'category_filter' => array(
-					'default'     => false,
-					'type'        => 'bool',
-					'aliases'     => array( 'categoryFilter', 'filter', 'filtering' ),
-					'description' => 'Enable category filtering',
-				),
-				'load_more'       => array(
-					'default'     => false,
-					'type'        => 'bool',
-					'aliases'     => array( 'loadMore', 'pagination' ),
-					'description' => 'Enable load more button',
-				),
-				'ajax_loading'    => array(
-					'default'     => false,
-					'type'        => 'bool',
-					'aliases'     => array( 'ajaxLoading', 'ajax' ),
-					'description' => 'Enable AJAX content loading',
-				),
-				'item_animation'  => array(
-					'default'     => '',
-					'type'        => 'string',
-					'aliases'     => array( 'itemAnimation', 'animation' ),
-					'enum'        => array( '', 'fade', 'slide', 'zoom' ),
-					'description' => 'Animation for items',
-				),
-			),
-
-			// Style attributes (affect CSS)
-			'style'    => array(
-				'overlay_color'          => array(
-					'default'     => 'black',
-					'type'        => 'string',
-					'aliases'     => array( 'overlayColor' ),
-					'description' => 'Overlay background color',
-				),
-				'overlay_opacity'        => array(
-					'default'     => 44,
-					'type'        => 'int',
-					'aliases'     => array( 'overlayOpacity' ),
-					'min'         => 0,
-					'max'         => 100,
-					'description' => 'Overlay opacity percentage',
-				),
-				'caption_text_alignment' => array(
-					'default'     => 'center',
-					'type'        => 'string',
-					'aliases'     => array( 'captionTextAlignment', 'textAlign' ),
-					'enum'        => array( 'left', 'center', 'right' ),
-					'description' => 'Text alignment for captions',
-				),
-				'hover_effect'           => array(
-					'default'     => 'default',
-					'type'        => 'string',
-					'aliases'     => array( 'hoverEffect' ),
-					'enum'        => array( 'default', 'zoom', 'fade', 'slide' ),
-					'description' => 'Hover effect for items',
-				),
-			),
-
-			// Output attributes (affect rendering method)
-			'output'   => array(
-				'format'          => array(
-					'default'     => 'html',
-					'type'        => 'string',
-					'enum'        => array( 'html', 'json', 'data' ),
-					'description' => 'Output format',
-				),
-				'css_mode'        => array(
-					'default'     => 'auto',
-					'type'        => 'string',
-					'aliases'     => array( 'cssMode' ),
-					'enum'        => array( 'auto', 'legacy', 'modern', 'minimal' ),
-					'description' => 'CSS class generation mode',
-				),
-				'template_source' => array(
-					'default'     => 'auto',
-					'type'        => 'string',
-					'aliases'     => array( 'templateSource' ),
-					'enum'        => array( 'auto', 'theme', 'builtin' ),
-					'description' => 'Template source preference',
-				),
-				'el_class'        => array(
-					'default'     => '',
-					'type'        => 'string',
-					'aliases'     => array( 'elClass', 'className', 'css_class', 'class' ),
-					'description' => 'Additional CSS classes',
-				),
-				'el_id'           => array(
-					'default'     => '',
-					'type'        => 'string',
-					'aliases'     => array( 'elId', 'id' ),
-					'description' => 'Element ID',
-				),
-			),
-		);
+	private function retrieve_attribute_registry() {
+		return ModuleAttributes::get_attribute_registry();
 	}
 
 	/**
@@ -271,7 +37,7 @@ class AttributeProcessor {
 	 * @return array Processed and categorized attributes
 	 */
 	public function process_attributes( $raw_atts = array(), $source = 'unknown' ) {
-		$registry = $this->get_attribute_registry();
+		$registry = $this->retrieve_attribute_registry();
 
 		// Initialize processed structure
 		$processed = array(
@@ -454,7 +220,7 @@ class AttributeProcessor {
 	 * Get default attributes for a specific category
 	 */
 	public function get_category_defaults( $category ) {
-		$registry = $this->get_attribute_registry();
+		$registry = $this->retrieve_attribute_registry();
 
 		if ( ! isset( $registry[ $category ] ) ) {
 			return array();
@@ -472,7 +238,7 @@ class AttributeProcessor {
 	 * Get all default attributes (flattened)
 	 */
 	public function get_all_defaults() {
-		$registry = $this->get_attribute_registry();
+		$registry = $this->retrieve_attribute_registry();
 		$defaults = array();
 
 		foreach ( $registry as $category => $attributes ) {

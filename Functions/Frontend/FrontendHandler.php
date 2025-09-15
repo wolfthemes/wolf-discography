@@ -59,6 +59,7 @@ class FrontendHandler {
 		new Post();
 		new Hooks();
 		new ShortcodeManager();
+		new Enqueues();
 
 		// TODO: Progressively migrate frontend functionality to new classes
 		// Examples:

@@ -86,6 +86,8 @@ class Post {
 		$atts = wp_parse_args( $atts, $this->attribute_processor->get_all_defaults() );
 		$atts = apply_filters( 'wd_post_module_atts', $atts );
 
+		debug( 'Processed Attributes', $atts );
+
 		// 2. Build components
 		$json_params     = $this->html_renderer->build_json_params( $atts );
 		$container_attrs = $this->html_renderer->build_container_attributes( $atts, $json_params );

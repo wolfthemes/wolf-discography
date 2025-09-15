@@ -23,7 +23,7 @@ class MetaboxConfig {
 	 *
 	 * @return array
 	 */
-	public static function getConfig(): array {
+	public static function get_config(): array {
 		return array(
 			'release_details' => array(
 				'title'    => esc_html__( 'Release Details', 'wolf-discography' ),

@@ -33,15 +33,15 @@ class MetaboxManager {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->loadConfiguration();
-		$this->initHooks();
+		$this->load_configuration();
+		$this->init_hooks();
 	}
 
 	/**
 	 * Load metabox configuration from Config class
 	 */
-	private function loadConfiguration(): void {
-		$this->metaboxes = MetaboxConfig::getConfig();
+	private function load_configuration(): void {
+		$this->metaboxes = MetaboxConfig::get_config();
 
 		// Allow filtering of metaboxes
 		$this->metaboxes = apply_filters( 'wolf_discography_metaboxes_config', $this->metaboxes );
@@ -50,16 +50,16 @@ class MetaboxManager {
 	/**
 	 * Initialize WordPress hooks
 	 */
-	private function initHooks(): void {
-		add_action( 'add_meta_boxes', array( $this, 'addMetaboxes' ) );
-		add_action( 'save_post', array( $this, 'saveMetaboxes' ), 10, 2 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueueAssets' ) );
+	private function init_hooks(): void {
+		add_action( 'add_meta_boxes', array( $this, 'add_metaboxes' ) );
+		add_action( 'save_post', array( $this, 'save_enqueue_as' ), 10, 2 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 	}
 
 	/**
 	 * Add metaboxes to WordPress
 	 */
-	public function addMetaboxes(): void {
+	public function add_metaboxes(): void {
 		foreach ( $this->metaboxes as $id => $metabox ) {
 			add_meta_box(
 				'wolf_' . $id,
@@ -211,7 +211,7 @@ class MetaboxManager {
 	/**
 	 * Save metabox data
 	 */
-	public function saveMetaboxes( int $post_id, \WP_Post $post ): void {
+	public function save_enqueue_as( int $post_id, \WP_Post $post ): void {
 		// Verify nonce
 		if ( ! isset( $_POST['wolf_discography_metabox_nonce'] ) ||
 			! wp_verify_nonce( $_POST['wolf_discography_metabox_nonce'], 'wolf_discography_metabox' ) ) {
@@ -272,7 +272,7 @@ class MetaboxManager {
 	/**
 	 * Enqueue metabox assets
 	 */
-	public function enqueueAssets( string $hook ): void {
+	public function enqueue_assets( string $hook ): void {
 		global $post;
 
 		if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ) ) ||

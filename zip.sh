@@ -9,7 +9,6 @@ cd .. && zip -r "${FOLDER_NAME}.zip" "${FOLDER_NAME}/" \
     -x "*/.git/*" \
     -x "*/.*" \
     -x "*/deprecated/*" \
-    -x "*/vendor/*" \
     -x "*/ressources/*" \
     -x "*/tests/*" \
     -x "*/test/*" \

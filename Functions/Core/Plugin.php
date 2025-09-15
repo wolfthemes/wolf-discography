@@ -41,9 +41,9 @@ class Plugin {
 	}
 
 	private function __construct() {
-		$this->checkPhpVersion();
+		$this->check_php_version();
 		Constants::define( $this->get_plugin_path(), $this->getPluginUrl() );
-		$this->initHooks();
+		$this->init_hooks();
 
 		do_action( 'wolf_discography_loaded' );
 	}
@@ -53,16 +53,17 @@ class Plugin {
 		throw new \Exception( 'Cannot unserialize singleton' );
 	}
 
-	private function checkPhpVersion(): void {
+	private function check_php_version(): void {
 		if ( version_compare( PHP_VERSION, Constants::REQUIRED_PHP_VERSION, '<' ) ) {
 			$this->admin_notices = new AdminNotices();
 		}
 	}
 
-	private function initHooks(): void {
+	private function init_hooks(): void {
 		add_action( 'after_setup_theme', array( $this, 'includeTemplateFunctions' ), 11 );
 		add_action( 'init', array( $this, 'load_core_functions' ), 0 );
 		add_action( 'init', array( $this, 'init' ), 0 );
+
 		if ( ! $this->is_wolf_theme() ) {
 			add_action( 'init', array( $this, 'load_pagebuilder_integrations' ) );
 		}

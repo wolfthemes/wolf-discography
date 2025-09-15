@@ -21,7 +21,7 @@ class ModuleParams {
 	 *
 	 * @return array
 	 */
-	public static function getReleaseIndexParams(): array {
+	public static function get_release_index_params(): array {
 		return apply_filters(
 			'wd_release_index_params',
 			array(
@@ -35,7 +35,7 @@ class ModuleParams {
 					'icon'          => 'wolf-release-elementor-icon',
 					'weight'        => 999,
 				),
-				'params'     => self::getReleaseIndexParamFields(),
+				'params'     => self::get_release_index_param_fields(),
 			)
 		);
 	}
@@ -45,7 +45,7 @@ class ModuleParams {
 	 *
 	 * @return array
 	 */
-	private static function getReleaseIndexParamFields(): array {
+	private static function get_release_index_param_fields(): array {
 		return array(
 			'release_display'               => array(
 				'param_name'  => 'release_display',
@@ -163,7 +163,7 @@ class ModuleParams {
 	 *
 	 * @return array
 	 */
-	public static function getDisplayOptions(): array {
+	public static function get_display_options(): array {
 		return apply_filters(
 			'wd_release_display_options',
 			array(
@@ -178,7 +178,7 @@ class ModuleParams {
 	 *
 	 * @return array
 	 */
-	public static function getLayoutOptions(): array {
+	public static function get_layout_options(): array {
 		return apply_filters(
 			'wolftheme_release_layout_options',
 			array(

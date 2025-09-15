@@ -39,7 +39,7 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 		parent::__construct( $data, $args );
 
 		// Load parameters using namespaced config
-		$this->params = ModuleParams::getReleaseIndexParams();
+		$this->params = ModuleParams::get_release_index_params();
 	}
 
 	/**

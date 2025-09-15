@@ -10,6 +10,8 @@
  * @since 1.0.2
  */
 
+use WolfDiscography\Frontend\Helpers;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -617,7 +619,7 @@ function wd_background_overlay( $args ) {
 
 	$overlay_style .= "opacity:$overlay_opacity;";
 
-	return '<' . $overlay_tag . ' style="' . wd_esc_style_attr( $overlay_style ) . '" class="' . wd_sanitize_html_classes( $class ) . '"></' . $overlay_tag . '><!--.wolf-core-bg-overlay-->';
+	return '<' . $overlay_tag . ' style="' . Helpers::esc_style_attr( $overlay_style ) . '" class="' . Helpers::sanitize_html_classes( $class ) . '"></' . $overlay_tag . '><!--.wolf-core-bg-overlay-->';
 }
 
 /**
@@ -638,5 +640,5 @@ function wd_add_to_cart( $product_id, $classes = '', $text = '' ) {
 		href="' . esc_url( $wc_url ) . '"
 		rel="nofollow"
 		data-quantity="1" data-product_id="' . absint( $product_id ) . '"
-		class="' . wd_sanitize_html_classes( $classes ) . '">' . $text . '</a>';
+		class="' . Helpers::sanitize_html_classes( $classes ) . '">' . $text . '</a>';
 }

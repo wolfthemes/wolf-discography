@@ -9,6 +9,8 @@
  * @since 1.6.0
  */
 
+use WolfDiscography\Frontend\Helpers;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -107,11 +109,11 @@ function wd_resized_thumbnail( $size = '150x150', $class = '', $image_id = null,
 	);
 
 	if ( $echo && $thumbnail ) {
-		echo wd_kses( $thumbnail['thumbnail'] );
+		echo Helpers::kses( $thumbnail['thumbnail'] );
 	}
 
 	if ( $thumbnail ) {
-		return wd_kses( $thumbnail['thumbnail'] );
+		return Helpers::kses( $thumbnail['thumbnail'] );
 	}
 }
 

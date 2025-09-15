@@ -9,15 +9,19 @@
 
 namespace WolfDiscography\Frontend;
 
+use WolfDiscography\Core\AttributeProcessor;
+
 defined( 'ABSPATH' ) || exit;
 
 class Post {
+
+	private $attribute_processor;
 
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
-
+		$this->attribute_processor = new AttributeProcessor();
 		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ) );
 	}
 
@@ -120,6 +124,16 @@ class Post {
 		);
 	}
 
+	public function build_json_params( $atts ) {
+		$clean_atts  = array_filter(
+			$atts,
+			function ( $var ) {
+				return ( $var );
+			}
+		); // clean empty atts for json params.
+		return wp_json_encode( $clean_atts );
+	}
+
 	/**
 	 * Output posts
 	 *
@@ -128,11 +142,15 @@ class Post {
 	 */
 	public function output_posts( $atts ) {
 
+		debug( 'Input attributes: ' . print_r( $atts, true ) );
+
 		/* Retrieve all VC shortcode attributes and/or set default values */
 		$atts = wp_parse_args(
 			$atts,
 			$this->get_default_post_atts()
 		);
+
+		debug( 'Defalut + input attributes: ' . print_r( $atts, true ) );
 
 		/**
 		 * Post module attributes filtered
@@ -141,14 +159,11 @@ class Post {
 		 */
 		$atts = apply_filters( 'wd_post_module_atts', $atts );
 
-		$clean_atts  = array_filter(
-			$atts,
-			function ( $var ) {
-				return ( $var );
-			}
-		); // clean empty atts for json params.
-		$json_params = wp_json_encode( $clean_atts );
+		/* Build JSON params array for data attribute */
+		$json_params = $this->build_json_params( $atts );
 
+
+		/* Extract all attributes as var (mayb be optmized as well!) */
 		extract( $atts ); // phpcs:ignore
 
 		$post_type = 'release';

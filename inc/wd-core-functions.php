@@ -10,9 +10,9 @@
  * @version 1.5.1
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+use WolfDiscography\Frontend\Helpers;
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Add image sizes
@@ -276,7 +276,7 @@ function wd_get_post_attr( $post_id ) {
 	$post_attrs = array();
 
 	$post_attrs['id']           = 'post-' . $post_id;
-	$post_attrs['class']        = wd_array_to_list( get_post_class(), ' ' );
+	$post_attrs['class']        = Helpers::array_to_list( get_post_class(), ' ' );
 	$post_attrs['data-post-id'] = $post_id;
 	if ( 'release' === get_post_type() ) {
 		$post_attrs['itemscope'] = '';
@@ -285,8 +285,8 @@ function wd_get_post_attr( $post_id ) {
 
 	if ( has_post_thumbnail( $post_id ) ) {
 
-		$img_dominant_color = wd_get_image_dominant_color( get_post_thumbnail_id( $post_id ) );
-		$img_color_tone     = wd_get_color_tone( $img_dominant_color, 180 );
+		$img_dominant_color = Helpers::get_image_dominant_color( get_post_thumbnail_id( $post_id ) );
+		$img_color_tone     = Helpers::get_color_tone( $img_dominant_color, 180 );
 
 		$post_attrs['data-thumbnail-color-tone'] = $img_color_tone;
 	}

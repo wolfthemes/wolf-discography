@@ -59,7 +59,7 @@ $custom_redirect_link = get_post_meta( get_the_ID(), '_release_redirect_url', tr
 $permalink            = ( $custom_redirect_link ) ? $custom_redirect_link : get_the_permalink();
 $target               = ( $release_do_redirect_url && $custom_redirect_link ) ? '_blank' : '';
 ?>
-<article <?php Helpers::post_attr( array( $overlay_tone_class ) ); ?>>
+<article <?php wd_post_attr( array( $overlay_tone_class ) ); ?>>
 	<?php
 		/**
 		 * wolf_release_start_hook
@@ -105,7 +105,7 @@ $target               = ( $release_do_redirect_url && $custom_redirect_link ) ? 
 					}
 					?>
 				<div style="<?php echo Helpers::esc_style_attr( $text_style ); ?>" class="entry-summary">
-					<h3 class="entry-title"><a target="<?php echo esc_attr( $target ); ?>"  href="<?php echo esc_url( $permalink ); ?>" style="<?php echo wd_esc_style_attr( $text_style ); ?>"><?php the_title(); ?></a></h3>
+					<h3 class="entry-title"><a target="<?php echo esc_attr( $target ); ?>"  href="<?php echo esc_url( $permalink ); ?>" style="<?php echo Helpers::esc_style_attr( $text_style ); ?>"><?php the_title(); ?></a></h3>
 					<div style="<?php echo Helpers::esc_style_attr( $text_style ); ?>" class="entry-taxonomy">
 						<?php echo get_the_term_list( get_the_ID(), 'band', apply_filters( 'wd_release_tax_before', '' ), ' / ', '' ); ?>
 					</div><!-- .entry-taxonomy -->

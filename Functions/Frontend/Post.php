@@ -68,9 +68,6 @@ class Post {
 
 		$post_type = $this->cpt_slug;
 
-		// Main ID.
-		$unique_id = uniqid( 'items-' . esc_attr( $post_type ) . '-' );
-		$id        = ( $el_id ) ? $el_id : $unique_id;
 
 		// Layout.
 		$layout = ( isset( ${$post_type . '_layout'} ) ) ? ${$post_type . '_layout'} : 'standard';
@@ -227,7 +224,6 @@ class Post {
 			 * @since 1.0.0
 			 */
 			do_action( 'wd_after_post_module', $atts );
-
 		}
 	}
 }

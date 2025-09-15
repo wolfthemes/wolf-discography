@@ -360,7 +360,10 @@ if ( ! function_exists( 'debug' ) ) {
 			} else {
 				echo $desc;
 				echo '<br>';
-				print_r( $var ); // phpcs:ignore
+				if ( array() !== $var ) {
+
+					print_r( $var ); // phpcs:ignore
+				}
 			}
 			echo '</pre>';
 		}

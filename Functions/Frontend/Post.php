@@ -25,105 +25,6 @@ class Post {
 		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ) );
 	}
 
-	/**
-	 * Default post attributes
-	 */
-	public function get_default_post_atts() {
-
-		return array(
-
-			/* Core */
-			'post_type'                              => 'release',
-			'posts_per_page'                         => 100,
-			'paged'                                  => null,
-
-			'orderby'                                => '',
-			'order'                                  => '',
-
-			/* Common attributes */
-			'grid_padding'                           => wolf_get_release_option( 'post_grid_padding', 'yes' ),
-			'item_animation'                         => wolf_get_release_option( 'post_item_animation' ),
-			'columns'                                => 3,
-			'include_ids'                            => '',
-			'exclude_ids'                            => '',
-			'offset'                                 => 0,
-
-			/**
-			 * Item default overlay color filtered
-			 *
-			 * @since 1.0.0
-			 */
-			'overlay_color'                          => apply_filters( 'wd_default_item_overlay_color', 'black' ),
-
-			/**
-			 * Item default overlay custom color filtered
-			 *
-			 * @since 1.0.0
-			 */
-			'overlay_custom_color'                   => apply_filters( 'wd_default_item_overlay_custom_color', '' ),
-
-			/**
-			 * Item default overlay text color filtered
-			 *
-			 * @since 1.0.0
-			 */
-			'overlay_text_color'                     => apply_filters( 'wd_default_item_overlay_text_color', 'white' ),
-			'overlay_text_custom_color'              => '',
-
-			/**
-			 * Item default overlay opacity filtered
-			 *
-			 * @since 1.0.0
-			 */
-			'overlay_opacity'                        => apply_filters( 'wd_default_item_overlay_opacity', 44 ),
-
-			/**
-			 * Item default text alignement
-			 *
-			 * @since 1.0.0
-			 */
-			'caption_text_alignment'                 => apply_filters( 'wd_default_caption_text_align', 'center' ),
-
-			/**
-			 * Item default text vertical alignement
-			 *
-			 * @since 1.0.0
-			 */
-			'caption_v_align'                        => apply_filters( 'wd_default_caption_v_align', 'middle' ),
-
-			/* Release */
-			'release_index'                          => false,
-			'release_display'                        => wolf_get_release_option( 'display', 'grid' ),
-			'release_metro_pattern'                  => 'pattern-1',
-			'release_hover_effect'                   => apply_filters( 'default_hover_effect', 'default' ),
-			'release_category_filter'                => wolf_get_release_option( 'category_filter', false ),
-			'release_category_filter_text_alignment' => 'center',
-			'release_module'                         => 'grid',
-			'release_thumbnail_size'                 => 'square',
-			'release_custom_thumbnail_size'          => '',
-			'release_layout'                         => 'standard',
-			'release_alternate_thumbnail_position'   => '',
-			'release_add_buy_links'                  => false,
-			'release_meta'                           => '',
-			'band_include'                           => '',
-			'band_exclude'                           => '',
-			'label_include'                          => '',
-			'label_exclude'                          => '',
-			'genre_include'                          => '',
-			'genre_exclude'                          => '',
-			'release_category_link_id'               => '',
-			'release_do_redirect_url'                => false,
-
-			/* Additional styles */
-			'context'                                => 'archive',
-			'hide_class'                             => '',
-			'inline_style'                           => '',
-			'el_class'                               => '',
-			'el_id'                                  => '',
-			'css'                                    => '',
-		);
-	}
-
 	public function build_json_params( $atts ) {
 		$clean_atts = array_filter(
 			$atts,
@@ -142,15 +43,11 @@ class Post {
 	 */
 	public function output_posts( $atts ) {
 
-		debug( 'Input attributes: ', $atts );
-
 		/* Retrieve all VC shortcode attributes and/or set default values */
 		$atts = wp_parse_args(
 			$atts,
 			$this->attribute_processor->get_all_defaults()
 		);
-
-		debug( 'Defalut + input attributes: ', $atts );
 
 		/**
 		 * Post module attributes filtered

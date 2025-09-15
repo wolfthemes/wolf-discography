@@ -42,188 +42,182 @@ class Post {
 	 */
 	public function output_posts( $atts ) {
 
-		/* Retrieve all VC shortcode attributes and/or set default values */
-		$atts = wp_parse_args(
-			$atts,
-			$this->attribute_processor->get_all_defaults()
-		);
-
-		/**
-		 * Post module attributes filtered
-		 *
-		 * @since 1.0.0
-		 */
+		// 1. Process attributes
+		$atts = wp_parse_args( $atts, $this->attribute_processor->get_all_defaults() );
 		$atts = apply_filters( 'wd_post_module_atts', $atts );
 
-		// debug( $atts );
-
-		/* Build JSON params array for data attribute */
+		// 2. Build components
 		$json_params = $this->html_renderer->build_json_params( $atts );
-
-		/* Get container attributes */
 		$container_attrs = $this->html_renderer->build_container_attributes( $atts, $json_params );
-
-		/* Extract all attributes as var (mayb be optmized as well!) */
-		extract( $atts ); // phpcs:ignore
-
-		$post_type = $this->cpt_slug;
-
-
-		// Layout.
-		$layout = ( isset( ${$post_type . '_layout'} ) ) ? ${$post_type . '_layout'} : 'standard';
-
-		/**
-		 * Post module layout filtered
-		 *
-		 * @since 1.0.0
-		 */
-		$layout = apply_filters( 'wd_post_module_layout', $layout, $atts );
-
-		// Display.
-		$display = ( isset( ${$post_type . '_display'} ) ) ? ${$post_type . '_display'} : 'standard';
-		$display = apply_filters( 'wd_post_module_display', $display, $atts );
-
-		// Module.
-		$module = ( isset( ${$post_type . '_module'} ) ) ? ${$post_type . '_module'} : 'grid';
-
-		/**
-		 * Post module module filtered
-		 *
-		 * @since 1.6.0
-		 */
-		$module = apply_filters( 'wd_post_module_module', $module, $atts );
-
-		// Filter.
-		$category_filter = ( isset( ${$post_type . '_category_filter'} ) ) ? Helpers::attr_bool( ${$post_type . '_category_filter'} ) : false;
-
-		// if ( $pagination && 'none' !== $pagination && -1 !== $posts_per_page && 'post' !== $post_type ) {
-		// $category_filter = false;
-		// }
-
-		$thumbnail_size        = ( isset( ${$post_type . '_thumbnail_size'} ) ) ? ${$post_type . '_thumbnail_size'} : 'standard';
-		$custom_thumbnail_size = ( isset( ${$post_type . '_custom_thumbnail_size'} ) ) ? ${$post_type . '_custom_thumbnail_size'} : '';
-		$custom_thumbnail_size = apply_filters( 'wd_post_module_custom_thumbnail_size', $custom_thumbnail_size, $display, $atts );
-
-		$is_index = ( isset( ${$post_type . '_index'} ) ) ? Helpers::attr_bool( ${$post_type . '_index'} ) : false;
-
-		// Disable pagination & filter for carousel module.
-		if ( 'carousel' === $module ) {
-			$pagination      = 'none';
-			$category_filter = null;
-		}
-
-		/* Main Query */
 		$query = $this->query_builder->build_query( $atts );
 
-		/**
-		 * Add action before the output
-		 *
-		 * @since 1.0.0
-		 */
+		// 3. Check if category filter should be shown
+		$show_category_filter = $this->should_show_category_filter( $atts );
+
+		// 4. Hooks and rendering
 		do_action( 'wd_before_post_module', $atts, $query );
 
-		// Start returning content if we have results.
 		if ( $query->have_posts() ) {
-
-			if ( $category_filter ) {
-				/*
-				 * Pass args to filter template. Cool stuff.
-				 */
-				set_query_var(
-					'filter_args',
-					array()
-				);
-
-				// Category filter template part
-			}
-
-			echo '<' . esc_attr( $container_attrs['tag'] ) . ' ';
-			echo 'id="' . esc_attr( $container_attrs['id'] ) . '" ';
-			echo 'class="' . Helpers::sanitize_html_classes( $container_attrs['class'] ) . '" ';
-			echo 'data-post-type="' . esc_attr( $container_attrs['data-post-type'] ) . '" ';
-			echo 'data-params="' . esc_js( $container_attrs['data-params'] ) . '" ';
-
-			if ( isset( $container_attrs['style'] ) ) {
-				echo 'style="' . Helpers::esc_style_attr( $container_attrs['style'] ) . '" ';
-			}
-
-			echo 'data-scroll data-scroll-css-progress';
-			echo apply_filters( 'wd_post_module_additional_params', '' );
-			echo '>';
-			echo "\n";
-
-			$i = 0;
-
-			if ( ( 0 !== absint( $posts_per_page ) % 2 ) && ( 1 !== absint( $paged ) ) ) {
-				$i = 1;
-			}
-
-			while ( $query->have_posts() ) {
-
-				++$i;
-
-				$query->the_post();
-				$post_id = get_the_ID();
-
-				set_query_var( 'wd_module_atts', $atts );
-
-				/**
-				 * Pass args to template
-				 */
-				set_query_var(
-					'template_args',
-					/**
-					 * Filters post template args to pass
-					 *
-					 * @since 1.0.0
-					 */
-					apply_filters(
-						'post_template_args',
-						array(
-
-							'index'                                => $i,
-							'post_id'                              => $post_id,
-
-							'display'                              => $display,
-							'layout'                               => $layout,
-
-							'overlay_color'                        => $overlay_color,
-							'overlay_custom_color'                 => $overlay_custom_color,
-							'overlay_opacity'                      => $overlay_opacity,
-							'overlay_text_color'                   => $overlay_text_color,
-							'overlay_text_custom_color'            => $overlay_text_custom_color,
-							'thumbnail_size'                       => $thumbnail_size,
-							'custom_thumbnail_size'                => $custom_thumbnail_size,
-
-							'release_alternate_thumbnail_position' => $release_alternate_thumbnail_position,
-							'release_add_buy_links'                => $release_add_buy_links,
-							'release_do_redirect_url'              => $release_do_redirect_url,
-						),
-						$atts
-					)
-				);
-
-				/*
-				 * Include the template part for the content.
-				 */
-				wolf_discography_get_template_part( 'content', apply_filters( 'wd_post_template_part_name', $display, $atts ) );
-			}
-
-			/**
-			 * Add action at the end
-			 *
-			 * @since 1.0.0
-			 */
-			do_action( 'wd_post_module_end', $atts );
-
-			echo '</' . esc_attr( $container_attrs['tag'] ) . '><!--.' . $this->cpt_slug . '-items-->';
-
-			/**
-			 * After post module hook
-			 *
-			 * @since 1.0.0
-			 */
-			do_action( 'wd_after_post_module', $atts );
+			$this->render_posts_output( $query, $atts, $container_attrs, $show_category_filter );
 		}
+
+		do_action( 'wd_after_post_module', $atts );
+	}
+
+/**
+	 * Render the complete posts output
+	 *
+	 * @param \WP_Query $query WordPress query object
+	 * @param array $atts Processed attributes
+	 * @param array $container_attrs Container attributes
+	 * @param bool $show_category_filter Whether to show category filter
+	 * @return void
+	 */
+	private function render_posts_output( $query, $atts, $container_attrs, $show_category_filter ) {
+
+		// Category filter setup
+		if ( $show_category_filter ) {
+			set_query_var( 'filter_args', array() );
+			// Category filter template part can be added here
+		}
+
+		// Container opening
+		$this->html_renderer->render_container_opening( $container_attrs );
+
+		// Posts loop
+		$this->render_posts_loop( $query, $atts );
+
+		// Container closing
+		$this->html_renderer->render_container_closing( $container_attrs['tag'] );
+	}
+
+	/**
+	 * Render the posts loop
+	 *
+	 * @param \WP_Query $query WordPress query object
+	 * @param array $atts Processed attributes
+	 * @return void
+	 */
+	private function render_posts_loop( $query, $atts ) {
+		$i = 0;
+		$posts_per_page = $atts['posts_per_page'] ?? 100;
+		$paged = $atts['paged'] ?? 1;
+
+		// Handle odd posts per page on non-first pages
+		if ( ( 0 !== absint( $posts_per_page ) % 2 ) && ( 1 !== absint( $paged ) ) ) {
+			$i = 1;
+		}
+
+		while ( $query->have_posts() ) {
+			++$i;
+			$query->the_post();
+			$post_id = get_the_ID();
+
+			// Set query vars for template compatibility
+			set_query_var( 'wd_module_atts', $atts );
+			set_query_var( 'template_args', $this->build_template_args( $atts, $i, $post_id ) );
+
+			// Render individual post template
+			$this->render_single_post_template( $atts );
+		}
+
+		do_action( 'wd_post_module_end', $atts );
+	}
+
+	/**
+	 * Render single post template
+	 *
+	 * @param array $atts Processed attributes
+	 * @return void
+	 */
+	private function render_single_post_template( $atts ) {
+		$post_type = $this->cpt_slug;
+		$display = $atts[ $post_type . '_display' ] ?? 'grid';
+
+		$template_name = apply_filters( 'wd_post_template_part_name', $display, $atts );
+		wolf_discography_get_template_part( 'content', $template_name );
+	}
+
+	/**
+	 * Build template arguments for rendering
+	 *
+	 * @param array $atts Processed attributes
+	 * @param int $index Current item index
+	 * @param int $post_id Current post ID
+	 * @return array Template arguments
+	 */
+	private function build_template_args( $atts, $index, $post_id ) {
+		$post_type = $this->cpt_slug;
+
+		// Get display values with filters applied
+		$layout = apply_filters( 'wd_post_module_layout',
+			$atts[ $post_type . '_layout' ] ?? 'standard',
+			$atts
+		);
+
+		$display = apply_filters( 'wd_post_module_display',
+			$atts[ $post_type . '_display' ] ?? 'grid',
+			$atts
+		);
+
+		$module = apply_filters( 'wd_post_module_module',
+			$atts[ $post_type . '_module' ] ?? 'grid',
+			$atts
+		);
+
+		// Handle thumbnail size
+		$thumbnail_size = $atts[ $post_type . '_thumbnail_size' ] ?? 'standard';
+		$custom_thumbnail_size = apply_filters(
+			'wd_post_module_custom_thumbnail_size',
+			$atts[ $post_type . '_custom_thumbnail_size' ] ?? '',
+			$display,
+			$atts
+		);
+
+		// Build template args
+		$template_args = array(
+			'index'   => $index,
+			'post_id' => $post_id,
+			'display' => $display,
+			'layout'  => $layout,
+			'module'  => $module,
+
+			// Style attributes
+			'overlay_color'                        => $atts['overlay_color'] ?? '',
+			'overlay_custom_color'                 => $atts['overlay_custom_color'] ?? '',
+			'overlay_opacity'                      => $atts['overlay_opacity'] ?? '',
+			'overlay_text_color'                   => $atts['overlay_text_color'] ?? '',
+			'overlay_text_custom_color'            => $atts['overlay_text_custom_color'] ?? '',
+
+			// Image attributes
+			'thumbnail_size'                       => $thumbnail_size,
+			'custom_thumbnail_size'                => $custom_thumbnail_size,
+
+			// Release specific attributes
+			'release_alternate_thumbnail_position' => $atts['release_alternate_thumbnail_position'] ?? '',
+			'release_add_buy_links'                => $atts['release_add_buy_links'] ?? false,
+			'release_do_redirect_url'              => $atts['release_do_redirect_url'] ?? false,
+		);
+
+		return apply_filters( 'post_template_args', $template_args, $atts );
+	}
+
+	/**
+	 * Check if category filter should be enabled
+	 *
+	 * @param array $atts Processed attributes
+	 * @return bool True if category filter is enabled
+	 */
+	private function should_show_category_filter( $atts ) {
+		$post_type = $this->cpt_slug;
+		$module = $atts[ $post_type . '_module' ] ?? 'grid';
+		$category_filter = $atts[ $post_type . '_category_filter' ] ?? false;
+
+		// Disable filter for carousel module
+		if ( 'carousel' === $module ) {
+			return false;
+		}
+
+		return Helpers::attr_bool( $category_filter );
 	}
 }

@@ -31,6 +31,39 @@ class HtmlRenderer {
 		$this->post_type = $post_type;
 	}
 
+	/**
+	 * Render container opening tag with all attributes
+	 *
+	 * @param array $container_attrs Container attributes array
+	 * @return void
+	 */
+	public function render_container_opening( $container_attrs ) {
+		echo '<' . esc_attr( $container_attrs['tag'] ) . ' ';
+		echo 'id="' . esc_attr( $container_attrs['id'] ) . '" ';
+		echo 'class="' . Helpers::sanitize_html_classes( $container_attrs['class'] ) . '" ';
+		echo 'data-post-type="' . esc_attr( $container_attrs['data-post-type'] ) . '" ';
+		echo 'data-params="' . esc_js( $container_attrs['data-params'] ) . '" ';
+
+		if ( isset( $container_attrs['style'] ) ) {
+			echo 'style="' . Helpers::esc_style_attr( $container_attrs['style'] ) . '" ';
+		}
+
+		echo 'data-scroll data-scroll-css-progress';
+		echo apply_filters( 'wd_post_module_additional_params', '' );
+		echo '>';
+		echo "\n";
+	}
+
+	/**
+	 * Render container closing tag
+	 *
+	 * @param string $tag HTML tag name
+	 * @return void
+	 */
+	public function render_container_closing( $tag ) {
+		echo '</' . esc_attr( $tag ) . '><!--.release-items-->';
+	}
+
 	public function build_json_params( $atts ) {
 		$clean_atts = array_filter(
 			$atts,

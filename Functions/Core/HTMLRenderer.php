@@ -31,6 +31,16 @@ class HtmlRenderer {
 		$this->post_type = $post_type;
 	}
 
+	public function build_json_params( $atts ) {
+		$clean_atts = array_filter(
+			$atts,
+			function ( $var ) {
+				return ( $var );
+			}
+		); // clean empty atts for json params.
+		return wp_json_encode( $clean_atts );
+	}
+
 	/**
 	 * Build CSS classes for the release container
 	 *
@@ -224,5 +234,4 @@ class HtmlRenderer {
 
 		return in_array( $display, array( 'list', 'minimal-list', 'list_minimal', 'small-list', 'text-background' ), true );
 	}
-
 }

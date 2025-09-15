@@ -34,16 +34,6 @@ class Post {
 		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ) );
 	}
 
-	public function build_json_params( $atts ) {
-		$clean_atts = array_filter(
-			$atts,
-			function ( $var ) {
-				return ( $var );
-			}
-		); // clean empty atts for json params.
-		return wp_json_encode( $clean_atts );
-	}
-
 	/**
 	 * Output posts
 	 *
@@ -68,7 +58,7 @@ class Post {
 		// debug( $atts );
 
 		/* Build JSON params array for data attribute */
-		$json_params = $this->build_json_params( $atts );
+		$json_params = $this->html_renderer->build_json_params( $atts );
 
 		/* Get container attributes */
 		$container_attrs = $this->html_renderer->build_container_attributes( $atts, $json_params );

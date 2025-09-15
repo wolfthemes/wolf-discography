@@ -12,6 +12,7 @@ namespace WolfDiscography\Frontend;
 use WolfDiscography\Core\AttributeProcessor;
 use WolfDiscography\Core\QueryBuilder;
 use WolfDiscography\Core\HTMLRenderer;
+use WolfDiscography\API\RestAPI;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -32,6 +33,45 @@ class Post {
 		$this->query_builder       = new QueryBuilder( $this->cpt_slug );
 		$this->html_renderer       = new HTMLRenderer( $this->cpt_slug );
 		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ) );
+
+		$this->init_rest_api();
+	}
+
+	/**
+	 * Initialize REST API
+	 */
+	private function init_rest_api() {
+		// Only initialize REST API when actually needed
+		if ( ! $this->should_load_rest_api() ) {
+			return;
+		}
+
+		if ( class_exists( 'WolfDiscography\API\RestAPI' ) ) {
+			new \WolfDiscography\API\RestAPI();
+		}
+	}
+
+	/**
+	 * Check if REST API should be loaded
+	 */
+	private function should_load_rest_api() {
+		// Don't load in admin unless it's an AJAX request
+		if ( is_admin() && ! wp_doing_ajax() ) {
+			return false;
+		}
+
+		// Don't load during cron jobs
+		if ( wp_doing_cron() ) {
+			return false;
+		}
+
+		// Only load if REST API is available
+		if ( ! function_exists( 'rest_get_url_prefix' ) ) {
+			return false;
+		}
+
+		// Load on REST requests or frontend
+		return true;
 	}
 
 	/**
@@ -47,9 +87,9 @@ class Post {
 		$atts = apply_filters( 'wd_post_module_atts', $atts );
 
 		// 2. Build components
-		$json_params = $this->html_renderer->build_json_params( $atts );
+		$json_params     = $this->html_renderer->build_json_params( $atts );
 		$container_attrs = $this->html_renderer->build_container_attributes( $atts, $json_params );
-		$query = $this->query_builder->build_query( $atts );
+		$query           = $this->query_builder->build_query( $atts );
 
 		// 3. Check if category filter should be shown
 		$show_category_filter = $this->should_show_category_filter( $atts );
@@ -64,13 +104,13 @@ class Post {
 		do_action( 'wd_after_post_module', $atts );
 	}
 
-/**
+	/**
 	 * Render the complete posts output
 	 *
 	 * @param \WP_Query $query WordPress query object
-	 * @param array $atts Processed attributes
-	 * @param array $container_attrs Container attributes
-	 * @param bool $show_category_filter Whether to show category filter
+	 * @param array     $atts Processed attributes
+	 * @param array     $container_attrs Container attributes
+	 * @param bool      $show_category_filter Whether to show category filter
 	 * @return void
 	 */
 	private function render_posts_output( $query, $atts, $container_attrs, $show_category_filter ) {
@@ -95,13 +135,13 @@ class Post {
 	 * Render the posts loop
 	 *
 	 * @param \WP_Query $query WordPress query object
-	 * @param array $atts Processed attributes
+	 * @param array     $atts Processed attributes
 	 * @return void
 	 */
 	private function render_posts_loop( $query, $atts ) {
-		$i = 0;
+		$i              = 0;
 		$posts_per_page = $atts['posts_per_page'] ?? 100;
-		$paged = $atts['paged'] ?? 1;
+		$paged          = $atts['paged'] ?? 1;
 
 		// Handle odd posts per page on non-first pages
 		if ( ( 0 !== absint( $posts_per_page ) % 2 ) && ( 1 !== absint( $paged ) ) ) {
@@ -132,7 +172,7 @@ class Post {
 	 */
 	private function render_single_post_template( $atts ) {
 		$post_type = $this->cpt_slug;
-		$display = $atts[ $post_type . '_display' ] ?? 'grid';
+		$display   = $atts[ $post_type . '_display' ] ?? 'grid';
 
 		$template_name = apply_filters( 'wd_post_template_part_name', $display, $atts );
 		wolf_discography_get_template_part( 'content', $template_name );
@@ -142,31 +182,34 @@ class Post {
 	 * Build template arguments for rendering
 	 *
 	 * @param array $atts Processed attributes
-	 * @param int $index Current item index
-	 * @param int $post_id Current post ID
+	 * @param int   $index Current item index
+	 * @param int   $post_id Current post ID
 	 * @return array Template arguments
 	 */
 	private function build_template_args( $atts, $index, $post_id ) {
 		$post_type = $this->cpt_slug;
 
 		// Get display values with filters applied
-		$layout = apply_filters( 'wd_post_module_layout',
+		$layout = apply_filters(
+			'wd_post_module_layout',
 			$atts[ $post_type . '_layout' ] ?? 'standard',
 			$atts
 		);
 
-		$display = apply_filters( 'wd_post_module_display',
+		$display = apply_filters(
+			'wd_post_module_display',
 			$atts[ $post_type . '_display' ] ?? 'grid',
 			$atts
 		);
 
-		$module = apply_filters( 'wd_post_module_module',
+		$module = apply_filters(
+			'wd_post_module_module',
 			$atts[ $post_type . '_module' ] ?? 'grid',
 			$atts
 		);
 
 		// Handle thumbnail size
-		$thumbnail_size = $atts[ $post_type . '_thumbnail_size' ] ?? 'standard';
+		$thumbnail_size        = $atts[ $post_type . '_thumbnail_size' ] ?? 'standard';
 		$custom_thumbnail_size = apply_filters(
 			'wd_post_module_custom_thumbnail_size',
 			$atts[ $post_type . '_custom_thumbnail_size' ] ?? '',
@@ -176,11 +219,11 @@ class Post {
 
 		// Build template args
 		$template_args = array(
-			'index'   => $index,
-			'post_id' => $post_id,
-			'display' => $display,
-			'layout'  => $layout,
-			'module'  => $module,
+			'index'                                => $index,
+			'post_id'                              => $post_id,
+			'display'                              => $display,
+			'layout'                               => $layout,
+			'module'                               => $module,
 
 			// Style attributes
 			'overlay_color'                        => $atts['overlay_color'] ?? '',
@@ -209,8 +252,8 @@ class Post {
 	 * @return bool True if category filter is enabled
 	 */
 	private function should_show_category_filter( $atts ) {
-		$post_type = $this->cpt_slug;
-		$module = $atts[ $post_type . '_module' ] ?? 'grid';
+		$post_type       = $this->cpt_slug;
+		$module          = $atts[ $post_type . '_module' ] ?? 'grid';
 		$category_filter = $atts[ $post_type . '_category_filter' ] ?? false;
 
 		// Disable filter for carousel module

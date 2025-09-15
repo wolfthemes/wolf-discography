@@ -296,7 +296,7 @@ class Options {
 			<?php if ( WD()->is_wolf_theme() ) : ?>
 				<div class="notice notice-info">
 					<p><strong><?php esc_html_e( 'Wolf Theme Detected', 'wolf-discography' ); ?></strong></p>
-					<p><?php esc_html_e( 'You are using a Wolf Theme. Layout options are managed by your theme and not shown here.', 'wolf-discography' ); ?></p>
+					<p><?php esc_html_e( 'You are using a Wolf Theme. Layout options are managed in the customizer and not shown here.', 'wolf-discography' ); ?></p>
 				</div>
 			<?php endif; ?>
 

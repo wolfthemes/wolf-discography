@@ -59,6 +59,8 @@ class Post {
 		 */
 		$atts = apply_filters( 'wd_post_module_atts', $atts );
 
+		// debug( $atts );
+
 		/* Build JSON params array for data attribute */
 		$json_params = $this->build_json_params( $atts );
 

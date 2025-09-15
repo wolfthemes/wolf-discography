@@ -266,7 +266,7 @@ class ModuleAttributes {
 					'description' => 'Vertical alignment for captions',
 				),
 				'release_hover_effect'      => array(
-					'default'     => apply_filters( 'default_hover_effect', 'default' ),
+					'default'     => apply_filters( 'release_default_hover_effect', 'default' ),
 					'type'        => 'string',
 					'aliases'     => array( 'hoverEffect', 'hover_effect' ),
 					'description' => 'Hover effect for items',

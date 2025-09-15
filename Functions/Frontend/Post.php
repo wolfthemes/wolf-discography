@@ -34,7 +34,7 @@ class Post {
 		$this->html_renderer       = new HTMLRenderer( $this->cpt_slug );
 		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ) );
 
-		$this->init_rest_api();
+		// $this->init_rest_api();
 	}
 
 	/**
@@ -82,11 +82,13 @@ class Post {
 	 */
 	public function output_posts( $atts ) {
 
+		// debug( 'Passed Attributes', $atts );
+
 		// 1. Process attributes
 		$atts = wp_parse_args( $atts, $this->attribute_processor->get_all_defaults() );
 		$atts = apply_filters( 'wd_post_module_atts', $atts );
 
-		debug( 'Processed Attributes', $atts );
+		// debug( 'Processed Attributes', $atts );
 
 		// 2. Build components
 		$json_params     = $this->html_renderer->build_json_params( $atts );

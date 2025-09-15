@@ -226,7 +226,7 @@ class Post {
 			 */
 			do_action( 'wd_post_module_end', $atts );
 
-			echo '</' . esc_attr( $container_attrs['tag'] ) . '><!--.release-items-->';
+			echo '</' . esc_attr( $container_attrs['tag'] ) . '><!--.' . $this->cpt_slug . '-items-->';
 
 			/**
 			 * After post module hook

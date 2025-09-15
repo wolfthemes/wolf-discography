@@ -3,9 +3,9 @@
  * Legacy Wolf_Discography Class (renamed but unchanged)
  * This ensures backward compatibility during migration
  */
-if ( ! class_exists( 'Wolf_Discography_Legacy' ) ) {
+if ( ! class_exists( 'Wolf_Discography' ) ) {
 
-	class Wolf_Discography_Legacy {
+	class Wolf_Discography {
 
 		/**
 		 * @var string
@@ -18,7 +18,7 @@ if ( ! class_exists( 'Wolf_Discography_Legacy' ) ) {
 		public $version = '1.6.0';
 
 		/**
-		 * @var Wolf_Discography_Legacy The single instance of the class
+		 * @var Wolf_Discography The single instance of the class
 		 */
 		protected static $_instance = null;
 
@@ -43,7 +43,7 @@ if ( ! class_exists( 'Wolf_Discography_Legacy' ) ) {
 		 * Ensures only one instance of Discography is loaded or can be loaded.
 		 *
 		 * @static
-		 * @return Wolf_Discography_Legacy - Main instance
+		 * @return Wolf_Discography - Main instance
 		 */
 		public static function instance() {
 			if ( is_null( self::$_instance ) ) {

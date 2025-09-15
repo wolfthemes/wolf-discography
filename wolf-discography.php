@@ -28,21 +28,114 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 if ( class_exists( 'WolfDiscography\Core\Plugin' ) ) {
 	// New namespaced approach
 	try {
-		\WolfDiscography\Core\Plugin::getInstance();
+		\WolfDiscography\Core\Plugin::get_instance();
 	} catch ( Exception $e ) {
-		// Fallback to legacy if something goes wrong
 		error_log( 'Wolf Discography Namespace Error: ' . $e->getMessage() );
 	}
 }
 
 /**
- * Backward compatibility function
- * This ensures existing code that calls WD() still works
+ * Main function to get legacy wrapper instance
  *
- * @return Wolf_Discography_Legacy|WolfDiscography\Core\Plugin
+ * @return Wolf_Discography|null
  */
 function WD() {
-	if ( class_exists( 'WolfDiscography\Core\Plugin' ) ) {
-		return \WolfDiscography\Core\Plugin::getInstance();
+	if ( class_exists( 'Wolf_Discography' ) ) {
+		return Wolf_Discography::instance();
+	}
+	return null;
+}
+
+/**
+ * Wolf_Discography singleton wrapper class
+ * Contains the actual plugin instance
+ */
+if ( ! class_exists( 'Wolf_Discography' ) ) {
+	class Wolf_Discography {
+
+		/**
+		 * @var Wolf_Discography The single instance of the class
+		 */
+		protected static $_instance = null;
+
+		/**
+		 * @var WolfDiscography\Core\Plugin The actual plugin instance
+		 */
+		private $plugin_instance;
+
+		/**
+		 * Constructor - private to prevent direct instantiation
+		 */
+		private function __construct() {
+			if ( class_exists( 'WolfDiscography\Core\Plugin' ) ) {
+				$this->plugin_instance = \WolfDiscography\Core\Plugin::get_instance();
+			}
+		}
+
+		/**
+		 * Prevent cloning of the instance
+		 */
+		private function __clone() {
+			// Empty - cloning is forbidden
+		}
+
+		/**
+		 * Prevent unserialization of the instance
+		 */
+		public function __wakeup() {
+			throw new Exception( 'Cannot unserialize singleton' );
+		}
+
+		/**
+		 * Get Wolf_Discography wrapper instance
+		 *
+		 * @return Wolf_Discography
+		 */
+		public static function instance() {
+			if ( is_null( self::$_instance ) ) {
+				self::$_instance = new self();
+			}
+			return self::$_instance;
+		}
+
+		/**
+		 * Get the actual plugin instance
+		 *
+		 * @return WolfDiscography\Core\Plugin|null
+		 */
+		public function get_instance() {
+			return $this->plugin_instance;
+		}
+
+		/**
+		 * Magic method to forward all calls to the actual plugin instance
+		 */
+		public function __call( $method, $args ) {
+			if ( $this->plugin_instance && method_exists( $this->plugin_instance, $method ) ) {
+				return call_user_func_array( array( $this->plugin_instance, $method ), $args );
+			}
+			return null;
+		}
+
+		/**
+		 * Magic method to forward property access to the actual plugin instance
+		 */
+		public function __get( $property ) {
+			if ( $this->plugin_instance && property_exists( $this->plugin_instance, $property ) ) {
+				return $this->plugin_instance->$property;
+			}
+			return null;
+		}
+	}
+}
+
+/**
+ * Legacy function for themes that call wolf_discography()
+ *
+ * @return WolfDiscography\Core\Plugin|null
+ */
+if ( ! function_exists( 'wolf_discography' ) ) {
+	function wolf_discography() {
+		return Wolf_Discography::instance();
 	}
 }

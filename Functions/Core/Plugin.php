@@ -33,7 +33,7 @@ class Plugin {
 	private ?Taxonomies $taxonomy_manager      = null;
 	private ?AdminNotices $admin_notices       = null;
 
-	public static function getInstance(): Plugin {
+	public static function get_instance(): Plugin {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}

@@ -62,15 +62,15 @@ class Plugin {
 	private function init_hooks(): void {
 
 		add_action( 'after_setup_theme', array( $this, 'includeTemplateFunctions' ), 11 );
-		add_action( 'init', array( $this, 'load_core_functions' ), 0 );
 		add_action( 'init', array( $this, 'init' ), 0 );
+		add_action( 'init', array( $this, 'load_legacy_functions' ), 0 );
 		add_action( 'init', array( $this, 'load_pagebuilder_integrations' ) );
 
 		register_activation_hook( $this->get_plugin_path() . '/wolf-discography.php', array( $this, 'activate' ) );
 	}
 
-	public function load_core_functions(): void {
-		$core_file = $this->get_plugin_path() . '/inc/wd-core-functions.php';
+	public function load_legacy_functions(): void {
+		$core_file = $this->get_plugin_path() . '/inc/legacy-functions.php';
 		if ( file_exists( $core_file ) ) {
 			include_once $core_file;
 		}

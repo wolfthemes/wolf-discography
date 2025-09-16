@@ -180,7 +180,7 @@ class Post {
 		$display   = $atts[ $post_type . '_display' ] ?? 'grid';
 
 		$template_name = apply_filters( 'wd_post_template_part_name', $display, $atts );
-		TemplateLoader::discography_get_template_part( 'content', $template_name );
+		TemplateLoader::get_template_part( 'content', $template_name );
 	}
 
 	/**

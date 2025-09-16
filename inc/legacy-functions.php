@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
  * @return int
  */
 function wolf_discography_get_page_id() {
-	return \WolfDiscography\Core\Core::get_page_id();
+	return \WolfDiscography\Core\Core::get_discography_page_id();
 }
 
 /**

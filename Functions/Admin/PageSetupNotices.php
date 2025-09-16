@@ -48,7 +48,7 @@ class PageSetupNotices {
 			return;
 		}
 
-		if ( -1 == Core::discography_get_page_id() && ! isset( $_GET['wolf_discography_create_page'] ) ) {
+		if ( -1 == Core::get_discography_page_id() && ! isset( $_GET['wolf_discography_create_page'] ) ) {
 
 			if ( isset( $_GET['skip_wolf_discography_setup'] ) ) {
 				delete_option( '_wolf_discography_needs_page' );

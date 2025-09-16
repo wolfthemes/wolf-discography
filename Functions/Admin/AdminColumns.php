@@ -36,7 +36,7 @@ class AdminColumns {
 	 */
 	public function is_index_page() {
 
-		if ( isset( $_GET['post'] ) && absint( $_GET['post'] ) == Core::discography_get_page_id() ) {
+		if ( isset( $_GET['post'] ) && absint( $_GET['post'] ) == Core::get_discography_page_id() ) {
 			$message = esc_html__( 'You are currently editing the page that shows the discography.', 'wolf-discography' );
 
 			$output = '<div class="notice notice-warning inline"><p>';
@@ -53,7 +53,7 @@ class AdminColumns {
 	 * Hide the editor if we're on the admin discography page
 	 */
 	public function hide_editor() {
-		if ( isset( $_GET['post'] ) && absint( $_GET['post'] ) == Core::discography_get_page_id() ) {
+		if ( isset( $_GET['post'] ) && absint( $_GET['post'] ) == Core::get_discography_page_id() ) {
 			remove_post_type_support( 'page', 'editor' );
 		}
 	}
@@ -62,7 +62,7 @@ class AdminColumns {
 	 * Hide the editor if we're on the admin discography page
 	 */
 	public function hide_wpb_editor() {
-		if ( isset( $_GET['post'] ) && absint( $_GET['post'] ) == Core::discography_get_page_id() ) {
+		if ( isset( $_GET['post'] ) && absint( $_GET['post'] ) == Core::get_discography_page_id() ) {
 			?>
 			<style type="text/css">
 			.wpb-toggle-editor,

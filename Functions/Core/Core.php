@@ -22,7 +22,7 @@ class Core {
 	 * @param string $page
 	 * @return int
 	 */
-	public static function discography_get_page_id() {
+	public static function get_discography_page_id() {
 
 		$page_id = -1;
 
@@ -47,9 +47,9 @@ class Core {
 	 * @param string $page
 	 * @return string
 	 */
-	public static function discography_get_page_link() {
+	public static function get_page_link() {
 
-		$page_id = self::discography_get_page_id();
+		$page_id = self::get_discography_page_id();
 
 		if ( $page_id != -1 ) {
 			return get_permalink( $page_id );

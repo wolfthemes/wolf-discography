@@ -9,7 +9,7 @@
 
 namespace WolfDiscography\Core;
 
-use WolfDiscography\Auth\LicenceValidator;
+use WolfDiscography\Auth\LicenseValidator;
 use WolfDiscography\Admin\AdminHandler;
 use WolfDiscography\Admin\AdminNotices;
 use WolfDiscography\Frontend\FrontendHandler;
@@ -33,6 +33,7 @@ class Plugin {
 	private ?PostType $post_type_manager       = null;
 	private ?Taxonomies $taxonomy_manager      = null;
 	private ?AdminNotices $admin_notices       = null;
+	private ?LicenseValidator $auth       = null;
 
 	public static function get_instance(): Plugin {
 		if ( null === self::$instance ) {
@@ -43,7 +44,9 @@ class Plugin {
 
 	private function __construct() {
 
-		if ( ! Auth::is_activated() ) {
+		$this->auth = new LicenseValidator();
+
+		if ( ! $this->auth->is_activated() ) {
 			return;
 		}
 

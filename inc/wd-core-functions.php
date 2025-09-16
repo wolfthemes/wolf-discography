@@ -15,6 +15,7 @@ use WolfDiscography\Frontend\Helpers;
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * DEPRECTRATED
  * Add image sizes
  *
  * These size will be ued for galleries and sliders
@@ -27,7 +28,7 @@ function wd_add_image_sizes() {
 	add_image_size( 'CD', 400, 400, true );
 	add_image_size( 'DVD', 400, 570, true );
 }
-add_action( 'init', 'wd_add_image_sizes' );
+ // add_action( 'init', 'wd_add_image_sizes' );
 
 /**
  * wolf_discography page IDs

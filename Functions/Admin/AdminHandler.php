@@ -12,6 +12,7 @@
 namespace WolfDiscography\Admin;
 
 use WolfDiscography\Admin;
+use WolfDiscography\Core\Core;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -102,7 +103,7 @@ class AdminHandler {
 	 */
 	public function custom_post_state( $states, $post ) {
 
-		if ( 'page' == get_post_type( $post->ID ) && absint( $post->ID ) === wolf_discography_get_page_id() ) {
+		if ( 'page' == get_post_type( $post->ID ) && absint( $post->ID ) === Core::discography_get_page_id() ) {
 
 			$states[] = esc_html__( 'Discography Page', 'wolf-discography' );
 		}

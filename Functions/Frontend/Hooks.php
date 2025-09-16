@@ -9,6 +9,8 @@
 
 namespace WolfDiscography\Frontend;
 
+use WolfDiscography\Core\Core;
+
 defined( 'ABSPATH' ) || exit;
 
 class Hooks {
@@ -97,13 +99,13 @@ class Hooks {
 	 */
 	public function body_class( $classes ) {
 
-		if ( is_page( wolf_discography_get_page_id() ) ) {
+		if ( is_page( Core::discography_get_page_id() ) ) {
 			$classes[] = 'discography-page';
 		}
 
 		if (
 			! is_singular( 'release' )
-			&& ( 'release' == get_post_type() || ( function_exists( 'wolf_discography_get_page_id' ) && is_page( wolf_discography_get_page_id() ) ) )
+			&& ( 'release' == get_post_type() || ( function_exists( 'Core::discography_get_page_id' ) && is_page( Core::discography_get_page_id() ) ) )
 		) {
 			$classes[] = 'wolf-discography';
 		}

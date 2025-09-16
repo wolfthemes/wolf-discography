@@ -591,7 +591,7 @@ class Helpers {
 	 * @return bool
 	 */
 	public static function is_discography_archives() {
-		return is_page( wolf_discography_get_page_id() ) ||
+		return is_page( Core::discography_get_page_id() ) ||
 				is_post_type_archive( 'release' ) ||
 				is_tax( array( 'band', 'label', 'release_genre' ) );
 	}
@@ -946,5 +946,4 @@ class Helpers {
 
 		return implode( ' ', $atts );
 	}
-
 }

@@ -9,6 +9,8 @@
 
 namespace WolfDiscography\Frontend;
 
+use WolfDiscography\Core\Core;
+
 defined( 'ABSPATH' ) || exit;
 
 class TemplateManager {
@@ -41,12 +43,12 @@ class TemplateManager {
 
 	public function is_discography_index() {
 
-			return ( function_exists( 'wolf_discography_get_page_id' ) && is_page( wolf_discography_get_page_id() ) );
+			return is_page( Core::discography_get_page_id() );
 	}
 
 	// DEPRECATED
 	public function discography_template_redirect() {
-		if ( is_page( wolf_discography_get_page_id() ) && ! post_password_required() ) {
+		if ( is_page( Core::discography_get_page_id() ) && ! post_password_required() ) {
 			wolf_discography_get_template( 'discography-template.php' );
 			exit();
 		}

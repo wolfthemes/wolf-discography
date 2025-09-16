@@ -34,7 +34,7 @@ class Post {
 		$this->html_renderer       = new HTMLRenderer( $this->cpt_slug );
 		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ) );
 
-		// $this->init_rest_api();
+		$this->init_rest_api();
 	}
 
 	/**

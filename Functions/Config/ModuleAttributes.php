@@ -176,7 +176,7 @@ class ModuleAttributes {
 					'description' => 'Display module type',
 				),
 				'release_thumbnail_size'               => array(
-					'default'     => 'square',
+					'default'     => '400x400',
 					'type'        => 'string',
 					'aliases'     => array( 'thumbnailSize', 'thumbnail_size', 'image_size' ),
 					'description' => 'Featured image size',

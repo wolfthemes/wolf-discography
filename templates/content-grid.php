@@ -23,7 +23,7 @@ extract(
 			'overlay_text_custom_color' => '',
 			'release_add_buy_links'     => false,
 			'release_do_redirect_url'   => false,
-			'thumbnail_size'            => '400x400',
+			'thumbnail_size'            => '400x400', // Default thumb size
 			'custom_thumbnail_size'     => '',
 		)
 	)
@@ -81,8 +81,7 @@ $target               = ( $release_do_redirect_url && $custom_redirect_link ) ? 
 				<div class="entry-image" style="<?php echo Helpers::esc_style_attr( $style ); ?>">
 				<?php
 
-					wd_resized_thumbnail( $custom_thumbnail_size ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,Generic.Files.EndFileNewline.NotFound
-				?>
+					Helpers::resized_thumbnail( $thumbnail_size ); 				?>
 			</div>
 			<div class="entry-inner">
 				<?php

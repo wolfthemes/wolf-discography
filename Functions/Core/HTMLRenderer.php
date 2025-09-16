@@ -48,7 +48,7 @@ class HtmlRenderer {
 			echo 'style="' . Helpers::esc_style_attr( $container_attrs['style'] ) . '" ';
 		}
 
-		echo 'data-scroll data-scroll-css-progress';
+		// echo 'data-scroll data-scroll-css-progress';
 		echo apply_filters( 'wd_post_module_additional_params', '' );
 		echo '>';
 		echo "\n";

@@ -10,6 +10,8 @@
 namespace WolfDiscography\Frontend;
 
 use WolfDiscography\Core\Core;
+use WolfDiscography\Core\Utilities;
+use WolfDiscography\Core\Meta;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -57,14 +59,14 @@ class Hooks {
 	public function release_microdata() {
 
 		$band         = strip_tags( get_the_term_list( get_the_ID(), 'band', '', ', ', '' ) );
-		$meta         = wd_get_meta();
+		$meta         = Meta::get_meta();
 		$release_date = $meta['date'];
-		$tracklist    = wd_release_get_tracklist();
+		$tracklist    = meta::release_get_tracklist();
 		?>
 		<meta itemprop="publisher" content="<?php echo esc_url( home_url( '/' ) ); ?>">
 		<link itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>">
 		<meta itemprop="name" content="<?php the_title(); ?>">
-		<meta itemprop="image" content="<?php echo wd_get_post_thumbnail_url( 'large' ); ?>">
+		<meta itemprop="image" content="<?php echo Utilities::get_post_thumbnail_url( 'large' ); ?>">
 		<?php if ( $band ) : ?>
 			<meta itemprop="byArtist" content="<?php echo esc_attr( $band ); ?>">
 		<?php endif; ?>

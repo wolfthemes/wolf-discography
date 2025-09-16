@@ -10,6 +10,7 @@
 
 use WolfDiscography\Core\Utilities;
 use WolfDiscography\Frontend\Helpers;
+use WolfDiscography\Frontend\TemplateHelper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -93,7 +94,7 @@ $target               = ( $release_do_redirect_url && $custom_redirect_link ) ? 
 					$overlay_custom_color = $dominant_color;
 				}
 
-					echo wd_background_overlay(
+					echo TemplateHelper::background_overlay(
 						array(
 							'overlay_color'        => $overlay_color,
 							'overlay_custom_color' => $overlay_custom_color,

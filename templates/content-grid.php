@@ -8,6 +8,7 @@
  * @since 1.0.2
  */
 
+use WolfDiscography\Core\Utilities;
 use WolfDiscography\Frontend\Helpers;
 
 defined( 'ABSPATH' ) || exit;
@@ -59,7 +60,7 @@ $custom_redirect_link = get_post_meta( get_the_ID(), '_release_redirect_url', tr
 $permalink            = ( $custom_redirect_link ) ? $custom_redirect_link : get_the_permalink();
 $target               = ( $release_do_redirect_url && $custom_redirect_link ) ? '_blank' : '';
 ?>
-<article <?php wd_post_attr( array( $overlay_tone_class ) ); ?>>
+<article <?php Utilities::post_attr( array( $overlay_tone_class ) ); ?>>
 	<?php
 		/**
 		 * wolf_release_start_hook

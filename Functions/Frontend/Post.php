@@ -12,6 +12,7 @@ namespace WolfDiscography\Frontend;
 use WolfDiscography\Core\AttributeProcessor;
 use WolfDiscography\Core\QueryBuilder;
 use WolfDiscography\Core\HTMLRenderer;
+use WolfDiscography\Core\Utilities;
 use WolfDiscography\API\RestAPI;
 
 defined( 'ABSPATH' ) || exit;
@@ -179,7 +180,7 @@ class Post {
 		$display   = $atts[ $post_type . '_display' ] ?? 'grid';
 
 		$template_name = apply_filters( 'wd_post_template_part_name', $display, $atts );
-		wolf_discography_get_template_part( 'content', $template_name );
+		TemplateLoader::discography_get_template_part( 'content', $template_name );
 	}
 
 	/**

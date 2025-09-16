@@ -13,7 +13,6 @@ use WolfDiscography\Core\Core;
 
 defined( 'ABSPATH' ) || exit;
 
-
 class ShortcodeManager {
 	/**
 	 * Constructor

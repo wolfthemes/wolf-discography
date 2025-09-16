@@ -1,17 +1,15 @@
 <?php
 /**
- * Template Helper Class
+ * Template Helper
  *
  * @package WolfDiscography/Frontend
- * @since 1.6.0
+ * @since 2.0.0
  */
 
 namespace WolfDiscography\Frontend;
 
-use WolfDiscography\Frontend\Helpers;
-
 defined( 'ABSPATH' ) || exit;
 
-class Template_Helper {
+class TemplateHelper {
 
 }

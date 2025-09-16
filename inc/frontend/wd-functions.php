@@ -467,19 +467,6 @@ function wd_get_label() {
 }
 
 /**
- * Enqeue default style
- *
- * @since 1.2.6
- */
-function wd_enqueue_style() {
-
-	if ( ! WD()->is_wolf_theme() ) {
-		wp_enqueue_style( 'wolf-discography', WD_URI . '/build/styles.css', array(), WD_VERSION, 'all' );
-	}
-}
-// add_action( 'wp_enqueue_scripts', 'wd_enqueue_style' );
-
-/**
  * Displays release navigation
  *
  * @return string

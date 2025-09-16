@@ -32,7 +32,7 @@ class FrontendHandler {
 	 * Initialize frontend hooks
 	 */
 	private function initHooks(): void {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueFrontendAssets' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ) );
 		add_filter( 'template_include', array( $this, 'templateLoader' ) );
 	}
 
@@ -71,7 +71,7 @@ class FrontendHandler {
 	/**
 	 * Enqueue frontend assets
 	 */
-	public function enqueueFrontendAssets(): void {
+	public function enqueue_frontend_assets(): void {
 		// Only load on discography-related pages
 		if ( $this->shouldLoadAssets() ) {
 			wp_enqueue_style(

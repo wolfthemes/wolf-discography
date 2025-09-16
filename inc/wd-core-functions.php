@@ -352,16 +352,16 @@ if ( ! function_exists( 'debug' ) ) {
 	 *
 	 * @param string $var The variable to debug.
 	 */
-	function debug( $desc, $var = array() ) { // phpcs:ignore
+	function debug( $desc, $var = null ) { // phpcs:ignore
 		if ( WP_DEBUG ) {
+
 			echo '<br><pre style="border: 1px solid #ccc; padding:5px; width:98%">';
-			if ( is_array( $desc ) ) {
+			if ( ! is_string( $desc ) ) {
 				print_r( $desc );
 			} else {
 				echo $desc;
-				echo '<br>';
-				if ( array() !== $var ) {
-
+				echo ' ';
+				if ( $var ) {
 					print_r( $var ); // phpcs:ignore
 				}
 			}

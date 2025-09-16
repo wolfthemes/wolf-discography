@@ -28,7 +28,7 @@ class Enqueues {
 	 */
 	public function enqueue_styles() {
 
-		if ( ! WD()->is_wolf_theme() ) {
+		if ( WD()->theme_supports_v2() ) {
 			wp_enqueue_style( 'wolf-discography', WD_URI . '/build/styles.css', array(), WD_VERSION, 'all' );
 		}
 	}

@@ -9,6 +9,8 @@
 
 namespace WolfDiscography\Frontend;
 
+use WolfDiscography\Core\Core;
+
 defined( 'ABSPATH' ) || exit;
 
 
@@ -47,10 +49,10 @@ class ShortcodeManager {
 					'posts_per_page'  => 4,
 					'band'            => null,
 					'label'           => null,
-					'columns'         => wolf_get_release_option( 'columns', 4 ),
-					'padding'         => wolf_get_release_option( 'padding', 'yes' ),
-					'release_display' => wolf_get_release_option( 'display', 'grid' ),
-					'release_layout'  => wolf_get_release_option( 'layout', 'standard' ),
+					'columns'         => Core::get_release_option( 'columns', 4 ),
+					'padding'         => Core::get_release_option( 'padding', 'yes' ),
+					'release_display' => Core::get_release_option( 'display', 'grid' ),
+					'release_layout'  => Core::get_release_option( 'layout', 'standard' ),
 					'animation'       => '',
 					'animation_delay' => '',
 				),

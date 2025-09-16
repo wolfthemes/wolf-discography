@@ -81,7 +81,8 @@ $target               = ( $release_do_redirect_url && $custom_redirect_link ) ? 
 				<div class="entry-image" style="<?php echo Helpers::esc_style_attr( $style ); ?>">
 				<?php
 
-					Helpers::resized_thumbnail( $thumbnail_size ); 				?>
+					Helpers::resized_thumbnail( $thumbnail_size );
+				?>
 			</div>
 			<div class="entry-inner">
 				<?php

@@ -636,7 +636,7 @@ class Helpers {
 
 		$image_id = ( $image_id ) ? $image_id : get_post_thumbnail_id();
 
-		$thumbnail = Helpers::get_img_by_size(
+		$thumbnail = self::get_img_by_size(
 			array(
 				'attach_id'  => $image_id,
 				'thumb_size' => $size,
@@ -645,11 +645,11 @@ class Helpers {
 		);
 
 		if ( $echo && $thumbnail ) {
-			echo Helpers::kses( $thumbnail['thumbnail'] );
+			echo self::kses( $thumbnail['thumbnail'] );
 		}
 
 		if ( $thumbnail ) {
-			return Helpers::kses( $thumbnail['thumbnail'] );
+			return self::kses( $thumbnail['thumbnail'] );
 		}
 	}
 
@@ -664,7 +664,7 @@ class Helpers {
 
 		$image_id = ( $image_id ) ? $image_id : get_post_thumbnail_id();
 
-		$thumbnail = Helpers::get_img_by_size(
+		$thumbnail = self::get_img_by_size(
 			array(
 				'attach_id'  => $image_id,
 				'thumb_size' => $size,
@@ -755,7 +755,7 @@ class Helpers {
 			}
 			if ( is_array( $thumb_size ) ) {
 				// Resize image to custom size.
-				$p_img      = Helpers::resize_image( $attach_id, null, $thumb_size[0], $thumb_size[1], true );
+				$p_img      = self::resize_image( $attach_id, null, $thumb_size[0], $thumb_size[1], true );
 				$alt        = trim( wp_strip_all_tags( get_post_meta( $attach_id, '_wp_attachment_image_alt', true ) ) );
 				$attachment = get_post( $attach_id );
 				if ( ! empty( $attachment ) ) {
@@ -769,7 +769,7 @@ class Helpers {
 					}
 					if ( $p_img ) {
 
-						$attributes = Helpers::stringify_attributes(
+						$attributes = self::stringify_attributes(
 							array(
 								'class'  => $thumb_class,
 								'src'    => $p_img['url'],

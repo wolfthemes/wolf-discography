@@ -49,12 +49,32 @@ class Core {
 	 */
 	public static function discography_get_page_link() {
 
-		$page_id = Core::discography_get_page_id();
+		$page_id = self::discography_get_page_id();
 
 		if ( $page_id != -1 ) {
 			return get_permalink( $page_id );
 		}
 	}
 
+	/**
+	 * Widget function
+	 *
+	 * Displays the show list in the widget
+	 *
+	 * @param int $count, string $url, bool $link
+	 * @return string
+	 */
+	public static function get_release_option( $value, $default = null ) {
 
+		$wolf_releases_settings = get_option( 'wolf_release_settings' );
+
+		if ( isset( $wolf_releases_settings[ $value ] ) && '' != $wolf_releases_settings[ $value ] ) {
+
+			return $wolf_releases_settings[ $value ];
+
+		} elseif ( $default ) {
+
+			return $default;
+		}
+	}
 }

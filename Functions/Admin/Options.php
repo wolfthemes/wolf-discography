@@ -11,6 +11,8 @@
 
 namespace WolfDiscography\Admin;
 
+use WolfDiscography\Core\Core;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -159,7 +161,7 @@ class Options {
 	 * @return string
 	 */
 	public function setting_display() {
-		$current_display = wolf_get_release_option( 'display', 'list' );
+		$current_display = Core::get_release_option( 'display', 'list' );
 		?>
 		<select name="wolf_release_settings[display]" id="wolf_discography_display">
 			<option value="list" <?php selected( $current_display, 'list' ); ?>><?php esc_html_e( 'List View', 'wolf-discography' ); ?></option>
@@ -193,7 +195,7 @@ class Options {
 	 * @return string
 	 */
 	public function setting_columns() {
-		$current_columns = wolf_get_release_option( 'columns', '3' );
+		$current_columns = Core::get_release_option( 'columns', '3' );
 		?>
 		<select name="wolf_release_settings[columns]" id="wolf_discography_columns">
 			<option value="2" <?php selected( $current_columns, '2' ); ?>><?php esc_html_e( '2 Columns', 'wolf-discography' ); ?></option>
@@ -212,7 +214,7 @@ class Options {
 	public function setting_use_band_tax() {
 		?>
 		<input type="hidden" name="wolf_release_settings[use_band_tax]" value="0">
-		<label><input type="checkbox" name="wolf_release_settings[use_band_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_band_tax' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
+		<label><input type="checkbox" name="wolf_release_settings[use_band_tax]" value="1" <?php echo ( ( Core::get_release_option( 'use_band_tax' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
 		<?php esc_html_e( 'Make artist names clickable links to show all releases by that artist', 'wolf-discography' ); ?>
 		</label>
 		<?php
@@ -226,7 +228,7 @@ class Options {
 	public function setting_use_label_tax() {
 		?>
 		<input type="hidden" name="wolf_release_settings[use_label_tax]" value="0">
-		<label><input type="checkbox" name="wolf_release_settings[use_label_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_label_tax' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
+		<label><input type="checkbox" name="wolf_release_settings[use_label_tax]" value="1" <?php echo ( ( Core::get_release_option( 'use_label_tax' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
 		<?php esc_html_e( 'Make label names clickable links to show all releases by that label', 'wolf-discography' ); ?>
 		</label>
 		<?php
@@ -240,7 +242,7 @@ class Options {
 	public function setting_use_genre_tax() {
 		?>
 		<input type="hidden" name="wolf_release_settings[use_genre_tax]" value="0">
-		<label><input type="checkbox" name="wolf_release_settings[use_genre_tax]" value="1" <?php echo ( ( wolf_get_release_option( 'use_genre_tax' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
+		<label><input type="checkbox" name="wolf_release_settings[use_genre_tax]" value="1" <?php echo ( ( Core::get_release_option( 'use_genre_tax' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
 		<?php esc_html_e( 'Make genre names clickable links to show all releases in that genre', 'wolf-discography' ); ?>
 		</label>
 		<?php
@@ -254,7 +256,7 @@ class Options {
 	public function setting_display_format() {
 		?>
 		<input type="hidden" name="wolf_release_settings[display_format]" value="0">
-		<label><input type="checkbox" name="wolf_release_settings[display_format]" value="1" <?php echo ( ( wolf_get_release_option( 'display_format' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
+		<label><input type="checkbox" name="wolf_release_settings[display_format]" value="1" <?php echo ( ( Core::get_release_option( 'display_format' ) == 1 ) ? ' checked="checked"' : '' ); ?>>
 		<?php esc_html_e( 'Display the release format (CD, Digital Download, Vinyl, etc.)', 'wolf-discography' ); ?>
 		</label>
 		<?php

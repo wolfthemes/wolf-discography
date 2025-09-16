@@ -11,6 +11,7 @@
  */
 
 use WolfDiscography\Frontend\Helpers;
+use WolfDiscography\Core\Core;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -273,7 +274,7 @@ function wd_release_meta() {
 
 	<?php
 	// Type
-	if ( $release_format && wolf_get_release_option( 'display_format' ) ) :
+	if ( $release_format && Core::get_release_option( 'display_format' ) ) :
 		?>
 	<strong><?php esc_html_e( 'Format', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_format ); ?><br>
 	<?php endif; ?>
@@ -432,7 +433,7 @@ function wd_get_artist() {
 
 	}
 
-	if ( wolf_get_release_option( 'use_band_tax' ) ) {
+	if ( Core::get_release_option( 'use_band_tax' ) ) {
 		$band = get_the_term_list( $post_id, 'band', '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', 'wolf-discography' ) ) . ' </strong> : ', ', ', '<br>' );
 	}
 
@@ -459,7 +460,7 @@ function wd_get_label() {
 		$label = '<strong>' . esc_html( 'Label', 'wolf-discography' ) . ' </strong> : ' . wp_strip_all_tags( get_the_term_list( $post_id, 'label', '', ', ', '' ) ) . '<br>';
 	}
 
-	if ( wolf_get_release_option( 'use_label_tax' ) ) {
+	if ( Core::get_release_option( 'use_label_tax' ) ) {
 		$label = get_the_term_list( $post_id, 'label', '<strong>' . esc_html( 'Label', 'wolf-discography' ) . ' </strong> : ', ', ', '<br>' );
 	}
 

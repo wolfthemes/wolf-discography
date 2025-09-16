@@ -9,6 +9,7 @@
 
 namespace WolfDiscography\Core;
 
+use WolfDiscography\Auth\LicenceValidator;
 use WolfDiscography\Admin\AdminHandler;
 use WolfDiscography\Admin\AdminNotices;
 use WolfDiscography\Frontend\FrontendHandler;
@@ -41,6 +42,11 @@ class Plugin {
 	}
 
 	private function __construct() {
+
+		if ( ! Auth::is_activated() ) {
+			return;
+		}
+
 		$this->check_php_version();
 		Constants::define( $this->get_plugin_path(), $this->getPluginUrl() );
 		$this->init_hooks();

@@ -57,7 +57,7 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 	 * @return string
 	 */
 	public function get_title() {
-		return $this->params['properties']['name'] ?? __( 'Releases', 'wolf-discography' );
+		return $this->params['properties']['name'] ?? esc_html__( 'Releases', 'wolf-discography' );
 	}
 
 	/**

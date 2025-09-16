@@ -133,7 +133,7 @@ class MetaboxConfig {
 	 *
 	 * @return array
 	 */
-	public static function getUrlFields(): array {
+	public static function get_url_fields(): array {
 		return array(
 			'_wolf_release_amazon',
 			'_wolf_release_apple',
@@ -153,7 +153,7 @@ class MetaboxConfig {
 	 *
 	 * @return array
 	 */
-	public static function getRepeatableFields(): array {
+	public static function get_repeatable_fields(): array {
 		return array(
 			'_wolf_release_tracklist',
 		);

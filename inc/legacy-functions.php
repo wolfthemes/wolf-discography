@@ -12,45 +12,20 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * wolf_discography page IDs
- *
- * retrieve page ids - used for the main discography page
- *
- * returns -1 if no page is found
- *
- * @param string $page
- * @return int
- */
+// Backwards compatibility wrappers
+
 function wolf_discography_get_page_id() {
 	return \WolfDiscography\Core\Core::get_discography_page_id();
 }
 
-/**
- * wolf_discography page link
- *
- * retrieve discography page permalink
- *
- * @param string $page
- * @return string
- */
 function wolf_discography_get_page_link() {
 	return \WolfDiscography\Core\Core::get_page_link();
 }
 
-/**
- * Widget function
- *
- * Displays the show list in the widget
- *
- * @param int $count, string $url, bool $link
- * @return string
- */
 function wolf_get_release_option( $value, $default = null ) {
 	return \WolfDiscography\Core\Core::get_release_option( $value, $default );
 }
 
-// Backwards compatibility wrappers
 function wolf_discography_output_content_wrapper() {
 	return \WolfDiscography\Frontend\TemplateLoader::output_content_wrapper();
 }

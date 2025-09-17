@@ -9,6 +9,8 @@
 
 namespace WolfDiscography\Core;
 
+use WolfDiscography\Admin\Options;
+
 defined( 'ABSPATH' ) || exit;
 
 class Core {
@@ -24,16 +26,22 @@ class Core {
 	 */
 	public static function get_discography_page_id() {
 
-		$page_id = -1;
+		// Try new option format first
+		$page_id = Options::get_option( 'discography_page' );
 
-		if ( -1 != get_option( '_wolf_discography_page_id' ) && get_option( '_wolf_discography_page_id' ) ) {
-
-			$page_id = get_option( '_wolf_discography_page_id' );
-
+		// Fall back to legacy option if new one doesn't exist
+		if ( ! $page_id ) {
+			$page_id = get_option( '_wolf_discography_page_id', -1 );
 		}
 
+		// Convert empty values to -1 for consistency
+		if ( ! $page_id || '' === $page_id ) {
+			$page_id = -1;
+		}
+
+		// Apply WPML filter if page exists
 		if ( -1 != $page_id ) {
-			$page_id = apply_filters( 'wpml_object_id', absint( $page_id ), 'page', true ); // filter for WPML
+			$page_id = apply_filters( 'wpml_object_id', absint( $page_id ), 'page', true );
 		}
 
 		return $page_id;
@@ -57,24 +65,41 @@ class Core {
 	}
 
 	/**
-	 * Widget function
+	 * Get release option
 	 *
-	 * Displays the show list in the widget
-	 *
-	 * @param int $count, string $url, bool $link
-	 * @return string
+	 * @param string $value Option key
+	 * @param mixed  $default Default value
+	 * @return mixed
 	 */
 	public static function get_release_option( $value, $default = null ) {
 
-		$wolf_releases_settings = get_option( 'wolf_release_settings' );
+		// Map old option names to new ones
+		$option_map = array(
+			'use_band_tax'   => 'use_band_tax',
+			'use_label_tax'  => 'use_label_tax',
+			'use_genre_tax'  => 'use_genre_tax',
+			'display_format' => 'display_format',
+			'display'        => 'display_style',
+			'columns'        => 'grid_columns',
+		);
 
-		if ( isset( $wolf_releases_settings[ $value ] ) && '' != $wolf_releases_settings[ $value ] ) {
+		// Try new options first
+		if ( isset( $option_map[ $value ] ) ) {
+			$new_value = Options::get_option( $option_map[ $value ] );
+			if ( '' !== $new_value && null !== $new_value ) {
+				return $new_value;
+			}
+		}
 
-			return $wolf_releases_settings[ $value ];
+		// Fall back to legacy options
+		$legacy_settings = get_option( 'wolf_release_settings' );
 
+		if ( isset( $legacy_settings[ $value ] ) && '' != $legacy_settings[ $value ] ) {
+			return $legacy_settings[ $value ];
 		} elseif ( $default ) {
-
 			return $default;
 		}
+
+		return null;
 	}
 }

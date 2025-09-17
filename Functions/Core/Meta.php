@@ -220,7 +220,7 @@ class Meta {
 
 		}
 
-		if ( Core::get_release_option( 'use_band_tax' ) ) {
+		if ( Options::get_option( 'use_band_tax' ) ) {
 			$band = get_the_term_list( $post_id, 'band', '<strong>' . apply_filters( 'wolf_discography_band_string', esc_html( 'Band', 'wolf-discography' ) ) . ' </strong> : ', ', ', '<br>' );
 		}
 
@@ -247,7 +247,7 @@ class Meta {
 			$label = '<strong>' . esc_html( 'Label', 'wolf-discography' ) . ' </strong> : ' . wp_strip_all_tags( get_the_term_list( $post_id, 'label', '', ', ', '' ) ) . '<br>';
 		}
 
-		if ( Core::get_release_option( 'use_label_tax' ) ) {
+		if ( Options::get_option( 'use_label_tax' ) ) {
 			$label = get_the_term_list( $post_id, 'label', '<strong>' . esc_html( 'Label', 'wolf-discography' ) . ' </strong> : ', ', ', '<br>' );
 		}
 

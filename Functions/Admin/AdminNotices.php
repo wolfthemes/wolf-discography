@@ -16,14 +16,14 @@ defined( 'ABSPATH' ) || exit;
 class AdminNotices {
 
 	public function __construct() {
-		add_action( 'admin_notices', array( $this, 'displayNotices' ) );
+		add_action( 'admin_notices', array( $this, 'display_notices' ) );
 	}
 
-	public function displayNotices(): void {
-		$this->displayPhpVersionWarning();
+	public function display_notices(): void {
+		$this->display_php_version_warning();
 	}
 
-	public function displayPhpVersionWarning(): void {
+	public function display_php_version_warning(): void {
 		if ( version_compare( PHP_VERSION, Constants::REQUIRED_PHP_VERSION, '>=' ) ) {
 			return;
 		}

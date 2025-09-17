@@ -23,7 +23,7 @@ function wolf_discography_get_page_link() {
 }
 
 function wolf_get_release_option( $value, $default = null ) {
-	return \WolfDiscography\Core\Core::get_release_option( $value, $default );
+	return \WolfDiscography\Core\Options::get_option( $value, $default );
 }
 
 function wolf_discography_output_content_wrapper() {

@@ -9,7 +9,7 @@
 
 namespace WolfDiscography\Config;
 
-use WolfDiscography\Core\Core;
+use WolfDiscography\Admin\Options;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -142,13 +142,13 @@ class ModuleAttributes {
 					'description' => 'Number of columns for grid display',
 				),
 				'grid_padding'                         => array(
-					'default'     => Core::get_release_option( 'post_grid_padding', 'yes' ),
+					'default'     => Options::get_option( 'post_grid_padding', 'yes' ),
 					'type'        => 'bool',
 					'aliases'     => array( 'gridPadding', 'padding' ),
 					'description' => 'Add padding between grid items',
 				),
 				'item_animation'                       => array(
-					'default'     => Core::get_release_option( 'post_item_animation' ),
+					'default'     => Options::get_option( 'post_item_animation' ),
 					'type'        => 'string',
 					'aliases'     => array( 'itemAnimation', 'animation' ),
 					'description' => 'Animation for items',
@@ -159,7 +159,7 @@ class ModuleAttributes {
 					'description' => 'Is this an index page',
 				),
 				'release_display'                      => array(
-					'default'     => Core::get_release_option( 'display', 'grid' ),
+					'default'     => Options::get_option( 'display', 'grid' ),
 					'type'        => 'string',
 					'aliases'     => array( 'display', 'layout_type', 'view' ),
 					'enum'        => array( 'grid', 'list' ),
@@ -210,7 +210,7 @@ class ModuleAttributes {
 			// Behavior attributes (affect JavaScript/interactions)
 			'behavior' => array(
 				'release_category_filter'                => array(
-					'default'     => Core::get_release_option( 'category_filter', false ),
+					'default'     => Options::get_option( 'category_filter', false ),
 					'type'        => 'bool',
 					'aliases'     => array( 'categoryFilter', 'filter', 'filtering' ),
 					'description' => 'Enable category filtering',

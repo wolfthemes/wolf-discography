@@ -218,7 +218,7 @@ class TemplateHelper {
 
 		<?php
 		// Type
-		if ( $release_format && Core::get_release_option( 'display_format' ) ) :
+		if ( $release_format && Options::get_option( 'display_format' ) ) :
 			?>
 		<strong><?php esc_html_e( 'Format', 'wolf-discography' ); ?></strong> : <?php echo sanitize_text_field( $release_format ); ?><br>
 		<?php endif; ?>

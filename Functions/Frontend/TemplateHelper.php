@@ -311,18 +311,18 @@ class TemplateHelper {
 		$overlay_opacity = ( $overlay_opacity ) ? absint( $overlay_opacity ) / 100 : .4;
 
 		$overlay_style = '';
-		$class         = 'wolf-core-bg-overlay';
+		$class         = 'wd-bg-overlay';
 
 		if ( ( 'custom' === $overlay_color || 'auto' === $overlay_color ) && $overlay_custom_color ) {
 
 			$overlay_style .= 'background-color:' . Helper::sanitize_color( $overlay_custom_color ) . ';';
 
 		} else {
-			$class .= " wolf-core-background-color-$overlay_color";
+			$class .= " wd-background-color-$overlay_color";
 		}
 
 		$overlay_style .= "opacity:$overlay_opacity;";
 
-		return '<' . $overlay_tag . ' style="' . Helpers::esc_style_attr( $overlay_style ) . '" class="' . Helpers::sanitize_html_classes( $class ) . '"></' . $overlay_tag . '><!--.wolf-core-bg-overlay-->';
+		return '<' . $overlay_tag . ' style="' . Helpers::esc_style_attr( $overlay_style ) . '" class="' . Helpers::sanitize_html_classes( $class ) . '"></' . $overlay_tag . '><!--.wd-bg-overlay-->';
 	}
 }

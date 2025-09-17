@@ -1,4 +1,5 @@
 :root {
-	--wd-transition: ease;
+	--wd-transition: all 0.44s cubic-bezier(0.675, 0.475, 0.05, 0.67);
+	--wd-ease: cubic-bezier(0.675, 0.475, 0.05, 0.67);
 	--wd-grid-padding: 10px;
 }

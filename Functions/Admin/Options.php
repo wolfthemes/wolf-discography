@@ -154,6 +154,10 @@ class Options {
 					'4' => esc_html__( '4 Columns', 'wolf-discography' ),
 				),
 				'default'     => '3',
+				'depends_on'  => [
+                    'field' => 'display_style',
+                    'value' => 'grid',
+                ],
 			);
 		}
 

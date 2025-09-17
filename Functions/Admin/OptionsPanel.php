@@ -20,507 +20,558 @@ defined( 'ABSPATH' ) || exit;
  */
 class OptionsPanel {
 
-	/**
-	 * Options panel arguments
-	 */
-	protected $args = array();
+    /**
+     * Options panel arguments
+     */
+    protected $args = [];
 
-	/**
-	 * Options panel title
-	 */
-	protected $title = '';
+    /**
+     * Options panel title
+     */
+    protected $title = '';
 
-	/**
-	 * Options panel slug
-	 */
-	protected $slug = '';
+    /**
+     * Options panel slug
+     */
+    protected $slug = '';
 
-	/**
-	 * Option name to use for saving options in the database
-	 */
-	public $option_name = '';
+    /**
+     * Option name to use for saving options in the database
+     */
+    public $option_name = '';
 
-	/**
-	 * Option group name
-	 */
-	public $option_group_name = '';
+    /**
+     * Option group name
+     */
+    public $option_group_name = '';
 
-	/**
-	 * User capability allowed to access the options page
-	 */
-	protected $user_capability = '';
+    /**
+     * User capability allowed to access the options page
+     */
+    protected $user_capability = '';
 
-	/**
-	 * Array of settings
-	 */
-	public $settings = array();
+    /**
+     * Array of settings
+     */
+    public $settings = [];
 
-	/**
-	 * Parent menu slug for submenu pages
-	 */
-	protected $parent_slug = '';
+    /**
+     * Parent menu slug for submenu pages
+     */
+    protected $parent_slug = '';
 
-	/**
-	 * Constructor
-	 *
-	 * @param array $args Panel arguments
-	 * @param array $settings Panel settings
-	 */
-	public function __construct( array $args, array $settings ) {
-		$this->args              = $args;
-		$this->settings          = $settings;
-		$this->title             = $this->args['title'] ?? esc_html__( 'Options', 'wolf-discography' );
-		$this->slug              = $this->args['slug'] ?? sanitize_key( $this->title );
-		$this->option_name       = $this->args['option_name'] ?? sanitize_key( $this->title );
-		$this->option_group_name = $this->option_name . '_group';
-		$this->user_capability   = $args['user_capability'] ?? 'manage_options';
-		$this->parent_slug       = $args['parent_slug'] ?? '';
+    /**
+     * Constructor
+     *
+     * @param array $args Panel arguments
+     * @param array $settings Panel settings
+     */
+    public function __construct( array $args, array $settings ) {
+        $this->args              = $args;
+        $this->settings          = $settings;
+        $this->title             = $this->args['title'] ?? esc_html__( 'Options', 'wolf-discography' );
+        $this->slug              = $this->args['slug'] ?? sanitize_key( $this->title );
+        $this->option_name       = $this->args['option_name'] ?? sanitize_key( $this->title );
+        $this->option_group_name = $this->option_name . '_group';
+        $this->user_capability   = $args['user_capability'] ?? 'manage_options';
+        $this->parent_slug       = $args['parent_slug'] ?? '';
 
-		add_action( 'admin_menu', array( $this, 'register_menu_page' ) );
-		add_action( 'admin_init', array( $this, 'register_settings' ) );
-	}
+        add_action( 'admin_menu', [ $this, 'register_menu_page' ] );
+        add_action( 'admin_init', [ $this, 'register_settings' ] );
+    }
 
-	/**
-	 * Register the menu page
-	 */
-	public function register_menu_page() {
-		if ( $this->parent_slug ) {
-			// Add as submenu
-			add_submenu_page(
-				$this->parent_slug,
-				$this->title,
-				$this->title,
-				$this->user_capability,
-				$this->slug,
-				array( $this, 'render_options_page' )
-			);
-		} else {
-			// Add as main menu
-			add_menu_page(
-				$this->title,
-				$this->title,
-				$this->user_capability,
-				$this->slug,
-				array( $this, 'render_options_page' )
-			);
-		}
-	}
+    /**
+     * Register the menu page
+     */
+    public function register_menu_page() {
+        if ( $this->parent_slug ) {
+            // Add as submenu
+            add_submenu_page(
+                $this->parent_slug,
+                $this->title,
+                $this->title,
+                $this->user_capability,
+                $this->slug,
+                [ $this, 'render_options_page' ]
+            );
+        } else {
+            // Add as main menu
+            add_menu_page(
+                $this->title,
+                $this->title,
+                $this->user_capability,
+                $this->slug,
+                [ $this, 'render_options_page' ]
+            );
+        }
+    }
 
-	/**
-	 * Register the settings
-	 */
-	public function register_settings() {
-		register_setting(
-			$this->option_group_name,
-			$this->option_name,
-			array(
-				'sanitize_callback' => array( $this, 'sanitize_fields' ),
-				'default'           => $this->get_defaults(),
-			)
-		);
+    /**
+     * Register the settings
+     */
+    public function register_settings() {
+        register_setting( $this->option_group_name, $this->option_name, [
+            'sanitize_callback' => [ $this, 'sanitize_fields' ],
+            'default'           => $this->get_defaults(),
+        ] );
 
-		add_settings_section(
-			$this->option_name . '_sections',
-			false,
-			false,
-			$this->option_name
-		);
+        add_settings_section(
+            $this->option_name . '_sections',
+            false,
+            false,
+            $this->option_name
+        );
 
-		foreach ( $this->settings as $key => $args ) {
-			$type     = $args['type'] ?? 'text';
-			$callback = "render_{$type}_field";
+        foreach ( $this->settings as $key => $args ) {
+            $type = $args['type'] ?? 'text';
+            $callback = "render_{$type}_field";
 
-			if ( method_exists( $this, $callback ) ) {
-				$tr_class = '';
-				if ( array_key_exists( 'tab', $args ) ) {
-					$tr_class .= 'wpex-tab-item wpex-tab-item--' . sanitize_html_class( $args['tab'] );
-				}
+            if ( method_exists( $this, $callback ) ) {
+                $tr_class = '';
+                if ( array_key_exists( 'tab', $args ) ) {
+                    $tr_class .= 'wpex-tab-item wpex-tab-item--' . sanitize_html_class( $args['tab'] );
+                }
 
-				add_settings_field(
-					$key,
-					$args['label'],
-					array( $this, $callback ),
-					$this->option_name,
-					$this->option_name . '_sections',
-					array(
-						'label_for' => $key,
-						'class'     => $tr_class,
-					)
-				);
-			}
-		}
-	}
+                add_settings_field(
+                    $key,
+                    $args['label'],
+                    [ $this, $callback ],
+                    $this->option_name,
+                    $this->option_name . '_sections',
+                    [
+                        'label_for' => $key,
+                        'class'     => $tr_class
+                    ]
+                );
+            }
+        }
+    }
 
-	/**
-	 * Sanitize all fields
-	 *
-	 * @param array $value Raw form values
-	 * @return array Sanitized values
-	 */
-	public function sanitize_fields( $value ) {
-		$value     = (array) $value;
-		$new_value = array();
+    /**
+     * Sanitize all fields
+     *
+     * @param array $value Raw form values
+     * @return array Sanitized values
+     */
+    public function sanitize_fields( $value ) {
+        $value = (array) $value;
+        $new_value = [];
 
-		foreach ( $this->settings as $key => $args ) {
-			$field_type       = $args['type'];
-			$new_option_value = $value[ $key ] ?? '';
+        foreach ( $this->settings as $key => $args ) {
+            $field_type = $args['type'];
+            $new_option_value = $value[$key] ?? '';
 
-			if ( $new_option_value ) {
-				$sanitize_callback = $args['sanitize_callback'] ?? $this->get_sanitize_callback_by_type( $field_type );
-				$new_value[ $key ] = call_user_func( $sanitize_callback, $new_option_value, $args );
-			} elseif ( 'checkbox' === $field_type ) {
-				$new_value[ $key ] = 0;
-			}
-		}
+            if ( $new_option_value ) {
+                $sanitize_callback = $args['sanitize_callback'] ?? $this->get_sanitize_callback_by_type( $field_type );
+                $new_value[$key] = call_user_func( $sanitize_callback, $new_option_value, $args );
+            } elseif ( 'checkbox' === $field_type ) {
+                $new_value[$key] = 0;
+            }
+        }
 
-		return $new_value;
-	}
+        return $new_value;
+    }
 
-	/**
-	 * Get sanitization callback by field type
-	 *
-	 * @param string $field_type Field type
-	 * @return callable Sanitization callback
-	 */
-	protected function get_sanitize_callback_by_type( $field_type ) {
-		switch ( $field_type ) {
-			case 'select':
-				return array( $this, 'sanitize_select_field' );
-			case 'textarea':
-				return 'wp_kses_post';
-			case 'checkbox':
-				return array( $this, 'sanitize_checkbox_field' );
-			case 'email':
-				return 'sanitize_email';
-			case 'url':
-				return 'esc_url_raw';
-			case 'number':
-				return 'absint';
-			default:
-			case 'text':
-				return 'sanitize_text_field';
-		}
-	}
+    /**
+     * Get sanitization callback by field type
+     *
+     * @param string $field_type Field type
+     * @return callable Sanitization callback
+     */
+    protected function get_sanitize_callback_by_type( $field_type ) {
+        switch ( $field_type ) {
+            case 'select':
+                return [ $this, 'sanitize_select_field' ];
+            case 'textarea':
+                return 'wp_kses_post';
+            case 'checkbox':
+                return [ $this, 'sanitize_checkbox_field' ];
+            case 'email':
+                return 'sanitize_email';
+            case 'url':
+                return 'esc_url_raw';
+            case 'number':
+                return 'absint';
+            default:
+            case 'text':
+                return 'sanitize_text_field';
+        }
+    }
 
-	/**
-	 * Get default values for all fields
-	 *
-	 * @return array Default values
-	 */
-	protected function get_defaults() {
-		$defaults = array();
-		foreach ( $this->settings as $key => $args ) {
-			$defaults[ $key ] = $args['default'] ?? '';
-		}
-		return $defaults;
-	}
+    /**
+     * Get default values for all fields
+     *
+     * @return array Default values
+     */
+    protected function get_defaults() {
+        $defaults = [];
+        foreach ( $this->settings as $key => $args ) {
+            $defaults[$key] = $args['default'] ?? '';
+        }
+        return $defaults;
+    }
 
-	/**
-	 * Sanitize checkbox field
-	 */
-	protected function sanitize_checkbox_field( $value = '', $field_args = array() ) {
-		return ( 'on' === $value || 1 == $value ) ? 1 : 0;
-	}
+    /**
+     * Sanitize checkbox field
+     */
+    protected function sanitize_checkbox_field( $value = '', $field_args = [] ) {
+        return ( 'on' === $value || 1 == $value ) ? 1 : 0;
+    }
 
-	/**
-	 * Sanitize select field
-	 */
-	protected function sanitize_select_field( $value = '', $field_args = array() ) {
-		$choices = $field_args['choices'] ?? array();
-		if ( array_key_exists( $value, $choices ) ) {
-			return $value;
-		}
-		return '';
-	}
+    /**
+     * Sanitize select field
+     */
+    protected function sanitize_select_field( $value = '', $field_args = [] ) {
+        $choices = $field_args['choices'] ?? [];
+        if ( array_key_exists( $value, $choices ) ) {
+            return $value;
+        }
+        return '';
+    }
 
-	/**
-	 * Render the options page
-	 */
-	public function render_options_page() {
-		if ( ! current_user_can( $this->user_capability ) ) {
-			return;
-		}
+    /**
+     * Render the options page
+     */
+    public function render_options_page() {
+        if ( ! current_user_can( $this->user_capability ) ) {
+            return;
+        }
 
-		if ( isset( $_GET['settings-updated'] ) ) {
-			add_settings_error(
-				$this->option_name . '_messages',
-				$this->option_name . '_message',
-				esc_html__( 'Settings Saved', 'wolf-discography' ),
-				'updated'
-			);
-		}
+        if ( isset( $_GET['settings-updated'] ) ) {
+            add_settings_error(
+               $this->option_name . '_messages',
+               $this->option_name . '_message',
+               esc_html__( 'Settings Saved', 'wolf-discography' ),
+               'updated'
+            );
+        }
 
-		settings_errors( $this->option_name . '_messages' );
+        settings_errors( $this->option_name . '_messages' );
 
-		?>
-		<div class="wrap">
-			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+        ?>
+        <div class="wrap">
+            <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
-			<?php
-			// Allow custom content before tabs
-			do_action( "wolf_options_panel_before_tabs_{$this->slug}" );
+            <?php
+            // Allow custom content before tabs
+            do_action( "wolf_options_panel_before_tabs_{$this->slug}" );
 
-			$this->render_tabs();
+            $this->render_tabs();
 
-			// Allow custom content after tabs but before form
-			do_action( "wolf_options_panel_before_form_{$this->slug}" );
-			?>
+            // Allow custom content after tabs but before form
+            do_action( "wolf_options_panel_before_form_{$this->slug}" );
+            ?>
 
-			<form action="options.php" method="post" class="wpex-options-form">
-				<?php
-					settings_fields( $this->option_group_name );
-					do_settings_sections( $this->option_name );
-					submit_button( esc_html__( 'Save Settings', 'wolf-discography' ) );
-				?>
-			</form>
+            <form action="options.php" method="post" class="wpex-options-form">
+                <?php
+                    settings_fields( $this->option_group_name );
+                    do_settings_sections( $this->option_name );
+                    submit_button( esc_html__( 'Save Settings', 'wolf-discography' ) );
+                ?>
+            </form>
 
-			<?php
-			// Allow custom content after form
-			do_action( "wolf_options_panel_after_form_{$this->slug}" );
-			?>
-		</div>
-		<?php
-	}
+            <?php
+            // Allow custom content after form
+            do_action( "wolf_options_panel_after_form_{$this->slug}" );
+            ?>
+        </div>
+        <?php
+    }
 
-	/**
-	 * Render tabs navigation
-	 */
-	protected function render_tabs() {
-		if ( empty( $this->args['tabs'] ) ) {
-			return;
-		}
+    /**
+     * Render tabs navigation with dependency handling
+     */
+    protected function render_tabs() {
+        if ( empty( $this->args['tabs'] ) ) {
+            return;
+        }
 
-		$tabs = $this->args['tabs'];
-		?>
-		<style>.wpex-tab-item { display: none; }</style>
+        $tabs = $this->args['tabs'];
+        ?>
+        <style>
+        .wpex-tab-item { display: none; }
+        .wpex-field-hidden { display: none !important; }
+        </style>
 
-		<h2 class="nav-tab-wrapper wpex-tabs">
-		<?php
-			$first_tab = true;
-		foreach ( $tabs as $id => $label ) {
-			?>
-				<a href="#" data-tab="<?php echo esc_attr( $id ); ?>" class="nav-tab<?php echo ( $first_tab ) ? ' nav-tab-active' : ''; ?>">
-					<?php echo esc_html( $label ); ?>
-				</a>
-				<?php
-				$first_tab = false;
-		}
-		?>
-		</h2>
+        <h2 class="nav-tab-wrapper wpex-tabs"><?php
+            $first_tab = true;
+            foreach ( $tabs as $id => $label ) { ?>
+                <a href="#" data-tab="<?php echo esc_attr( $id ); ?>" class="nav-tab<?php echo ( $first_tab ) ? ' nav-tab-active' : ''; ?>">
+                    <?php echo esc_html( $label ); ?>
+                </a>
+                <?php
+                $first_tab = false;
+            }
+        ?></h2>
 
-		<script>
-			( function() {
-				document.addEventListener( 'click', ( event ) => {
-					const target = event.target;
-					if ( ! target.closest( '.wpex-tabs a' ) ) {
-						return;
-					}
-					event.preventDefault();
+        <script>
+            ( function() {
+                // Handle tab switching
+                document.addEventListener( 'click', ( event ) => {
+                    const target = event.target;
+                    if ( ! target.closest( '.wpex-tabs a' ) ) {
+                        return;
+                    }
+                    event.preventDefault();
 
-					// Remove active class from all tabs
-					document.querySelectorAll( '.wpex-tabs a' ).forEach( ( tablink ) => {
-						tablink.classList.remove( 'nav-tab-active' );
-					} );
+                    // Remove active class from all tabs
+                    document.querySelectorAll( '.wpex-tabs a' ).forEach( ( tablink ) => {
+                        tablink.classList.remove( 'nav-tab-active' );
+                    } );
 
-					// Add active class to clicked tab
-					target.classList.add( 'nav-tab-active' );
+                    // Add active class to clicked tab
+                    target.classList.add( 'nav-tab-active' );
 
-					// Show/hide tab content
-					const targetTab = target.getAttribute( 'data-tab' );
-					document.querySelectorAll( '.wpex-options-form .wpex-tab-item' ).forEach( ( item ) => {
-						if ( item.classList.contains( `wpex-tab-item--${targetTab}` ) ) {
-							item.style.display = 'table-row';
-						} else {
-							item.style.display = 'none';
-						}
-					} );
-				} );
+                    // Show/hide tab content
+                    const targetTab = target.getAttribute( 'data-tab' );
+                    document.querySelectorAll( '.wpex-options-form .wpex-tab-item' ).forEach( ( item ) => {
+                        if ( item.classList.contains( `wpex-tab-item--${targetTab}` ) ) {
+                            item.style.display = 'table-row';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    } );
 
-				// Initialize first tab on page load
-				document.addEventListener( 'DOMContentLoaded', function () {
-					const firstTab = document.querySelector( '.wpex-tabs .nav-tab' );
-					if ( firstTab ) {
-						firstTab.click();
-					}
-				}, false );
-			} )();
-		</script>
-		<?php
-	}
+                    // Re-run dependency checks for the newly visible tab
+                    handleFieldDependencies();
+                } );
 
-	/**
-	 * Get option value (public so custom field renderers can access it)
-	 *
-	 * @param string $option_name Option name
-	 * @return mixed Option value
-	 */
-	public function get_option_value( $option_name ) {
-		$option = get_option( $this->option_name, array() );
-		if ( ! is_array( $option ) || ! array_key_exists( $option_name, $option ) ) {
-			return $this->settings[ $option_name ]['default'] ?? '';
-		}
-		return $option[ $option_name ];
-	}
+                // Handle field dependencies
+                function handleFieldDependencies() {
+                    // Get all fields with dependencies
+                    <?php foreach ( $this->settings as $key => $args ) :
+                        if ( isset( $args['depends_on'] ) ) : ?>
+                        const dependentField_<?php echo esc_js( $key ); ?> = document.getElementById( '<?php echo esc_js( $key ); ?>' );
+                        const parentField_<?php echo esc_js( $key ); ?> = document.getElementById( '<?php echo esc_js( $args['depends_on']['field'] ); ?>' );
 
-	/**
-	 * Render text field
-	 */
-	public function render_text_field( $args ) {
-		$option_name = $args['label_for'];
-		$value       = $this->get_option_value( $option_name );
-		$description = $this->settings[ $option_name ]['description'] ?? '';
-		$placeholder = $this->settings[ $option_name ]['placeholder'] ?? '';
-		$class       = $this->settings[ $option_name ]['class'] ?? 'regular-text';
-		?>
-		<input
-			type="text"
-			id="<?php echo esc_attr( $option_name ); ?>"
-			name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
-			value="<?php echo esc_attr( $value ); ?>"
-			placeholder="<?php echo esc_attr( $placeholder ); ?>"
-			class="<?php echo esc_attr( $class ); ?>">
-		<?php if ( $description ) { ?>
-			<p class="description"><?php echo wp_kses_post( $description ); ?></p>
-		<?php } ?>
-		<?php
-	}
+                        if ( dependentField_<?php echo esc_js( $key ); ?> && parentField_<?php echo esc_js( $key ); ?> ) {
+                            const dependentRow_<?php echo esc_js( $key ); ?> = dependentField_<?php echo esc_js( $key ); ?>.closest( 'tr' );
+                            const expectedValue_<?php echo esc_js( $key ); ?> = <?php echo json_encode( $args['depends_on']['value'] ); ?>;
 
-	/**
-	 * Render textarea field
-	 */
-	public function render_textarea_field( $args ) {
-		$option_name = $args['label_for'];
-		$value       = $this->get_option_value( $option_name );
-		$description = $this->settings[ $option_name ]['description'] ?? '';
-		$rows        = $this->settings[ $option_name ]['rows'] ?? '4';
-		$cols        = $this->settings[ $option_name ]['cols'] ?? '50';
-		$class       = $this->settings[ $option_name ]['class'] ?? 'large-text';
-		?>
-		<textarea
-			id="<?php echo esc_attr( $option_name ); ?>"
-			rows="<?php echo esc_attr( absint( $rows ) ); ?>"
-			cols="<?php echo esc_attr( absint( $cols ) ); ?>"
-			name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
-			class="<?php echo esc_attr( $class ); ?>"><?php echo esc_textarea( $value ); ?></textarea>
-		<?php if ( $description ) { ?>
-			<p class="description"><?php echo wp_kses_post( $description ); ?></p>
-		<?php } ?>
-		<?php
-	}
+                            function toggleField_<?php echo esc_js( $key ); ?>() {
+                                let currentValue = '';
 
-	/**
-	 * Render checkbox field
-	 */
-	public function render_checkbox_field( $args ) {
-		$option_name = $args['label_for'];
-		$value       = $this->get_option_value( $option_name );
-		$description = $this->settings[ $option_name ]['description'] ?? '';
-		?>
-		<label>
-			<input
-				type="checkbox"
-				id="<?php echo esc_attr( $option_name ); ?>"
-				name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
-				<?php checked( $value, 1, true ); ?>
-			>
-			<?php echo wp_kses_post( $description ); ?>
-		</label>
-		<?php
-	}
+                                if ( parentField_<?php echo esc_js( $key ); ?>.type === 'checkbox' ) {
+                                    currentValue = parentField_<?php echo esc_js( $key ); ?>.checked ? '1' : '0';
+                                } else {
+                                    currentValue = parentField_<?php echo esc_js( $key ); ?>.value;
+                                }
 
-	/**
-	 * Render select field
-	 */
-	public function render_select_field( $args ) {
-		$option_name = $args['label_for'];
-		$value       = $this->get_option_value( $option_name );
-		$description = $this->settings[ $option_name ]['description'] ?? '';
-		$choices     = $this->settings[ $option_name ]['choices'] ?? array();
-		?>
-		<select
-			id="<?php echo esc_attr( $option_name ); ?>"
-			name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
-		>
-			<?php foreach ( $choices as $choice_value => $choice_label ) { ?>
-				<option value="<?php echo esc_attr( $choice_value ); ?>" <?php selected( $choice_value, $value, true ); ?>>
-					<?php echo esc_html( $choice_label ); ?>
-				</option>
-			<?php } ?>
-		</select>
-		<?php if ( $description ) { ?>
-			<p class="description"><?php echo wp_kses_post( $description ); ?></p>
-		<?php } ?>
-		<?php
-	}
+                                if ( Array.isArray( expectedValue_<?php echo esc_js( $key ); ?> ) ) {
+                                    // Multiple accepted values
+                                    if ( expectedValue_<?php echo esc_js( $key ); ?>.includes( currentValue ) ) {
+                                        dependentRow_<?php echo esc_js( $key ); ?>.classList.remove( 'wpex-field-hidden' );
+                                    } else {
+                                        dependentRow_<?php echo esc_js( $key ); ?>.classList.add( 'wpex-field-hidden' );
+                                    }
+                                } else {
+                                    // Single expected value
+                                    if ( currentValue === expectedValue_<?php echo esc_js( $key ); ?> ) {
+                                        dependentRow_<?php echo esc_js( $key ); ?>.classList.remove( 'wpex-field-hidden' );
+                                    } else {
+                                        dependentRow_<?php echo esc_js( $key ); ?>.classList.add( 'wpex-field-hidden' );
+                                    }
+                                }
+                            }
 
-	/**
-	 * Render number field
-	 */
-	public function render_number_field( $args ) {
-		$option_name = $args['label_for'];
-		$value       = $this->get_option_value( $option_name );
-		$description = $this->settings[ $option_name ]['description'] ?? '';
-		$min         = $this->settings[ $option_name ]['min'] ?? '';
-		$max         = $this->settings[ $option_name ]['max'] ?? '';
-		$step        = $this->settings[ $option_name ]['step'] ?? '';
-		?>
-		<input
-			type="number"
-			id="<?php echo esc_attr( $option_name ); ?>"
-			name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
-			value="<?php echo esc_attr( $value ); ?>"
-			min="<?php echo esc_attr( $min ); ?>"
-			max="<?php echo esc_attr( $max ); ?>"
-			step="<?php echo esc_attr( $step ); ?>"
-			class="small-text">
-		<?php if ( $description ) { ?>
-			<p class="description"><?php echo wp_kses_post( $description ); ?></p>
-		<?php } ?>
-		<?php
-	}
+                            // Add event listener to parent field
+                            parentField_<?php echo esc_js( $key ); ?>.addEventListener( 'change', toggleField_<?php echo esc_js( $key ); ?> );
 
-	/**
-	 * Render page select field
-	 */
-	public function render_page_select_field( $args ) {
-		$option_name = $args['label_for'];
-		$value       = $this->get_option_value( $option_name );
-		$description = $this->settings[ $option_name ]['description'] ?? '';
+                            // Run initial check
+                            toggleField_<?php echo esc_js( $key ); ?>();
+                        }
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                }
 
-		$pages = get_pages();
-		?>
-		<select
-			id="<?php echo esc_attr( $option_name ); ?>"
-			name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
-		>
-			<option value=""><?php esc_html_e( '- Select Page -', 'wolf-discography' ); ?></option>
-			<?php foreach ( $pages as $page ) { ?>
-				<option value="<?php echo esc_attr( $page->ID ); ?>" <?php selected( $page->ID, $value, true ); ?>>
-					<?php
-					if ( get_post_field( 'post_parent', $page->ID ) ) {
-						echo '&nbsp;&nbsp;&nbsp; ';
-					}
-					echo esc_html( $page->post_title );
-					?>
-				</option>
-			<?php } ?>
-		</select>
-		<?php if ( $description ) { ?>
-			<p class="description"><?php echo wp_kses_post( $description ); ?></p>
-		<?php } ?>
-		<?php
-	}
+                // Initialize first tab and dependencies on page load
+                document.addEventListener( 'DOMContentLoaded', function () {
+                    const firstTab = document.querySelector( '.wpex-tabs .nav-tab' );
+                    if ( firstTab ) {
+                        firstTab.click();
+                    }
 
-	/**
-	 * Render license field (calls action hook for custom implementation)
-	 */
-	public function render_license_field( $args ) {
-		// Allow custom license field rendering via action hook
-		do_action( 'wolf_options_panel_render_license_field', $args, $this );
+                    // Initialize field dependencies
+                    handleFieldDependencies();
+                }, false );
+            } )();
+        </script>
+        <?php
+    }
 
-		// Fallback to regular text field if no custom renderer is hooked
-		if ( ! has_action( 'wolf_options_panel_render_license_field' ) ) {
-			$this->render_text_field( $args );
-		}
-	}
+    /**
+     * Get option value (public so custom field renderers can access it)
+     *
+     * @param string $option_name Option name
+     * @return mixed Option value
+     */
+    public function get_option_value( $option_name ) {
+        $option = get_option( $this->option_name, [] );
+        if ( ! is_array( $option ) || ! array_key_exists( $option_name, $option ) ) {
+            return $this->settings[$option_name]['default'] ?? '';
+        }
+        return $option[$option_name];
+    }
+
+    /**
+     * Render text field
+     */
+    public function render_text_field( $args ) {
+        $option_name = $args['label_for'];
+        $value       = $this->get_option_value( $option_name );
+        $description = $this->settings[$option_name]['description'] ?? '';
+        $placeholder = $this->settings[$option_name]['placeholder'] ?? '';
+        $class       = $this->settings[$option_name]['class'] ?? 'regular-text';
+        ?>
+        <input
+            type="text"
+            id="<?php echo esc_attr( $option_name ); ?>"
+            name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
+            value="<?php echo esc_attr( $value ); ?>"
+            placeholder="<?php echo esc_attr( $placeholder ); ?>"
+            class="<?php echo esc_attr( $class ); ?>">
+        <?php if ( $description ) { ?>
+            <p class="description"><?php echo wp_kses_post( $description ); ?></p>
+        <?php } ?>
+        <?php
+    }
+
+    /**
+     * Render textarea field
+     */
+    public function render_textarea_field( $args ) {
+        $option_name = $args['label_for'];
+        $value       = $this->get_option_value( $option_name );
+        $description = $this->settings[$option_name]['description'] ?? '';
+        $rows        = $this->settings[$option_name]['rows'] ?? '4';
+        $cols        = $this->settings[$option_name]['cols'] ?? '50';
+        $class       = $this->settings[$option_name]['class'] ?? 'large-text';
+        ?>
+        <textarea
+            id="<?php echo esc_attr( $option_name ); ?>"
+            rows="<?php echo esc_attr( absint( $rows ) ); ?>"
+            cols="<?php echo esc_attr( absint( $cols ) ); ?>"
+            name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
+            class="<?php echo esc_attr( $class ); ?>"><?php echo esc_textarea( $value ); ?></textarea>
+        <?php if ( $description ) { ?>
+            <p class="description"><?php echo wp_kses_post( $description ); ?></p>
+        <?php } ?>
+        <?php
+    }
+
+    /**
+     * Render checkbox field
+     */
+    public function render_checkbox_field( $args ) {
+        $option_name = $args['label_for'];
+        $value       = $this->get_option_value( $option_name );
+        $description = $this->settings[$option_name]['description'] ?? '';
+        ?>
+        <label>
+            <input
+                type="checkbox"
+                id="<?php echo esc_attr( $option_name ); ?>"
+                name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
+                <?php checked( $value, 1, true ); ?>
+            >
+            <?php echo wp_kses_post( $description ); ?>
+        </label>
+        <?php
+    }
+
+    /**
+     * Render select field
+     */
+    public function render_select_field( $args ) {
+        $option_name = $args['label_for'];
+        $value       = $this->get_option_value( $option_name );
+        $description = $this->settings[$option_name]['description'] ?? '';
+        $choices     = $this->settings[$option_name]['choices'] ?? [];
+        ?>
+        <select
+            id="<?php echo esc_attr( $option_name ); ?>"
+            name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
+        >
+            <?php foreach ( $choices as $choice_value => $choice_label ) { ?>
+                <option value="<?php echo esc_attr( $choice_value ); ?>" <?php selected( $choice_value, $value, true ); ?>>
+                    <?php echo esc_html( $choice_label ); ?>
+                </option>
+            <?php } ?>
+        </select>
+        <?php if ( $description ) { ?>
+            <p class="description"><?php echo wp_kses_post( $description ); ?></p>
+        <?php } ?>
+        <?php
+    }
+
+    /**
+     * Render number field
+     */
+    public function render_number_field( $args ) {
+        $option_name = $args['label_for'];
+        $value       = $this->get_option_value( $option_name );
+        $description = $this->settings[$option_name]['description'] ?? '';
+        $min         = $this->settings[$option_name]['min'] ?? '';
+        $max         = $this->settings[$option_name]['max'] ?? '';
+        $step        = $this->settings[$option_name]['step'] ?? '';
+        ?>
+        <input
+            type="number"
+            id="<?php echo esc_attr( $option_name ); ?>"
+            name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
+            value="<?php echo esc_attr( $value ); ?>"
+            min="<?php echo esc_attr( $min ); ?>"
+            max="<?php echo esc_attr( $max ); ?>"
+            step="<?php echo esc_attr( $step ); ?>"
+            class="small-text">
+        <?php if ( $description ) { ?>
+            <p class="description"><?php echo wp_kses_post( $description ); ?></p>
+        <?php } ?>
+        <?php
+    }
+
+    /**
+     * Render page select field
+     */
+    public function render_page_select_field( $args ) {
+        $option_name = $args['label_for'];
+        $value       = $this->get_option_value( $option_name );
+        $description = $this->settings[$option_name]['description'] ?? '';
+
+        $pages = get_pages();
+        ?>
+        <select
+            id="<?php echo esc_attr( $option_name ); ?>"
+            name="<?php echo esc_attr( $this->option_name ); ?>[<?php echo esc_attr( $option_name ); ?>]"
+        >
+            <option value=""><?php esc_html_e( '- Select Page -', 'wolf-discography' ); ?></option>
+            <?php foreach ( $pages as $page ) { ?>
+                <option value="<?php echo esc_attr( $page->ID ); ?>" <?php selected( $page->ID, $value, true ); ?>>
+                    <?php
+                    if ( get_post_field( 'post_parent', $page->ID ) ) {
+                        echo '&nbsp;&nbsp;&nbsp; ';
+                    }
+                    echo esc_html( $page->post_title );
+                    ?>
+                </option>
+            <?php } ?>
+        </select>
+        <?php if ( $description ) { ?>
+            <p class="description"><?php echo wp_kses_post( $description ); ?></p>
+        <?php } ?>
+        <?php
+    }
+
+    /**
+     * Render license field (calls action hook for custom implementation)
+     */
+    public function render_license_field( $args ) {
+        // Allow custom license field rendering via action hook
+        do_action( 'wolf_options_panel_render_license_field', $args, $this );
+
+        // Fallback to regular text field if no custom renderer is hooked
+        if ( ! has_action( 'wolf_options_panel_render_license_field' ) ) {
+            $this->render_text_field( $args );
+        }
+    }
 }

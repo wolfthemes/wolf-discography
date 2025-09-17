@@ -1,0 +1,15 @@
+.release-streaming-links {
+	cursor: pointer;
+}
+
+.release-streaming-link {
+	margin: 0 5px;
+}
+
+.release-streaming-links {
+	display: none;
+}
+
+.release-streaming-links-show .release-streaming-links {
+	display: block;
+}

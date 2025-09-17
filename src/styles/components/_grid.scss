@@ -1,20 +1,21 @@
 /* Grid Layout Component */
 
 // Main Grid System
-.release-display-grid{
+.release-display-grid {
+
 	&.release-items {
 		display: flex;
 		flex-wrap: wrap;
 		margin: 0 auto;
 	}
 
-	.release{
-		position:relative;
-		width:100%;
+	.release {
+		position: relative;
+		width: 100%;
 
-		img{
-			width:100%;
-			height:auto;
+		img {
+			width: 100%;
+			height: auto;
 		}
 
 		.entry-link-mask {
@@ -35,6 +36,7 @@
 	.release-grid-columns-4,
 	.release-grid-columns-5,
 	.release-grid-columns-6 {
+
 		.release {
 			width: calc(100% / 2);
 		}
@@ -43,7 +45,8 @@
 
 @media (min-width: 992px) {
 
-	.release-grid-columns-2{
+	.release-grid-columns-2 {
+
 		.release {
 			width: calc(100% / 2);
 		}
@@ -52,12 +55,14 @@
 	.release-grid-columns-3,
 	.release-grid-columns-5,
 	.release-grid-columns-6 {
+
 		.release {
 			width: calc(100% / 3);
 		}
 	}
 
-	.release-grid-columns-4{
+	.release-grid-columns-4 {
+
 		.release {
 			width: calc(100% / 4);
 		}

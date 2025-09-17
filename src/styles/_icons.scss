@@ -1,35 +1,37 @@
 @font-face {
-  font-family: 'fontello';
-  src: url('/assets/lib/fontello/font/fontello.eot?90981412');
-  src: url('/assets/lib/fontello/font/fontello.eot?90981412#iefix') format('embedded-opentype'),
-       url('/assets/lib/fontello/font/fontello.woff2?90981412') format('woff2'),
-       url('/assets/lib/fontello/font/fontello.woff?90981412') format('woff'),
-       url('/assets/lib/fontello/font/fontello.ttf?90981412') format('truetype'),
-       url('/assets/lib/fontello/font/fontello.svg?90981412#fontello') format('svg');
-  font-weight: normal;
-  font-style: normal;
+	font-family: "fontello";
+	src: url("/assets/lib/fontello/font/fontello.eot?90981412");
+	src:
+		url("/assets/lib/fontello/font/fontello.eot?90981412#iefix") format("embedded-opentype"),
+		url("/assets/lib/fontello/font/fontello.woff2?90981412") format("woff2"),
+		url("/assets/lib/fontello/font/fontello.woff?90981412") format("woff"),
+		url("/assets/lib/fontello/font/fontello.ttf?90981412") format("truetype"),
+		url("/assets/lib/fontello/font/fontello.svg?90981412#fontello") format("svg");
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: 'Socicon';
-  src:  url('/assets/lib/socicon/Socicon.eot?484r1f');
-  src:  url('/assets/lib/socicon/Socicon.eot?484r1f#iefix') format('embedded-opentype'),
-    url('/assets/lib/socicon/Socicon.woff2?484r1f') format('woff2'),
-    url('/assets/lib/socicon/Socicon.ttf?484r1f') format('truetype'),
-    url('/assets/lib/socicon/Socicon.woff?484r1f') format('woff'),
-    url('/assets/lib/socicon/Socicon.svg?484r1f#Socicon') format('svg');
-  font-weight: normal;
-  font-style: normal;
+	font-family: "Socicon";
+	src: url("/assets/lib/socicon/Socicon.eot?484r1f");
+	src:
+		url("/assets/lib/socicon/Socicon.eot?484r1f#iefix") format("embedded-opentype"),
+		url("/assets/lib/socicon/Socicon.woff2?484r1f") format("woff2"),
+		url("/assets/lib/socicon/Socicon.ttf?484r1f") format("truetype"),
+		url("/assets/lib/socicon/Socicon.woff?484r1f") format("woff"),
+		url("/assets/lib/socicon/Socicon.svg?484r1f#Socicon") format("svg");
+	font-weight: normal;
+	font-style: normal;
 }
 
 .wolf-release-button a,
-.wolf-release-elementor-icon{
+.wolf-release-elementor-icon {
 
 	//@extend .button;
 	margin-bottom: 8px;
 	font-size: 0;
 
-	&:before {
+	&::before {
 		display: inline-block;
 		font-style: normal !important;
 		font-weight: 400 !important;
@@ -45,61 +47,62 @@
 	}
 }
 
-.wolf-release-itunes:before {
-	content: '\e800';
+.wolf-release-itunes::before {
+	content: "\e800";
 }
 
-.wolf-release-free:before {
-	content: '\e803';
+.wolf-release-free::before {
+	content: "\e803";
 }
 
-.wolf-release-google_play:before {
-	content: '\f16a';
-}
-.wolf-release-youtube:before {
-	content: '\f16a';
+.wolf-release-google_play::before {
+	content: "\f16a";
 }
 
-.wolf-release-amazon:before {
-	content: '\f270';
+.wolf-release-youtube::before {
+	content: "\f16a";
 }
 
-.wolf-release-bandcamp:before {
-	content: '\f2d5';
+.wolf-release-amazon::before {
+	content: "\f270";
 }
 
-.wolf-release-spotify:before {
-	content: '\f1bc';
+.wolf-release-bandcamp::before {
+	content: "\f2d5";
 }
 
-.wolf-release-apple:before {
+.wolf-release-spotify::before {
+	content: "\f1bc";
+}
+
+.wolf-release-apple::before {
 	// font-family: Socicon !important;
-	content: '\f179';
+	content: "\f179";
 }
 
-.wolf-release-deezer:before {
+.wolf-release-deezer::before {
 	font-family: Socicon !important;
-	content: '\e018';
+	content: "\e018";
 }
 
-.wolf-release-tidal:before {
+.wolf-release-tidal::before {
 	font-family: Socicon !important;
-	content: '\e910';
+	content: "\e910";
 }
 
-.wolf-release-buy:before,
-.wolf-release-add-to-cart:before {
+.wolf-release-buy::before,
+.wolf-release-add-to-cart::before {
 	//top: 1px;
 	//font-size: 16px; // ???
 }
 
-.wolf-release-buy:before {
-	content: '\e801';
+.wolf-release-buy::before {
+	content: "\e801";
 }
 
-.wolf-release-add-to-cart:before {
+.wolf-release-add-to-cart::before {
 	display: inline-block;
-	content: '\e801';
+	content: "\e801";
 }
 
 .wolf-release-add-to-cart {
@@ -107,6 +110,7 @@
 }
 
 .wolf-release-button {
+
 	.added_to_cart {
 		display: none;
 	}
@@ -121,7 +125,7 @@
 	z-index: 5;
 }
 
-.wolf-release-add-to-cart.added:before {
+.wolf-release-add-to-cart.added::before {
 	animation: woltheme_pop 0.3s linear 1;
 }
 
@@ -131,13 +135,14 @@
 
 // Add to cart pop animation
 @keyframes woltheme_pop {
+
 	50% {
 		transform: scale(1.4);
 	}
 }
 
-.wolf-release-elementor-icon:before{
-	content: '\e804';
+.wolf-release-elementor-icon::before {
+	content: "\e804";
 }
 // .icon-itunes:before { content: '\e800'; } /* '' */
 // .icon-basket:before { content: '\e801'; } /* '' */
@@ -153,13 +158,13 @@
 // .icon-shopping-bag:before { content: '\f290'; } /* '' */
 // .icon-bandcamp:before { content: '\f2d5'; } /* '' */
 
-.wolf-release-qobuz:before {
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="%23ffffff" stroke-linecap="round" stroke-width="8" d="M140.672 157.486a76.004 76.004 0 0 1-102.464-12.128 76.001 76.001 0 0 1 107.15-107.15 76.004 76.004 0 0 1 12.128 102.464"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="8" d="M124.807 142.105a54.364 54.364 0 1 1 17.296-17.296"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="8" d="M95.997 117.193c11.705 0 21.193-9.488 21.193-21.193 0-11.704-9.488-21.193-21.193-21.193-11.704 0-21.193 9.489-21.193 21.193 0 11.705 9.489 21.193 21.193 21.193Z"/><circle fill="%23ffffff" cx="95.997" cy="96" r="2.103"/><path fill="%23ffffff" d="m121.193 121.196 41.871 41.625Z"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="12" d="m121.193 121.196 41.871 41.625"/></svg>');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+.wolf-release-qobuz::before {
+	content: "";
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="%23ffffff" stroke-linecap="round" stroke-width="8" d="M140.672 157.486a76.004 76.004 0 0 1-102.464-12.128 76.001 76.001 0 0 1 107.15-107.15 76.004 76.004 0 0 1 12.128 102.464"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="8" d="M124.807 142.105a54.364 54.364 0 1 1 17.296-17.296"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="8" d="M95.997 117.193c11.705 0 21.193-9.488 21.193-21.193 0-11.704-9.488-21.193-21.193-21.193-11.704 0-21.193 9.489-21.193 21.193 0 11.705 9.489 21.193 21.193 21.193Z"/><circle fill="%23ffffff" cx="95.997" cy="96" r="2.103"/><path fill="%23ffffff" d="m121.193 121.196 41.871 41.625Z"/><path stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="12" d="m121.193 121.196 41.871 41.625"/></svg>');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }

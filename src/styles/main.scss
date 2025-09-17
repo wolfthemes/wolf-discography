@@ -1,25 +1,27 @@
 // Core foundations
-@import 'variables';
-@import 'mixins';
+@import "variables";
+@import "mixins";
 
 // Font icons (keeping existing)
-@import 'icons';
+@import "icons";
 
 // Layout components
-@import 'components/buttons';
-@import 'components/grid';
-@import 'components/grid-item';
-@import 'components/list';
-@import 'components/hover-effects';
-@import 'components/padding';
-@import 'components/single';
-@import 'components/widgets';
-@import 'components/navigation';
-@import 'components/utilities';
+@import "components/buttons";
+@import "components/grid";
+@import "components/grid-item";
+@import "components/display";
+@import "components/streaming-links";
+@import "components/list";
+@import "components/hover-effects";
+@import "components/padding";
+@import "components/single";
+@import "components/widgets";
+@import "components/navigation";
+@import "components/utilities";
 
 // Theme-specific styles
-@import 'themes/default';
-@import 'themes/twenty-twenty-five';
-@import 'themes/twenty-twenty-four';
-@import 'themes/twenty-twenty-three';
-@import 'themes/twenty-twenty-two';
+@import "themes/default";
+@import "themes/twenty-twenty-five";
+@import "themes/twenty-twenty-four";
+@import "themes/twenty-twenty-three";
+@import "themes/twenty-twenty-two";

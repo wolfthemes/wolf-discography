@@ -2,10 +2,13 @@
 .clear {
 	zoom: 1;
 }
-.clear:before, .clear:after {
+
+.clear::before,
+.clear::after {
 	content: "";
 	display: table;
 }
-.clear:after {
+
+.clear::after {
 	clear: both;
 }

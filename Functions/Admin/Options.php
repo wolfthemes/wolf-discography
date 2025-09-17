@@ -130,7 +130,7 @@ class Options {
 		);
 
 		// Add display options only for non-Wolf themes
-		if ( WD()->theme_supports_v2() ) {
+		// if ( WD()->theme_supports_v2() ) {
 			$settings['display_style'] = array(
 				'label'       => esc_html__( 'Display Style', 'wolf-discography' ),
 				'type'        => 'select',
@@ -154,29 +154,44 @@ class Options {
 					'4' => esc_html__( '4 Columns', 'wolf-discography' ),
 				),
 				'default'     => '3',
-				'depends_on'  => [
-                    'field' => 'display_style',
-                    'value' => 'grid',
-                ],
+				'depends_on'  => array(
+					'field' => 'display_style',
+					'value' => 'grid',
+				),
 			);
-		}
+			$settings['layout']       = array(
+				'label'      => esc_html__( 'Layout', 'wolf-discography' ),
+				'type'       => 'select',
+				'tab'        => 'display',
+				'choices'    => array(
+					'standard' => esc_html__( 'Standard', 'wolf-discography' ),
+					'overlay'  => esc_html__( 'Overlay', 'wolf-discography' ),
+				),
+				'default'    => '',
+				'depends_on' => array(
+					'field' => 'display_style',
+					'value' => 'grid',
+				),
+			);
 
-		// License Tab
-		$settings['license_key'] = array(
-			'label'             => esc_html__( 'License Key', 'wolf-discography' ),
-			'type'              => 'license',
-			'tab'               => 'license',
-			'description'       => sprintf(
-				esc_html__( 'Enter your Envato purchase code. %1$sFind your purchase code%2$s', 'wolf-discography' ),
-				'<a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Can-I-Find-my-Purchase-Code-" target="_blank">',
-				'</a>'
-			),
-			'placeholder'       => 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
-			'sanitize_callback' => array( $this, 'sanitize_license_field' ),
-			'default'           => '',
-		);
+			// }
 
-		return $settings;
+			// License Tab
+			$settings['license_key'] = array(
+				'label'             => esc_html__( 'License Key', 'wolf-discography' ),
+				'type'              => 'license',
+				'tab'               => 'license',
+				'description'       => sprintf(
+					esc_html__( 'Enter your Envato purchase code. %1$sFind your purchase code%2$s', 'wolf-discography' ),
+					'<a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Can-I-Find-my-Purchase-Code-" target="_blank">',
+					'</a>'
+				),
+				'placeholder'       => 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+				'sanitize_callback' => array( $this, 'sanitize_license_field' ),
+				'default'           => '',
+			);
+
+			return $settings;
 	}
 
 	/**

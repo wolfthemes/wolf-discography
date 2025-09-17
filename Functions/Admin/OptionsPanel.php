@@ -36,12 +36,12 @@ class OptionsPanel {
     protected $slug = '';
 
     /**
-     * Option name to use for saving options in the database
+     * Option name to use for saving options in the database (public for custom renderers)
      */
     public $option_name = '';
 
     /**
-     * Option group name
+     * Option group name (public for custom renderers)
      */
     public $option_group_name = '';
 
@@ -51,7 +51,7 @@ class OptionsPanel {
     protected $user_capability = '';
 
     /**
-     * Array of settings
+     * Array of settings (public for custom renderers)
      */
     public $settings = [];
 
@@ -129,7 +129,7 @@ class OptionsPanel {
             if ( method_exists( $this, $callback ) ) {
                 $tr_class = '';
                 if ( array_key_exists( 'tab', $args ) ) {
-                    $tr_class .= 'wpex-tab-item wpex-tab-item--' . sanitize_html_class( $args['tab'] );
+                    $tr_class .= 'wd-tab-item wd-tab-item--' . sanitize_html_class( $args['tab'] );
                 }
 
                 add_settings_field(
@@ -262,7 +262,7 @@ class OptionsPanel {
             do_action( "wolf_options_panel_before_form_{$this->slug}" );
             ?>
 
-            <form action="options.php" method="post" class="wpex-options-form">
+            <form action="options.php" method="post" class="wd-options-form">
                 <?php
                     settings_fields( $this->option_group_name );
                     do_settings_sections( $this->option_name );
@@ -278,126 +278,179 @@ class OptionsPanel {
         <?php
     }
 
-    /**
-     * Render tabs navigation with dependency handling
-     */
-    protected function render_tabs() {
-        if ( empty( $this->args['tabs'] ) ) {
-            return;
-        }
+	/**
+	 * Render tabs navigation with dependency handling
+	 */
+	protected function render_tabs() {
+		if ( empty( $this->args['tabs'] ) ) {
+			return;
+		}
 
-        $tabs = $this->args['tabs'];
-        ?>
-        <style>
-        .wpex-tab-item { display: none; }
-        .wpex-field-hidden { display: none !important; }
-        </style>
+		$tabs = $this->args['tabs'];
+		?>
+		<style>
+		.wd-tab-item { display: none; }
+		.wd-field-hidden { display: none !important; }
+		</style>
 
-        <h2 class="nav-tab-wrapper wpex-tabs"><?php
-            $first_tab = true;
-            foreach ( $tabs as $id => $label ) { ?>
-                <a href="#" data-tab="<?php echo esc_attr( $id ); ?>" class="nav-tab<?php echo ( $first_tab ) ? ' nav-tab-active' : ''; ?>">
-                    <?php echo esc_html( $label ); ?>
-                </a>
-                <?php
-                $first_tab = false;
-            }
-        ?></h2>
+		<h2 class="nav-tab-wrapper wd-tabs"><?php
+			$first_tab = true;
+			foreach ( $tabs as $id => $label ) { ?>
+				<a href="#" data-tab="<?php echo esc_attr( $id ); ?>" class="nav-tab<?php echo ( $first_tab ) ? ' nav-tab-active' : ''; ?>">
+					<?php echo esc_html( $label ); ?>
+				</a>
+				<?php
+				$first_tab = false;
+			}
+		?></h2>
 
-        <script>
-            ( function() {
-                // Handle tab switching
-                document.addEventListener( 'click', ( event ) => {
-                    const target = event.target;
-                    if ( ! target.closest( '.wpex-tabs a' ) ) {
-                        return;
-                    }
-                    event.preventDefault();
+		<script>
+			( function() {
+				'use strict';
 
-                    // Remove active class from all tabs
-                    document.querySelectorAll( '.wpex-tabs a' ).forEach( ( tablink ) => {
-                        tablink.classList.remove( 'nav-tab-active' );
-                    } );
+				// Handle tab switching
+				function handleTabSwitch(targetTab) {
+					// Remove active class from all tabs
+					document.querySelectorAll( '.wd-tabs a' ).forEach( function( tablink ) {
+						tablink.classList.remove( 'nav-tab-active' );
+					});
 
-                    // Add active class to clicked tab
-                    target.classList.add( 'nav-tab-active' );
+					// Add active class to clicked tab
+					var targetTabElement = document.querySelector('.wd-tabs a[data-tab="' + targetTab + '"]');
+					if (targetTabElement) {
+						targetTabElement.classList.add( 'nav-tab-active' );
+					}
 
-                    // Show/hide tab content
-                    const targetTab = target.getAttribute( 'data-tab' );
-                    document.querySelectorAll( '.wpex-options-form .wpex-tab-item' ).forEach( ( item ) => {
-                        if ( item.classList.contains( `wpex-tab-item--${targetTab}` ) ) {
-                            item.style.display = 'table-row';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    } );
+					// Show/hide tab content
+					document.querySelectorAll( '.wd-options-form .wd-tab-item' ).forEach( function( item ) {
+						if ( item.classList.contains( 'wd-tab-item--' + targetTab ) ) {
+							item.style.display = 'table-row';
+						} else {
+							item.style.display = 'none';
+						}
+					});
 
-                    // Re-run dependency checks for the newly visible tab
-                    handleFieldDependencies();
-                } );
+					// Re-run dependency checks after tab switch
+					setTimeout(handleFieldDependencies, 10);
+				}
 
-                // Handle field dependencies
-                function handleFieldDependencies() {
-                    // Get all fields with dependencies
-                    <?php foreach ( $this->settings as $key => $args ) :
-                        if ( isset( $args['depends_on'] ) ) : ?>
-                        const dependentField_<?php echo esc_js( $key ); ?> = document.getElementById( '<?php echo esc_js( $key ); ?>' );
-                        const parentField_<?php echo esc_js( $key ); ?> = document.getElementById( '<?php echo esc_js( $args['depends_on']['field'] ); ?>' );
+				document.addEventListener( 'click', function( event ) {
+					var target = event.target;
+					if ( ! target.closest( '.wd-tabs a' ) ) {
+						return;
+					}
+					event.preventDefault();
 
-                        if ( dependentField_<?php echo esc_js( $key ); ?> && parentField_<?php echo esc_js( $key ); ?> ) {
-                            const dependentRow_<?php echo esc_js( $key ); ?> = dependentField_<?php echo esc_js( $key ); ?>.closest( 'tr' );
-                            const expectedValue_<?php echo esc_js( $key ); ?> = <?php echo json_encode( $args['depends_on']['value'] ); ?>;
+					var targetTab = target.getAttribute( 'data-tab' );
+					handleTabSwitch(targetTab);
+				});
 
-                            function toggleField_<?php echo esc_js( $key ); ?>() {
-                                let currentValue = '';
+				// Handle field dependencies
+				function handleFieldDependencies() {
+					// Build dependency relationships
+					var dependencies = {};
 
-                                if ( parentField_<?php echo esc_js( $key ); ?>.type === 'checkbox' ) {
-                                    currentValue = parentField_<?php echo esc_js( $key ); ?>.checked ? '1' : '0';
-                                } else {
-                                    currentValue = parentField_<?php echo esc_js( $key ); ?>.value;
-                                }
+					<?php foreach ( $this->settings as $key => $args ) :
+						if ( isset( $args['depends_on'] ) ) { ?>
 
-                                if ( Array.isArray( expectedValue_<?php echo esc_js( $key ); ?> ) ) {
-                                    // Multiple accepted values
-                                    if ( expectedValue_<?php echo esc_js( $key ); ?>.includes( currentValue ) ) {
-                                        dependentRow_<?php echo esc_js( $key ); ?>.classList.remove( 'wpex-field-hidden' );
-                                    } else {
-                                        dependentRow_<?php echo esc_js( $key ); ?>.classList.add( 'wpex-field-hidden' );
-                                    }
-                                } else {
-                                    // Single expected value
-                                    if ( currentValue === expectedValue_<?php echo esc_js( $key ); ?> ) {
-                                        dependentRow_<?php echo esc_js( $key ); ?>.classList.remove( 'wpex-field-hidden' );
-                                    } else {
-                                        dependentRow_<?php echo esc_js( $key ); ?>.classList.add( 'wpex-field-hidden' );
-                                    }
-                                }
-                            }
+					var parentFieldId_<?php echo esc_js( $key ); ?> = '<?php echo esc_js( $args['depends_on']['field'] ); ?>';
+					var dependentFieldId_<?php echo esc_js( $key ); ?> = '<?php echo esc_js( $key ); ?>';
+					var expectedValue_<?php echo esc_js( $key ); ?> = <?php echo json_encode( $args['depends_on']['value'] ); ?>;
 
-                            // Add event listener to parent field
-                            parentField_<?php echo esc_js( $key ); ?>.addEventListener( 'change', toggleField_<?php echo esc_js( $key ); ?> );
+					if ( !dependencies[parentFieldId_<?php echo esc_js( $key ); ?>] ) {
+						dependencies[parentFieldId_<?php echo esc_js( $key ); ?>] = [];
+					}
+					dependencies[parentFieldId_<?php echo esc_js( $key ); ?>].push({
+						fieldId: dependentFieldId_<?php echo esc_js( $key ); ?>,
+						expectedValue: expectedValue_<?php echo esc_js( $key ); ?>
+					});
 
-                            // Run initial check
-                            toggleField_<?php echo esc_js( $key ); ?>();
-                        }
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                }
+					<?php } ?>
+					<?php endforeach; ?>
 
-                // Initialize first tab and dependencies on page load
-                document.addEventListener( 'DOMContentLoaded', function () {
-                    const firstTab = document.querySelector( '.wpex-tabs .nav-tab' );
-                    if ( firstTab ) {
-                        firstTab.click();
-                    }
+					// Process each parent field and its dependents
+					Object.keys(dependencies).forEach(function(parentFieldId) {
+						var parentField = document.getElementById(parentFieldId);
+						if (!parentField) {
+							return;
+						}
 
-                    // Initialize field dependencies
-                    handleFieldDependencies();
-                }, false );
-            } )();
-        </script>
-        <?php
-    }
+						function toggleDependentFields() {
+							var currentValue = '';
+
+							if (parentField.type === 'checkbox') {
+								currentValue = parentField.checked ? '1' : '0';
+							} else {
+								currentValue = parentField.value;
+							}
+
+							// Process all dependent fields for this parent
+							dependencies[parentFieldId].forEach(function(dependent) {
+								var dependentField = document.getElementById(dependent.fieldId);
+								if (!dependentField) {
+									return;
+								}
+
+								var dependentRow = dependentField.closest('tr');
+								if (!dependentRow) {
+									return;
+								}
+
+								var shouldShow = false;
+
+								if (Array.isArray(dependent.expectedValue)) {
+									// Multiple accepted values
+									shouldShow = dependent.expectedValue.indexOf(currentValue) !== -1;
+								} else {
+									// Single expected value
+									shouldShow = currentValue === dependent.expectedValue;
+								}
+
+								if (shouldShow) {
+									dependentRow.classList.remove('wd-field-hidden');
+								} else {
+									dependentRow.classList.add('wd-field-hidden');
+								}
+							});
+						}
+
+						// Remove existing event listeners to prevent duplicates
+						var newToggleFunction = function() {
+							toggleDependentFields();
+						};
+
+						// Store reference to remove old listeners
+						if (parentField.wdToggleFunction) {
+							parentField.removeEventListener('change', parentField.wdToggleFunction);
+						}
+						parentField.wdToggleFunction = newToggleFunction;
+
+						// Add event listener to parent field
+						parentField.addEventListener('change', newToggleFunction);
+
+						// Run initial check
+						toggleDependentFields();
+					});
+				}
+
+				// Initialize first tab and dependencies on page load
+				document.addEventListener( 'DOMContentLoaded', function() {
+					// Show first tab
+					var firstTab = document.querySelector( '.wd-tabs .nav-tab' );
+					if ( firstTab ) {
+						var firstTabId = firstTab.getAttribute('data-tab');
+						handleTabSwitch(firstTabId);
+					}
+
+					// Initialize field dependencies
+					setTimeout(function() {
+						handleFieldDependencies();
+					}, 100);
+				});
+			})();
+		</script>
+		<?php
+	}
 
     /**
      * Get option value (public so custom field renderers can access it)

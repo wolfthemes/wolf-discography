@@ -153,76 +153,10 @@ class Block_Registration {
 	 */
 	public function render_releases_block( $attributes, $content ) {
 		// Convert camelCase attributes back to snake_case
-		$internal_attrs = array();
-		foreach ( $attributes as $key => $value ) {
-			$internal_attrs[ $this->snake_case( $key ) ] = $value;
-		}
 
-		// Process attributes
-		$processor = new AttributeProcessor();
-		$processed_attrs = $processor->process_attributes( $internal_attrs, 'gutenberg' );
-
-		// Build query
-		$query_builder = new QueryBuilder( 'release' );
-		$query = $query_builder->build_query( $processed_attrs );
-
-		// Render HTML
-		$html_renderer = new HTMLRenderer( 'release' );
-
-		if ( ! $query->have_posts() ) {
-			return '<div class="wp-block-wolf-discography-releases">' .
-			       esc_html__( 'No releases found.', 'wolf-discography' ) .
-			       '</div>';
-		}
-
-		// Flatten attributes for backward compatibility
-		$flat_attrs = $processor->flatten_processed_attributes( $processed_attrs );
-		$flat_attrs = wp_parse_args( $flat_attrs, $processor->get_all_defaults() );
-
-		// Build container
-		$json_params = $html_renderer->build_json_params( $flat_attrs );
-		$container_attrs = $html_renderer->build_container_attributes( $flat_attrs, $json_params );
-
-		// Add Gutenberg-specific classes
-		$container_attrs['class'] .= ' wp-block-wolf-discography-releases';
-		if ( ! empty( $attributes['className'] ) ) {
-			$container_attrs['class'] .= ' ' . esc_attr( $attributes['className'] );
-		}
-		if ( ! empty( $attributes['align'] ) ) {
-			$container_attrs['class'] .= ' align' . esc_attr( $attributes['align'] );
-		}
-
-		// Render output
 		ob_start();
 
-		echo '<' . esc_attr( $container_attrs['tag'] ) . ' ';
-		echo 'id="' . esc_attr( $container_attrs['id'] ) . '" ';
-		echo 'class="' . esc_attr( $container_attrs['class'] ) . '" ';
-		echo 'data-post-type="' . esc_attr( $container_attrs['data-post-type'] ) . '" ';
-		echo 'data-params="' . esc_js( $container_attrs['data-params'] ) . '">';
-
-		$i = 0;
-		while ( $query->have_posts() ) {
-			$query->the_post();
-			$i++;
-
-			// Set query vars for template compatibility
-			set_query_var( 'wd_module_atts', $flat_attrs );
-			set_query_var( 'template_args', array(
-				'index'   => $i,
-				'post_id' => get_the_ID(),
-				'display' => $flat_attrs['release_display'] ?? 'grid',
-				'layout'  => $flat_attrs['release_layout'] ?? 'standard',
-			) );
-
-			// Use existing template system
-			$display = $flat_attrs['release_display'] ?? 'grid';
-			wolf_discography_get_template_part( 'content', $display );
-		}
-
-		echo '</' . esc_attr( $container_attrs['tag'] ) . '>';
-
-		wp_reset_postdata();
+		do_action( 'wolf_discography_posts', $attributes, 'block' );
 
 		return ob_get_clean();
 	}

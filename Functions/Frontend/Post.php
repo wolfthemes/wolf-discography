@@ -9,6 +9,7 @@
 
 namespace Wolf_Discography\Frontend;
 
+use WolfDiscography\Core\Utilities as WolfDiscographyUtilities;
 use Wolf_Discography\Core\Attribute_Processor;
 use Wolf_Discography\Core\Query_Builder;
 use Wolf_Discography\Core\HTML_Renderer;
@@ -33,7 +34,7 @@ class Post {
 		$this->attribute_processor = new Attribute_Processor();
 		$this->query_builder       = new Query_Builder( $this->cpt_slug );
 		$this->html_renderer       = new HTML_Renderer( $this->cpt_slug );
-		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ) );
+		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ), 10, 2 );
 
 		$this->init_rest_api();
 	}
@@ -82,9 +83,9 @@ class Post {
 	 * @param  [array] $atts an array of options to display different post types.
 	 * @return void
 	 */
-	public function output_posts( $atts ) {
+	public function output_posts( $atts, $type = 'legacy' ) {
 
-		// debug( 'Passed Attributes', $atts );
+		Utilities::debug( 'Passed Type', $type );
 
 		// 1. Process attributes
 		$atts = wp_parse_args( $atts, $this->attribute_processor->get_all_defaults() );

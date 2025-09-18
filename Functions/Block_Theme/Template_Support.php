@@ -9,6 +9,8 @@
 
 namespace Wolf_Discography\Block_Theme;
 
+use Wolf_Discography\Core\Core;
+
 defined( 'ABSPATH' ) || exit;
 
 class Template_Support {
@@ -17,9 +19,9 @@ class Template_Support {
 	 * Constructor
 	 */
 	public function __construct() {
-		add_action( 'init', array( $this, 'register_block_templates' ) );
-		add_filter( 'theme_templates', array( $this, 'add_custom_templates' ), 10, 4 );
-		add_filter( 'template_include', array( $this, 'load_custom_templates' ) );
+		add_action( 'after_setup_theme', array( $this, 'register_block_templates' ) );
+		add_filter( 'get_block_templates', array( $this, 'add_block_templates' ), 10, 3 );
+		add_action( 'wp_loaded', array( $this, 'create_template_files' ) );
 	}
 
 	/**
@@ -30,111 +32,123 @@ class Template_Support {
 			return;
 		}
 
-		// Register custom templates for block themes
 		add_theme_support( 'block-templates' );
-
-		// Register template parts if needed
 		add_theme_support( 'block-template-parts' );
 	}
 
 	/**
-	 * Add custom templates to theme templates array
+	 * Add our custom templates to the block template system
 	 */
-	public function add_custom_templates( $page_templates, $theme, $post, $post_type ) {
-		if ( 'release' === $post_type ) {
-			$page_templates['single-release-detailed'] = esc_html__( 'Release - Detailed', 'wolf-discography' );
-			$page_templates['single-release-minimal'] = esc_html__( 'Release - Minimal', 'wolf-discography' );
+	public function add_block_templates( $query_result, $query, $template_type ) {
+		if ( 'wp_template' !== $template_type ) {
+			return $query_result;
 		}
 
-		return $page_templates;
-	}
+		$template_files = $this->get_template_files();
 
-	/**
-	 * Load custom templates
-	 */
-	public function load_custom_templates( $template ) {
-		global $post;
-
-		if ( ! $post ) {
-			return $template;
-		}
-
-		// Handle single release templates
-		if ( is_singular( 'release' ) ) {
-			$custom_template = get_post_meta( $post->ID, '_wp_page_template', true );
-
-			if ( $custom_template && 'default' !== $custom_template ) {
-				$template_file = $this->locate_block_template( $custom_template );
-				if ( $template_file ) {
-					return $template_file;
+		foreach ( $template_files as $template_file ) {
+			// Check if template already exists in query result
+			$template_already_exists = false;
+			foreach ( $query_result as $existing_template ) {
+				if ( $existing_template->slug === $template_file['slug'] ) {
+					$template_already_exists = true;
+					break;
 				}
 			}
-		}
 
-		// Handle archive templates
-		if ( is_post_type_archive( 'release' ) || is_tax( array( 'band', 'label', 'release_genre' ) ) ) {
-			$template_file = $this->locate_archive_template();
-			if ( $template_file ) {
-				return $template_file;
+			// Only add if it doesn't already exist
+			if ( ! $template_already_exists ) {
+				$query_result[] = $this->create_block_template_object( $template_file );
 			}
 		}
 
-		return $template;
+		return $query_result;
 	}
 
 	/**
-	 * Locate block template file
+	 * Get template files from plugin
 	 */
-	private function locate_block_template( $template_name ) {
-		$plugin_path = WD_DIR . '/block-templates/';
-		$theme_path = get_template_directory() . '/templates/';
+	private function get_template_files() {
+		$template_dir = WD_DIR . '/block-templates/';
+		$templates = array();
 
-		// Check theme first
-		if ( file_exists( $theme_path . $template_name . '.html' ) ) {
-			return $theme_path . $template_name . '.html';
-		}
-
-		// Check plugin
-		if ( file_exists( $plugin_path . $template_name . '.html' ) ) {
-			return $plugin_path . $template_name . '.html';
-		}
-
-		return false;
-	}
-
-	/**
-	 * Locate archive template
-	 */
-	private function locate_archive_template() {
-		$plugin_path = WD_DIR . '/block-templates/';
-		$theme_path = get_template_directory() . '/templates/';
-
-		$templates = array(
+		$template_files = array(
 			'archive-release.html',
+			'single-release.html',
 			'taxonomy-band.html',
 			'taxonomy-label.html',
 			'taxonomy-release_genre.html',
 		);
 
-		foreach ( $templates as $template ) {
-			// Check theme first
-			if ( file_exists( $theme_path . $template ) ) {
-				return $theme_path . $template;
-			}
-
-			// Check plugin
-			if ( file_exists( $plugin_path . $template ) ) {
-				return $plugin_path . $template;
+		foreach ( $template_files as $file ) {
+			$file_path = $template_dir . $file;
+			if ( file_exists( $file_path ) ) {
+				$templates[] = array(
+					'slug' => str_replace( '.html', '', $file ),
+					'path' => $file_path,
+					'type' => 'wp_template',
+				);
 			}
 		}
 
-		return false;
+		// Add discography page template if page is set
+		$discography_page_id = Core::get_discography_page_id();
+		if ( $discography_page_id && file_exists( $template_dir . 'archive-release.html' ) ) {
+			$templates[] = array(
+				'slug' => 'page-' . $discography_page_id,
+				'path' => $template_dir . 'archive-release.html',
+				'type' => 'wp_template',
+			);
+		}
+
+		return $templates;
 	}
 
 	/**
-	 * Create default block templates if they don't exist
+	 * Create block template object
 	 */
-	public function create_default_templates() {
+	private function create_block_template_object( $template_file ) {
+		$template_content = file_get_contents( $template_file['path'] );
+
+		$template = new \WP_Block_Template();
+		$template->id = 'wolf-discography//' . $template_file['slug'];
+		$template->theme = 'wolf-discography';
+		$template->slug = $template_file['slug'];
+		$template->source = 'plugin';
+		$template->type = $template_file['type'];
+		$template->title = $this->get_template_title( $template_file['slug'] );
+		$template->content = $template_content;
+		$template->status = 'publish';
+		$template->has_theme_file = false;
+		$template->is_custom = true;
+		$template->wp_id = $template->id;
+
+		return $template;
+	}
+
+	/**
+	 * Get template title
+	 */
+	private function get_template_title( $slug ) {
+		$titles = array(
+			'archive-release' => __( 'Release Archive', 'wolf-discography' ),
+			'single-release' => __( 'Single Release', 'wolf-discography' ),
+			'taxonomy-band' => __( 'Band Archive', 'wolf-discography' ),
+			'taxonomy-label' => __( 'Label Archive', 'wolf-discography' ),
+			'taxonomy-release_genre' => __( 'Genre Archive', 'wolf-discography' ),
+		);
+
+		return $titles[ $slug ] ?? ucfirst( str_replace( '-', ' ', $slug ) );
+	}
+
+	/**
+	 * Create template files if they don't exist
+	 */
+	public function create_template_files() {
+		if ( ! wp_is_block_theme() ) {
+			return;
+		}
+
 		$template_dir = WD_DIR . '/block-templates/';
 
 		if ( ! file_exists( $template_dir ) ) {
@@ -142,11 +156,11 @@ class Template_Support {
 		}
 
 		$templates = array(
-			'single-release.html' => $this->get_single_release_template(),
-			'archive-release.html' => $this->get_archive_release_template(),
+			'archive-release.html' => $this->get_archive_template(),
+			'single-release.html' => $this->get_single_template(),
 			'taxonomy-band.html' => $this->get_taxonomy_template( 'band' ),
 			'taxonomy-label.html' => $this->get_taxonomy_template( 'label' ),
-			'taxonomy-release_genre.html' => $this->get_taxonomy_template( 'genre' ),
+			'taxonomy-release_genre.html' => $this->get_taxonomy_template( 'release_genre' ),
 		);
 
 		foreach ( $templates as $filename => $content ) {
@@ -158,40 +172,20 @@ class Template_Support {
 	}
 
 	/**
-	 * Get single release template content
+	 * Get archive template content
 	 */
-	private function get_single_release_template() {
+	private function get_archive_template() {
 		return '<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
 <!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
 <main class="wp-block-group">
-	<!-- wp:post-title {"level":1} /-->
+	<!-- wp:query-title {"type":"archive"} /-->
 
-	<!-- wp:post-featured-image {"isLink":false,"width":"600px","height":"600px"} /-->
-
-	<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
-	<div class="wp-block-group">
-		<!-- wp:paragraph -->
-		<p><strong>Release Date:</strong> [release_date]</p>
-		<!-- /wp:paragraph -->
-
-		<!-- wp:paragraph -->
-		<p><strong>Band:</strong> [release_bands]</p>
-		<!-- /wp:paragraph -->
-
-		<!-- wp:paragraph -->
-		<p><strong>Label:</strong> [release_labels]</p>
-		<!-- /wp:paragraph -->
-
-		<!-- wp:paragraph -->
-		<p><strong>Genre:</strong> [release_genres]</p>
-		<!-- /wp:paragraph -->
+	<!-- wp:html -->
+	<div class="wolf-discography-releases">
+		[wolf_discography_releases]
 	</div>
-	<!-- /wp:group -->
-
-	<!-- wp:post-content /-->
-
-	<!-- wp:wolf-discography/buy-links /-->
+	<!-- /wp:html -->
 </main>
 <!-- /wp:group -->
 
@@ -199,16 +193,24 @@ class Template_Support {
 	}
 
 	/**
-	 * Get archive template content
+	 * Get single template content
 	 */
-	private function get_archive_release_template() {
+	private function get_single_template() {
 		return '<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
 <!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
 <main class="wp-block-group">
-	<!-- wp:query-title {"type":"archive"} /-->
+	<!-- wp:post-title {"level":1} /-->
 
-	<!-- wp:wolf-discography/releases {"postsPerPage":12,"display":"grid","columns":4} /-->
+	<!-- wp:post-featured-image /-->
+
+	<!-- wp:post-content /-->
+
+	<!-- wp:html -->
+	<div class="wolf-discography-release-meta">
+		[wolf_release_meta]
+	</div>
+	<!-- /wp:html -->
 </main>
 <!-- /wp:group -->
 
@@ -218,7 +220,7 @@ class Template_Support {
 	/**
 	 * Get taxonomy template content
 	 */
-	private function get_taxonomy_template( $taxonomy_type ) {
+	private function get_taxonomy_template( $taxonomy ) {
 		return '<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
 <!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
@@ -227,7 +229,11 @@ class Template_Support {
 
 	<!-- wp:term-description /-->
 
-	<!-- wp:wolf-discography/releases {"postsPerPage":12,"display":"grid","columns":3,"' . $taxonomy_type . '":"current"} /-->
+	<!-- wp:html -->
+	<div class="wolf-discography-releases">
+		[wolf_discography_releases ' . $taxonomy . '="current"]
+	</div>
+	<!-- /wp:html -->
 </main>
 <!-- /wp:group -->
 

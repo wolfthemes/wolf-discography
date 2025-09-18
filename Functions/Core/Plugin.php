@@ -64,10 +64,9 @@ class Plugin {
 
 	private function init_hooks(): void {
 
-		add_action( 'after_setup_theme', array( $this, 'includeTemplateFunctions' ), 11 );
+		add_action( 'after_setup_theme', array( $this, 'init_block_theme_support' ) );
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( $this, 'load_legacy_functions' ), 0 );
-		add_action( 'init', array( $this, 'init_block_theme_support' ) );
 		add_action( 'init', array( $this, 'load_pagebuilder_integrations' ) );
 
 		register_activation_hook( $this->get_plugin_path() . '/wolf-discography.php', array( $this, 'activate' ) );
@@ -151,13 +150,6 @@ class Plugin {
 
 		if ( defined( 'WPB_VC_VERSION' ) ) {
 			$this->include_vc_modules();
-		}
-	}
-
-	public function includeTemplateFunctions(): void {
-		$template_file = $this->get_plugin_path() . '/inc/frontend/wd-template-functions.php';
-		if ( file_exists( $template_file ) ) {
-			include_once $template_file;
 		}
 	}
 

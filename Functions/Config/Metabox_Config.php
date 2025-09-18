@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Metabox Configuration Class
  */
-class MetaboxConfig {
+class Metabox_Config {
 
 	/**
 	 * Get all metabox configurations

@@ -17,7 +17,7 @@ defined( 'WPB_VC_VERSION' ) || exit;
 /**
  * Elementor Helper Class
  */
-class WPBakeryTemplateHandler {
+class WPBakery_Template_Handler {
 
 
 	public function __construct() {

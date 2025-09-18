@@ -12,7 +12,7 @@ use WolfDiscography\Core\Utilities;
 
 defined( 'ABSPATH' ) || exit;
 
-class TemplateHelper {
+class Template_Helper {
 
 	/**
 	 * Output release thumbnail

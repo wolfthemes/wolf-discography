@@ -27,35 +27,35 @@ function wolf_get_release_option( $value, $default = null ) {
 }
 
 function wolf_discography_output_content_wrapper() {
-	return \WolfDiscography\Frontend\TemplateLoader::output_content_wrapper();
+	return \WolfDiscography\Frontend\Template_Loader::output_content_wrapper();
 }
 
 function wolf_discography_output_content_wrapper_end() {
-	return \WolfDiscography\Frontend\TemplateLoader::output_content_wrapper_end();
+	return \WolfDiscography\Frontend\Template_Loader::output_content_wrapper_end();
 }
 
 function wolf_discography_loop_start( $echo = true ) {
-	return \WolfDiscography\Frontend\TemplateLoader::loop_start( $echo );
+	return \WolfDiscography\Frontend\Template_Loader::loop_start( $echo );
 }
 
 function wolf_discography_loop_end( $echo = true ) {
-	return \WolfDiscography\Frontend\TemplateLoader::loop_end( $echo );
+	return \WolfDiscography\Frontend\Template_Loader::loop_end( $echo );
 }
 
 function wolf_discography_output_single_content( $echo = true ) {
-	return \WolfDiscography\Frontend\TemplateLoader::output_single_content( $echo );
+	return \WolfDiscography\Frontend\Template_Loader::output_single_content( $echo );
 }
 
 function wolf_discography_get_template_part( $slug, $name = '' ) {
-	return \WolfDiscography\Frontend\TemplateLoader::get_template_part( $slug, $name );
+	return \WolfDiscography\Frontend\Template_Loader::get_template_part( $slug, $name );
 }
 
 function wolf_discography_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
-	return \WolfDiscography\Frontend\TemplateLoader::get_template( $template_name, $args, $template_path, $default_path );
+	return \WolfDiscography\Frontend\Template_Loader::get_template( $template_name, $args, $template_path, $default_path );
 }
 
 function wolf_discography_locate_template( $template_name, $template_path = '', $default_path = '' ) {
-	return \WolfDiscography\Frontend\TemplateLoader::locate_template( $template_name, $template_path, $default_path );
+	return \WolfDiscography\Frontend\Template_Loader::locate_template( $template_name, $template_path, $default_path );
 }
 
 function wolf_release_nav() {
@@ -63,5 +63,5 @@ function wolf_release_nav() {
 }
 
 function wolf_release_page_nav( $loop = null ) {
-	return \WolfDiscography\Frontend\TemplateLoader::release_page_nav( $loop );
+	return \WolfDiscography\Frontend\Template_Loader::release_page_nav( $loop );
 }

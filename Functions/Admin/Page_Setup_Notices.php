@@ -15,7 +15,7 @@ use WolfDiscography\Core\Core;
 
 defined( 'ABSPATH' ) || exit;
 
-class PageSetupNotices {
+class Page_Setup_Notices {
 
 	/**
 	 * Constructor

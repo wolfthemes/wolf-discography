@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * Manages the registration and configuration of the release post type
  */
-class PostType {
+class Post_Type {
 
 	/**
 	 * Post type slug

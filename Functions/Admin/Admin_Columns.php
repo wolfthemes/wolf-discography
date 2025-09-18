@@ -15,7 +15,7 @@ use WolfDiscography\Core\Core;
 
 defined( 'ABSPATH' ) || exit;
 
-class AdminColumns {
+class Admin_Columns {
 
 	/**
 	 * Constructor

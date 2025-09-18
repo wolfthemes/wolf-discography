@@ -15,7 +15,7 @@ use WolfDiscography\Frontend\Helpers;
 
 defined( 'ABSPATH' ) || exit;
 
-class QueryBuilder {
+class Query_Builder {
 
 	/**
 	 * Post type slug

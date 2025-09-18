@@ -11,7 +11,7 @@ namespace WolfDiscography\Widgets;
 
 defined( 'ABSPATH' ) || exit;
 
-class DiscographyWidget extends \WP_Widget {
+class Discography_Widget extends \WP_Widget {
 
 	/**
 	 * Constructor

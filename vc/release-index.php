@@ -9,10 +9,10 @@
  * @since 1.6.0
  */
 
-use WolfDiscography\Config\ModuleParams;
-use WolfDiscography\PageBuilders\WPBakeryHelper;
+use WolfDiscography\Config\Module_Params;
+use WolfDiscography\PageBuilders\WPBakery_Helper;
 
 defined( 'ABSPATH' ) || exit;
 defined( 'WPB_VC_VERSION' ) || exit;
 
-vc_map( WPBakeryHelper::convert_params_to_vc( ModuleParams::get_release_index_params() ) );
+vc_map( WPBakery_Helper::convert_params_to_vc( Module_Params::get_release_index_params() ) );

@@ -15,7 +15,7 @@ use WolfDiscography\Frontend\Helpers;
 
 defined( 'ABSPATH' ) || exit;
 
-class HtmlRenderer {
+class Html_Renderer {
 
 	/**
 	 * Post type slug

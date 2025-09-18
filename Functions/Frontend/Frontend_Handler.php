@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * Coordinates frontend functionality including templates, shortcodes, assets, etc.
  */
-class FrontendHandler {
+class Frontend_Handler {
 
 	/**
 	 * Constructor
@@ -55,10 +55,10 @@ class FrontendHandler {
 			}
 		}
 
-		new TemplateManager();
+		new Template_Manager();
 		new Post();
 		new Hooks();
-		new ShortcodeManager();
+		new Shortcode_Manager();
 		new Enqueues();
 
 		// TODO: Progressively migrate frontend functionality to new classes

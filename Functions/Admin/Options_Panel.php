@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * This class can be reused across multiple plugins by just changing the namespace
  */
-class OptionsPanel {
+class Options_Panel {
 
 	/**
 	 * Options panel arguments

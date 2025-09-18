@@ -11,7 +11,7 @@
 
 namespace WolfDiscography\Taxonomies;
 
-use WolfDiscography\Config\TaxonomyConfig;
+use WolfDiscography\Config\Taxonomy_Config;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -41,7 +41,7 @@ class Taxonomies {
 	 * Load metabox configuration from Config class
 	 */
 	private function load_config(): void {
-		$this->taxonomies = TaxonomyConfig::get_config();
+		$this->taxonomies = Taxonomy_Config::get_config();
 	}
 
 	/**

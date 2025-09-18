@@ -10,7 +10,7 @@ namespace WolfDiscography\Frontend;
 
 defined( 'ABSPATH' ) || exit;
 
-class TemplateLoader {
+class Template_Loader {
 
 	/**
 	 * Output the start of the page wrapper.

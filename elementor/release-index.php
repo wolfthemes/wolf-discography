@@ -7,8 +7,8 @@
  * @since 2.0.0
  */
 
-use WolfDiscography\Config\ModuleParams;
-use WolfDiscography\PageBuilders\ElementorHelper;
+use WolfDiscography\Config\Module_Params;
+use WolfDiscography\PageBuilders\Elementor_Helper;
 
 defined( 'ABSPATH' ) || exit;
 defined( 'ELEMENTOR_VERSION' ) || exit;
@@ -39,7 +39,7 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 		parent::__construct( $data, $args );
 
 		// Load parameters using namespaced config
-		$this->params = ModuleParams::get_release_index_params();
+		$this->params = Module_Params::get_release_index_params();
 	}
 
 	/**
@@ -101,7 +101,7 @@ class Wolf_Discography_Elementor_Release_Index_Widget extends \Elementor\Widget_
 	 */
 	protected function register_controls() {
 		// Use the namespaced helper class instead of global function
-		ElementorHelper::register_elementor_controls( $this );
+		Elementor_Helper::register_elementor_controls( $this );
 	}
 
 	/**

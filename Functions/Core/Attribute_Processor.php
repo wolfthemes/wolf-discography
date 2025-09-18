@@ -16,17 +16,17 @@
 
 namespace WolfDiscography\Core;
 
-use WolfDiscography\Config\ModuleAttributes;
+use WolfDiscography\Config\Module_Attributes;
 
 defined( 'ABSPATH' ) || exit;
 
-class AttributeProcessor {
+class Attribute_Processor {
 
 	/**
 	 * Attribute registry - single source of truth
 	 */
 	private function retrieve_attribute_registry() {
-		return ModuleAttributes::get_attribute_registry();
+		return Module_Attributes::get_attribute_registry();
 	}
 
 	/**

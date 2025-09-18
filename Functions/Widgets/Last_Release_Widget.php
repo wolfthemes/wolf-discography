@@ -11,7 +11,7 @@ namespace WolfDiscography\Widgets;
 
 defined( 'ABSPATH' ) || exit;
 
-class LastReleaseWidget extends \WP_Widget {
+class Last_Release_Widget extends \WP_Widget {
 
 	/**
 	 * Constructor

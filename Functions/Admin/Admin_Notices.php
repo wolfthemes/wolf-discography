@@ -13,7 +13,7 @@ use WolfDiscography\Core\Constants;
 
 defined( 'ABSPATH' ) || exit;
 
-class AdminNotices {
+class Admin_Notices {
 
 	public function __construct() {
 		add_action( 'admin_notices', array( $this, 'display_notices' ) );

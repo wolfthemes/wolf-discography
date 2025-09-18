@@ -15,7 +15,7 @@ defined( 'ELEMENTOR_VERSION' ) || exit;
 /**
  * Elementor Helper Class
  */
-class ElementorHelper {
+class Elementor_Helper {
 
 	/**
 	 * Covert raw params to Elementor format params

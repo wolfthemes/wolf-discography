@@ -11,7 +11,7 @@ namespace WolfDiscography\Frontend;
 
 defined( 'ABSPATH' ) || exit;
 
-class PostOutputFactory {
+class Post_Output_Factory {
 	public static function create( $format, $processed_atts ) {
 		switch ( $format ) {
 			case 'html':

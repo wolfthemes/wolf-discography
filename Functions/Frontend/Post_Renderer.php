@@ -11,7 +11,7 @@ namespace WolfDiscography\Frontend;
 
 defined( 'ABSPATH' ) || exit;
 
-class PostRenderer {
+class Post_Renderer {
 	public function render( $data, $atts ) {
 		// 1. Try theme templates first (for custom themes)
 		if ( $theme_template = $this->locate_theme_template( $atts['display'] ) ) {

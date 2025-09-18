@@ -9,11 +9,11 @@
 
 namespace WolfDiscography\Frontend;
 
-use WolfDiscography\Core\AttributeProcessor;
-use WolfDiscography\Core\QueryBuilder;
-use WolfDiscography\Core\HTMLRenderer;
+use WolfDiscography\Core\Attribute_Processor;
+use WolfDiscography\Core\Query_Builder;
+use WolfDiscography\Core\HTML_Renderer;
 use WolfDiscography\Core\Utilities;
-use WolfDiscography\API\RestAPI;
+use WolfDiscography\API\Rest_API;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -30,9 +30,9 @@ class Post {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->attribute_processor = new AttributeProcessor();
-		$this->query_builder       = new QueryBuilder( $this->cpt_slug );
-		$this->html_renderer       = new HTMLRenderer( $this->cpt_slug );
+		$this->attribute_processor = new Attribute_Processor();
+		$this->query_builder       = new Query_Builder( $this->cpt_slug );
+		$this->html_renderer       = new HTML_Renderer( $this->cpt_slug );
 		add_action( 'wolf_discography_posts', array( $this, 'output_posts' ) );
 
 		$this->init_rest_api();
@@ -180,7 +180,7 @@ class Post {
 		$display   = $atts[ $post_type . '_display' ] ?? 'grid';
 
 		$template_name = apply_filters( 'wd_post_template_part_name', $display, $atts );
-		TemplateLoader::get_template_part( 'content', $template_name );
+		Template_Loader::get_template_part( 'content', $template_name );
 	}
 
 	/**

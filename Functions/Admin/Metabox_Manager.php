@@ -11,7 +11,7 @@
 
 namespace WolfDiscography\Admin;
 
-use WolfDiscography\Config\MetaboxConfig;
+use WolfDiscography\Config\Metabox_Config;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * Manages registration, rendering, and saving of metaboxes
  */
-class MetaboxManager {
+class Metabox_Manager {
 
 	/**
 	 * Metabox configurations
@@ -41,7 +41,7 @@ class MetaboxManager {
 	 * Load metabox configuration from Config class
 	 */
 	private function load_configuration(): void {
-		$this->metaboxes = MetaboxConfig::get_config();
+		$this->metaboxes = Metabox_Config::get_config();
 
 		// Allow filtering of metaboxes
 		$this->metaboxes = apply_filters( 'wolf_discography_metaboxes_config', $this->metaboxes );
@@ -254,9 +254,9 @@ class MetaboxManager {
 		$value = $_POST[ $field_id ];
 
 		// Use MetaboxConfig to determine field type handling
-		if ( in_array( $field_id, MetaboxConfig::getUrlFields() ) ) {
+		if ( in_array( $field_id, Metabox_Config::getUrlFields() ) ) {
 			$value = esc_url_raw( $value );
-		} elseif ( in_array( $field_id, MetaboxConfig::getRepeatableFields() ) ) {
+		} elseif ( in_array( $field_id, Metabox_Config::getRepeatableFields() ) ) {
 			$value = is_array( $value ) ? array_filter( $value ) : array();
 		} else {
 			$value = sanitize_text_field( $value );

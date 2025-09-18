@@ -11,10 +11,10 @@
 
 namespace WolfDiscography\Admin;
 
-use WolfDiscography\Config\OptionsParams;
+use WolfDiscography\Config\Options_Params;
 use WolfDiscography\Core\Core;
 use WolfDiscography\Core\Utilities;
-use WolfDiscography\Auth\LicenseValidator;
+use WolfDiscography\Auth\License_Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -37,7 +37,7 @@ class Options {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->license_validator = new LicenseValidator();
+		$this->license_validator = new License_Validator();
 
 		add_action( 'init', array( $this, 'init_options_panel' ) );
 		add_action( 'wolf_options_panel_before_form_wolf-discography-settings', array( $this, 'render_license_status' ) );
@@ -67,7 +67,7 @@ class Options {
 
 		$panel_settings = $this->get_panel_settings();
 
-		$this->options_panel = new OptionsPanel( $panel_args, $panel_settings );
+		$this->options_panel = new Options_Panel( $panel_args, $panel_settings );
 	}
 
 	/**
@@ -90,7 +90,7 @@ class Options {
 	 * @return array Settings configuration
 	 */
 	protected function get_panel_settings() {
-		return OptionsParams::get_config( $this );
+		return Options_Params::get_config( $this );
 	}
 
 	/**

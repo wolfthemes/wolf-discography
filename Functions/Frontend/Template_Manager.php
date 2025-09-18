@@ -13,7 +13,7 @@ use WolfDiscography\Core\Core;
 
 defined( 'ABSPATH' ) || exit;
 
-class TemplateManager {
+class Template_Manager {
 
 	public function __construct() {
 

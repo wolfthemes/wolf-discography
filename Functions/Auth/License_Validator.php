@@ -9,7 +9,7 @@
 
 namespace WolfDiscography\Auth;
 
-class LicenseValidator {
+class License_Validator {
 
 	private const TRIAL_PERIOD = 10 * DAY_IN_SECONDS;
 	private const API_ENDPOINT = 'https://api.wolfthemes.cloud/envato/';

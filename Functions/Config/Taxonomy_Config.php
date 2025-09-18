@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Taxonomy Configuration Class
  */
-class TaxonomyConfig {
+class Taxonomy_Config {
 
 	/**
 	 * Get all taxonomy configurations

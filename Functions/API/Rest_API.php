@@ -9,12 +9,12 @@
 
 namespace WolfDiscography\API;
 
-use WolfDiscography\Core\AttributeProcessor;
-use WolfDiscography\Core\QueryBuilder;
+use WolfDiscography\Core\Attribute_Processor;
+use WolfDiscography\Core\Query_Builder;
 
 defined( 'ABSPATH' ) || exit;
 
-class RestAPI {
+class Rest_API {
 
 	/**
 	 * Constructor - register REST routes
@@ -122,8 +122,8 @@ class RestAPI {
 			$atts = $this->convert_rest_params_to_atts( $request->get_params() );
 
 			// Use your existing components
-			$processor     = new AttributeProcessor();
-			$query_builder = new QueryBuilder( 'release' );
+			$processor     = new Attribute_Processor();
+			$query_builder = new Query_Builder( 'release' );
 
 			// Process attributes
 			$processed_atts = $processor->process_attributes( $atts, 'rest_api' );

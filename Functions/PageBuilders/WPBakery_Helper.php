@@ -15,7 +15,7 @@ defined( 'WPB_VC_VERSION' ) || exit;
 /**
  * Elementor Helper Class
  */
-class WPBakeryHelper {
+class WPBakery_Helper {
 
 	/**
 	 * Covert raw params to VC format params

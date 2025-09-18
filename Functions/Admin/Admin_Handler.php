@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * Coordinates admin functionality including metaboxes, admin pages, etc.
  */
-class AdminHandler {
+class Admin_Handler {
 
 	/**
 	 * Constructor
@@ -49,9 +49,9 @@ class AdminHandler {
 	private function load_admin_classes(): void {
 
 		// Load specialized admin classes
-		new PageSetupNotices();  // Handles page creation notices
-		new MetaboxManager();    // Handles all metaboxes
-		new AdminColumns();      // Handles admin list columns
+		new Page_Setup_Notices();  // Handles page creation notices
+		new Metabox_Manager();    // Handles all metaboxes
+		new Admin_Columns();      // Handles admin list columns
 		new Options();           // Handles settings page
 	}
 

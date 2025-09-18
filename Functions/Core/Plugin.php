@@ -9,14 +9,14 @@
 
 namespace WolfDiscography\Core;
 
-use WolfDiscography\Admin\AdminHandler;
-use WolfDiscography\Admin\AdminNotices;
-use WolfDiscography\Frontend\FrontendHandler;
-use WolfDiscography\PostTypes\PostType;
+use WolfDiscography\Admin\Admin_Handler;
+use WolfDiscography\Admin\Admin_Notices;
+use WolfDiscography\Frontend\Frontend_Handler;
+use WolfDiscography\PostTypes\Post_Type;
 use WolfDiscography\Taxonomies\Taxonomies;
-use WolfDiscography\PageBuilders\WPBakeryTemplateHandler;
-use WolfDiscography\Widgets\DiscographyWidget;
-use WolfDiscography\Widgets\LastReleaseWidget;
+use WolfDiscography\PageBuilders\WPBakery_Template_Handler;
+use WolfDiscography\Widgets\Discography_Widget;
+use WolfDiscography\Widgets\Last_Release_Widget;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -27,11 +27,11 @@ class Plugin {
 	public string $template_url = '';
 	public string $cpt_slug     = 'release';
 
-	private ?AdminHandler $admin_handler       = null;
-	private ?FrontendHandler $frontend_handler = null;
-	private ?PostType $post_type_manager       = null;
-	private ?Taxonomies $taxonomy_manager      = null;
-	private ?AdminNotices $admin_notices       = null;
+	private ?Admin_Handler $admin_handler       = null;
+	private ?Frontend_Handler $frontend_handler = null;
+	private ?Post_Type $post_type_manager       = null;
+	private ?Taxonomies $taxonomy_manager       = null;
+	private ?Admin_Notices $admin_notices       = null;
 
 	public static function get_instance(): Plugin {
 		if ( null === self::$instance ) {
@@ -56,7 +56,7 @@ class Plugin {
 
 	private function check_php_version(): void {
 		if ( version_compare( PHP_VERSION, Constants::REQUIRED_PHP_VERSION, '<' ) ) {
-			$this->admin_notices = new AdminNotices();
+			$this->admin_notices = new Admin_Notices();
 		}
 	}
 
@@ -99,18 +99,18 @@ class Plugin {
 	}
 
 	private function initialize_components(): void {
-		$this->post_type_manager = new PostType();
+		$this->post_type_manager = new Post_Type();
 		$this->taxonomy_manager  = new Taxonomies();
 
 		$this->post_type_manager->register();
 		$this->taxonomy_manager->register();
 
 		if ( $this->is_request( 'admin' ) ) {
-			$this->admin_handler = new AdminHandler();
+			$this->admin_handler = new Admin_Handler();
 		}
 
 		if ( $this->is_request( 'frontend' ) ) {
-			$this->frontend_handler = new FrontendHandler();
+			$this->frontend_handler = new Frontend_Handler();
 		}
 	}
 
@@ -162,7 +162,7 @@ class Plugin {
 
 	public function include_vc_modules(): void {
 
-		new WPBakeryTemplateHandler();
+		new WPBakery_Template_Handler();
 
 		$vc_file = $this->get_plugin_path() . '/vc/' . sanitize_title_with_dashes( $this->cpt_slug ) . '-index.php';
 		if ( file_exists( $vc_file ) ) {
@@ -171,8 +171,8 @@ class Plugin {
 	}
 
 	public function register_widgets(): void {
-		register_widget( DiscographyWidget::class );
-		register_widget( LastReleaseWidget::class );
+		register_widget( Discography_Widget::class );
+		register_widget( Last_Release_Widget::class );
 	}
 
 	public function flush_rewrite_rules(): void {

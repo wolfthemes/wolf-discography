@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Metabox Configuration Class
  */
-class OptionsParams {
+class Options_Params {
 
 	/**
 	 * Get panel settings configuration

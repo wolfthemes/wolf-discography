@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Module Parameters Class
  */
-class ModuleParams {
+class Module_Params {
 
 	/**
 	 * Get release index parameters

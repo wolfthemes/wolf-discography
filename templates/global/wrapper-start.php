@@ -3,7 +3,7 @@
  * Content wrappers
  *
  * @author WolfThemes
- * @package WolfDiscography/Templates
+ * @package Wolf_Discography/Templates
  * @version 1.6.0
  */
 

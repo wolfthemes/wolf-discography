@@ -9,7 +9,7 @@
 
 namespace Wolf_Discography\Frontend;
 
-use Wolf_Discography\Core\Core;
+use Wolf_Discography\Admin\Options;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -21,8 +21,9 @@ class Shortcode_Manager {
 
 		add_shortcode( 'wolf_last_releases', array( $this, 'shortcode' ) );
 		add_shortcode( 'wolf_releases', array( $this, 'shortcode' ) );
+		add_shortcode( 'wolf_discography_releases', array( $this, 'shortcode' ) );
 		add_shortcode( 'wolf_last_release', array( $this, 'shortcode_single' ) );
-		add_shortcode( 'wolf_single_releas', array( $this, 'shortcode_single' ) );
+		add_shortcode( 'wolf_single_release', array( $this, 'shortcode_single' ) );
 	}
 
 	/**

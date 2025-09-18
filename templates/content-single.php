@@ -3,7 +3,7 @@
  * Display the single release content
  *
  * @author WolfThemes
- * @package WolfDiscography/Templates
+ * @package Wolf_Discography/Templates
  * @version 1.5.1
  * @since 1.0.2
  */

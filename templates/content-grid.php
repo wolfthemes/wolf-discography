@@ -3,14 +3,14 @@
  * Display the release inside the loop
  *
  * @author WolfThemes
- * @package WolfDiscography/Templates
+ * @package Wolf_Discography/Templates
  * @version 1.5.1
  * @since 1.0.2
  */
 
-use WolfDiscography\Core\Utilities;
-use WolfDiscography\Frontend\Helpers;
-use WolfDiscography\Frontend\Template_Helper;
+use Wolf_Discography\Core\Utilities;
+use Wolf_Discography\Frontend\Helpers;
+use Wolf_Discography\Frontend\Template_Helper;
 
 defined( 'ABSPATH' ) || exit;
 

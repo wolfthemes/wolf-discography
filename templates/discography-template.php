@@ -5,7 +5,7 @@
  * Override this template by copying it to yourtheme/wolf-discography/discography-template.php
  *
  * @author WolfThemes
- * @package WolfDiscography/Templates
+ * @package Wolf_Discography/Templates
  * @version 1.5.1
  * @since 1.0.3
  */

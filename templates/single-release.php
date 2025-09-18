@@ -3,7 +3,7 @@
  * The Template for displaying all single releases.
  *
  * @author WolfThemes
- * @package WolfDiscography/Templates
+ * @package Wolf_Discography/Templates
  * @version 1.5.1
  * @since 1.2.6
  */

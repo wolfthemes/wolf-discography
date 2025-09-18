@@ -9,7 +9,7 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\PostTypes;
+namespace WolfDiscography\Post_Types;
 
 defined( 'ABSPATH' ) || exit;
 

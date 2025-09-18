@@ -12,9 +12,11 @@ namespace WolfDiscography\Core;
 use WolfDiscography\Admin\Admin_Handler;
 use WolfDiscography\Admin\Admin_Notices;
 use WolfDiscography\Frontend\Frontend_Handler;
-use WolfDiscography\PostTypes\Post_Type;
+use WolfDiscography\BlockTheme\Template_Support;
+use WolfDiscography\Gutenberg\Block_Registration;
+use WolfDiscography\Post_Types\Post_Type;
 use WolfDiscography\Taxonomies\Taxonomies;
-use WolfDiscography\PageBuilders\WPBakery_Template_Handler;
+use WolfDiscography\Page_Builders\WPBakery_Template_Handler;
 use WolfDiscography\Widgets\Discography_Widget;
 use WolfDiscography\Widgets\Last_Release_Widget;
 
@@ -62,10 +64,10 @@ class Plugin {
 
 	private function init_hooks(): void {
 
-		add_action( 'after_setup_theme', array( $this, 'includeTemplateFunctions' ), 11 );
+		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( $this, 'load_legacy_functions' ), 0 );
-		add_action( 'init', array( $this, 'load_pagebuilder_integrations' ) );
+		add_action( 'init', array( $this, 'load_page_builder_integrations' ) );
 
 		register_activation_hook( $this->get_plugin_path() . '/wolf-discography.php', array( $this, 'activate' ) );
 	}
@@ -129,7 +131,14 @@ class Plugin {
 		}
 	}
 
-	public function load_pagebuilder_integrations(): void {
+	private function init_block_theme_support() {
+		if ( wp_is_block_theme() || class_exists( 'WP_Block_Editor_Context' ) ) {
+			new TemplateSupport();
+			new BlockRegistration();
+		}
+	}
+
+	public function load_page_builder_integrations(): void {
 
 		if ( ! $this->theme_supports_v2() ) {
 			return;
@@ -144,7 +153,7 @@ class Plugin {
 		}
 	}
 
-	public function includeTemplateFunctions(): void {
+	public function include_template_functions(): void {
 		$template_file = $this->get_plugin_path() . '/inc/frontend/wd-template-functions.php';
 		if ( file_exists( $template_file ) ) {
 			include_once $template_file;

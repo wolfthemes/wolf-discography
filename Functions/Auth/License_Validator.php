@@ -17,7 +17,9 @@ class License_Validator {
 	private $option_prefix = 'wd_';
 
 	public function __construct() {
-		add_action( 'admin_notices', array( $this, 'show_activation_notice' ) );
+		if ( ! WD()->is_wolf_theme() ) {
+			add_action( 'admin_notices', array( $this, 'show_activation_notice' ) );
+		}
 	}
 
 	public function is_activated(): bool {

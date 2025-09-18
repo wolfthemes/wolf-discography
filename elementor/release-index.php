@@ -7,8 +7,8 @@
  * @since 2.0.0
  */
 
-use WolfDiscography\Config\Module_Params;
-use WolfDiscography\PageBuilders\Elementor_Helper;
+use Wolf_Discography\Config\Module_Params;
+use Wolf_Discography\Page_Builders\Elementor_Helper;
 
 defined( 'ABSPATH' ) || exit;
 defined( 'ELEMENTOR_VERSION' ) || exit;

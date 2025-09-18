@@ -25,7 +25,7 @@ class Template_Support {
 		add_action( 'after_setup_theme', array( $this, 'register_block_templates' ) );
 		add_filter( 'pre_get_block_file_template', array( $this, 'get_block_file_template' ), 10, 3 );
 		add_filter( 'get_block_templates', array( $this, 'add_block_templates' ), 10, 3 );
-		add_action( 'wp_loaded', array( $this, 'create_template_files' ) );
+		// add_action( 'wp_loaded', array( $this, 'create_template_files' ) );
 	}
 
 	/**

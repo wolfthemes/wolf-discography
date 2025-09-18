@@ -9,8 +9,8 @@
  * @since 1.6.0
  */
 
-use WolfDiscography\Config\Module_Params;
-use WolfDiscography\PageBuilders\WPBakery_Helper;
+use Wolf_Discography\Config\Module_Params;
+use Wolf_Discography\Page_Builders\WPBakery_Helper;
 
 defined( 'ABSPATH' ) || exit;
 defined( 'WPB_VC_VERSION' ) || exit;

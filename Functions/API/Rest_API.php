@@ -7,10 +7,10 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\API;
+namespace Wolf_Discography\API;
 
-use WolfDiscography\Core\Attribute_Processor;
-use WolfDiscography\Core\Query_Builder;
+use Wolf_Discography\Core\Attribute_Processor;
+use Wolf_Discography\Core\Query_Builder;
 
 defined( 'ABSPATH' ) || exit;
 

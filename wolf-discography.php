@@ -25,10 +25,10 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 // Initialize plugin - only once
-if ( class_exists( 'WolfDiscography\Core\Plugin' ) ) {
+if ( class_exists( 'Wolf_Discography\Core\Plugin' ) ) {
 	// New namespaced approach
 	try {
-		\WolfDiscography\Core\Plugin::get_instance();
+		\Wolf_Discography\Core\Plugin::get_instance();
 	} catch ( Exception $e ) {
 		error_log( 'Wolf Discography Namespace Error: ' . $e->getMessage() );
 	}
@@ -67,8 +67,8 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 		 * Constructor - private to prevent direct instantiation
 		 */
 		private function __construct() {
-			if ( class_exists( 'WolfDiscography\Core\Plugin' ) ) {
-				$this->plugin_instance = \WolfDiscography\Core\Plugin::get_instance();
+			if ( class_exists( 'Wolf_Discography\Core\Plugin' ) ) {
+				$this->plugin_instance = \Wolf_Discography\Core\Plugin::get_instance();
 			}
 		}
 
@@ -126,16 +126,5 @@ if ( ! class_exists( 'Wolf_Discography' ) ) {
 			}
 			return null;
 		}
-	}
-}
-
-/**
- * Legacy function for themes that call wolf_discography()
- *
- * @return WolfDiscography\Core\Plugin|null
- */
-if ( ! function_exists( 'wolf_discography' ) ) {
-	function wolf_discography() {
-		return Wolf_Discography::instance();
 	}
 }

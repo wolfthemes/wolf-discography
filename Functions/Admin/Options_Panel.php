@@ -9,7 +9,7 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Admin;
+namespace Wolf_Discography\Admin;
 
 defined( 'ABSPATH' ) || exit;
 

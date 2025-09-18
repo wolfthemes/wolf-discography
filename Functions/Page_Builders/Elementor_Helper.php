@@ -7,7 +7,7 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Page_Builders;
+namespace Wolf_Discography\Page_Builders;
 
 defined( 'ABSPATH' ) || exit;
 defined( 'ELEMENTOR_VERSION' ) || exit;

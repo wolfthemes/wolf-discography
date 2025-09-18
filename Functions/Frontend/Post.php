@@ -7,13 +7,13 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Frontend;
+namespace Wolf_Discography\Frontend;
 
-use WolfDiscography\Core\Attribute_Processor;
-use WolfDiscography\Core\Query_Builder;
-use WolfDiscography\Core\HTML_Renderer;
-use WolfDiscography\Core\Utilities;
-use WolfDiscography\API\Rest_API;
+use Wolf_Discography\Core\Attribute_Processor;
+use Wolf_Discography\Core\Query_Builder;
+use Wolf_Discography\Core\HTML_Renderer;
+use Wolf_Discography\Core\Utilities;
+use Wolf_Discography\API\Rest_API;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -47,8 +47,8 @@ class Post {
 			return;
 		}
 
-		if ( class_exists( 'WolfDiscography\API\RestAPI' ) ) {
-			new \WolfDiscography\API\RestAPI();
+		if ( class_exists( 'Wolf_Discography\API\RestAPI' ) ) {
+			new \Wolf_Discography\API\RestAPI();
 		}
 	}
 
@@ -72,7 +72,8 @@ class Post {
 		}
 
 		// Load on REST requests or frontend
-		return true;
+		// return true;
+		return false;
 	}
 
 	/**

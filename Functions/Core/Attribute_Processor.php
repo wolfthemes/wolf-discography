@@ -14,9 +14,9 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Core;
+namespace Wolf_Discography\Core;
 
-use WolfDiscography\Config\Module_Attributes;
+use Wolf_Discography\Config\Module_Attributes;
 
 defined( 'ABSPATH' ) || exit;
 

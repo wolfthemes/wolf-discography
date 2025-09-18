@@ -7,11 +7,11 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\BlockTheme;
+namespace Wolf_Discography\Block_Theme;
 
 defined( 'ABSPATH' ) || exit;
 
-class TemplateSupport {
+class Template_Support {
 
 	/**
 	 * Constructor

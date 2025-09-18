@@ -9,9 +9,9 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Taxonomies;
+namespace Wolf_Discography\Taxonomies;
 
-use WolfDiscography\Config\Taxonomy_Config;
+use Wolf_Discography\Config\Taxonomy_Config;
 
 defined( 'ABSPATH' ) || exit;
 

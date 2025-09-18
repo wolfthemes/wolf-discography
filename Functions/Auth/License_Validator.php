@@ -7,7 +7,7 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Auth;
+namespace Wolf_Discography\Auth;
 
 class License_Validator {
 

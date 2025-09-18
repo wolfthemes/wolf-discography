@@ -7,12 +7,12 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Gutenberg;
+namespace Wolf_Discography\Gutenberg;
 
-use WolfDiscography\Config\Module_Attributes;
-use WolfDiscography\Core\Attribute_Processor;
-use WolfDiscography\Core\Query_Builder;
-use WolfDiscography\Core\HTML_Renderer;
+use Wolf_Discography\Config\Module_Attributes;
+use Wolf_Discography\Core\Attribute_Processor;
+use Wolf_Discography\Core\Query_Builder;
+use Wolf_Discography\Core\HTML_Renderer;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -67,7 +67,7 @@ class Block_Registration {
 	 * Get block attributes from ModuleAttributes registry
 	 */
 	private function get_block_attributes() {
-		if ( ! class_exists( 'WolfDiscography\Config\ModuleAttributes' ) ) {
+		if ( ! class_exists( 'Wolf_Discography\Config\ModuleAttributes' ) ) {
 			return array();
 		}
 

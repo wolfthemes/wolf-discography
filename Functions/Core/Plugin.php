@@ -7,18 +7,18 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Core;
+namespace Wolf_Discography\Core;
 
-use WolfDiscography\Admin\Admin_Handler;
-use WolfDiscography\Admin\Admin_Notices;
-use WolfDiscography\Frontend\Frontend_Handler;
-use WolfDiscography\BlockTheme\Template_Support;
-use WolfDiscography\Gutenberg\Block_Registration;
-use WolfDiscography\Post_Types\Post_Type;
-use WolfDiscography\Taxonomies\Taxonomies;
-use WolfDiscography\Page_Builders\WPBakery_Template_Handler;
-use WolfDiscography\Widgets\Discography_Widget;
-use WolfDiscography\Widgets\Last_Release_Widget;
+use Wolf_Discography\Admin\Admin_Handler;
+use Wolf_Discography\Admin\Admin_Notices;
+use Wolf_Discography\Frontend\Frontend_Handler;
+use Wolf_Discography\Post_Types\Post_Type;
+use Wolf_Discography\Taxonomies\Taxonomies;
+use Wolf_Discography\Block_Theme\Template_Support;
+use Wolf_Discography\Gutenberg\Block_Registration;
+use Wolf_Discography\Page_Builders\WPBakery_Template_Handler;
+use Wolf_Discography\Widgets\Discography_Widget;
+use Wolf_Discography\Widgets\Last_Release_Widget;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -64,10 +64,11 @@ class Plugin {
 
 	private function init_hooks(): void {
 
-		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
+		add_action( 'after_setup_theme', array( $this, 'includeTemplateFunctions' ), 11 );
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( $this, 'load_legacy_functions' ), 0 );
-		add_action( 'init', array( $this, 'load_page_builder_integrations' ) );
+		add_action( 'init', array( $this, 'init_block_theme_support' ) );
+		add_action( 'init', array( $this, 'load_pagebuilder_integrations' ) );
 
 		register_activation_hook( $this->get_plugin_path() . '/wolf-discography.php', array( $this, 'activate' ) );
 	}
@@ -131,14 +132,14 @@ class Plugin {
 		}
 	}
 
-	private function init_block_theme_support() {
+	public function init_block_theme_support() {
 		if ( wp_is_block_theme() || class_exists( 'WP_Block_Editor_Context' ) ) {
-			new TemplateSupport();
-			new BlockRegistration();
+			new Template_Support();
+			new Block_Registration();
 		}
 	}
 
-	public function load_page_builder_integrations(): void {
+	public function load_pagebuilder_integrations(): void {
 
 		if ( ! $this->theme_supports_v2() ) {
 			return;
@@ -153,7 +154,7 @@ class Plugin {
 		}
 	}
 
-	public function include_template_functions(): void {
+	public function includeTemplateFunctions(): void {
 		$template_file = $this->get_plugin_path() . '/inc/frontend/wd-template-functions.php';
 		if ( file_exists( $template_file ) ) {
 			include_once $template_file;

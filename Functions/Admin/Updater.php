@@ -1,6 +1,6 @@
 <?php
 
-namespace WolfDiscography\Admin;
+namespace Wolf_Discography\Admin;
 
 defined( 'ABSPATH' ) || exit;
 

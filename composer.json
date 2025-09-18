@@ -12,12 +12,12 @@
 	],
 	"autoload": {
         "psr-4": {
-            "WolfDiscography\\": "Functions/"
+            "Wolf_Discography\\": "Functions/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "WolfDiscography\\Tests\\": "tests/"
+            "Wolf_Discography\\Tests\\": "tests/"
         }
     },
 	"require": {

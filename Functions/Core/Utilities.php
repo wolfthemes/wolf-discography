@@ -7,9 +7,9 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Core;
+namespace Wolf_Discography\Core;
 
-use WolfDiscography\Frontend\Helpers;
+use Wolf_Discography\Frontend\Helpers;
 
 defined( 'ABSPATH' ) || exit;
 

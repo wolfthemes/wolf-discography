@@ -7,11 +7,11 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Frontend;
+namespace Wolf_Discography\Frontend;
 
-use WolfDiscography\Core\Core;
-use WolfDiscography\Core\Utilities;
-use WolfDiscography\Core\Meta;
+use Wolf_Discography\Core\Core;
+use Wolf_Discography\Core\Utilities;
+use Wolf_Discography\Core\Meta;
 
 defined( 'ABSPATH' ) || exit;
 

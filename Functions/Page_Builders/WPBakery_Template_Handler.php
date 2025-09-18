@@ -7,9 +7,9 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Page_Builders;
+namespace Wolf_Discography\Page_Builders;
 
-use WolfDiscography\Core\Constants;
+use Wolf_Discography\Core\Constants;
 
 defined( 'ABSPATH' ) || exit;
 defined( 'WPB_VC_VERSION' ) || exit;

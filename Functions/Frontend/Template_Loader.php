@@ -6,7 +6,7 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Frontend;
+namespace Wolf_Discography\Frontend;
 
 defined( 'ABSPATH' ) || exit;
 

@@ -9,12 +9,12 @@
  * @since 2.0.0
  */
 
-namespace WolfDiscography\Admin;
+namespace Wolf_Discography\Admin;
 
-use WolfDiscography\Config\Options_Params;
-use WolfDiscography\Core\Core;
-use WolfDiscography\Core\Utilities;
-use WolfDiscography\Auth\License_Validator;
+use Wolf_Discography\Config\Options_Params;
+use Wolf_Discography\Core\Core;
+use Wolf_Discography\Core\Utilities;
+use Wolf_Discography\Auth\License_Validator;
 
 defined( 'ABSPATH' ) || exit;
 

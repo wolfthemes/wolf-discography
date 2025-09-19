@@ -9,7 +9,6 @@
 
 namespace Wolf_Discography\Frontend;
 
-use WolfDiscography\Core\Utilities as WolfDiscographyUtilities;
 use Wolf_Discography\Core\Attribute_Processor;
 use Wolf_Discography\Core\Query_Builder;
 use Wolf_Discography\Core\HTML_Renderer;
@@ -48,8 +47,8 @@ class Post {
 			return;
 		}
 
-		if ( class_exists( 'Wolf_Discography\API\RestAPI' ) ) {
-			new \Wolf_Discography\API\RestAPI();
+		if ( class_exists( 'Wolf_Discography\API\Rest_API' ) ) {
+			new \Wolf_Discography\API\Rest_API();
 		}
 	}
 
@@ -85,7 +84,7 @@ class Post {
 	 */
 	public function output_posts( $atts, $type = 'legacy' ) {
 
-		Utilities::debug( 'Passed Type', $type );
+		//Utilities::debug( 'Passed Type', $type );
 
 		// 1. Process attributes
 		$atts = wp_parse_args( $atts, $this->attribute_processor->get_all_defaults() );

@@ -68,11 +68,11 @@ class Block_Registration {
 	 * Get block attributes from ModuleAttributes registry
 	 */
 	private function get_block_attributes() {
-		if ( ! class_exists( 'Wolf_Discography\Config\ModuleAttributes' ) ) {
+		if ( ! class_exists( 'Wolf_Discography\Config\Module_Attributes' ) ) {
 			return array();
 		}
 
-		$registry = ModuleAttributes::get_attribute_registry();
+		$registry = Module_Attributes::get_attribute_registry();
 		$block_attributes = array();
 
 		// Convert internal attributes to Gutenberg block attributes
@@ -91,7 +91,7 @@ class Block_Registration {
 			'type' => 'string',
 		);
 
-		// Utilities::debug( $block_attributes );
+		Utilities::debug( $registry );
 
 		return $block_attributes;
 	}

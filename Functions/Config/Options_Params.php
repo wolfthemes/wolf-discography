@@ -42,6 +42,16 @@ class Options_Params {
 				'tab'         => 'general',
 				'default'     => 12,
 			),
+			'pagination'      => array(
+				'label'       => esc_html__( 'Pagination Type', 'wolf-discography' ),
+				'type'        => 'select',
+				'tab'         => 'general',
+				'choices'     => array(
+					'none' => esc_html__( 'None', 'wolf-discography' ),
+					'numbers' => esc_html__( 'Numbered', 'wolf-discography' ),
+				),
+				'default'     => 'list',
+			),
 			'use_band_tax'     => array(
 				'label'       => esc_html__( 'Link Artist Names', 'wolf-discography' ),
 				'type'        => 'checkbox',

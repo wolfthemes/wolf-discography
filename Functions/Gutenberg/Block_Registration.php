@@ -13,6 +13,7 @@ use Wolf_Discography\Config\Module_Attributes;
 use Wolf_Discography\Core\Attribute_Processor;
 use Wolf_Discography\Core\Query_Builder;
 use Wolf_Discography\Core\HTML_Renderer;
+use Wolf_Discography\Core\Utilities;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -89,6 +90,8 @@ class Block_Registration {
 		$block_attributes['className'] = array(
 			'type' => 'string',
 		);
+
+		// Utilities::debug( $block_attributes );
 
 		return $block_attributes;
 	}

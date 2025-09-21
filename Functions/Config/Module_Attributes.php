@@ -33,7 +33,7 @@ class Module_Attributes {
 					'description' => 'Post type to query',
 				),
 				'posts_per_page'           => array(
-					'default'     => 100,
+					'default'     => Options::get_option( 'posts_per_page', 100 ),
 					'type'        => 'int',
 					'aliases'     => array( 'postsPerPage', 'per_page', 'count' ),
 					'min'         => -1,

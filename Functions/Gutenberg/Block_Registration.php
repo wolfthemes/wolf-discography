@@ -91,7 +91,7 @@ class Block_Registration {
 			'type' => 'string',
 		);
 
-		Utilities::debug( $registry );
+		// Utilities::debug( $block_attributes );
 
 		return $block_attributes;
 	}

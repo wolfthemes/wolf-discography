@@ -36,6 +36,12 @@ class Options_Params {
 				/* Force to display legacy option for better user experience */
 				'default'     => Options::get_option( 'discography_page' ),
 			),
+			'posts_per_page'     => array(
+				'label'       => esc_html__( 'Posts per Page', 'wolf-discography' ),
+				'type'        => 'number',
+				'tab'         => 'general',
+				'default'     => 12,
+			),
 			'use_band_tax'     => array(
 				'label'       => esc_html__( 'Link Artist Names', 'wolf-discography' ),
 				'type'        => 'checkbox',

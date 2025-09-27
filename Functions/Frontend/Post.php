@@ -84,7 +84,7 @@ class Post {
 	 */
 	public function output_posts( $atts, $type = 'legacy' ) {
 
-		//Utilities::debug( 'Passed Type', $type );
+		// Utilities::debug( 'Passed Type', $type );
 
 		// 1. Process attributes
 		$atts = wp_parse_args( $atts, $this->attribute_processor->get_all_defaults() );

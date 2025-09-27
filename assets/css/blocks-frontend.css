@@ -1,0 +1,58 @@
+/**
+ * Wolf Discography Block Editor Styles
+ */
+
+/* Block Preview Placeholders */
+.block-preview-placeholder {
+    padding: 20px;
+    text-align: center;
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    color: #666;
+}
+
+.block-preview-placeholder .block-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    opacity: 0.7;
+}
+
+.block-preview-placeholder h3 {
+    margin: 10px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.block-preview-placeholder p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Releases Block Preview */
+.wp-block-wolf-discography-releases.preview {
+    min-height: 120px;
+}
+
+/* Release Info Block Preview */
+.wp-block-wolf-discography-release-info.preview .preview-items {
+    margin-top: 10px;
+}
+
+.wp-block-wolf-discography-release-info.preview .preview-items div {
+    margin: 3px 0;
+    font-size: 13px;
+    color: #22A635;
+}
+
+/* Buy Links Block Preview */
+.wp-block-wolf-discography-buy-links.preview {
+    min-height: 100px;
+}
+
+/* Inspector Controls Styling */
+.components-panel__body .components-base-control__help {
+    font-style: italic;
+    color: #757575;
+    font-size: 12px;
+}

@@ -36,21 +36,21 @@ class Options_Params {
 				/* Force to display legacy option for better user experience */
 				'default'     => Options::get_option( 'discography_page' ),
 			),
-			'posts_per_page'     => array(
-				'label'       => esc_html__( 'Posts per Page', 'wolf-discography' ),
-				'type'        => 'number',
-				'tab'         => 'general',
-				'default'     => 12,
+			'posts_per_page'   => array(
+				'label'   => esc_html__( 'Posts per Page', 'wolf-discography' ),
+				'type'    => 'number',
+				'tab'     => 'general',
+				'default' => 12,
 			),
-			'pagination'      => array(
-				'label'       => esc_html__( 'Pagination Type', 'wolf-discography' ),
-				'type'        => 'select',
-				'tab'         => 'general',
-				'choices'     => array(
-					'none' => esc_html__( 'None', 'wolf-discography' ),
+			'pagination'       => array(
+				'label'   => esc_html__( 'Pagination Type', 'wolf-discography' ),
+				'type'    => 'select',
+				'tab'     => 'general',
+				'choices' => array(
+					'none'    => esc_html__( 'None', 'wolf-discography' ),
 					'numbers' => esc_html__( 'Numbered', 'wolf-discography' ),
 				),
-				'default'     => 'list',
+				'default' => 'list',
 			),
 			'use_band_tax'     => array(
 				'label'       => esc_html__( 'Link Artist Names', 'wolf-discography' ),

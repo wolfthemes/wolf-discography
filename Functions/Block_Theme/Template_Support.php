@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 class Template_Support {
 
-	const PLUGIN_SLUG = 'wolf-discography';
+	const PLUGIN_SLUG        = 'wolf-discography';
 	const TEMPLATES_ROOT_DIR = 'block-templates';
 
 	/**
@@ -80,7 +80,7 @@ class Template_Support {
 			return $query_result;
 		}
 
-		$slugs = isset( $query['slug__in'] ) ? $query['slug__in'] : array();
+		$slugs          = isset( $query['slug__in'] ) ? $query['slug__in'] : array();
 		$template_files = $this->get_block_templates( $slugs, $template_type );
 
 		foreach ( $template_files as $template_file ) {
@@ -105,7 +105,7 @@ class Template_Support {
 	 * Get available block templates
 	 */
 	public function get_block_templates( $slugs = array(), $template_type = 'wp_template' ) {
-		$templates = array();
+		$templates      = array();
 		$template_files = $this->get_template_files();
 
 		foreach ( $template_files as $template_slug => $template_file ) {
@@ -120,7 +120,7 @@ class Template_Support {
 			}
 
 			$template_object = $this->create_template_object( $template_file, $template_type, $template_slug );
-			$built_template = $this->build_template_result_from_file( $template_object, $template_type );
+			$built_template  = $this->build_template_result_from_file( $template_object, $template_type );
 
 			if ( $built_template ) {
 				$templates[] = $built_template;
@@ -135,13 +135,13 @@ class Template_Support {
 	 */
 	private function get_template_files() {
 		$template_dir = WD_DIR . '/' . self::TEMPLATES_ROOT_DIR . '/';
-		$templates = array();
+		$templates    = array();
 
 		$template_files = array(
-			'archive-release' => 'archive-release.html',
-			'single-release' => 'single-release.html',
-			'taxonomy-band' => 'taxonomy-band.html',
-			'taxonomy-label' => 'taxonomy-label.html',
+			'archive-release'        => 'archive-release.html',
+			'single-release'         => 'single-release.html',
+			'taxonomy-band'          => 'taxonomy-band.html',
+			'taxonomy-label'         => 'taxonomy-label.html',
 			'taxonomy-release_genre' => 'taxonomy-release_genre.html',
 		);
 
@@ -205,19 +205,19 @@ class Template_Support {
 
 		$template_content = file_get_contents( $template_object->path );
 
-		$template = new \WP_Block_Template();
-		$template->id = self::PLUGIN_SLUG . '//' . $template_object->slug;
-		$template->theme = self::PLUGIN_SLUG;
-		$template->slug = $template_object->slug;
-		$template->source = 'plugin';
-		$template->type = $template_type;
-		$template->title = $this->get_template_title( $template_object->slug );
-		$template->content = $template_content;
-		$template->status = 'publish';
+		$template                 = new \WP_Block_Template();
+		$template->id             = self::PLUGIN_SLUG . '//' . $template_object->slug;
+		$template->theme          = self::PLUGIN_SLUG;
+		$template->slug           = $template_object->slug;
+		$template->source         = 'plugin';
+		$template->type           = $template_type;
+		$template->title          = $this->get_template_title( $template_object->slug );
+		$template->content        = $template_content;
+		$template->status         = 'publish';
 		$template->has_theme_file = false;
-		$template->is_custom = false;
-		$template->wp_id = $template->id;
-		$template->plugin = self::PLUGIN_SLUG;
+		$template->is_custom      = false;
+		$template->wp_id          = $template->id;
+		$template->plugin         = self::PLUGIN_SLUG;
 
 		return $template;
 	}
@@ -227,10 +227,10 @@ class Template_Support {
 	 */
 	private function get_template_title( $slug ) {
 		$titles = array(
-			'archive-release' => __( 'Release Archive', 'wolf-discography' ),
-			'single-release' => __( 'Single Release', 'wolf-discography' ),
-			'taxonomy-band' => __( 'Band Archive', 'wolf-discography' ),
-			'taxonomy-label' => __( 'Label Archive', 'wolf-discography' ),
+			'archive-release'        => __( 'Release Archive', 'wolf-discography' ),
+			'single-release'         => __( 'Single Release', 'wolf-discography' ),
+			'taxonomy-band'          => __( 'Band Archive', 'wolf-discography' ),
+			'taxonomy-label'         => __( 'Label Archive', 'wolf-discography' ),
 			'taxonomy-release_genre' => __( 'Genre Archive', 'wolf-discography' ),
 		);
 
@@ -257,10 +257,10 @@ class Template_Support {
 		}
 
 		$templates = array(
-			'archive-release.html' => $this->get_archive_template(),
-			'single-release.html' => $this->get_single_template(),
-			'taxonomy-band.html' => $this->get_taxonomy_template( 'band' ),
-			'taxonomy-label.html' => $this->get_taxonomy_template( 'label' ),
+			'archive-release.html'        => $this->get_archive_template(),
+			'single-release.html'         => $this->get_single_template(),
+			'taxonomy-band.html'          => $this->get_taxonomy_template( 'band' ),
+			'taxonomy-label.html'         => $this->get_taxonomy_template( 'label' ),
 			'taxonomy-release_genre.html' => $this->get_taxonomy_template( 'release_genre' ),
 		);
 
